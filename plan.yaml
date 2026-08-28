@@ -31,7 +31,7 @@ chunks:
   - id: R1
     title: System and discipline requirements from the agreed vision
     discipline: documentation
-    status: todo
+    status: done
     depends_on: [V1]
     estimate_sessions: 1
     outputs: [requirements/10-system.sdoc, requirements/20-electrical.sdoc, requirements/20-mechanical.sdoc, requirements/20-firmware.sdoc]
@@ -96,11 +96,16 @@ chunks:
   - id: E1B
     title: Block diagram and power budget across all three boards
     discipline: electrical
-    status: todo
+    status: in_progress
     depends_on: [E1, M2]
     estimate_sessions: 1
     outputs: [hw/block-diagram.yaml, docs/design/block-diagram.svg]
-    notes: block-diagram --check must pass before any schematic capture.
+    notes: >-
+      Provisional diagram written and block-diagram --check passes, but the
+      currents are estimates: this chunk cannot close until E1 settles the
+      parts and M2 the magnetics. It already forced two findings — the aux
+      rail cannot be fed from a 60 V-input part on a 400 V bus, and 600 mA is
+      not enough for the TX aux tree.
 
   - id: E2
     title: TX board schematic capture and ERC
