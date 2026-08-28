@@ -106,12 +106,14 @@ chunks:
     status: todo
     depends_on: [R1]
     estimate_sessions: 2
-    outputs: [docs/design/adr-0002-power-stage.md, docs/reference/manifest.yaml]
+    outputs: [docs/design/adr-0002-tx-power-stage.md, docs/reference/manifest.yaml]
     notes: >-
-      Replaces the v1 TX power stage, which is specified for <75 W flyback and
-      would see 2.9x its high-side absolute maximum at 3 kW. Also resolves the
-      six white-paper part numbers that do not name orderable parts, and decides
-      whether bidirectional operation is actually required.
+      TX power stage now settled by ADR-0002 (LMG3526R030, verified against
+      SNOSDF3B). Remaining: the RX rectifier technology, the DAB switches for
+      both sides, the isolation set against the 800 V reinforced requirement,
+      and the resonant capacitor. Bidirectional operation is confirmed
+      required, and the 700 V offline aux stage is no longer needed now that
+      both docks have a 48 V pack.
 
   - id: E1B
     title: Block diagram and power budget across all three boards
@@ -200,18 +202,19 @@ chunks:
       its hardware interlock — 22 ohm across the tank at full drive is 5.9 kW.
 
   - id: E9
-    title: Leviathan-side instance and the low-voltage envelope
+    title: Leviathan-side instance — configuration, harness and commissioning
     discipline: electrical
-    status: blocked
-    depends_on: [E4]
+    status: todo
+    depends_on: [E4, E7]
     estimate_sessions: 1
-    outputs: [docs/design/adr-0005-dab-envelope.md, hw/hvlv/]
+    outputs: [docs/design/adr-0005-dab-instances.md, docs/design/interfaces.md]
     notes: >-
-      BLOCKED on the Leviathan pack voltage, which is not yet known. SYS-015
-      deploys one converter design in both orientations, so its low-voltage
-      side must cover BOTH packs — the Mako's 48 V and whatever the Leviathan
-      carries. Until that number exists the transformer ratio, the LV device
-      count and the LV copper cannot be frozen.
+      UNBLOCKED. The Leviathan pack is 48 V nominal, the same as the Mako's, so
+      one low-voltage specification covers both ends and the two instances are
+      the same board with different firmware configuration and orientation.
+      What is left here is the dock harness — which carries 48 V for the
+      transmitter's auxiliary rails alongside the 400 V link — the
+      commissioning differences, and the interface document.
 
   # ---- simulation ----------------------------------------------------------
   - id: S1

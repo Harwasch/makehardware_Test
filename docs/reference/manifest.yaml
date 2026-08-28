@@ -134,3 +134,19 @@ documents:
       v1 LV-side DAB switch, two paralleled per branch. 150 V rating bounds the
       LV bus — which the white paper never states. See the open question in
       docs/design/v1-baseline.md.
+
+  - id: lmg352xr030-datasheet
+    title: LMG352xR030 650 V 30 mOhm GaN FET with integrated driver, protection and temperature reporting
+    part: LMG3526R030
+    publisher: Texas Instruments
+    revision: SNOSDF3B (Nov 2022, revised Jan 2025)
+    url: https://www.ti.com/lit/ds/symlink/lmg3522r030.pdf
+    local: docs/reference/lmg352xr030-SNOSDF3B.pdf
+    retrieved: 2026-08-28
+    needed_by: [ELE-001, ELE-005, ELE-006]
+    notes: >-
+      Selected TX power stage, ADR-0002. Read directly, not via an agent:
+      VDS 650 V, ID(RMS) 55 A (an RMS rating, not a peak), RDS(on) 26 mOhm typ
+      / 35 mOhm max at 25 C and 45 mOhm TYP at 125 C with NO GUARANTEED MAX,
+      RthJC(top) 0.28 C/W top-cooled only, Qrr 0, CO(er) 320 pF at 400 V.
+      Characterised at VDS 520 V.

@@ -9,7 +9,7 @@
 </style>
 <rect width="2196" height="1214" class="s" rx="6"/>
 <text x="20" y="27" class="h ink">Ulysses LARS Charger</text>
-<text x="20" y="47" class="t ink2">2/26 chunks complete · 8% · 16 sessions on the critical path · 2 blocked</text>
+<text x="20" y="47" class="t ink2">2/26 chunks complete · 8% · 16 sessions on the critical path · 1 blocked</text>
 <line x1="320" y1="76" x2="320" y2="1136" class="ax" stroke-width="1" opacity="0.5"/>
 <text x="326" y="72" class="ts mut">S1</text>
 <line x1="436" y1="76" x2="436" y2="1136" class="ax" stroke-width="1" opacity="0.5"/>
@@ -100,9 +100,9 @@
 <text x="20" y="731.0" class="t ink">E8 · In-band communication link — modulation</text>
 <rect x="1019" y="717.0" width="226" height="20" rx="4" class="bar-todo"/>
 <text x="1027" y="731.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
-<text x="20" y="765.0" class="t ink">E9 · Leviathan-side instance and the low-vol</text>
-<rect x="1367" y="751.0" width="110" height="20" rx="4" class="bar-blocked"/>
-<text x="1375" y="765.0" class="ts" fill="#ffffff" opacity="0.96">✕ Blocked</text>
+<text x="20" y="765.0" class="t ink">E9 · Leviathan-side instance — configuration</text>
+<rect x="1599" y="751.0" width="110" height="20" rx="4" class="bar-todo"/>
+<text x="1607" y="765.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
 <text x="20" y="797" class="tb ink2">TEST</text>
 <line x1="20" y1="803" x2="2176" y2="803" class="ax" stroke-width="1" opacity="0.35"/>
 <text x="20" y="827.0" class="t ink">S1 · Resonant link simulation, cross-checked</text>
@@ -150,7 +150,8 @@
 <path d="M897,857.0 H1132.0 V693.0 H1364" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
 <path d="M781,455.0 H900.0 V727.0 H1016" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
 <path d="M1013,359.0 H1023 V727.0 H1016" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M1361,591.0 H1371 V761.0 H1364" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M1361,591.0 H1480.0 V761.0 H1596" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M1593,693.0 H1603 V761.0 H1596" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
 <path d="M1013,359.0 H1023 V823.0 H1016" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
 <path d="M781,455.0 H900.0 V823.0 H1016" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
 <path d="M781,455.0 H791 V857.0 H784" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
