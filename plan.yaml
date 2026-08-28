@@ -14,4 +14,235 @@
 project: Ulysses LARS Charger
 disciplines: [electrical, firmware, mechanical, test, documentation]
 
-chunks: []
+chunks:
+
+  # ---- agreements ----------------------------------------------------------
+  - id: V1
+    title: Vision, v1 baseline review and link budget
+    discipline: documentation
+    status: done
+    depends_on: []
+    estimate_sessions: 1
+    outputs: [requirements/00-vision.sdoc, docs/design/vision.md, docs/design/v1-baseline.md, sim/link-budget/link_budget.py, concepts/]
+    notes: >-
+      Established that the v1 magnetics cannot reach 3 kW and that coil-to-coil
+      efficiency is the constraint that decides the architecture.
+
+  - id: R1
+    title: System and discipline requirements from the agreed vision
+    discipline: documentation
+    status: todo
+    depends_on: [V1]
+    estimate_sessions: 1
+    outputs: [requirements/10-system.sdoc, requirements/20-electrical.sdoc, requirements/20-mechanical.sdoc, requirements/20-firmware.sdoc]
+    notes: >-
+      Requirements are written against k*Q and pad dissipation, not against a
+      coil technology, so the M2 decision is settled on evidence.
+
+  # ---- magnetics: the critical path ----------------------------------------
+  - id: M1
+    title: Coil bench characterisation — L, R, Q and k on real coils
+    discipline: mechanical
+    status: todo
+    depends_on: [R1]
+    estimate_sessions: 1
+    outputs: [docs/design/coil-characterisation.md, sim/link-budget/]
+    notes: >-
+      CRITICAL PATH AND EARLIEST RISK. The entire architecture argument rests on
+      a Q nobody has measured. The v1 numbers are internally inconsistent (Q=12
+      implies 127 kHz, not the stated 85 kHz nominal). Measure a PCB coil and a
+      Litz coil on the same fixture at the same frequency, at the real air gap,
+      before anything is designed around either.
+
+  - id: M2
+    title: Coil technology decision, magnetics design and compensation network
+    discipline: mechanical
+    status: todo
+    depends_on: [M1]
+    estimate_sessions: 2
+    outputs: [docs/design/adr-0001-coil-technology.md, cad/coil_pad.py, docs/design/magnetics.md]
+    notes: >-
+      Picks PCB or Litz against M1's measurements, then sizes turns, geometry,
+      ferrite and the series tuning capacitor. The tank capacitor is a real part
+      nobody has specified — roughly 22 nF standing off 720 V rms and carrying
+      the full 8.3 A of tank current.
+
+  - id: M3
+    title: Coil pad thermal design, conduction path and packaging
+    discipline: mechanical
+    status: todo
+    depends_on: [M2]
+    estimate_sessions: 2
+    outputs: [cad/coil_pad.py, sim/thermal/, docs/design/thermal.md]
+    notes: >-
+      gmsh + CalculiX. VIS-006 allows no coolant, so this chunk is what proves
+      the M2 choice survives. Needs the dock and vehicle ambient, which is still
+      an open question from the vision.
+
+  # ---- electrical ----------------------------------------------------------
+  - id: E1
+    title: Power architecture, topology and part selection
+    discipline: electrical
+    status: todo
+    depends_on: [R1]
+    estimate_sessions: 2
+    outputs: [docs/design/adr-0002-power-stage.md, docs/reference/manifest.yaml]
+    notes: >-
+      Replaces the v1 TX power stage, which is specified for <75 W flyback and
+      would see 2.9x its high-side absolute maximum at 3 kW. Also resolves the
+      six white-paper part numbers that do not name orderable parts, and decides
+      whether bidirectional operation is actually required.
+
+  - id: E1B
+    title: Block diagram and power budget across all three boards
+    discipline: electrical
+    status: todo
+    depends_on: [E1, M2]
+    estimate_sessions: 1
+    outputs: [hw/block-diagram.yaml, docs/design/block-diagram.svg]
+    notes: block-diagram --check must pass before any schematic capture.
+
+  - id: E2
+    title: TX board schematic capture and ERC
+    discipline: electrical
+    status: todo
+    depends_on: [E1B]
+    estimate_sessions: 2
+    outputs: [hw/tx/tx.kicad_sch]
+    notes: GaN H-bridge, aux rails, current sense, STM32H723.
+
+  - id: E3
+    title: RX board schematic capture and ERC
+    discipline: electrical
+    status: todo
+    depends_on: [E1B]
+    estimate_sessions: 1
+    outputs: [hw/rx/rx.kicad_sch]
+    notes: >-
+      Rectifier, bulk, isolated current sense, STM32G431. The v1 bridge is
+      ultrafast silicon described as Schottky; evaluate SiC Schottky and
+      synchronous rectification against the 26 W the diode bridge costs.
+
+  - id: E4
+    title: HVLV dual-active-bridge schematic capture and ERC
+    discipline: electrical
+    status: todo
+    depends_on: [E1B]
+    estimate_sessions: 2
+    outputs: [hw/hvlv/hvlv.kicad_sch]
+    notes: >-
+      48 V LV side carries 62.5 A at 3 kW. The v1 two-FETs-per-branch choice
+      dissipates 74 W in conduction alone; more paralleling or a lower-R part.
+
+  - id: E5
+    title: TX PCB layout, DRC and fabrication outputs
+    discipline: electrical
+    status: todo
+    depends_on: [E2, S2]
+    estimate_sessions: 2
+    outputs: [hw/tx/tx.kicad_pcb, build/fab/tx/]
+    notes: GaN switching loop and gate loop inductance dominate this layout.
+
+  - id: E6
+    title: RX PCB layout, DRC and fabrication outputs
+    discipline: electrical
+    status: todo
+    depends_on: [E3]
+    estimate_sessions: 1
+    outputs: [hw/rx/rx.kicad_pcb, build/fab/rx/]
+
+  - id: E7
+    title: HVLV PCB layout, DRC and fabrication outputs
+    discipline: electrical
+    status: todo
+    depends_on: [E4, S2]
+    estimate_sessions: 2
+    outputs: [hw/hvlv/hvlv.kicad_pcb, build/fab/hvlv/]
+    notes: 62.5 A of LV copper and a planar transformer in the stackup.
+
+  # ---- simulation ----------------------------------------------------------
+  - id: S1
+    title: Resonant link simulation, cross-checked against the closed form
+    discipline: test
+    status: todo
+    depends_on: [M2, E1]
+    estimate_sessions: 1
+    outputs: [sim/link/, docs/design/link-simulation.md]
+    notes: >-
+      ngspice model of the compensated link. Must reconcile with
+      sim/link-budget/link_budget.py; a disagreement means one of them is wrong.
+
+  - id: S2
+    title: Power stage simulation — ZVS, dead time and switching loss
+    discipline: test
+    status: todo
+    depends_on: [E1]
+    estimate_sessions: 1
+    outputs: [sim/power-stage/, docs/design/switching.md]
+    notes: >-
+      Dead time is safety-critical here and v1 never set it in firmware at all.
+      Sweep corners; a dead time that works at 25 C and shoots through at 85 C
+      is the failure this chunk exists to catch.
+
+  # ---- firmware ------------------------------------------------------------
+  - id: F1
+    title: TX resonance-tracking firmware rework
+    discipline: firmware
+    status: todo
+    depends_on: [E1B]
+    estimate_sessions: 2
+    outputs: [fw/tx/]
+    notes: >-
+      Keep the validated two-stage architecture; fix the eight findings. The
+      filter is a median where the paper claims RMS, the smoothing branch is
+      dead code, the re-sweep guard can never fire, and dead time is never set.
+
+  - id: F2
+    title: HVLV CC/CV control firmware with real constants
+    discipline: firmware
+    status: todo
+    depends_on: [E1B]
+    estimate_sessions: 2
+    outputs: [fw/hvlv/]
+    notes: >-
+      Every control constant in v1 is a FILL THIS OUT LATER placeholder, the
+      phase shift is gated behind a condition that can never be true, and the
+      50 us control ISR does blocking ADC polls with a 1 ms timeout.
+
+  - id: F3
+    title: Protection, fault handling and safe-state behaviour
+    discipline: firmware
+    status: todo
+    depends_on: [F1, F2, S2]
+    estimate_sessions: 1
+    outputs: [fw/common/, docs/design/adr-0003-protection.md]
+    notes: >-
+      Hardware break inputs, over-current and over-voltage trips, coupling-loss
+      detection, and the charge-rate limit the present 1.58 kWh pack needs.
+      v1 has none of this: TIM break is disabled everywhere.
+
+  # ---- close-out -----------------------------------------------------------
+  - id: T1
+    title: Bench verification against requirements and the traceability gate
+    discipline: test
+    status: todo
+    depends_on: [E5, E6, E7, F3, M3, S1]
+    estimate_sessions: 2
+    outputs: [docs/design/verification-report.md]
+    notes: req-trace --gate. Report the number it prints, gaps first.
+
+  - id: D1
+    title: Design record — ADRs, architecture and interfaces consolidated
+    discipline: documentation
+    status: todo
+    depends_on: [M2, E1B]
+    estimate_sessions: 1
+    outputs: [docs/design/architecture.md, docs/design/interfaces.md]
+
+  - id: D2
+    title: User documentation and spec sheet
+    discipline: documentation
+    status: todo
+    depends_on: [T1]
+    estimate_sessions: 1
+    outputs: [docs/user/]
