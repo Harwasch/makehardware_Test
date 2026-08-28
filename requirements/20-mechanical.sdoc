@@ -8,4 +8,172 @@ IMPORT_FROM_FILE: hardware.sgra
 [TEXT]
 STATEMENT: >>>
 Mechanical requirements. Each one Refines a ``SYS-`` requirement.
+
+``MEC-001`` carries 120 W of the 300 W allowed by ``SYS-004``. It is written
+against the coupling-quality product k times Q rather than against a coil
+technology, so the choice between an etched and a wound conductor is settled on
+a measurement rather than a preference.
 <<<
+
+[REQUIREMENT]
+UID: MEC-001
+TITLE: Coil pair loss and coupling quality
+STATEMENT: >>>
+The coil pair shall dissipate no more than 120 W at 3.0 kW transferred, which
+requires a coupling-quality product k times Q of at least 49 measured at 85 kHz
+at the maximum gap of ``SYS-006``.
+<<<
+RATIONALE: >>>
+Coil-to-coil efficiency in a compensated inductive link is governed by the
+product of coupling and quality factor, not by resistance alone. 120 W of 3.0 kW
+is 96.0% coil-to-coil, and inverting the standard expression gives k times Q of
+49. At the expected coupling of 0.5 that means a coil quality factor of about
+98; at the worst-case 0.4 it means 122.
+
+For scale: the v1 PCB coil as documented gives k times Q of 4.0, and the same
+etched geometry scaled to the inductance the link actually needs still gives
+only 14.7. A Litz conductor at a quality factor of 150 gives 75. This
+requirement is therefore expected to exclude an etched coil, but it does so
+arithmetically rather than by assertion, and an etched coil that measures
+against it is admissible. See ``docs/design/v1-baseline.md`` finding F9.
+<<<
+VERIFICATION: Test
+BUDGET: 120 W
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-004
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: MEC-002
+TITLE: Coil assembly inductance
+STATEMENT: >>>
+Each coil assembly, with its ferrite backing in place and at the nominal gap,
+shall have a self-inductance within 5% of the value the compensation network is
+tuned for, and the two assemblies shall match each other within 2%.
+<<<
+RATIONALE: >>>
+For a 3.0 kW transfer at resonance with a 400 V bus on both ends, the mutual
+inductance must be about 81 microhenries, which at a coupling of 0.5 means about
+162 microhenries per coil - some thirteen times the v1 coil's 12 microhenries.
+The v1 coil is not merely small, it puts the link in a regime where holding
+3.0 kW requires running far off resonance, which directly defeats the resonance
+tracking the firmware exists to perform. The 2% matching limit exists because
+the resonant gain of the link collapses when the two tanks are tuned apart.
+See ``docs/design/v1-baseline.md`` finding F8.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-001
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: MEC-003
+TITLE: Coupling coefficient over the docking envelope
+STATEMENT: >>>
+The coupling coefficient shall be at least 0.40 everywhere within the gap and
+misalignment envelope of ``SYS-006``, measured with both ferrite backings and
+both cold plates fitted.
+<<<
+RATIONALE: >>>
+0.40 is the worst-case value that keeps ``MEC-001`` satisfiable with an
+achievable coil quality factor of 122. Measuring with the backings and plates
+fitted matters because both change the field pattern substantially; a coupling
+figure taken on bare coils is not the figure the system will run at. No
+coupling coefficient appears anywhere in the v1 source material.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-006
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: MEC-004
+TITLE: Coil pad thermal path
+STATEMENT: >>>
+Each coil pad shall conduct up to 60 W into its mounting structure with the coil
+conductor staying below 100 degC in the maximum specified ambient, with no
+pumped coolant and no forced air.
+<<<
+RATIONALE: >>>
+60 W is half the ``MEC-001`` allowance, one pad each. 100 degC keeps a
+polyimide-insulated conductor and a potting compound well inside their ratings
+and keeps the copper resistance rise, which is about 30% from 20 degC to
+100 degC, inside what the loss budget already assumes. The ambient is an open
+question from the vision interview and this requirement cannot be closed until
+it is answered.
+<<<
+VERIFICATION: Simulation
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-007
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: MEC-005
+TITLE: Coil assembly immersion sealing
+STATEMENT: >>>
+Each coil assembly shall be sealed such that full immersion in seawater produces
+no conductive path to the coil conductor and no change in self-inductance beyond
+2%.
+<<<
+RATIONALE: >>>
+``SYS-005`` requires the link to survive immersion. The inductance clause is the
+one that is easy to miss: seawater in the winding cavity changes the effective
+permittivity around the conductor and detunes the tank, which the resonance
+tracker would then chase into a regime the compensation network is not designed
+for.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-005
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: MEC-006
+TITLE: Mechanical parts producible without programme-specific tooling
+STATEMENT: >>>
+Every mechanical part other than the coil conductor shall be producible by
+3-axis machining, sheet fabrication or an off-the-shelf moulding, with no part
+requiring a tool made for this programme alone.
+<<<
+RATIONALE: >>>
+Carries the ``SYS-011`` intent into the mechanical parts. The coil conductor is
+excluded because ``MEC-001`` may not be satisfiable within it; every other part,
+including the ferrite backing and the cold plate, should stay inside it.
+<<<
+VERIFICATION: Inspection
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-011
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: MEC-007
+TITLE: Magnetic and material property traceability
+STATEMENT: >>>
+Every magnetic material, potting compound and thermal interface material shall
+have its relevant properties recorded in ``docs/reference/manifest.yaml`` against
+a datasheet revision or a measurement made in this programme.
+<<<
+RATIONALE: >>>
+The mechanical half of ``SYS-010``. Ferrite permeability and loss at 85 kHz, and
+thermal interface conductivity, are exactly the numbers that get taken from
+memory and are exactly the ones the thermal and magnetic designs rest on. The v1
+white paper names ferrite backing without naming a material at all.
+<<<
+VERIFICATION: Inspection
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-010
+  ROLE: Refines

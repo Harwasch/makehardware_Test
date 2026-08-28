@@ -8,4 +8,236 @@ IMPORT_FROM_FILE: hardware.sgra
 [TEXT]
 STATEMENT: >>>
 Firmware requirements. Each one Refines a ``SYS-`` requirement.
+
+Several of these exist because the v1 firmware review found the implemented
+algorithm and the documented algorithm to differ. They are written so that the
+difference cannot recur silently.
 <<<
+
+[REQUIREMENT]
+UID: FW-001
+TITLE: Two-stage resonance acquisition
+STATEMENT: >>>
+The transmitter firmware shall acquire resonance by a bounded frequency sweep
+across 80 kHz to 120 kHz completing within 5 s, followed by a perturb-and-observe
+hill climb that settles within 500 ms of the sweep ending.
+<<<
+RATIONALE: >>>
+This is the v1 architecture, retained because it is the one thing the white
+paper demonstrated on a bench. The time bounds are new: the v1 sweep delays 1 s
+per step over 15 steps, so it takes about 15 s, which is too slow to ride
+through a docking transient inside the 2 s of ``SYS-009``.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-009
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: FW-002
+TITLE: The tracking metric shall be true rms current
+STATEMENT: >>>
+The quantity the resonance tracker maximises shall be the rms of the sampled
+tank current over a whole number of drive periods, computed as such.
+<<<
+RATIONALE: >>>
+The v1 white paper states the firmware "generates an aggregate rms current
+reading"; the code computes a plain median of the sample buffer and no rms
+anywhere. Because the sensed waveform is a sine with a positive offset, its
+median approximates its mean, which is not proportional to power - so the hill
+climb maximises a quantity that peaks near resonance but far more weakly than an
+rms metric would, and is correspondingly more sensitive to noise. Sampling over
+whole periods is what stops the metric moving with drive frequency for reasons
+that have nothing to do with resonance. See ``docs/design/v1-baseline.md``
+finding F6.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-009
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: FW-003
+TITLE: Loss-of-coupling detection and re-acquisition
+STATEMENT: >>>
+The firmware shall detect that the tracking metric has fallen below a
+configurable fraction of its value at acquisition, and shall return to the sweep
+of ``FW-001`` within 200 ms of that condition persisting.
+<<<
+RATIONALE: >>>
+The v1 firmware has this path but it can never execute: the threshold is
+initialised to zero and compared against an unsigned quantity, so the condition
+is unreachable. If the vehicle moves or undocks, v1 would continue hill climbing
+on noise. The threshold must be configurable because its right value depends on
+the coupling envelope, which is not yet measured.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-009
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: FW-004
+TITLE: Dead time is explicit, bounded and verified
+STATEMENT: >>>
+Every bridge shall have its dead time set explicitly at initialisation from a
+named constant, and the resulting gate waveforms shall be verified to leave at
+least 50 ns of non-overlap at every operating point and temperature.
+<<<
+RATIONALE: >>>
+The v1 firmware defines a dead-time helper and never calls it, relying entirely
+on whatever the code generator emitted, and the phase-shift reference sketch
+sets dead time to zero outright. On a 400 V bridge this is the difference
+between a converter and a short circuit. 50 ns is a conventional floor for a
+fast wide-bandgap device once propagation-delay mismatch and temperature drift
+are accounted for; the real number comes from ``S2``.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-008
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: FW-005
+TITLE: Control loop determinism
+STATEMENT: >>>
+The vehicle-side control loop shall complete every iteration within 50% of its
+sampling period, with no blocking call whose worst-case duration exceeds the
+period, and shall detect and report any overrun.
+<<<
+RATIONALE: >>>
+The v1 control loop runs from a 50 microsecond timer interrupt and makes two
+blocking ADC calls each with a 1 ms timeout - twenty periods of worst case
+inside one period. Conversions must be started by the timer and collected by DMA
+or an end-of-conversion interrupt. The 50% ceiling leaves room for the
+protection handling of ``FW-006`` to run in the same period.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-002
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: FW-006
+TITLE: Commanded-rate charge control
+STATEMENT: >>>
+The firmware shall implement constant-current then constant-voltage charging to
+a commanded current setpoint and a commanded voltage limit, with the current
+setpoint clamped to a configured pack maximum, and shall never apply a phase
+shift while the commanded setpoint is zero.
+<<<
+RATIONALE: >>>
+``SYS-002`` requires a commandable rate, and today's 1.58 kWh pack cannot accept
+the charger's maximum. The clamp is what stops a future firmware change from
+delivering 1.89C into a pack that will not take it. In v1 every constant in this
+loop is a placeholder marked to be filled in later, and the phase-shift output
+is gated behind a comparison against a threshold left at zero, so the bridge
+never leaves zero phase shift at all.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-002
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: FW-007
+TITLE: Fault latching and safe state
+STATEMENT: >>>
+On any fault of ``SYS-008`` the firmware shall latch all bridge outputs off,
+record the cause, and require an explicit command to restart; it shall not
+self-clear.
+<<<
+RATIONALE: >>>
+A converter that restarts itself into an unresolved fault destroys itself on the
+second attempt rather than the first. Recording the cause is what makes a field
+failure diagnosable at all - v1 records nothing.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-008
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: FW-008
+TITLE: Link protocol and framing
+STATEMENT: >>>
+The firmware shall frame all in-band traffic with a start delimiter, a length, a
+message type, a payload and a CRC, shall reject any frame failing its CRC, and
+shall carry at minimum receiver identification, pack voltage and current, pack
+temperature, a requested current setpoint, and a fault code.
+<<<
+RATIONALE: >>>
+The payload set is what ``SYS-002`` and ``SYS-013`` need to function: the
+receiver is the only thing that can measure its own pack, so the commanded rate
+of ``SYS-002`` has to be requested from the vehicle side and the constant-voltage
+handoff has to be decided there. A CRC rather than a checksum because
+load-shift keying errors are bursty - a single coupling disturbance corrupts
+several adjacent symbols, which is exactly the case a checksum misses.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-012
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: FW-009
+TITLE: Coexistence of the data link with resonance tracking
+STATEMENT: >>>
+The firmware shall not perturb the drive frequency while a frame is in flight,
+and shall discard tracking samples taken during a frame, such that neither the
+tracker nor the demodulator is degraded by the other.
+<<<
+RATIONALE: >>>
+These two mechanisms use the same physical quantities in opposite directions and
+will fight unless they are explicitly separated. Load-shift keying works by
+changing the reflected impedance, which is exactly the change the hill climb of
+``FW-001`` is built to chase - so an unblanked tracker would follow the data
+stream instead of resonance. In the other direction the tracker's own frequency
+perturbation looks like frequency-shift keying to the demodulator. Blanking is
+affordable because ``SYS-009`` allows 2 s to re-acquire and a frame occupies a
+small fraction of that.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-009
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: FW-010
+TITLE: Handshake sequence and link supervision
+STATEMENT: >>>
+The firmware shall complete an identification exchange at the handshake drive
+level before commanding any increase in power, shall supervise the link
+continuously thereafter, and shall return the drive to the handshake level
+within 500 ms of three consecutive frames failing.
+<<<
+RATIONALE: >>>
+Implements the ``SYS-013`` interlock. Three frames rather than one so that a
+single disturbance - a passing wake, a coupling wobble - does not drop a charge
+that is otherwise healthy; at the 2 kbit per second of ``SYS-012`` three frames
+is a small fraction of the 500 ms budget.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-013
+  ROLE: Refines

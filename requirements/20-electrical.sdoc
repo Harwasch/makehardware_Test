@@ -8,4 +8,390 @@ IMPORT_FROM_FILE: hardware.sgra
 [TEXT]
 STATEMENT: >>>
 Electrical requirements. Each one Refines a ``SYS-`` requirement.
+
+``ELE-001``, ``ELE-002``, ``ELE-003`` and ``ELE-004`` carry the electrical
+share of the ``SYS-004`` loss budget: 25 W plus 40 W plus 100 W plus 15 W is
+180 W, and ``MEC-001`` carries the remaining 120 W, summing to the parent's
+300 W.
 <<<
+
+[REQUIREMENT]
+UID: ELE-001
+TITLE: TX inverter loss
+STATEMENT: >>>
+The transmitter H-bridge, including its gate drive, shall dissipate no more than
+25 W at 3.0 kW output.
+<<<
+RATIONALE: >>>
+At 3.0 kW into a 400 V bus the series-resonant tank carries 8.33 A rms, so each
+switch conducts about 5.89 A rms. With 30 milliohm devices that is 4.2 W of
+conduction across the four switches, leaving about 21 W for switching loss and
+gate drive at 85 kHz - achievable with a modern GaN part and a tight commutation
+loop. The v1 LMG2610 would spend 23.6 W on conduction alone and leave 1.4 W,
+which is why it cannot meet this number. See ``docs/design/v1-baseline.md``
+finding F1.
+<<<
+VERIFICATION: Simulation
+BUDGET: 25 W
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-004
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: ELE-002
+TITLE: RX rectifier loss
+STATEMENT: >>>
+The receiver rectifier, including its output filter, shall dissipate no more
+than 40 W at 3.0 kW throughput.
+<<<
+RATIONALE: >>>
+At about 7.5 A of rectified current, a two-diode conduction path costs
+2 times Vf times 7.5 A: 25.5 W with the v1 silicon ultrafast parts at 1.7 V,
+22.5 W with a 650 V SiC Schottky at 1.5 V, and 3.4 W with synchronous
+rectification using 30 milliohm devices. Only the last leaves real margin for
+switching loss at 100 kHz, so this budget is deliberately tight enough to force
+that trade to be made explicitly rather than inherited from v1.
+<<<
+VERIFICATION: Simulation
+BUDGET: 40 W
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-004
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: ELE-003
+TITLE: Vehicle-side converter loss
+STATEMENT: >>>
+The vehicle-side dual active bridge, from rectified DC to pack terminals, shall
+dissipate no more than 100 W at 3.0 kW throughput.
+<<<
+RATIONALE: >>>
+The low-voltage bridge carries 62.5 A at 48 V, about 44 A rms per branch. With
+the v1 choice of two BSC190N15NS3 per branch the bridge alone costs 74 W of
+conduction, leaving only 26 W for the high-voltage bridge, the transformer and
+all switching loss - not feasible. Four devices per branch brings it to 37 W and
+leaves 63 W, which is. This requirement is what forces that change.
+<<<
+VERIFICATION: Simulation
+BUDGET: 100 W
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-004
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: ELE-004
+TITLE: Auxiliary and control loss
+STATEMENT: >>>
+All auxiliary rails, isolated bias supplies, sensing and digital control across
+all boards shall together dissipate no more than 15 W.
+<<<
+RATIONALE: >>>
+Three STM32 nodes, four isolated gate-drive bias supplies, digital isolators and
+the sensing chain. 15 W is generous for that population and exists mainly so the
+auxiliary tree cannot quietly grow into the power budget; it also bounds the
+auxiliary converter sizing, which the v1 white paper never stated consistently.
+<<<
+VERIFICATION: Analysis
+BUDGET: 15 W
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-004
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: ELE-005
+TITLE: TX switch current rating
+STATEMENT: >>>
+Each transmitter bridge switch shall be rated for a continuous drain current of
+at least 17 A and a repetitive peak of at least 24 A at its operating junction
+temperature.
+<<<
+RATIONALE: >>>
+The tank carries 8.33 A rms and 11.8 A peak at 3.0 kW. A factor of two on both
+figures covers the transient during resonance re-acquisition, coupling steps at
+docking, and the derating of any device rating quoted at 25 degC. The v1 part
+was carried on a 6.4 A number that is in fact a low-side absolute-maximum peak,
+with the high-side limit of 4 A not mentioned at all; this requirement is
+written in continuous terms specifically so that a peak rating cannot be quoted
+against it.
+<<<
+VERIFICATION: Analysis
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-001
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: ELE-006
+TITLE: TX switch voltage derating
+STATEMENT: >>>
+Every switch on the 400 V bus shall have a drain-source rating of at least 650 V
+and shall not exceed 80% of that rating including all ringing and transient
+overshoot.
+<<<
+RATIONALE: >>>
+400 V on a 600 V part is a factor of 1.5, which leaves nothing for the ringing a
+fast GaN edge produces across an imperfect commutation loop. 650 V at 80% gives
+a 520 V ceiling and 120 V of headroom over the bus. The v1 HV bridge used a
+600 V CoolMOS and the v1 gate driver was quoted at 650 V when the real part is
+rated 600 V; both are inside this requirement's reach.
+<<<
+VERIFICATION: Simulation
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-001
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: ELE-007
+TITLE: Resonant tank capacitor rating
+STATEMENT: >>>
+The series compensation capacitor on each side shall be rated for at least
+1500 V dc, at least 900 V rms at the operating frequency, and a continuous
+ripple current of at least 12 A rms at 85 kHz.
+<<<
+RATIONALE: >>>
+At the matched operating point the tuning capacitor is about 22 nF standing off
+720 V rms and carrying the full 8.33 A of tank current. The ratings above apply
+a factor of about 1.25 on voltage and 1.4 on current. This part is likely the
+largest passive in the system and it appears nowhere in the v1 white paper; the
+requirement exists so it is specified rather than discovered. See
+``docs/design/v1-baseline.md`` finding F10.
+<<<
+VERIFICATION: Analysis
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-001
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: ELE-008
+TITLE: Low-voltage bridge current capability
+STATEMENT: >>>
+The vehicle-side low-voltage bridge and its interconnect shall carry 62.5 A
+continuous at 48 V without any conductor exceeding a 30 degC rise above the
+local ambient.
+<<<
+RATIONALE: >>>
+3.0 kW at 48 V is 62.5 A, and at the bottom of the pack window in ``SYS-003``
+it is 75 A. 30 degC is the conventional PCB copper rise limit that keeps
+laminate well inside its rating and keeps the copper resistance from running
+away with temperature.
+<<<
+VERIFICATION: Simulation
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-001
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: ELE-009
+TITLE: Hardware over-current trip
+STATEMENT: >>>
+Each bridge shall have an over-current comparator wired directly to the timer
+break input of its controller, latching all outputs off within 10 microseconds
+of the threshold being crossed, without firmware participation.
+<<<
+RATIONALE: >>>
+Software cannot save a bridge from a shoot-through. The v1 firmware disables the
+break input on every timer it configures and has no hardware trip anywhere, so
+the only protection is the internal cycle-by-cycle limit of a part that is
+itself being operated far outside its ratings. 10 microseconds is roughly one
+switching period at 85 kHz, which is the longest a fault may persist without
+damage.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-008
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: ELE-010
+TITLE: Tank current sense bandwidth and accuracy
+STATEMENT: >>>
+The tank current sense chain shall have a small-signal bandwidth of at least
+1 MHz and shall resolve the tank current to better than 2% of full scale over
+the 80 kHz to 120 kHz band.
+<<<
+RATIONALE: >>>
+Resonance tracking hill-climbs on this signal, so its noise floor sets how
+finely the algorithm can discriminate between adjacent frequency points. 1 MHz
+is roughly the tenth harmonic at the top of the band, enough to reproduce the
+waveform rather than a smeared version of it. 2% is what makes a hill-climb step
+of a few hundred hertz detectable above the measurement itself. The v1 white
+paper reports this chain as the dominant noise source in the control loop.
+<<<
+VERIFICATION: Simulation
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-009
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: ELE-011
+TITLE: Isolation between dock and vehicle domains
+STATEMENT: >>>
+Every signal and bias path crossing between the high-voltage bus domain and the
+low-voltage control domain shall be galvanically isolated to a working voltage
+of at least 800 V rms, reinforced.
+<<<
+RATIONALE: >>>
+800 V rms working covers the 400 V bus with a factor of two, and reinforced
+rather than basic isolation is what allows a single insulation failure not to
+energise the control domain. The v1 design already uses an appropriate isolation
+set; this requirement records the number those parts must be selected against.
+<<<
+VERIFICATION: Inspection
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-005
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: ELE-012
+TITLE: Output voltage regulation and ripple
+STATEMENT: >>>
+In constant-voltage mode the output shall hold its setpoint within 1% across the
+full load range, with peak-to-peak ripple at the pack terminals below 1% of the
+setpoint.
+<<<
+RATIONALE: >>>
+1% regulation is finer than the top-of-charge tolerance of any lithium chemistry
+and so does not itself constrain the pack; it is set here so the constant-voltage
+taper is governed by the charge profile rather than by converter droop. The
+ripple limit bounds the ripple current the pack sees, which is what shortens
+cell life at the top of charge.
+<<<
+VERIFICATION: Simulation
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-003
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: ELE-013
+TITLE: Board fabrication capability class
+STATEMENT: >>>
+No board shall require a track or gap below 100 micrometres, a drill below
+0.2 mm, a blind or buried via, or more than 6 layers.
+<<<
+RATIONALE: >>>
+This is the capability class every volume prototype house quotes as standard, so
+staying inside it keeps the boards orderable anywhere and keeps the cost step
+that comes with sequential lamination out of the programme. The high-current
+layers of the low-voltage bridge are the constraint that makes 2 oz copper part
+of the class rather than an option.
+<<<
+VERIFICATION: Inspection
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-011
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: ELE-014
+TITLE: Electrical BOM traceability
+STATEMENT: >>>
+Every electrical component in a released BOM shall have an entry in
+``docs/reference/manifest.yaml`` naming the datasheet revision its ratings were
+read from and the date it was retrieved.
+<<<
+RATIONALE: >>>
+The v1 review found the transmitter power stage carried on an absolute-maximum
+peak quoted as a continuous rating, a gate driver quoted 50 V above its actual
+rating, and six part numbers that do not name orderable parts. Recording the
+revision is what catches a datasheet that changed under the design.
+<<<
+VERIFICATION: Inspection
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-010
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: ELE-015
+TITLE: In-band modulator and demodulator
+STATEMENT: >>>
+Each end shall be able to impress a detectable modulation on the tank and to
+demodulate the other end's, recovering a symbol at a bit error rate below 1e-4
+across the full range of coupling and throughput of ``SYS-006`` and
+``SYS-012``.
+<<<
+RATIONALE: >>>
+1e-4 is what lets a short frame with a CRC succeed on the first attempt almost
+always, so the link does not spend its limited no-load bandwidth on retries. The
+demodulator has to work across a 50-fold swing in tank bandwidth and a
+corresponding swing in received amplitude, which is the real difficulty here -
+not the noise floor. Load-shift keying from the receiver and frequency-shift
+keying from the transmitter is the conventional pairing and is the starting
+assumption.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-012
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: ELE-016
+TITLE: Handshake damping network
+STATEMENT: >>>
+The transmitter shall be able to switch a damping network across its tank that
+lowers the loaded quality factor to 5 or below, dissipating no more than 20 W at
+the handshake drive level, and shall not engage it above the handshake drive
+level.
+<<<
+RATIONALE: >>>
+The no-load tank gives only 867 Hz of bandwidth, which is the binding constraint
+on ``SYS-012``. A 22 ohm shunt brings the loaded Q to about 3.8 and the
+bandwidth to 22.5 kHz - a 26-fold improvement - and at a 20 V fundamental drive
+it burns 18 W, which is affordable for the duration of a handshake. The
+prohibition above handshake level is a safety interlock: the same network across
+the tank at full drive would dissipate kilowatts.
+<<<
+VERIFICATION: Simulation
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-012
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: ELE-017
+TITLE: Handshake drive level
+STATEMENT: >>>
+The transmitter shall be able to drive the tank at a reduced amplitude of 20 V
+fundamental or less, and shall deliver no more than 50 W into a short-circuited
+or absent receiver at that level.
+<<<
+RATIONALE: >>>
+The level at which ``SYS-013`` permits the dock to probe before a receiver is
+identified. 50 W into an unknown load is low enough not to heat a foreign object
+dangerously or damage a flooded receiver, while being enough for the receiver
+electronics to wake on harvested energy and answer.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-013
+  ROLE: Refines

@@ -189,3 +189,22 @@ is individually small; together they are why v1 never reached its power target.
 <<<
 VERIFICATION: Inspection
 STATUS: Draft
+
+[REQUIREMENT]
+UID: VIS-011
+TITLE: The dock and the vehicle talk over the coils
+STATEMENT: >>>
+The charger shall carry a communication link over the same magnetic resonant
+coils that carry the power, for a charger handshake and for control packets,
+rather than over a separate radio or an optical path.
+<<<
+RATIONALE: >>>
+Requested in the vision interview. It follows the logic of ``VIS-002``: if the
+point of the system is that nothing crosses the gap but a magnetic field, then
+adding a second physical channel to make it work reintroduces the thing the
+design was avoiding - another aperture, another antenna, another alignment
+constraint, another thing to foul. The coils are already a matched pair of
+aligned transducers; the link should use them.
+<<<
+VERIFICATION: Inspection
+STATUS: Draft

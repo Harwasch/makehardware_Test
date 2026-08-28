@@ -160,6 +160,20 @@ chunks:
     outputs: [hw/hvlv/hvlv.kicad_pcb, build/fab/hvlv/]
     notes: 62.5 A of LV copper and a planar transformer in the stackup.
 
+  - id: E8
+    title: In-band communication link — modulation, demodulation and damping
+    discipline: electrical
+    status: todo
+    depends_on: [E1, M2]
+    estimate_sessions: 2
+    outputs: [docs/design/in-band-comms.md, docs/design/adr-0004-comms.md, sim/comms/]
+    notes: >-
+      Data over the power coils. The binding constraint is that the tank is a
+      bandpass filter whose bandwidth swings 50x with load: 43 kHz at 3 kW but
+      only 867 Hz at no load, which is exactly when the handshake happens.
+      Includes the switched damping network that buys that bandwidth back, and
+      its hardware interlock — 22 ohm across the tank at full drive is 5.9 kW.
+
   # ---- simulation ----------------------------------------------------------
   - id: S1
     title: Resonant link simulation, cross-checked against the closed form
@@ -221,12 +235,25 @@ chunks:
       detection, and the charge-rate limit the present 1.58 kWh pack needs.
       v1 has none of this: TIM break is disabled everywhere.
 
+  - id: F4
+    title: Link protocol, handshake and coexistence with resonance tracking
+    discipline: firmware
+    status: todo
+    depends_on: [E8, F1]
+    estimate_sessions: 2
+    outputs: [fw/common/comms/, docs/design/protocol.md]
+    notes: >-
+      Framing, CRC and the SYS-013 interlock that keeps the dock at handshake
+      power until a receiver identifies itself. The load-shift keying and the
+      resonance hill-climb use the same quantity in opposite directions and
+      will fight unless blanked against each other.
+
   # ---- close-out -----------------------------------------------------------
   - id: T1
     title: Bench verification against requirements and the traceability gate
     discipline: test
     status: todo
-    depends_on: [E5, E6, E7, F3, M3, S1]
+    depends_on: [E5, E6, E7, F3, F4, M3, S1]
     estimate_sessions: 2
     outputs: [docs/design/verification-report.md]
     notes: req-trace --gate. Report the number it prints, gaps first.

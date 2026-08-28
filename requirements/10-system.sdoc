@@ -9,4 +9,300 @@ IMPORT_FROM_FILE: hardware.sgra
 STATEMENT: >>>
 Testable system-level requirements. Each one Refines a ``VIS-`` entry and is
 itself refined by the discipline requirements in the ``20-`` documents.
+
+The efficiency requirement ``SYS-004`` is the budget parent for the whole
+design: the 300 W it allows at full power is divided among the discipline
+requirements, and those ``BUDGET`` fields must sum back to it.
 <<<
+
+[REQUIREMENT]
+UID: SYS-001
+TITLE: Maximum power delivery
+STATEMENT: >>>
+The system shall deliver 3.0 kW into the vehicle pack at a coil-to-coil gap of
+20 mm, measured at the pack terminals.
+<<<
+RATIONALE: >>>
+The programme target from the v1 white paper, retained because the vehicle pack
+is expected to grow to roughly 8 kWh, at which point 3 kW is a 0.38C charge
+completing in 2.7 h. Measured at the pack terminals rather than at the inverter
+so that the number cannot be met by moving losses downstream.
+<<<
+VERIFICATION: Test
+BUDGET: 3.0 kW
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: VIS-003
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: SYS-002
+TITLE: Commandable charge rate
+STATEMENT: >>>
+The system shall accept a commanded output current setpoint anywhere from 0 A to
+the maximum permitted by ``SYS-001``, and shall hold it within 5% of setpoint in
+steady state.
+<<<
+RATIONALE: >>>
+Today's pack is 48 V, 33 Ah - 1.58 kWh - and 3 kW into it is a 1.89C charge,
+above what most cells accept. The pack, not the charger, is the present limit,
+so the charger must be able to run well below its maximum on command. 5% is
+chosen because it is comfortably inside the tolerance of any pack charge
+profile while being achievable with the phase-shift resolution available.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: VIS-003
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: SYS-003
+TITLE: Vehicle-side output voltage
+STATEMENT: >>>
+The system shall deliver into a 48 V nominal pack over an operating range of
+40 V to 60 V, and shall not require modification for any pack capacity.
+<<<
+RATIONALE: >>>
+Stated in the vision interview: the pack voltage is fixed for the life of the
+programme and only capacity grows. The 40 V to 60 V window covers a 13S to 15S
+lithium pack from deep discharge to full charge with margin. Capacity
+independence means the design is sized by current and voltage, never by amp
+hours.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: VIS-004
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: SYS-004
+TITLE: End-to-end efficiency at full power
+STATEMENT: >>>
+The system shall convert at least 90% of the power drawn from the dock bus into
+power delivered at the pack terminals, at 3.0 kW and a 20 mm gap, i.e. total
+losses shall not exceed 300 W.
+<<<
+RATIONALE: >>>
+This is a thermal requirement expressed as an efficiency one. ``VIS-006`` allows
+no pumped coolant and no forced air, so every watt lost has to conduct into the
+structure. 300 W is what a bolted conduction path can plausibly be designed for
+across the dock and vehicle together; it is not an aspiration but the ceiling
+the cooling method sets. The 300 W is divided among ``ELE-001`` at 25 W,
+``MEC-001`` at 120 W, ``ELE-002`` at 40 W, ``ELE-003`` at 100 W and ``ELE-004``
+at 15 W, which sum exactly to the parent.
+<<<
+VERIFICATION: Test
+BUDGET: 300 W
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: VIS-007
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: SYS-005
+TITLE: No galvanic path between dock and vehicle
+STATEMENT: >>>
+The system shall transfer power with no electrical conductor crossing between
+dock and vehicle, and shall withstand full immersion of both coil assemblies in
+seawater without a conductive path forming.
+<<<
+RATIONALE: >>>
+The reason the system is wireless at all. The immersion clause is what
+distinguishes this from a dry inductive charger: the gap medium may be
+conductive seawater rather than air, which affects both losses and safety.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: VIS-002
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: SYS-006
+TITLE: Coupling at the docked position
+STATEMENT: >>>
+The system shall meet ``SYS-001`` and ``SYS-004`` at any coil-to-coil gap from
+5 mm to 20 mm with lateral misalignment up to 10 mm and angular misalignment up
+to 3 degrees.
+<<<
+RATIONALE: >>>
+The vision interview states the dock holds the vehicle close and square. The
+misalignment allowances are what a mechanically registered dock should achieve
+without a precision mechanism; they exist so the magnetics are designed for a
+range rather than for one nominal position that will never occur twice. The
+resulting coupling coefficient is expected to be about 0.5 and is confirmed by
+``MEC-003``.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: VIS-005
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: SYS-007
+TITLE: Thermal rejection by conduction only
+STATEMENT: >>>
+The system shall reject all losses by conduction into the dock and vehicle
+structure, with no component exceeding its rated maximum operating temperature
+at 3.0 kW continuous in the maximum specified ambient.
+<<<
+RATIONALE: >>>
+Stated in the vision interview. The ambient is still an open question and must
+be answered before this requirement can be verified; it is recorded here so the
+gap is visible rather than assumed away.
+<<<
+VERIFICATION: Simulation
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: VIS-006
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: SYS-008
+TITLE: Fault detection and safe state
+STATEMENT: >>>
+The system shall detect over-current, over-voltage, over-temperature and loss of
+coupling, and shall reach a state in which no switching device conducts, within
+10 microseconds of an over-current event and within 100 ms of the others.
+<<<
+RATIONALE: >>>
+A charger that destroys itself does not return the Mako to operation, which is
+what ``VIS-001`` asks for; the word "safely" in that entry is the hook. The
+10 microsecond figure is set by what a hardware comparator into the timer break
+input can achieve, which is the only mechanism fast enough to save a bridge from
+a shoot-through or a shorted secondary; the slower faults can be handled in the
+control loop. Note that no vision entry covers safety directly - this was not
+asked about in the interview and should be confirmed with the human.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: VIS-001
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: SYS-009
+TITLE: Resonance tracking across the operating band
+STATEMENT: >>>
+The system shall locate and hold the resonant frequency of the coupled tank
+anywhere in an 80 kHz to 120 kHz band, and shall re-acquire within 2 s of a step
+change in coupling.
+<<<
+RATIONALE: >>>
+Keeps the one thing v1 bench testing actually validated. The band is the white
+paper's own, and 85 kHz sits inside it as the industry nominal. The 2 s
+re-acquisition is set by how quickly a docking transient must be ridden through
+without tripping ``SYS-008``.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: VIS-008
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: SYS-010
+TITLE: Every rating traced to a primary source
+STATEMENT: >>>
+No component shall appear in a released BOM unless its voltage, current and
+thermal ratings are recorded in ``docs/reference/manifest.yaml`` against a
+fetched datasheet revision or a measurement made in this programme.
+<<<
+RATIONALE: >>>
+The v1 review found six part numbers that do not name orderable parts, a power
+stage quoted at its absolute-maximum peak as though that were a continuous
+rating, and a rectifier described as Schottky that is an ultrafast silicon
+diode. Individually small; together they are why v1 never reached its target.
+<<<
+VERIFICATION: Inspection
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: VIS-010
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: SYS-011
+TITLE: Manufacturable without specialist tooling
+STATEMENT: >>>
+Every board shall be fabricable to a standard 6-layer 2 oz capability class and
+assembled with standard SMT processes, and every mechanical part shall be
+producible without tooling specific to this programme, with the sole permitted
+exception of the coil conductor if ``MEC-001`` cannot otherwise be met.
+<<<
+RATIONALE: >>>
+The v1 white paper chose PCB coils substantially for this reason and the
+reasoning is sound. The analysis says the coil is likely to have to break this
+rule to meet the loss budget; nothing else should. Naming the exception here is
+what keeps it a single deliberate concession rather than a precedent.
+<<<
+VERIFICATION: Inspection
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: VIS-009
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: SYS-012
+TITLE: Bidirectional in-band data link
+STATEMENT: >>>
+The system shall carry bidirectional data over the coil pair at at least 200 bit
+per second with no power flowing, and at least 2 kbit per second at any
+throughput above 300 W, with per-frame error detection and a delivery latency
+below 100 ms at rates above 300 W.
+<<<
+RATIONALE: >>>
+The two rates exist because the tank is a bandpass filter whose bandwidth is set
+by its loaded quality factor, and the load swings that by a factor of fifty. At
+3 kW the reflected load damps the tank to a loaded Q of about 2 and the
+bandwidth is 43 kHz; with no load the tank returns to its unloaded Q of about 98
+and the bandwidth collapses to 867 Hz, about 434 baud. Handshake happens at no
+load, which is precisely the narrow case, so the two figures are separated
+rather than averaged. 200 bit per second carries a 16-byte handshake frame in
+under a second; 2 kbit per second is ample for telemetry and setpoint updates
+once power is flowing. See ``docs/design/in-band-comms.md``.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: VIS-011
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: SYS-013
+TITLE: No power without a completed handshake
+STATEMENT: >>>
+The system shall not raise the transmitter drive above the handshake level until
+it has exchanged and validated an identification frame with a receiver, and
+shall return to that level within 500 ms of losing the link.
+<<<
+RATIONALE: >>>
+This is what makes the communication link a safety feature rather than a
+convenience. Without it the dock energises 3 kW into whatever is in front of it,
+which may be a foreign object, a flooded receiver or nothing at all. Tying the
+interlock to the link means the receiver has to be present, identified and
+answering before any real power flows, and the same mechanism gives
+loss-of-coupling detection for free. 500 ms is short enough that an undocking
+transient cannot leave the dock driving into open air for long, and long enough
+not to trip on a single lost frame.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: VIS-011
+  ROLE: Refines
