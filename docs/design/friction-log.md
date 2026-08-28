@@ -49,3 +49,31 @@ venv and symlink the entry points, since they are separate processes and share
 nothing but the interpreter. Also worth a line in `hw-doctor.sh` output when an
 MCP server fails on an import error rather than a missing binary — the two look
 identical in the current report and have completely different fixes.
+
+---
+
+**Seven parallel research subagents exhausted the account's five-hour rate
+limit.** A workflow fanned out seven agents, each fetching and parsing multi-
+megabyte datasheet PDFs. One returned before the quota was spent; the other six
+and all seven verification agents died on "You've hit your session limit".
+The work was not wrong, only sized wrong: datasheet research is unusually
+token-heavy because every PDF arrives as a large blob.
+**Fix `skills/hw-sourcing/SKILL.md`:** say plainly that datasheet fan-out should
+be serialised or capped at two or three concurrent agents, and that PDFs should
+be fetched and extracted locally with pypdf rather than pulled through an agent's
+context. There is a working recipe for this already in this repo's history —
+the LMG2610 datasheet was extracted successfully that way in the same session
+the agents failed.
+
+---
+
+**`WebFetch` cannot read most datasheet PDFs, and the fallback is not
+installed.** Agents repeatedly got back "the actual technical specifications are
+embedded within the compressed PDF content stream and are not directly
+readable", then tried `pdftoppm` and found poppler-utils absent; `apt-get
+install poppler-utils` fails because the package is not in the image's sources.
+Meanwhile `pypdf` in a clean venv extracts the same documents without trouble.
+**Fix `env/setup.sh`:** add `poppler-utils` to the apt phase and `pypdf` to the
+Python phase. A hardware toolbox whose central rule is "never take a number from
+memory when a datasheet exists" cannot ship without a working PDF text
+extractor.

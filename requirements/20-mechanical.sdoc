@@ -27,15 +27,21 @@ RATIONALE: >>>
 Coil-to-coil efficiency in a compensated inductive link is governed by the
 product of coupling and quality factor, not by resistance alone. 120 W of 3.0 kW
 is 96.0% coil-to-coil, and inverting the standard expression gives k times Q of
-49. At the expected coupling of 0.5 that means a coil quality factor of about
-98; at the worst-case 0.4 it means 122.
+49. Analysis in ``docs/design/coil-model.md`` computes the worst-case coupling
+across the whole ``SYS-006`` envelope as 0.705 in air, not the 0.5 first
+assumed from the electric-vehicle literature - that literature works at a
+gap-to-diameter ratio of 0.3 to 0.5, where this dock sits at 0.067. At k of
+0.705 the required quality factor is 69, not the 98 the earlier assumption
+implied.
 
-For scale: the v1 PCB coil as documented gives k times Q of 4.0, and the same
-etched geometry scaled to the inductance the link actually needs still gives
-only 14.7. A Litz conductor at a quality factor of 150 gives 75. This
-requirement is therefore expected to exclude an etched coil, but it does so
-arithmetically rather than by assertion, and an etched coil that measures
-against it is admissible. See ``docs/design/v1-baseline.md`` finding F9.
+Computed from real geometry rather than scaled from v1's figures, a 24-turn
+etched spiral in 4 oz copper reaches a quality factor of about 43, giving k
+times Q of 31 and 190 W - short of the 120 W budget before ferrite and
+cold-plate losses are even added. The same geometry in Litz reaches 187 to 374,
+giving 135 to 270. This requirement is therefore expected to exclude an etched
+coil, but it does so arithmetically rather than by assertion, and an etched
+coil that measures against it is admissible. See ``docs/design/coil-model.md``
+and ``docs/design/v1-baseline.md`` finding F9.
 <<<
 VERIFICATION: Test
 BUDGET: 120 W
@@ -55,8 +61,9 @@ tuned for, and the two assemblies shall match each other within 2%.
 <<<
 RATIONALE: >>>
 For a 3.0 kW transfer at resonance with a 400 V bus on both ends, the mutual
-inductance must be about 81 microhenries, which at a coupling of 0.5 means about
-162 microhenries per coil - some thirteen times the v1 coil's 12 microhenries.
+inductance must be about 81 microhenries, which at the computed coupling of
+0.705 means about 115 microhenries per coil - some ten times the v1 coil's 12
+microhenries.
 The v1 coil is not merely small, it puts the link in a regime where holding
 3.0 kW requires running far off resonance, which directly defeats the resonance
 tracking the firmware exists to perform. The 2% matching limit exists because
@@ -79,8 +86,9 @@ misalignment envelope of ``SYS-006``, measured with both ferrite backings and
 both cold plates fitted.
 <<<
 RATIONALE: >>>
-0.40 is the worst-case value that keeps ``MEC-001`` satisfiable with an
-achievable coil quality factor of 122. Measuring with the backings and plates
+0.40 is retained as the floor even though analysis computes 0.705 across the
+whole envelope in air, because the 1.76x margin is what absorbs the ferrite and
+cold-plate corrections that have not yet been modelled. Measuring with the backings and plates
 fitted matters because both change the field pattern substantially; a coupling
 figure taken on bare coils is not the figure the system will run at. No
 coupling coefficient appears anywhere in the v1 source material.
