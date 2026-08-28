@@ -306,3 +306,61 @@ RELATIONS:
 - TYPE: Parent
   VALUE: VIS-011
   ROLE: Refines
+
+[REQUIREMENT]
+UID: SYS-014
+TITLE: Charge rate is a C-rate against configured pack capacity
+STATEMENT: >>>
+The system shall charge at 0.3C to 0.5C of the configured pack capacity in
+normal operation, shall never exceed 1.0C, and shall derive that limit from a
+configured capacity rather than from a fixed current.
+<<<
+RATIONALE: >>>
+Stated in the vision interview. The consequence is worth writing down plainly:
+today's 48 V, 33 Ah pack is 1.58 kWh, so 1.0C is 1584 W and the usable ceiling
+is 53% of the charger's 3 kW rating; normal charging is 475 W to 792 W. The
+charger will therefore run well below its rating for the foreseeable life of
+the present pack, which is the intended consequence of sizing for growth.
+
+Working the same arithmetic the other way gives the pack this design point
+assumes: 3 kW is a normal-band charge for a pack of 6 kWh at 0.5C to 10 kWh at
+0.3C. The white paper's 8 kWh pack takes 3 kW at 0.375C over 2.7 h, squarely
+inside the band - so the design point and the paper agree once the C-rate policy
+is applied.
+
+The limit must be a C-rate against a configured capacity, not a fixed current
+limit, because the pack is explicitly expected to grow. A fixed current stops
+protecting the pack the moment the capacity changes, and stops permitting full
+power the moment it grows. See ``sim/link-budget/charge_policy.py``.
+<<<
+VERIFICATION: Test
+BUDGET: 1.0 C maximum
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: VIS-003
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: SYS-015
+TITLE: Bidirectional converter deployed in both orientations
+STATEMENT: >>>
+The dual active bridge shall transfer power in both directions at full rating,
+and one design shall satisfy both the Leviathan-side step-up instance and the
+Mako-side step-down instance without modification.
+<<<
+RATIONALE: >>>
+Implements ``VIS-012``. Two consequences follow that a unidirectional design
+would not carry. First, the low-voltage bridge is a synchronous bridge in both
+instances, since it rectifies in one direction and inverts in the other - which
+also removes the diode-conduction loss a passive low-voltage rectifier would
+cost at 62.5 A. Second, the low-voltage specification is the envelope of both
+packs, so the Leviathan pack voltage is now a required input to the design and
+is not yet known.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: VIS-012
+  ROLE: Refines

@@ -241,3 +241,29 @@ RELATIONS:
 - TYPE: Parent
   VALUE: SYS-013
   ROLE: Refines
+
+[REQUIREMENT]
+UID: FW-011
+TITLE: Charge-rate limiter derived from configured capacity
+STATEMENT: >>>
+The firmware shall hold a configured pack capacity in amp-hours, shall compute
+its current limit as that capacity times a configured C-rate, and shall refuse
+to charge at all if no capacity has been configured.
+<<<
+RATIONALE: >>>
+Implements the mechanism ``SYS-014`` requires. Refusing to charge on an
+unconfigured capacity is deliberate: the failure mode being designed out is a
+board fitted to a new, smaller pack and inheriting the previous pack's current
+limit, which is exactly the case where a default would do harm. A default value
+is worse than a refusal here, because it fails silently.
+
+For the present 33 Ah pack the limiter yields 9.9 A at 0.3C, 16.5 A at 0.5C and
+33.0 A at the 1.0C ceiling - against a converter that can deliver 62.5 A. The
+limiter, not the hardware, is what keeps the pack safe.
+<<<
+VERIFICATION: Test
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-014
+  ROLE: Refines

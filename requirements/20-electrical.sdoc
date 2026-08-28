@@ -395,3 +395,32 @@ RELATIONS:
 - TYPE: Parent
   VALUE: SYS-013
   ROLE: Refines
+
+[REQUIREMENT]
+UID: ELE-018
+TITLE: Low-voltage bridge is synchronous in both directions
+STATEMENT: >>>
+The low-voltage bridge shall be a fully synchronous bridge capable of both
+rectification and inversion at the full 75 A of ``ELE-008``, with no reliance on
+body-diode conduction in steady state in either direction.
+<<<
+RATIONALE: >>>
+``SYS-015`` deploys one converter design in both orientations, so the
+low-voltage bridge rectifies in the Mako instance and inverts in the Leviathan
+instance. It must therefore be actively driven in both, which a passive
+rectifier could not be. This is not only a cost: at 62.5 A a passive
+low-voltage rectifier would spend tens of watts in diode drops that a
+synchronous bridge does not, so the bidirectional requirement and the
+``ELE-003`` loss budget push the same way.
+
+The body-diode clause matters because these devices' body diodes have poor
+reverse recovery relative to the channel, and steady-state body-diode conduction
+at 75 A would dominate the loss budget while producing exactly the recovery
+behaviour a dual active bridge is meant to avoid.
+<<<
+VERIFICATION: Simulation
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-015
+  ROLE: Refines

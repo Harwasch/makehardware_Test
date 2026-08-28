@@ -39,20 +39,39 @@ chunks:
       Requirements are written against k*Q and pad dissipation, not against a
       coil technology, so the M2 decision is settled on evidence.
 
+  - id: R2
+    title: Environmental envelope from the marine standards
+    discipline: documentation
+    status: in_progress
+    depends_on: [V1]
+    estimate_sessions: 1
+    outputs: [requirements/10-system.sdoc, docs/reference/manifest.yaml, docs/design/environment.md]
+    notes: >-
+      Design ambient for an open-deck enclosure on a surface vessel operating
+      worldwide, traced to IEC 60945, IACS UR E10 and classification-society
+      rules rather than assumed. Feeds SYS-007 and MEC-004, and blocks the
+      thermal work in M3.
+
   # ---- magnetics: the critical path ----------------------------------------
   - id: M1
-    title: Coil bench characterisation — L, R, Q and k on real coils
+    title: Coil electromagnetic modelling — predict L, R_ac, Q and k by analysis
     discipline: mechanical
     status: todo
     depends_on: [R1]
-    estimate_sessions: 1
-    outputs: [docs/design/coil-characterisation.md, sim/link-budget/]
+    estimate_sessions: 2
+    outputs: [sim/coil/, docs/design/coil-model.md]
     notes: >-
-      CRITICAL PATH AND EARLIEST RISK. The entire architecture argument rests on
-      a Q nobody has measured. The v1 numbers are internally inconsistent (Q=12
-      implies 127 kHz, not the stated 85 kHz nominal). Measure a PCB coil and a
-      Litz coil on the same fixture at the same frequency, at the real air gap,
-      before anything is designed around either.
+      CRITICAL PATH AND EARLIEST RISK, and now an analysis chunk rather than a
+      bench one: no laboratory access, so the quality factor the whole
+      architecture rests on must be predicted from first principles and
+      defended. Self-inductance from Wheeler and Mohan, mutual inductance and
+      coupling from Maxwell's coaxial-filament formula summed over turns, AC
+      resistance from skin and proximity models for both an etched spiral and a
+      Litz bundle. Validated against published MEASURED data for comparable
+      coils, because a model with no measurement behind it anywhere is not
+      evidence. The v1 numbers are internally inconsistent — a stated Q of 12
+      implies 127 kHz, not the stated 85 kHz — so they cannot serve as the
+      check.
 
   - id: M2
     title: Coil technology decision, magnetics design and compensation network
@@ -62,7 +81,7 @@ chunks:
     estimate_sessions: 2
     outputs: [docs/design/adr-0001-coil-technology.md, cad/coil_pad.py, docs/design/magnetics.md]
     notes: >-
-      Picks PCB or Litz against M1's measurements, then sizes turns, geometry,
+      Picks PCB or Litz against M1's predictions, then sizes turns, geometry,
       ferrite and the series tuning capacitor. The tank capacitor is a real part
       nobody has specified — roughly 22 nF standing off 720 V rms and carrying
       the full 8.3 A of tank current.
@@ -76,8 +95,9 @@ chunks:
     outputs: [cad/coil_pad.py, sim/thermal/, docs/design/thermal.md]
     notes: >-
       gmsh + CalculiX. VIS-006 allows no coolant, so this chunk is what proves
-      the M2 choice survives. Needs the dock and vehicle ambient, which is still
-      an open question from the vision.
+      the M2 choice survives. The dock enclosure sits on OPEN DECK on a surface
+      vessel operating worldwide, so the ambient envelope comes from the marine
+      standards plus solar gain — settled in R2.
 
   # ---- electrical ----------------------------------------------------------
   - id: E1
@@ -179,6 +199,20 @@ chunks:
       Includes the switched damping network that buys that bandwidth back, and
       its hardware interlock — 22 ohm across the tank at full drive is 5.9 kW.
 
+  - id: E9
+    title: Leviathan-side instance and the low-voltage envelope
+    discipline: electrical
+    status: blocked
+    depends_on: [E4]
+    estimate_sessions: 1
+    outputs: [docs/design/adr-0005-dab-envelope.md, hw/hvlv/]
+    notes: >-
+      BLOCKED on the Leviathan pack voltage, which is not yet known. SYS-015
+      deploys one converter design in both orientations, so its low-voltage
+      side must cover BOTH packs — the Mako's 48 V and whatever the Leviathan
+      carries. Until that number exists the transformer ratio, the LV device
+      count and the LV copper cannot be frozen.
+
   # ---- simulation ----------------------------------------------------------
   - id: S1
     title: Resonant link simulation, cross-checked against the closed form
@@ -255,13 +289,31 @@ chunks:
 
   # ---- close-out -----------------------------------------------------------
   - id: T1
-    title: Bench verification against requirements and the traceability gate
+    title: Analysis and simulation close-out against the requirements
     discipline: test
     status: todo
     depends_on: [E5, E6, E7, F3, F4, M3, S1]
     estimate_sessions: 2
     outputs: [docs/design/verification-report.md]
-    notes: req-trace --gate. Report the number it prints, gaps first.
+    notes: >-
+      Everything closeable without a laboratory: the Analysis and Simulation
+      requirements, the budget roll-ups, ERC and DRC. req-trace --gate will
+      still exit 1, because every Test requirement stays open until T2. Report
+      the number it prints, gaps first, and do not restate a Test requirement as
+      an Analysis one to make the gate pass.
+
+  - id: T2
+    title: Bench verification — deferred until laboratory access
+    discipline: test
+    status: blocked
+    depends_on: [T1]
+    estimate_sessions: 3
+    outputs: [docs/design/verification-report.md]
+    notes: >-
+      OUT OF SCOPE FOR NOW by instruction: no laboratory work. Held in the plan
+      rather than deleted, because the Test-method requirements are real and
+      the coil quality factor in particular is a prediction until something is
+      measured. This chunk is what closes them.
 
   - id: D1
     title: Design record — ADRs, architecture and interfaces consolidated

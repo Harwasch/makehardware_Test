@@ -208,3 +208,23 @@ aligned transducers; the link should use them.
 <<<
 VERIFICATION: Inspection
 STATUS: Draft
+
+[REQUIREMENT]
+UID: VIS-012
+TITLE: One converter design, used in both directions
+STATEMENT: >>>
+The dual active bridge shall be designed as a bidirectional converter and the
+same design shall be deployed twice - stepping up on the Leviathan side and
+stepping down on the Mako side.
+<<<
+RATIONALE: >>>
+Stated in the vision interview: "the converter should be designed for bidi and
+we will use it HVLV on one side and LVHV on the other". One board, two
+instances, opposite directions. Bidirectionality is not a feature anyone asked
+for in operation - it is what lets a single design serve both ends, which halves
+the design, layout, qualification and spares burden. It does mean the low-voltage
+side specification must cover both packs, and it means the low-voltage bridge is
+synchronous in both instances rather than a passive rectifier.
+<<<
+VERIFICATION: Inspection
+STATUS: Draft
