@@ -150,3 +150,26 @@ documents:
       / 35 mOhm max at 25 C and 45 mOhm TYP at 125 C with NO GUARANTEED MAX,
       RthJC(top) 0.28 C/W top-cooled only, Qrr 0, CO(er) 320 pF at 400 V.
       Characterised at VDS 520 V.
+
+  - id: iec-60945
+    title: IEC 60945 Maritime navigation and radiocommunication equipment and systems - General requirements
+    publisher: IEC
+    revision: Ed. 4.0
+    url: https://webstore.iec.ch/publication/3849
+    local: null
+    blocked: >-
+      paywalled - needs a purchased copy. The +32 degC air plus +23 degC solar
+      equals +55 degC exposed-equipment maximum is well attested across
+      independent secondary sources and is safe to design against; the -25 degC
+      cold limit and the exact clause references are NOT confirmed.
+    needed_by: [SYS-016, MEC-004]
+    retrieved: null
+
+  - id: iacs-ur-e10
+    title: IACS UR E10 - Test specification for type approval of shipboard equipment
+    publisher: IACS
+    url: https://iacs.org.uk/resolutions/unified-requirements/ur-e
+    local: null
+    blocked: not yet fetched - may be more stringent than IEC 60945 per location class
+    needed_by: [SYS-016]
+    retrieved: null

@@ -42,7 +42,7 @@ chunks:
   - id: R2
     title: Environmental envelope from the marine standards
     discipline: documentation
-    status: in_progress
+    status: done
     depends_on: [V1]
     estimate_sessions: 1
     outputs: [requirements/10-system.sdoc, docs/reference/manifest.yaml, docs/design/environment.md]

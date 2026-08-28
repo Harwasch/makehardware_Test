@@ -124,6 +124,31 @@ RELATIONS:
   ROLE: Refines
 
 [REQUIREMENT]
+UID: MEC-008
+TITLE: Enclosure thermal path at the design ambient
+STATEMENT: >>>
+Every enclosure shall conduct its full dissipation into the vessel or vehicle
+structure with no internal component exceeding its rated maximum junction or
+surface temperature at the +55 degC ambient of ``SYS-016``, with no pumped
+coolant and no forced air.
+<<<
+RATIONALE: >>>
+This is the requirement that turns the environmental envelope into a design
+constraint. At +55 degC ambient and a 100 degC conductor limit the whole chain -
+conductor to ferrite to interface to cold plate to structure - has 45 degC to
+work in, and the structure itself is not at ambient because it is also in the
+sun. An open-deck enclosure gains heat from solar load as well as losing it to
+air, so the enclosure's external finish is a thermal design parameter and not a
+cosmetic one.
+<<<
+VERIFICATION: Simulation
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-016
+  ROLE: Refines
+
+[REQUIREMENT]
 UID: MEC-005
 TITLE: Coil assembly immersion sealing
 STATEMENT: >>>

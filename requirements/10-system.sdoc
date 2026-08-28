@@ -364,3 +364,37 @@ RELATIONS:
 - TYPE: Parent
   VALUE: VIS-012
   ROLE: Refines
+
+[REQUIREMENT]
+UID: SYS-016
+TITLE: Environmental envelope for open-deck marine service
+STATEMENT: >>>
+The dock equipment shall operate to full rating over an ambient range of
+-25 degC to +55 degC in an enclosure on the open deck of a surface vessel, and
+shall survive storage from -30 degC to +70 degC.
+<<<
+RATIONALE: >>>
+The vessel operates worldwide, so the envelope comes from the marine standards
+rather than from a site. IEC 60945 derives its exposed-equipment maximum as a
+maximum expected air temperature at sea of +32 degC plus a maximum solar gain of
++23 degC, giving +55 degC. The solar term is the larger half, which is why an
+open-deck enclosure and an enclosed space are not the same problem.
+
+The -25 degC cold limit is the figure generally cited for the exposed class but
+could not be confirmed against the standard itself, which is paywalled; it is
+recorded blocked in ``docs/reference/manifest.yaml`` and needs a purchased copy
+before anything is qualified against it. The +55 degC maximum is well attested
+and is safe to design against now.
+
+The consequence is the tight one: at +55 degC ambient with conduction cooling
+only, and a 100 degC conductor limit in ``MEC-004``, the entire thermal chain
+from coil conductor through ferrite, interface, cold plate and structure has a
+45 degC budget. That is what sets the coil loss allowance in ``MEC-001``.
+See ``docs/design/environment.md``.
+<<<
+VERIFICATION: Simulation
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: VIS-006
+  ROLE: Refines
