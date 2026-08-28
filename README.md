@@ -8,7 +8,7 @@ workflow. Replace this paragraph with one sentence about what the thing is.
 
 ![Project plan](docs/plan.svg)
 
-**3/26 chunks complete** · 16 sessions on the critical path
+**4/26 chunks complete** · 16 sessions on the critical path
 
 <!-- PLAN:END -->
 

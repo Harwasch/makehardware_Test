@@ -56,7 +56,7 @@ chunks:
   - id: M1
     title: Coil electromagnetic modelling — predict L, R_ac, Q and k by analysis
     discipline: mechanical
-    status: todo
+    status: done
     depends_on: [R1]
     estimate_sessions: 2
     outputs: [sim/coil/, docs/design/coil-model.md]
@@ -72,6 +72,13 @@ chunks:
       evidence. The v1 numbers are internally inconsistent — a stated Q of 12
       implies 127 kHz, not the stated 85 kHz — so they cannot serve as the
       check.
+
+      DONE: k computes to 0.705 worst case across the SYS-006 envelope, not the
+      0.5 assumed, so the coil needs 115 uH rather than 162 and MEC-001 asks for
+      Q >= 69 rather than 98. Etched spiral reaches Q about 43 (190 W, short of
+      the 120 W budget); Litz reaches 187-374 (22-44 W). Ferrite, cold-plate
+      eddy loss and seawater in the gap remain unmodelled and carry forward
+      into M2 and M3 as an FEA task.
 
   - id: M2
     title: Coil technology decision, magnetics design and compensation network
