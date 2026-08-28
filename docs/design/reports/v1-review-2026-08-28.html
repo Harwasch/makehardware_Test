@@ -1,0 +1,675 @@
+<title>Ulysses Charger v1 Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+
+<style>
+:root{
+  --ground:#F3F5F5; --surface:#FFFFFF; --surface-2:#EAEEEE;
+  --ink:#0F1618; --ink-2:#55636A; --ink-3:#7C8A90;
+  --rule:#DCE2E2; --rule-2:#C4CDCD;
+  --s1:#BF6F17;            /* v1 — validated categorical slot 1 */
+  --s2:#008C7F;            /* v2 — validated categorical slot 2 */
+  --crit:#A8382C; --warn:#8A6412; --good:#2C6E4A;
+  --crit-bg:#F7E9E7; --warn-bg:#F7F0E0; --good-bg:#E6F0EA;
+  --shadow:0 1px 2px rgba(15,22,24,.05), 0 8px 24px -12px rgba(15,22,24,.18);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0D1315; --surface:#151D20; --surface-2:#1D272A;
+    --ink:#E7EEEF; --ink-2:#8FA1A6; --ink-3:#6E8085;
+    --rule:#25302F; --rule-2:#33403F;
+    --s1:#C07E2C; --s2:#20A296;
+    --crit:#DD6A5C; --warn:#C8963A; --good:#5CA57C;
+    --crit-bg:#2A1A18; --warn-bg:#26200F; --good-bg:#14241C;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0D1315; --surface:#151D20; --surface-2:#1D272A;
+  --ink:#E7EEEF; --ink-2:#8FA1A6; --ink-3:#6E8085;
+  --rule:#25302F; --rule-2:#33403F;
+  --s1:#C07E2C; --s2:#20A296;
+  --crit:#DD6A5C; --warn:#C8963A; --good:#5CA57C;
+  --crit-bg:#2A1A18; --warn-bg:#26200F; --good-bg:#14241C;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:"Source Serif 4",Georgia,"Times New Roman",serif;
+  font-size:17px; line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px; margin:0 auto; padding:0 28px 96px}
+.col{max-width:660px}
+
+h1,h2,h3,.disp{font-family:Archivo,"Helvetica Neue",Arial,sans-serif; text-wrap:balance}
+h1{font-size:clamp(2.1rem,5vw,3.15rem); line-height:1.04; letter-spacing:-.028em; font-weight:700; margin:0}
+h2{font-size:1.6rem; line-height:1.15; letter-spacing:-.018em; font-weight:600; margin:0}
+h3{font-size:1.06rem; line-height:1.3; letter-spacing:-.008em; font-weight:600; margin:0}
+p{margin:0}
+a{color:var(--s2)}
+.mono{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+.lab{
+  font-family:Archivo,sans-serif; font-size:.68rem; font-weight:600;
+  letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3);
+}
+.dim{color:var(--ink-2)}
+.num{font-family:"JetBrains Mono",monospace; font-variant-numeric:tabular-nums}
+
+/* ---------- masthead ---------- */
+header{border-bottom:1px solid var(--rule); padding:56px 0 34px; margin-bottom:44px}
+.kicker{display:flex; gap:14px; align-items:baseline; flex-wrap:wrap; margin-bottom:22px}
+.rev{
+  font-family:"JetBrains Mono",monospace; font-size:.7rem; font-weight:700;
+  letter-spacing:.06em; color:var(--surface); background:var(--ink);
+  padding:3px 8px; border-radius:3px;
+}
+.sub{margin-top:20px; font-size:1.16rem; line-height:1.5; color:var(--ink-2); max-width:640px}
+
+/* ---------- verdict ---------- */
+.verdict{
+  background:var(--surface); border:1px solid var(--rule); border-left:3px solid var(--crit);
+  border-radius:4px; padding:26px 30px; box-shadow:var(--shadow); margin-bottom:56px;
+}
+.verdict .head{font-family:Archivo,sans-serif; font-weight:600; font-size:1.32rem;
+  letter-spacing:-.015em; line-height:1.3; margin-bottom:10px; text-wrap:balance}
+.verdict p{color:var(--ink-2); max-width:70ch}
+
+/* ---------- section + finding rail ---------- */
+section{margin-bottom:64px}
+.sec-head{display:flex; gap:16px; align-items:baseline; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:1px solid var(--rule)}
+.finding{display:grid; grid-template-columns:66px 1fr; gap:0 22px; margin-bottom:52px}
+.fid{
+  font-family:"JetBrains Mono",monospace; font-size:.86rem; font-weight:700;
+  color:var(--ink); padding-top:3px; border-top:2px solid var(--crit);
+}
+.fid.warnbar{border-top-color:var(--warn)}
+.fid small{display:block; font-weight:400; font-size:.66rem; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--ink-3); margin-top:4px}
+.fbody{display:flex; flex-direction:column; gap:16px; min-width:0}
+.fbody p{max-width:66ch}
+
+/* ---------- data ---------- */
+.scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
+table{border-collapse:collapse; width:100%; font-size:.87rem;
+  font-family:"JetBrains Mono",monospace; font-variant-numeric:tabular-nums}
+caption{text-align:left; font-family:Archivo,sans-serif; font-size:.78rem; font-weight:600;
+  letter-spacing:.03em; color:var(--ink-2); padding-bottom:9px}
+th{
+  font-family:Archivo,sans-serif; font-weight:600; font-size:.7rem; letter-spacing:.07em;
+  text-transform:uppercase; color:var(--ink-3); text-align:right; padding:7px 12px;
+  border-bottom:1px solid var(--rule-2); white-space:nowrap;
+}
+th:first-child,td:first-child{text-align:left; padding-left:0}
+td{padding:8px 12px; text-align:right; border-bottom:1px solid var(--rule); white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+tr.hi td{background:var(--crit-bg); color:var(--crit); font-weight:700}
+tr.ok td{background:var(--good-bg); color:var(--good)}
+tr.warnrow td{background:var(--warn-bg); color:var(--warn); font-weight:700}
+tr.mark td{background:var(--surface-2); font-weight:700}
+td.name{font-family:"Source Serif 4",serif; white-space:normal; min-width:180px}
+
+.callout{
+  border-left:2px solid var(--s2); padding:2px 0 2px 18px;
+  font-size:1.02rem; color:var(--ink); max-width:62ch;
+}
+.card{background:var(--surface); border:1px solid var(--rule); border-radius:4px;
+  padding:22px 24px; box-shadow:var(--shadow)}
+
+/* ---------- charts ---------- */
+figure{margin:0; background:var(--surface); border:1px solid var(--rule);
+  border-radius:4px; padding:22px 24px 18px; box-shadow:var(--shadow)}
+figcaption{font-family:Archivo,sans-serif; font-size:.95rem; font-weight:600;
+  letter-spacing:-.006em; margin-bottom:3px}
+.fignote{font-size:.83rem; color:var(--ink-2); margin-bottom:18px; max-width:62ch}
+svg{display:block; width:100%; height:auto; overflow:visible}
+.gridline{stroke:var(--rule); stroke-width:1}
+.axis{stroke:var(--rule-2); stroke-width:1}
+.tick{font-family:"JetBrains Mono",monospace; font-size:10.5px; fill:var(--ink-3);
+  font-variant-numeric:tabular-nums}
+.axlab{font-family:Archivo,sans-serif; font-size:10.5px; font-weight:600;
+  letter-spacing:.07em; text-transform:uppercase; fill:var(--ink-3)}
+.ptlab{font-family:Archivo,sans-serif; font-size:11px; font-weight:600; fill:var(--ink)}
+.ptval{font-family:"JetBrains Mono",monospace; font-size:10.5px; fill:var(--ink-2)}
+.legend{display:flex; gap:20px; flex-wrap:wrap; margin-top:14px;
+  font-family:Archivo,sans-serif; font-size:.79rem; color:var(--ink-2)}
+.swatch{display:inline-block; width:11px; height:11px; border-radius:2px;
+  margin-right:7px; vertical-align:-1px}
+#tip{
+  position:fixed; pointer-events:none; opacity:0; transition:opacity .12s;
+  background:var(--ink); color:var(--ground); font-family:"JetBrains Mono",monospace;
+  font-size:11.5px; line-height:1.45; padding:7px 10px; border-radius:4px;
+  z-index:50; white-space:nowrap; box-shadow:0 4px 14px rgba(0,0,0,.28);
+}
+.hit{cursor:crosshair}
+
+/* ---------- stage list ---------- */
+.stages{display:grid; gap:1px; background:var(--rule); border:1px solid var(--rule);
+  border-radius:4px; overflow:hidden}
+.stage{background:var(--surface); padding:18px 22px; display:grid;
+  grid-template-columns:34px 1fr auto; gap:18px; align-items:baseline}
+.stage .n{font-family:"JetBrains Mono",monospace; font-weight:700; color:var(--s2); font-size:.88rem}
+.stage .t{font-family:Archivo,sans-serif; font-weight:600; font-size:.98rem}
+.stage .d{font-size:.87rem; color:var(--ink-2); grid-column:2; margin-top:3px}
+.pill{font-family:Archivo,sans-serif; font-size:.68rem; font-weight:600; letter-spacing:.06em;
+  text-transform:uppercase; padding:3px 9px; border-radius:99px; white-space:nowrap}
+.pill.done{background:var(--good-bg); color:var(--good)}
+.pill.prog{background:var(--warn-bg); color:var(--warn)}
+
+ul{margin:0; padding-left:1.15em; max-width:66ch}
+li{margin-bottom:9px}
+li::marker{color:var(--ink-3)}
+.grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px}
+code{font-family:"JetBrains Mono",monospace; font-size:.87em;
+  background:var(--surface-2); padding:1px 5px; border-radius:3px}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:.85rem; color:var(--ink-3)}
+@media (max-width:640px){
+  .finding{grid-template-columns:1fr; gap:12px}
+  .fid{border-top:none; border-left:2px solid var(--crit); padding:0 0 0 12px;
+    display:flex; gap:10px; align-items:baseline}
+  .fid.warnbar{border-left-color:var(--warn)}
+  .fid small{margin-top:0}
+  .stage{grid-template-columns:28px 1fr; }
+  .stage .pill{grid-column:2; justify-self:start; margin-top:6px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="kicker">
+    <span class="rev">ULYSSES LARS · REV B</span>
+    <span class="lab">v1 design review &amp; v2 architecture · 28 Aug 2026</span>
+  </div>
+  <h1>3&nbsp;kW is reachable.<br>Not with the v1 magnetics.</h1>
+  <p class="sub">A review of the Mako 2.0 wireless charger against its primary
+  sources — the white paper, the two firmware repositories, and the vendor
+  datasheets — followed by the vision, plan, requirements and architecture for
+  a second revision.</p>
+</header>
+
+<div class="verdict col">
+  <div class="head">Three findings block the power target. All three are the same
+  category of error, and none of them is a tuning problem.</div>
+  <p>In each case a component was carried over from an application it suits into
+  one it does not: a GaN half bridge specified for 75&nbsp;W flyback converters
+  driving a 3&nbsp;kW resonant bridge, and an induction-hob coil geometry used as
+  a 400&nbsp;V power link. The white paper reports bench results for resonance
+  tracking only, and no power, efficiency, coupling or thermal measurement
+  appears anywhere in it — so 3&nbsp;kW should be treated as an unproven target
+  rather than a demonstrated capability.</p>
+</div>
+
+<!-- ============ F8 ============ -->
+<section>
+  <div class="sec-head"><h2>What the review found</h2>
+    <span class="lab">three blocking · eight further</span></div>
+
+  <div class="finding">
+    <div class="fid">F8<small>blocking</small></div>
+    <div class="fbody">
+      <h3>The coil is 13&times; too small, and it fights the control loop</h3>
+      <p>For a series–series compensated link with both sides tuned, the power
+      delivered at resonance is <span class="mono">P&nbsp;=&nbsp;V₁·V₂&nbsp;/&nbsp;(ω·M)</span>.
+      At a 400&nbsp;V bus the fundamental is 360&nbsp;V RMS on each end, and the
+      v1 coil pair at <span class="mono">k&nbsp;=&nbsp;0.5</span> gives
+      <span class="mono">M&nbsp;=&nbsp;6&nbsp;µH</span>, so
+      <span class="mono">ωM&nbsp;=&nbsp;3.2&nbsp;Ω</span> and</p>
+      <div class="callout mono">P = 360 × 360 / 3.2 = <strong>40.5 kW</strong>,
+        at a tank current of <strong>112 A RMS</strong></div>
+      <p>That is not a link capable of 40&nbsp;kW. It means the pair is grossly
+      under-inductive, and holding it to 3&nbsp;kW requires running far away from
+      resonance — <strong>the exact opposite of what the v1 firmware exists to
+      do.</strong> The magnetics and the resonance tracker are working against
+      each other.</p>
+      <div class="scroll">
+        <table>
+          <caption>Coil inductance needed to deliver 3 kW at resonance (M = 80.9 µH)</caption>
+          <thead><tr><th>Coupling k</th><th>Required L₁ = L₂</th><th>vs the v1 coil</th><th>Tuning C</th></tr></thead>
+          <tbody>
+            <tr><td>0.20</td><td>405 µH</td><td>33.7&times;</td><td>8.7 nF</td></tr>
+            <tr><td>0.35</td><td>231 µH</td><td>19.3&times;</td><td>15.2 nF</td></tr>
+            <tr class="mark"><td>0.50 — this dock</td><td>162 µH</td><td>13.5&times;</td><td>21.7 nF</td></tr>
+            <tr><td>0.60</td><td>135 µH</td><td>11.2&times;</td><td>26.0 nF</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="dim" style="font-size:.9rem">The cause is named in the white paper
+      itself: p.6 records that the coil geometry came from a paper on an
+      <em>induction stove</em>. A hob coil is deliberately low-inductance and
+      high-current, tightly coupled to a steel pan. Correct for that job; wrong
+      as the starting point for a 400&nbsp;V resonant link.</p>
+    </div>
+  </div>
+
+  <!-- ============ F9 ============ -->
+  <div class="finding">
+    <div class="fid">F9<small>blocking</small></div>
+    <div class="fbody">
+      <h3>PCB coils cannot reach the efficiency the thermal path demands</h3>
+      <p>Coil-to-coil efficiency in an inductive link is governed by the product
+      <span class="mono">k·Q</span> — not by resistance alone. With no pumped
+      coolant and no forced air, the heat a pad can shed is what sets the floor
+      under that product.</p>
+
+      <figure>
+        <figcaption>Coil-to-coil efficiency against k·Q</figcaption>
+        <p class="fignote">η = (kQ)² / (1 + √(1 + (kQ)²))². Points are the four
+        candidate coils at this dock’s k ≈ 0.5. The requirement sits where the
+        curve stops paying — past k·Q ≈ 50 the remaining gain is small.</p>
+        <svg id="kq" viewBox="0 0 640 300" role="img"
+             aria-label="Efficiency rises steeply with k·Q: the v1 PCB coil at k·Q 4 reaches 61 percent, a scaled PCB coil at 14.7 reaches 87 percent, the requirement at 49 gives 96 percent, and Litz coils at 75 and 150 give 97.4 and 98.7 percent."></svg>
+      </figure>
+
+      <div class="scroll">
+        <table>
+          <caption>The same four coils, as numbers — at k = 0.5, 85 kHz, 3 kW</caption>
+          <thead><tr><th>Coil</th><th>L</th><th>R</th><th>Q</th><th>k·Q</th><th>η</th><th>Loss</th><th>Per pad</th></tr></thead>
+          <tbody>
+            <tr class="hi"><td class="name">v1 PCB coil, as documented</td><td>12 µH</td><td>0.80 Ω</td><td>8.0</td><td>4.0</td><td>61.0%</td><td>1170 W</td><td>585 W</td></tr>
+            <tr><td class="name">PCB spiral scaled to 162 µH</td><td>162 µH</td><td>2.94 Ω</td><td>29.4</td><td>14.7</td><td>87.3%</td><td>381 W</td><td>191 W</td></tr>
+            <tr class="ok"><td class="name">Litz, conservative</td><td>162 µH</td><td>0.58 Ω</td><td>150</td><td>75</td><td>97.4%</td><td>79 W</td><td>40 W</td></tr>
+            <tr class="ok"><td class="name">Litz, good</td><td>162 µH</td><td>0.29 Ω</td><td>300</td><td>150</td><td>98.7%</td><td>40 W</td><td>20 W</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>This is the finding that decides the architecture.</strong>
+      191&nbsp;W leaving a flat pad through ferrite into a bolted plate, with no
+      coolant, is not a thermal design — it is a thermal impossibility.
+      45&nbsp;W is an ordinary one. Even scaling the etched spiral to the right
+      inductance only reaches 87%.</p>
+      <p class="dim" style="font-size:.9rem">The decision is deliberately left
+      open. <span class="mono">MEC-001</span> is written against k·Q ≥ 49 and
+      120&nbsp;W, not against a coil technology, because the whole argument rests
+      on a quality factor nobody in the programme has yet measured — which is why
+      coil bench characterisation is the first chunk on the critical path.</p>
+    </div>
+  </div>
+
+  <!-- ============ F1 ============ -->
+  <div class="finding">
+    <div class="fid">F1<small>blocking</small></div>
+    <div class="fbody">
+      <h3>The TX power stage is specified 40&times; below the target</h3>
+      <p>The white paper states the LMG2610 is “rated for a 600V bus and drain
+      current of 6.4A”. The datasheet (SNOSDE2A) says otherwise on every count.</p>
+      <div class="scroll">
+        <table>
+          <caption>LMG2610 — white paper vs datasheet</caption>
+          <thead><tr><th>Parameter</th><th>White paper</th><th>Datasheet</th></tr></thead>
+          <tbody>
+            <tr><td class="name">Bus voltage</td><td>600 V</td><td>650 V</td></tr>
+            <tr class="hi"><td class="name">Drain current</td><td>6.4 A</td><td>6.4 A low-side <em>absolute-max peak</em>; high side 4 A</td></tr>
+            <tr class="hi"><td class="name">Intended application</td><td>3 kW resonant H-bridge</td><td>&lt; 75 W active-clamp flyback</td></tr>
+            <tr><td class="name">R<sub>DS(on)</sub></td><td>—</td><td>170 mΩ LS / 248 mΩ HS, asymmetric by design</td></tr>
+            <tr><td class="name">Package</td><td>—</td><td>9×7 mm QFN, R<sub>θJA</sub> 25.3 °C/W</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>A 3&nbsp;kW tank carries 8.33&nbsp;A RMS and <strong>11.8&nbsp;A
+      peak</strong> — 2.9&times; the high-side absolute maximum. Conduction loss
+      alone, ignoring all switching loss, is 14.5&nbsp;W per package; at
+      25.3&nbsp;°C/W that is a 367&nbsp;°C rise against a 150&nbsp;°C junction
+      limit. The asymmetric on-resistances are optimised for flyback duty and
+      cannot be balanced in a 50%-duty bridge.</p>
+      <p>The replacement class is a 650&nbsp;V GaN FET near 30&nbsp;mΩ with an
+      integrated driver — TI’s own evaluation board for that part runs
+      3.6&nbsp;kW. Conduction drops from 14.5&nbsp;W to 2.1&nbsp;W per leg.</p>
+    </div>
+  </div>
+
+  <!-- ============ loss chain ============ -->
+  <figure style="margin-bottom:52px">
+    <figcaption>Where the 3 kW goes</figcaption>
+    <p class="fignote">v1 figures are conduction loss only, computed from the
+    documented parts — switching loss is on top, and the TX bridge figure is
+    academic because the part fails first. v2 figures are the full loss budget
+    each stage is allowed by <span class="mono">SYS-004</span>.</p>
+    <svg id="loss" viewBox="0 0 640 268" role="img"
+         aria-label="Grouped bar chart of loss by stage. The coil pair dominates v1 at 1170 watts against a v2 budget of 120 watts; the vehicle DAB is 74 against 100, the RX rectifier 26 against 40, the TX bridge 29 against 25, and auxiliary 0 against 15."></svg>
+    <div class="legend">
+      <span><span class="swatch" style="background:var(--s1)"></span>v1, conduction loss only — ≈1300 W</span>
+      <span><span class="swatch" style="background:var(--s2)"></span>v2 budget, all losses — 300 W</span>
+    </div>
+  </figure>
+
+  <div class="col" style="display:flex;flex-direction:column;gap:16px">
+    <h3>Eight further findings, not blocking</h3>
+    <ul>
+      <li><strong>Six part numbers do not name orderable parts.</strong>
+        <span class="mono">TPSM540</span> and <span class="mono">TPSM560</span>
+        are both used and neither exists; <span class="mono">UCC27741</span> is
+        <span class="mono">UCC27714</span> and is rated 600&nbsp;V, not the
+        650&nbsp;V claimed.</li>
+      <li><strong>The aux rails cannot work as drawn.</strong> Every real part in
+        the TPSM family is rated 60&nbsp;V maximum input; the white paper runs
+        them from the 400&nbsp;V bus. A 700&nbsp;V-class offline stage is
+        required.</li>
+      <li><strong>The RX bridge is not Schottky.</strong> MUR is ultrafast silicon,
+        and silicon Schottky does not exist at 600&nbsp;V — so v1 has both a
+        1.7&nbsp;V drop and reverse-recovery charge, the thing it set out to
+        avoid.</li>
+      <li><strong>The resonant capacitor is unspecified.</strong> ≈22&nbsp;nF
+        standing off 720&nbsp;V RMS at 8.33&nbsp;A — likely the largest passive in
+        the system, and absent from the document entirely.</li>
+      <li><strong>The stated coil Q is inconsistent with the stated frequency.</strong>
+        Q&nbsp;=&nbsp;12 at 12&nbsp;µH / 0.8&nbsp;Ω implies 127&nbsp;kHz, not the
+        85&nbsp;kHz nominal. One of the three numbers is wrong.</li>
+      <li><strong>The firmware filter is a median, not the RMS the paper describes</strong>
+        — so the hill-climb maximises a quantity that is not proportional to power.</li>
+      <li><strong>The smoothing filter is dead code</strong> and
+        <strong>the re-sweep guard can never fire</strong> (unsigned compare
+        against a zero threshold).</li>
+      <li><strong>The HVLV phase shift is never applied</strong>, and every control
+        constant in that loop is a <span class="mono">FILL THIS OUT LATER</span>
+        placeholder. Dead time is set nowhere; timer break inputs are disabled
+        everywhere.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ interview ============ -->
+<section>
+  <div class="sec-head"><h2>What the interview changed</h2>
+    <span class="lab">four numbers the paper never states</span></div>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Question</th><th>Answer</th><th>Consequence</th></tr></thead>
+      <tbody>
+        <tr><td class="name">Pack voltage and capacity</td><td>48 V, 33 Ah</td>
+          <td class="name" style="text-align:left">1.58 kWh, not the paper’s 8 kWh. 3 kW is a <strong>1.89C</strong> charge — the pack, not the charger, is today’s limit.</td></tr>
+        <tr><td class="name">Air gap and alignment</td><td>&lt; 20 mm, square</td>
+          <td class="name" style="text-align:left">k ≈ 0.5 rather than the ≈ 0.2 the EV literature assumes. A real advantage, currently unspent.</td></tr>
+        <tr><td class="name">Firmness of 3 kW</td><td>physics wins</td>
+          <td class="name" style="text-align:left">Licence to move a requirement when analysis says it cannot be met, with the rationale recorded.</td></tr>
+        <tr><td class="name">Cooling</td><td>conduction only</td>
+          <td class="name" style="text-align:left">The constraint that decides the magnetics, via F9.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card col" style="margin-top:22px">
+    <h3 style="margin-bottom:10px">The 8 kWh discrepancy reconciles</h3>
+    <p class="dim">The pack “may increase in size, not voltage”. An 8 kWh pack at
+    48 V is 167 Ah, and 3 kW into that is a <strong>0.38C charge over
+    2.7 h</strong> — exactly the white paper’s claim. So 3 kW is sized for the
+    future pack, and the paper describes the target vehicle rather than the
+    present one. That is a legitimate position, recorded as vision rationale —
+    but it means the charger must deliver well below its maximum on command, and
+    today’s pack will never see full power.</p>
+  </div>
+</section>
+
+<!-- ============ comms ============ -->
+<section>
+  <div class="sec-head"><h2>The in-band link</h2>
+    <span class="lab">added mid-review · VIS-011</span></div>
+  <div class="col" style="display:flex;flex-direction:column;gap:16px;margin-bottom:24px">
+    <p>A handshake and control packets over the same coils as the power. The
+    governing constraint turned out not to be signal-to-noise but
+    <strong>tank bandwidth</strong> — and it has an awkward shape.</p>
+  </div>
+  <div class="scroll">
+    <table>
+      <caption>Tank bandwidth against throughput — the load sets the Q</caption>
+      <thead><tr><th>Condition</th><th>Reflected R</th><th>Loaded Q</th><th>Bandwidth</th><th>Symbol rate</th></tr></thead>
+      <tbody>
+        <tr><td class="name">Full power, 3 kW</td><td>43.2 Ω</td><td>2.0</td><td>43.3 kHz</td><td>21 700 Bd</td></tr>
+        <tr><td class="name">1 kW</td><td>14.4 Ω</td><td>5.7</td><td>15.0 kHz</td><td>7 500 Bd</td></tr>
+        <tr><td class="name">300 W trickle</td><td>4.3 Ω</td><td>16.6</td><td>5.1 kHz</td><td>2 550 Bd</td></tr>
+        <tr><td class="name">30 W standby ping</td><td>0.43 Ω</td><td>65.8</td><td>1.3 kHz</td><td>650 Bd</td></tr>
+        <tr class="warnrow"><td class="name">No load — handshake</td><td>0</td><td>98</td><td>867 Hz</td><td>434 Bd</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid2" style="margin-top:22px">
+    <div class="card">
+      <h3 style="margin-bottom:10px">The link is slowest when it is needed first</h3>
+      <p class="dim" style="font-size:.94rem">Handshake happens before power
+      flows, which is the one condition where the tank sits at full unloaded Q.
+      This is a direct consequence of F9: the efficiency requirement demands a
+      high Q, and a high Q is a narrow filter. Two resolutions are in the
+      requirements — accept 200 bit/s for the handshake, and switch a 22 Ω
+      damping network that buys 22.5 kHz for 18 W at a 20 V drive.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom:10px">It falls out as a safety interlock</h3>
+      <p class="dim" style="font-size:.94rem">Talking at 20 V instead of 360 V
+      means the dock puts tens of watts into whatever is in front of it. So
+      <span class="mono">SYS-013</span> withholds power above handshake level
+      until a receiver identifies itself — and foreign-object and absent-receiver
+      protection come free from a mechanism that had to exist anyway.</p>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:24px">
+    <strong>The tracker and the link will fight.</strong> Load-shift keying
+    modulates the reflected impedance — the exact quantity the resonance
+    hill-climb follows. An unblanked tracker chases the data stream instead of
+    resonance, confidently and wrongly. Recorded as
+    <span class="mono">FW-009</span> before it can be discovered on a bench.
+  </div>
+</section>
+
+<!-- ============ what exists ============ -->
+<section>
+  <div class="sec-head"><h2>What now exists in the repo</h2>
+    <span class="lab">four agreement stages</span></div>
+  <div class="stages">
+    <div class="stage"><span class="n">01</span><span class="t">Vision</span>
+      <span class="pill done">done</span>
+      <span class="d">11 <span class="mono">VIS-</span> entries, two build123d coil concepts rendered from real geometry, and the closed-form link budget that decides between them.</span></div>
+    <div class="stage"><span class="n">02</span><span class="t">Plan</span>
+      <span class="pill done">done</span>
+      <span class="d">23 chunks over five disciplines, 13 sessions on the critical path. Coil bench characterisation sits second, because everything rests on an unmeasured Q.</span></div>
+    <div class="stage"><span class="n">03</span><span class="t">Requirements</span>
+      <span class="pill done">done</span>
+      <span class="d">58 requirements. StrictDoc builds clean; no orphans, no undecomposed levels. <span class="mono">SYS-004</span> divides 300 W of loss among five children that sum exactly to the parent.</span></div>
+    <div class="stage"><span class="n">04</span><span class="t">Architecture</span>
+      <span class="pill prog">provisional</span>
+      <span class="d">29 blocks, 8 rails, 19 buses; <span class="mono">block-diagram --check</span> passes. Cannot close until part selection and magnetics run — currents are still estimates.</span></div>
+  </div>
+
+  <div class="card col" style="margin-top:26px;border-left:3px solid var(--warn)">
+    <h3 style="margin-bottom:10px">Traceability gate: 0% verified, 68 gaps</h3>
+    <p class="dim"><span class="mono">req-trace</span> reports 58 requirements,
+    none verified, none with evidence. Every gap is a missing
+    <span class="mono">EVIDENCE</span> pointer or a missing
+    <span class="mono">File</span> relation — which is the correct reading before
+    any design artefact exists. Nothing has been marked
+    <span class="mono">Verified</span> to make the number look better.</p>
+  </div>
+</section>
+
+<!-- ============ next ============ -->
+<section>
+  <div class="sec-head"><h2>Ready to start</h2><span class="lab">and still open</span></div>
+  <div class="grid2">
+    <div class="card">
+      <div class="lab" style="margin-bottom:8px">M1 · critical path</div>
+      <h3 style="margin-bottom:8px">Coil bench characterisation</h3>
+      <p class="dim" style="font-size:.94rem">Measure L, R, Q and k on a PCB coil
+      and a Litz coil, on one fixture, at one frequency, at the real gap. The
+      entire architecture argument rests on a Q that has never been measured, and
+      the three v1 coil numbers are mutually inconsistent.</p>
+    </div>
+    <div class="card">
+      <div class="lab" style="margin-bottom:8px">E1</div>
+      <h3 style="margin-bottom:8px">Power architecture and part selection</h3>
+      <p class="dim" style="font-size:.94rem">Replace the TX power stage, resolve
+      the six unorderable part numbers, design the 700 V-class aux stage, and
+      decide whether bidirectional operation is required at all — nothing in the
+      brief asks the Mako to export power.</p>
+    </div>
+  </div>
+  <div class="col" style="margin-top:26px;display:flex;flex-direction:column;gap:14px">
+    <h3>Questions that need you</h3>
+    <ul>
+      <li><strong>Cell charge acceptance for the present pack.</strong> 3 kW is
+        1.89C. If the cells take 1C, the usable rate today is 1.58 kW and the
+        charger is deliberately oversized for the future pack.</li>
+      <li><strong>Dock and vehicle ambient temperature.</strong> Without it,
+        “conduction to chassis” has no value in °C/W and
+        <span class="mono">MEC-004</span> cannot be closed.</li>
+      <li><strong>Is bidirectional operation required?</strong> The DAB is
+        bidirectional and nothing asks for it. If not, the HV side simplifies
+        considerably.</li>
+      <li><strong>Does the Leviathan supply 400 V directly</strong>, or through a
+        second step-up DAB? The white paper implies both readings.</li>
+      <li><strong>Should the link authenticate?</strong> A dock that delivers
+        3 kW to anything that answers correctly is worth a deliberate decision
+        rather than a default.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  All figures traced to primary sources — the TI SNOSDE2A datasheet, the two
+  firmware repositories at their pinned commits, and the white paper — and
+  reproducible with
+  <span class="mono">link_budget.py</span> and
+  <span class="mono">comms_budget.py</span> in <span class="mono">sim/link-budget/</span>.
+  Parts whose datasheets could not be fetched are recorded blocked in
+  <span class="mono">docs/reference/manifest.yaml</span> rather than filled in
+  from memory.
+</footer>
+</div>
+
+<div id="tip" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  var tip = document.getElementById('tip');
+  function show(e, html){
+    tip.innerHTML = html; tip.style.opacity = '1';
+    var x = e.clientX + 14, y = e.clientY - 10;
+    var w = tip.offsetWidth, h = tip.offsetHeight;
+    if (x + w > innerWidth - 8) x = e.clientX - w - 14;
+    if (y + h > innerHeight - 8) y = innerHeight - h - 8;
+    if (y < 8) y = 8;
+    tip.style.left = x + 'px'; tip.style.top = y + 'px';
+  }
+  function hide(){ tip.style.opacity = '0'; }
+  function bind(el, html){
+    el.addEventListener('mousemove', function(e){ show(e, html); });
+    el.addEventListener('mouseleave', hide);
+    el.addEventListener('focus', function(){ tip.innerHTML = html; });
+    el.addEventListener('blur', hide);
+  }
+  function el(n, a){
+    var e = document.createElementNS('http://www.w3.org/2000/svg', n);
+    for (var k in a) e.setAttribute(k, a[k]);
+    return e;
+  }
+
+  /* ---------- chart 1: efficiency vs k*Q ---------- */
+  (function(){
+    var svg = document.getElementById('kq');
+    var W = 640, H = 300, L = 52, R = 18, T = 14, B = 46;
+    var pw = W - L - R, ph = H - T - B;
+    var x0 = Math.log10(3), x1 = Math.log10(200);
+    var y0 = 50, y1 = 100;
+    function X(kq){ return L + (Math.log10(kq) - x0) / (x1 - x0) * pw; }
+    function Y(p){  return T + ph - (p - y0) / (y1 - y0) * ph; }
+    function eta(kq){ var x = kq*kq; return x / Math.pow(1 + Math.sqrt(1 + x), 2) * 100; }
+
+    [60,70,80,90,100].forEach(function(p){
+      svg.appendChild(el('line',{x1:L,x2:L+pw,y1:Y(p),y2:Y(p),class:'gridline'}));
+      var t = el('text',{x:L-10,y:Y(p)+3.5,class:'tick','text-anchor':'end'});
+      t.textContent = p + '%'; svg.appendChild(t);
+    });
+    [3,5,10,20,50,100,200].forEach(function(v){
+      var t = el('text',{x:X(v),y:T+ph+18,class:'tick','text-anchor':'middle'});
+      t.textContent = v; svg.appendChild(t);
+    });
+    svg.appendChild(el('line',{x1:L,x2:L+pw,y1:T+ph,y2:T+ph,class:'axis'}));
+    var ax = el('text',{x:L+pw/2,y:T+ph+38,class:'axlab','text-anchor':'middle'});
+    ax.textContent = 'k · Q  (log)'; svg.appendChild(ax);
+    var ay = el('text',{x:L-38,y:T+ph/2,class:'axlab','text-anchor':'middle',
+                        transform:'rotate(-90 '+(L-38)+' '+(T+ph/2)+')'});
+    ay.textContent = 'Coil-to-coil efficiency'; svg.appendChild(ay);
+
+    var d = '';
+    for (var i = 0; i <= 300; i++){
+      var kq = Math.pow(10, x0 + (x1 - x0) * i / 300);
+      d += (i ? 'L' : 'M') + X(kq).toFixed(2) + ' ' + Y(eta(kq)).toFixed(2);
+    }
+    svg.appendChild(el('path',{d:d,fill:'none',stroke:'var(--s2)','stroke-width':2,
+                               'stroke-linejoin':'round'}));
+
+    var pts = [
+      {kq:4,    n:'v1 PCB coil',      s:'Q 8 · 1170 W lost', dx:9,  dy:-17, anchor:'start'},
+      {kq:14.7, n:'PCB scaled',       s:'Q 29 · 381 W',      dx:9,  dy:-17, anchor:'start'},
+      {kq:49,   n:'MEC-001 requires', s:'Q 98 · 120 W',      dx:0,  anchor:'middle', req:true},
+      {kq:75,   n:'Litz Q150',        s:'79 W',              dx:-9, dy:22,  anchor:'end'},
+      {kq:150,  n:'Litz Q300',        s:'40 W',              dx:-9, dy:22,  anchor:'end'}
+    ];
+    pts.forEach(function(p){
+      var e = eta(p.kq), cx = X(p.kq), cy = Y(e);
+      // the requirement is annotated at the foot of its own drop line, clear of the curve
+      var ly = p.req ? (T + ph - 30) : (cy + p.dy);
+      if (p.req){
+        svg.appendChild(el('line',{x1:cx,x2:cx,y1:cy+8,y2:ly-13,stroke:'var(--s2)',
+          'stroke-width':1,'stroke-dasharray':'3 3','stroke-opacity':.6}));
+      }
+      svg.appendChild(el('circle',{cx:cx,cy:cy,r:6.5,fill:'var(--surface)'}));
+      var dot = el('circle',{cx:cx,cy:cy,r:4.5,fill:p.req?'var(--s2)':'var(--s1)',
+        stroke:'var(--surface)','stroke-width':2,class:'hit',tabindex:'0'});
+      svg.appendChild(dot);
+      bind(dot, p.n + '<br>k·Q ' + p.kq + ' &nbsp;·&nbsp; eta ' + e.toFixed(1) + '%<br>' + p.s);
+      var t1 = el('text',{x:cx+p.dx,y:ly,class:'ptlab','text-anchor':p.anchor});
+      t1.textContent = p.n; svg.appendChild(t1);
+      var t2 = el('text',{x:cx+p.dx,y:ly+13,class:'ptval','text-anchor':p.anchor});
+      t2.textContent = p.s; svg.appendChild(t2);
+    });
+  })();
+
+  /* ---------- chart 2: loss by stage ---------- */
+  (function(){
+    var svg = document.getElementById('loss');
+    var rows = [
+      {n:'Coil pair',        v1:1170, v2:120},
+      {n:'Vehicle DAB',      v1:74,   v2:100},
+      {n:'RX rectifier',     v1:26,   v2:40},
+      {n:'TX bridge',        v1:29,   v2:25},
+      {n:'Aux + control',    v1:0,    v2:15}
+    ];
+    var W = 640, H = 268, L = 108, R = 66, T = 8, B = 34;
+    var pw = W - L - R, ph = H - T - B;
+    var max = 1200, band = ph / rows.length, bh = 13, gap = 2;
+
+    [0,300,600,900,1200].forEach(function(v){
+      var x = L + v / max * pw;
+      svg.appendChild(el('line',{x1:x,x2:x,y1:T,y2:T+ph,class:'gridline'}));
+      var t = el('text',{x:x,y:T+ph+18,class:'tick','text-anchor':'middle'});
+      t.textContent = v; svg.appendChild(t);
+    });
+    var ax = el('text',{x:L+pw/2,y:T+ph+32,class:'axlab','text-anchor':'middle'});
+    ax.textContent = 'Watts lost at 3 kW'; svg.appendChild(ax);
+    svg.appendChild(el('line',{x1:L,x2:L,y1:T,y2:T+ph,class:'axis'}));
+
+    rows.forEach(function(r, i){
+      var cy = T + i * band + band / 2;
+      var lb = el('text',{x:L-12,y:cy+4,class:'ptlab','text-anchor':'end'});
+      lb.textContent = r.n; svg.appendChild(lb);
+
+      [['v1', r.v1, 'var(--s1)', cy - bh - gap/2],
+       ['v2 budget', r.v2, 'var(--s2)', cy + gap/2]].forEach(function(s){
+        var w = Math.max(s[1] / max * pw, s[1] > 0 ? 3 : 0);
+        if (w > 0){
+          var bar = el('rect',{x:L,y:s[3],width:w,height:bh,rx:3,fill:s[2],
+                               class:'hit',tabindex:'0'});
+          svg.appendChild(bar);
+          bind(bar, r.n + ' — ' + s[0] + '<br><b>' + s[1] + ' W</b>');
+        }
+        var vt = el('text',{x:L + w + 7,y:s[3] + bh - 2.5,class:'ptval'});
+        vt.textContent = s[1] > 0 ? s[1] + ' W' : 'not estimated';
+        svg.appendChild(vt);
+      });
+    });
+  })();
+})();
+</script>
