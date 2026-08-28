@@ -1,0 +1,17 @@
+# Electrical block diagram — the architecture agreement, settled before schematic capture.
+#
+#   block-diagram                 # -> hw/block-diagram.drawio + docs/design/block-diagram.svg
+#   block-diagram --check         # validate only; exit 1 on a broken tree or an over-budget rail
+#   block-diagram --summary       # power budget per rail, no files written
+#
+#   kind:  connector | regulator | power | mcu | memory | sensor | radio
+#          | analog | actuator | interface | logic | other
+
+project: Ulysses LARS Charger
+revision: A
+
+rails: []
+
+blocks: []
+
+buses: []

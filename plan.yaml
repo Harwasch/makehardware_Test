@@ -1,0 +1,17 @@
+# Project plan — the agreement about what work exists and in what order.
+#
+# One chunk ≈ one AI session. Keep chunks at the altitude of "a thing you could
+# hand to a session and get a reviewable result back", not individual tasks.
+#
+#   status:       todo | in_progress | blocked | done
+#   depends_on:   chunk ids that must finish first (this drives the schedule)
+#   discipline:   groups rows in the chart; use only what the project needs
+#   outputs:      files this chunk is expected to produce
+#
+# Render with:  plan-render            (updates docs/plan.svg and README)
+# Validate with: plan-render --check   (exit 1 on cycles, dangling deps)
+
+project: Ulysses LARS Charger
+disciplines: [electrical, firmware, mechanical, test, documentation]
+
+chunks: []

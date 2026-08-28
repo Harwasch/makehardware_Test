@@ -1,0 +1,11 @@
+[DOCUMENT]
+TITLE: Firmware Requirements
+UID: DOC-FIRMWARE
+
+[GRAMMAR]
+IMPORT_FROM_FILE: hardware.sgra
+
+[TEXT]
+STATEMENT: >>>
+Firmware requirements. Each one Refines a ``SYS-`` requirement.
+<<<

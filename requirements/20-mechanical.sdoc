@@ -1,0 +1,11 @@
+[DOCUMENT]
+TITLE: Mechanical Requirements
+UID: DOC-MECHANICAL
+
+[GRAMMAR]
+IMPORT_FROM_FILE: hardware.sgra
+
+[TEXT]
+STATEMENT: >>>
+Mechanical requirements. Each one Refines a ``SYS-`` requirement.
+<<<

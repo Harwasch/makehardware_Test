@@ -1,0 +1,11 @@
+[DOCUMENT]
+TITLE: Electrical Requirements
+UID: DOC-ELECTRICAL
+
+[GRAMMAR]
+IMPORT_FROM_FILE: hardware.sgra
+
+[TEXT]
+STATEMENT: >>>
+Electrical requirements. Each one Refines a ``SYS-`` requirement.
+<<<

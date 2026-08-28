@@ -1,0 +1,136 @@
+# External reference material — datasheets, application notes, standards.
+#
+# These files are evidence. Never edit a fetched document; record what you
+# retrieved, when, and which requirement needs it.
+#
+#   revision   the document's own revision string. A datasheet that silently
+#              revised under you is a real failure mode; this is how you notice.
+#   retrieved  the date you fetched it.
+#   needed_by  requirement UIDs that depend on a number in this document.
+#   blocked    set when the environment could not fetch it, so a human must.
+#              Leave `local: null` and ASK — never substitute a number from
+#              memory for a datasheet you could not open.
+
+documents:
+
+  # ---- Programme source material (v1 baseline) -------------------------------
+  - id: mako-white-paper
+    title: Ulysses LARS Wireless Charger — Mako 2.0 charging system technical brief
+    publisher: in-house
+    revision: as-supplied 2026-08-28
+    url: null
+    local: docs/reference/source/mako-charging-white-paper.pdf
+    retrieved: 2026-08-28
+    notes: >-
+      The v1 design record. Text extraction kept alongside as
+      mako-charging-white-paper.txt. Several part numbers in this document are
+      wrong or inconsistent — see docs/design/v1-baseline.md.
+
+  - id: fw-v1-txrx
+    title: TXRX transmitter firmware (STM32H723ZGT6) — resonance tracking
+    publisher: greenguyxoxo/TXRX
+    revision: 1e617b620a71a5ba5a5eac3c59d5bc70e35b1561
+    url: https://github.com/greenguyxoxo/TXRX
+    local: docs/reference/source/fw-v1/txrx-TX_V1.c
+    retrieved: 2026-08-28
+
+  - id: fw-v1-hvlv
+    title: HVLV dual-active-bridge firmware (STM32H723ZGT6) — CC/CV + phase shift
+    publisher: greenguyxoxo/HVLV
+    revision: 72577a0c73e38c62a9f8d4222f41a56e4f2d7f79
+    url: https://github.com/greenguyxoxo/HVLV
+    local: docs/reference/source/fw-v1/hvlv-Master.c
+    retrieved: 2026-08-28
+    notes: >-
+      hvlv-pspwm-ex.c is the TIM1/TIM8 phase-shift reference sketch from the
+      same repo.
+
+  # ---- Datasheets confirmed during v1 review ---------------------------------
+  - id: lmg2610-datasheet
+    title: LMG2610 Integrated 650-V GaN Half Bridge for Active-Clamp Flyback Converters
+    part: LMG2610RRGR
+    publisher: Texas Instruments
+    revision: SNOSDE2A (Oct 2022, rev Dec 2022)
+    url: https://www.ti.com/lit/gpn/LMG2610
+    local: docs/reference/lmg2610-SNOSDE2A.pdf
+    retrieved: 2026-08-28
+    notes: >-
+      The v1 TX power stage. Abs-max drain current is 6.4 A PEAK low-side and
+      4 A PEAK high-side; the device is specified for < 75 W active-clamp
+      flyback. This is the central v1 finding — see docs/design/v1-baseline.md.
+
+  - id: lmg352xr030-datasheet
+    title: LMG352xR030 650 V 30 mOhm GaN FET with integrated driver and protection
+    part: LMG3522R030 / LMG3526R030
+    publisher: Texas Instruments
+    revision: SLVSFO2
+    url: https://www.ti.com/lit/ds/symlink/lmg3522r030.pdf
+    local: null
+    blocked: not yet fetched — candidate replacement for the v1 TX power stage
+    retrieved: null
+
+  # ---- Parts named in the white paper whose numbers need confirming ----------
+  # Each of these is a *candidate resolution* of a name in the white paper that
+  # does not resolve to a real orderable part. Confirm before any BOM line.
+  - id: tpsm560r6-datasheet
+    title: TPSM560R6 60-V input, 600-mA step-down power module (integrated inductor)
+    part: TPSM560R6
+    publisher: Texas Instruments
+    url: https://www.ti.com/product/TPSM560R6
+    local: null
+    blocked: not yet fetched
+    notes: >-
+      The white paper names both "TPSM540" and "TPSM560"; neither is a valid
+      part number. TPSM560R6 (600 mA) and TPSM5601R5 (1.5 A) are the real
+      family. The aux-rail budget depends on which — resolve in sourcing.
+
+  - id: ucc14240-datasheet
+    title: UCC14240-Q1 2.0-W, 24-V VIN, 25-V VOUT isolated DC/DC bias module
+    part: UCC14240-Q1
+    publisher: Texas Instruments
+    url: https://www.ti.com/product/UCC14240-Q1
+    local: null
+    blocked: not yet fetched
+    notes: white paper writes "UCC1414"; UCC14240-Q1 is the likely intent.
+
+  - id: ucc33420-datasheet
+    title: UCC33420 1.5-W, 5.0-V, 3-kVRMS isolated DC/DC module
+    part: UCC33420RAQR
+    publisher: Texas Instruments
+    url: https://www.ti.com/lit/ds/symlink/ucc33420.pdf
+    local: null
+    blocked: not yet fetched
+
+  - id: ucc27714-datasheet
+    title: UCC27714 600-V high-side/low-side gate driver, 4-A source/sink
+    part: UCC27714
+    publisher: Texas Instruments
+    url: https://www.ti.com/product/UCC27714
+    local: null
+    blocked: not yet fetched
+    notes: >-
+      White paper writes "UCC27741" and claims a 650 V rating; the real part is
+      UCC27714 and it is rated 600 V. Matters directly for the 400 V bus margin.
+
+  - id: ipb60r120c7-datasheet
+    title: IPB60R120C7 600 V CoolMOS C7 N-channel power MOSFET, 120 mOhm, 19 A
+    part: IPB60R120C7
+    publisher: Infineon
+    url: https://www.infineon.com/part/IPB60R120C7
+    local: null
+    blocked: not yet fetched
+    notes: >-
+      v1 HV-side DAB switch. 600 V on a 400 V bus is 1.5x margin — thin for a
+      bridge with leakage-inductance ringing. Confirm or move to 650/750 V.
+
+  - id: bsc190n15ns3-datasheet
+    title: BSC190N15NS3-G OptiMOS 3 150 V, 19 mOhm, 50 A power MOSFET (SuperSO8)
+    part: BSC190N15NS3 G
+    publisher: Infineon
+    url: https://www.infineon.com/cms/en/product/power/mosfet/n-channel/bsc190n15ns3-g
+    local: null
+    blocked: not yet fetched
+    notes: >-
+      v1 LV-side DAB switch, two paralleled per branch. 150 V rating bounds the
+      LV bus — which the white paper never states. See the open question in
+      docs/design/v1-baseline.md.
