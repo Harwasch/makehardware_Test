@@ -268,3 +268,163 @@ demonstrated capability.**
    HV side simplifies considerably.
 6. **What is the ambient?** The Leviathan dock is presumably marine. Coolant
    availability changes the coil answer in F4 completely.
+
+---
+
+# Addendum — analysis against the answers from the vision interview
+
+Added 2026-08-28 after the vision interview supplied the four numbers the white
+paper was missing: pack **48 V / 33 Ah**, air gap **< 20 mm well aligned**
+(k ≈ 0.5), power target **3 kW, with the requirements free to move if physics
+says otherwise**, cooling **conduction to chassis only**.
+
+Reproduce every number below with:
+
+```bash
+/opt/hw-py/bin/python sim/link-budget/link_budget.py
+```
+
+### F7 — The pack is 1.58 kWh, not 8 kWh, and 3 kW is a 1.9C charge
+
+48 V × 33 Ah = **1.584 kWh**. The white paper's "8 kWh battery in 2.6 hours"
+does not describe this vehicle.
+
+| Into today's 1.58 kWh pack | |
+|---|---|
+| 3 kW | **1.89C**, full charge in 32 min, 62.5 A on the LV bus |
+| 1.58 kW | 1.0C, 60 min |
+
+1.9C is above what most cells will accept, so **the pack, not the charger, is
+likely the binding constraint today.** Cell charge acceptance needs to be
+confirmed against the pack datasheet before 3 kW is ever commanded.
+
+The reading that reconciles everything: the human states the pack "may increase
+in size (not voltage) in the future". An 8 kWh pack at 48 V is 167 Ah, and 3 kW
+into that is **0.38C over 2.7 h** — which is exactly the white paper's claim.
+So **3 kW is sized for the future pack, and the white paper documents the
+target vehicle rather than the present one.** That is a legitimate position and
+should be recorded as vision rationale, not treated as an error — but it means
+v2 must be able to charge *at a commanded rate below its maximum*, and that the
+present pack will never see full power.
+
+### F8 — The 12 µH coil is 13× too small for a 3 kW / 400 V link *(blocking)*
+
+For a series-series compensated link with both sides tuned, the power delivered
+at resonance is
+
+> P = V₁·V₂ / (ω·M)
+
+With a 400 V bus, V₁ = V₂ = 2√2·400/π = **360 V** fundamental RMS. At k = 0.5
+the v1 coil gives M = 6 µH, so ωM = 3.2 Ω and
+
+> P = 360 × 360 / 3.2 = **40.5 kW**, at a tank current of **112 A RMS**
+
+The link is not "capable of 40 kW" — it means that *at resonance*, with 400 V on
+both ends, this coil pair is grossly under-inductive, and holding it to 3 kW
+requires running far off resonance. **That directly contradicts the v1 control
+strategy**, whose entire purpose is to find and hold resonance. The firmware and
+the magnetics are working against each other.
+
+Delivering 3 kW *at* resonance needs M = 80.9 µH:
+
+| k | Required L₁ = L₂ | vs the v1 coil |
+|---|---|---|
+| 0.20 | 405 µH | 33.7× |
+| 0.35 | 231 µH | 19.3× |
+| **0.50** | **162 µH** | **13.5×** |
+| 0.60 | 135 µH | 11.2× |
+
+The cause is visible in the white paper itself: p.6 says the coil geometry came
+from a paper on an **induction stove**. An induction hob coil is deliberately
+low-inductance and high-current, tightly coupled to a steel pan. It is the wrong
+starting geometry for a 400 V resonant power link, in the same way the LMG2610
+is the wrong starting part — both are sound choices for the application they
+were designed for.
+
+### F9 — PCB coils cannot reach the efficiency the thermal path requires *(blocking)*
+
+Coil-to-coil efficiency in an inductive link is set by the product **k·Q**, not
+by resistance alone:
+
+> η_max = (kQ)² / (1 + √(1 + (kQ)²))²
+
+At the interview's k = 0.5:
+
+| Coil | L | R | Q @ 85 kHz | k·Q | η | Loss at 3 kW |
+|---|---|---|---|---|---|---|
+| v1 PCB coil as documented | 12 µH | 0.80 Ω | 8.0 | 4.0 | **61.0%** | **1170 W** |
+| PCB coil scaled to 162 µH (L∝N², R∝N) | 162 µH | 2.94 Ω | 29.4 | 14.7 | 87.3% | 381 W |
+| Litz at Q = 150 | 162 µH | 0.58 Ω | 150 | 75 | 97.4% | 79 W |
+| Litz at Q = 300 | 162 µH | 0.29 Ω | 300 | 150 | 98.7% | 40 W |
+
+Working backwards from an efficiency target instead:
+
+| Target η | Needs k·Q | Q at k = 0.5 | Coil loss at 3 kW |
+|---|---|---|---|
+| 90% | 19 | 38 | 300 W (150 W per coil) |
+| 95% | 39 | 78 | 150 W (75 W per coil) |
+| 97% | 66 | 131 | 90 W (45 W per coil) |
+
+**This is the finding that decides the architecture.** With conduction-to-chassis
+cooling only, 150 W per coil is not dissipatable from a flat spiral behind
+ferrite; 45 W plausibly is. The v1 PCB coil is roughly an order of magnitude
+short in Q, and scaling it to the right inductance only reaches 87% — still
+381 W, still 191 W per coil.
+
+Note also that 0.8 Ω is presumably a DC measurement. At 85 kHz, skin and
+proximity effect in a 5 mm trace raise the AC resistance, so every PCB row above
+is optimistic.
+
+The white paper lists the PCB coil's benefits accurately — consistent
+inductance, easy manufacture, packaging, tunability — and names "poor thermals"
+as the one drawback without quantifying it. Quantified against a 3 kW target and
+a conduction-only thermal path, that drawback is disqualifying.
+
+**This does not settle the decision** — that belongs in an ADR during the design
+sprint, weighed against the manufacturability the white paper rightly values.
+It does mean the requirement must carry a k·Q number, and that a PCB coil cannot
+be assumed.
+
+### F10 — The resonant capacitor is a high-voltage part nobody has specified
+
+At the matched operating point (162 µH, 85 kHz, 8.33 A RMS) the tuning capacitor
+is 21.7 nF and stands off **720 V RMS**, carrying the full 8.33 A of tank
+current. That is a film capacitor bank with a real ripple-current rating, likely
+the largest passive in the system, and it appears nowhere in the white paper.
+It needs a block, a budget and a part.
+
+### F11 — The LV bridge dissipates 74 W at 48 V
+
+At 48 V the LV bus carries 62.5 A for 3 kW, i.e. ≈44 A RMS per bridge branch.
+With the v1 choice of two BSC190N15NS3 per branch (9.5 mΩ effective):
+
+| Devices per branch | R | Per branch | Bridge total |
+|---|---|---|---|
+| 1 | 19.0 mΩ | 37.1 W | 148 W |
+| **2 (v1)** | **9.5 mΩ** | **18.6 W** | **74 W** |
+| 4 | 4.75 mΩ | 9.3 W | 37 W |
+
+Conduction only — switching loss is on top. On voltage the 150 V part is
+comfortable at 48 V; the problem is purely current. This is tractable but it is
+not free, and it argues for more paralleling or a lower-R part.
+
+### Where that leaves the 3 kW target
+
+Summing the conduction-loss terms that are now quantified, at 3 kW:
+
+| | v1 as documented | v2 with Litz coils and 30 mΩ GaN |
+|---|---|---|
+| Coil pair | 1170 W | 90 W |
+| LV bridge | 74 W | 37 W |
+| RX rectifier | 26 W | 26 W |
+| TX bridge | 29 W (and destroyed) | 20 W |
+| **Subtotal** | **≈1300 W** | **≈173 W** |
+
+Plus the two DAB transformers and HV bridges, plus all switching loss, neither
+yet estimated. The v1 column is not a design that runs hot — it is a design that
+delivers under 60% and cannot exist. The v2 column is a system that plausibly
+reaches ~90% end-to-end and puts roughly 300 W into the chassis, which a
+conduction path can be designed for.
+
+**3 kW is reachable, but not with the v1 magnetics.** That is the central
+conclusion of the baseline review.

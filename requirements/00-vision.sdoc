@@ -11,4 +11,181 @@ What the human wants, in their words, captured during the vision interview.
 Vision entries are intentionally NOT testable: they are the thing the testable
 requirements have to add up to. Every ``SYS-`` requirement must Refine one of
 these, which is how we catch requirements nobody asked for.
+
+Captured 2026-08-28 for the Ulysses LARS Charger, revision 2. The v1 system is
+described in ``docs/reference/source/mako-charging-white-paper.pdf`` and
+reviewed in ``docs/design/v1-baseline.md``.
 <<<
+
+[REQUIREMENT]
+UID: VIS-001
+TITLE: Return the Mako to operation quickly
+STATEMENT: >>>
+The charger shall get the Mako back in the water as fast as the battery will
+safely accept, so that turnaround between dives is set by the crew and not by
+the charger.
+<<<
+RATIONALE: >>>
+The originating intent from the white paper: "ideal for returning the Mako to
+operation as quickly as possible". This is the reason the programme is willing
+to carry the cost and complexity of a 3 kW resonant link rather than a trickle
+charger.
+<<<
+VERIFICATION: Inspection
+STATUS: Draft
+
+[REQUIREMENT]
+UID: VIS-002
+TITLE: No mated connector between dock and vehicle
+STATEMENT: >>>
+Power shall cross from the Leviathan dock to the Mako without any electrical
+contact being made or broken - across an air or water gap, by magnetic coupling
+alone.
+<<<
+RATIONALE: >>>
+The whole reason the system is wireless. A wet-mate connector on a vehicle that
+docks repeatedly is a maintenance and reliability liability; a magnetic link has
+no contacts to corrode, foul or misalign into an arc.
+<<<
+VERIFICATION: Inspection
+STATUS: Draft
+
+[REQUIREMENT]
+UID: VIS-003
+TITLE: Sized for the pack the Mako will have, not the one it has
+STATEMENT: >>>
+The charger shall be designed for a 3 kW delivery capability, sized for a future
+Mako pack of roughly 8 kWh, while charging today's much smaller pack at whatever
+rate that pack safely accepts.
+<<<
+RATIONALE: >>>
+Today's pack is 48 V, 33 Ah - 1.58 kWh. 3 kW into it is a 1.9C charge, which is
+above what most cells accept, so today the pack is the binding constraint and
+not the charger. The human states the pack "may increase in size (not voltage)
+in the future"; at 8 kWh (167 Ah at 48 V), 3 kW is a 0.38C charge over 2.7 h,
+which is exactly the figure the v1 white paper quotes. So 3 kW is a
+future-proofing decision, deliberately taken, and the charger must be able to
+deliver well below its maximum on command. See ``docs/design/v1-baseline.md``
+finding F7.
+<<<
+VERIFICATION: Inspection
+STATUS: Draft
+
+[REQUIREMENT]
+UID: VIS-004
+TITLE: The battery voltage is fixed at 48 V; only capacity grows
+STATEMENT: >>>
+The vehicle-side design shall assume a 48 V nominal pack for the life of the
+programme, and shall not assume any particular capacity.
+<<<
+RATIONALE: >>>
+Stated directly in the vision interview. This pins the LV bridge, the LV bus
+current at full power (62.5 A at 3 kW) and the DAB transformer ratio, and it
+means capacity growth must not force an electrical redesign.
+<<<
+VERIFICATION: Inspection
+STATUS: Draft
+
+[REQUIREMENT]
+UID: VIS-005
+TITLE: The dock holds the vehicle close and square
+STATEMENT: >>>
+The design may assume the Mako is mechanically registered against the dock, with
+a coil-to-coil gap under 20 mm and good alignment, rather than free-floating.
+<<<
+RATIONALE: >>>
+Stated in the vision interview. This is a substantial advantage over the EV
+wireless charging literature the v1 design drew from: it buys a coupling
+coefficient around 0.5 instead of 0.2, which reduces the coil inductance needed
+and improves achievable efficiency for the same coil quality. The design should
+spend that advantage deliberately rather than let it go unused.
+<<<
+VERIFICATION: Inspection
+STATUS: Draft
+
+[REQUIREMENT]
+UID: VIS-006
+TITLE: All waste heat leaves by conduction into the structure
+STATEMENT: >>>
+The system shall reject its losses by conduction into the dock and vehicle
+structure. No pumped coolant loop and no forced air shall be assumed on either
+side.
+<<<
+RATIONALE: >>>
+Stated in the vision interview. This is the constraint that decides the
+magnetics: it bounds what may be dissipated in a coil pad, and therefore sets a
+floor under the coil quality factor. See ``docs/design/v1-baseline.md``
+finding F9.
+<<<
+VERIFICATION: Inspection
+STATUS: Draft
+
+[REQUIREMENT]
+UID: VIS-007
+TITLE: Efficiency matters because the heat has nowhere to go
+STATEMENT: >>>
+The system shall be efficient enough that the heat it makes can be conducted
+away by ``VIS-006``, rather than efficient for its own sake.
+<<<
+RATIONALE: >>>
+This is the shape of the v2 problem. The v1 magnetics deliver about 61% coil to
+coil, which is 1170 W into two flat pads with no coolant - not a thermal design
+problem but an impossibility. Efficiency here is a thermal requirement wearing
+different clothes, and it is what forces the coil technology decision.
+<<<
+VERIFICATION: Inspection
+STATUS: Draft
+
+[REQUIREMENT]
+UID: VIS-008
+TITLE: Keep what v1 proved, replace what it did not
+STATEMENT: >>>
+The v2 design shall retain the v1 system architecture and the two-stage
+resonance tracking control that bench testing validated, and shall re-specify
+only the parts that analysis shows cannot meet the target.
+<<<
+RATIONALE: >>>
+v1's reported bench result - a static frequency sweep that lands near resonance,
+followed by a hill-climb that converges the rest of the way - is real, useful
+and worth keeping. What it never demonstrated was power: no efficiency, thermal,
+coupling or power measurement appears anywhere in the white paper. The v2 job is
+to keep the validated control architecture and fix the magnetics and the power
+stage underneath it.
+<<<
+VERIFICATION: Inspection
+STATUS: Draft
+
+[REQUIREMENT]
+UID: VIS-009
+TITLE: Buildable without a specialist magnetics house
+STATEMENT: >>>
+The design should stay manufacturable with ordinary PCB fabrication and
+in-house assembly wherever that does not cost the power target.
+<<<
+RATIONALE: >>>
+The v1 white paper chose PCB coils largely for this reason, and the reasoning is
+sound: consistent inductance, no dedicated winding house, easy tuning. The
+analysis says a PCB coil cannot carry 3 kW within the thermal budget, so this
+intent will probably lose to ``VIS-007`` for the coils - but it should lose
+explicitly, in an ADR, and it should still govern everywhere else.
+<<<
+VERIFICATION: Inspection
+STATUS: Draft
+
+[REQUIREMENT]
+UID: VIS-010
+TITLE: Nothing is called done on a claimed number
+STATEMENT: >>>
+No part shall be carried into the design on a number taken from the v1 white
+paper alone; every rating that matters shall be traced to a datasheet or a
+measurement.
+<<<
+RATIONALE: >>>
+The v1 review found six part numbers that do not resolve to orderable parts, a
+power stage quoted at a favourable absolute-maximum peak as though it were a
+continuous rating, a rectifier described as Schottky that is not, and a coil
+whose stated Q is inconsistent with its stated nominal frequency. Each of those
+is individually small; together they are why v1 never reached its power target.
+<<<
+VERIFICATION: Inspection
+STATUS: Draft
