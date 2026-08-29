@@ -1,0 +1,79 @@
+# Publish the project's generated documentation to GitHub Pages.
+#
+# The point of this workflow is that the requirements tree, the plan and the
+# architecture are readable in a browser without cloning anything. StrictDoc's
+# HTML export is regenerated here on every push, so the published tree can never
+# be a stale copy of the .sdoc files.
+#
+# ONE-TIME SETUP: Settings -> Pages -> Source: "GitHub Actions".
+# After that this runs on every push to main.
+
+name: Publish docs
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install StrictDoc
+        run: pip install --disable-pip-version-check strictdoc pyyaml
+
+      - name: Export the requirements tree
+        run: |
+          strictdoc export requirements \
+            --output-dir _site/requirements \
+            --formats=html,json
+
+      - name: Traceability report
+        # req-trace exits 1 while gaps remain, which is the normal state during
+        # design. Capture the report either way; do not let it fail the build.
+        run: |
+          mkdir -p _site
+          if [ -f scripts/req_trace.py ]; then
+            python scripts/req_trace.py requirements > _site/req-trace.txt 2>&1 || true
+          fi
+
+      - name: Collect the generated diagrams and reports
+        run: |
+          mkdir -p _site/assets _site/reports
+          cp -f docs/plan.svg                _site/assets/ 2>/dev/null || true
+          cp -f docs/design/block-diagram.svg _site/assets/ 2>/dev/null || true
+          cp -f docs/design/block-diagram.png _site/assets/ 2>/dev/null || true
+          cp -rf docs/design/reports/.        _site/reports/ 2>/dev/null || true
+          cp -f docs/site/index.html          _site/index.html
+          # the design notes, as raw markdown, so nothing is only in the repo
+          mkdir -p _site/design
+          cp -f docs/design/*.md _site/design/ 2>/dev/null || true
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

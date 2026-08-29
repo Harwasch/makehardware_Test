@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ulysses LARS Charger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+:root{--ground:#F3F5F5;--surface:#FFF;--surface-2:#EAEEEE;--ink:#0F1618;--ink-2:#55636A;
+  --ink-3:#7C8A90;--rule:#DCE2E2;--s2:#008C7F;--warn:#8A6412;--warn-bg:#F7F0E0;
+  --shadow:0 1px 2px rgba(15,22,24,.05),0 8px 24px -12px rgba(15,22,24,.18)}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+  --ground:#0D1315;--surface:#151D20;--surface-2:#1D272A;--ink:#E7EEEF;--ink-2:#8FA1A6;
+  --ink-3:#6E8085;--rule:#25302F;--s2:#20A296;--warn:#C8963A;--warn-bg:#26200F;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.7)}}
+:root[data-theme=dark]{--ground:#0D1315;--surface:#151D20;--surface-2:#1D272A;--ink:#E7EEEF;
+  --ink-2:#8FA1A6;--ink-3:#6E8085;--rule:#25302F;--s2:#20A296;--warn:#C8963A;--warn-bg:#26200F;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.7)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);
+  font-family:"Source Serif 4",Georgia,serif;font-size:17px;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:0 26px 80px}
+h1,h2,h3{font-family:Archivo,Arial,sans-serif;text-wrap:balance;margin:0}
+h1{font-size:clamp(1.9rem,4.4vw,2.7rem);letter-spacing:-.026em;font-weight:700;line-height:1.06}
+h2{font-size:1.35rem;letter-spacing:-.016em;font-weight:600}
+h3{font-size:1.02rem;font-weight:600;letter-spacing:-.006em}
+p{margin:0}
+a{color:var(--s2)}
+.lab{font-family:Archivo,sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-3)}
+.mono{font-family:"JetBrains Mono",monospace}
+header{border-bottom:1px solid var(--rule);padding:52px 0 30px;margin-bottom:38px}
+.sub{margin-top:16px;font-size:1.12rem;color:var(--ink-2);max-width:640px}
+section{margin-bottom:46px}
+.sec-head{display:flex;gap:14px;align-items:baseline;margin-bottom:18px;
+  padding-bottom:11px;border-bottom:1px solid var(--rule)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:5px;
+  padding:20px 22px;box-shadow:var(--shadow);text-decoration:none;color:inherit;display:block}
+.card:hover{border-color:var(--s2)}
+.card p{color:var(--ink-2);font-size:.93rem;margin-top:7px}
+.card .lab{margin-bottom:8px;display:block}
+figure{margin:0;background:var(--surface);border:1px solid var(--rule);border-radius:5px;
+  padding:18px;box-shadow:var(--shadow)}
+figure img{width:100%;height:auto;display:block}
+figcaption{font-family:Archivo,sans-serif;font-size:.8rem;color:var(--ink-2);
+  margin-top:12px;text-align:center}
+.note{background:var(--warn-bg);border-left:3px solid var(--warn);border-radius:4px;
+  padding:16px 20px;color:var(--ink-2);font-size:.95rem;max-width:70ch}
+footer{border-top:1px solid var(--rule);padding-top:20px;font-size:.85rem;color:var(--ink-3)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <span class="lab">Generated on every push to main</span>
+  <h1 style="margin-top:14px">Ulysses LARS Charger</h1>
+  <p class="sub">A 3 kW magnetic-resonant wireless charger moving power from a
+  surface vessel's dock to a 48 V pack in an underwater vehicle, across a gap no
+  connector ever crosses.</p>
+</header>
+
+<section>
+  <div class="sec-head"><h2>Requirements</h2><span class="lab">live, rebuilt from the .sdoc tree</span></div>
+  <div class="cards">
+    <a class="card" href="requirements/html/index.html">
+      <span class="lab">Browse</span>
+      <h3>Requirements tree</h3>
+      <p>All levels, cross-linked, with parent and child traceability. Regenerated
+      by StrictDoc on every push, so it can never drift from the source.</p>
+    </a>
+    <a class="card" href="req-trace.txt">
+      <span class="lab">Gate</span>
+      <h3>Traceability report</h3>
+      <p>Orphans, undecomposed levels, leaves without evidence, requirements with
+      no design artefact linked. Exits 1 while gaps remain — which is the correct
+      state during design.</p>
+    </a>
+  </div>
+  <p class="note" style="margin-top:18px">Coverage is currently <strong>0%
+  verified</strong>. That is correct: no design artefact exists yet, so every
+  gap is a missing evidence pointer rather than a defect. Nothing has been marked
+  Verified to make the number look better.</p>
+</section>
+
+<section>
+  <div class="sec-head"><h2>Plan</h2><span class="lab">dependency gantt, critical path outlined</span></div>
+  <figure>
+    <img src="assets/plan.svg" alt="Project plan Gantt chart with the critical path outlined">
+    <figcaption>Chunks, dependencies and status. Outlined bars are on the critical path.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <div class="sec-head"><h2>Architecture</h2><span class="lab">power tree with a current budget</span></div>
+  <figure>
+    <img src="assets/block-diagram.svg" alt="Electrical block diagram and power budget">
+    <figcaption>Every rail's headroom against what its source can deliver. The gate
+    fails on an over-budget rail.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <div class="sec-head"><h2>Design notes</h2><span class="lab">how and why</span></div>
+  <div class="cards">
+    <a class="card" href="design/coil-model.md"><span class="lab">Magnetics</span>
+      <h3>Coil model</h3><p>Inductance, coupling and quality factor from first
+      principles, and the correction that put PCB coils back on the table.</p></a>
+    <a class="card" href="design/v1-baseline.md"><span class="lab">Review</span>
+      <h3>v1 baseline</h3><p>The previous revision reviewed against its own
+      datasheets — eleven findings, three blocking.</p></a>
+    <a class="card" href="design/in-band-comms.md"><span class="lab">Comms</span>
+      <h3>In-band link</h3><p>Data over the power coils, and why the tank
+      bandwidth is the governing constraint.</p></a>
+    <a class="card" href="design/environment.md"><span class="lab">Environment</span>
+      <h3>Marine envelope</h3><p>Where +55 °C comes from, and the 45 °C thermal
+      budget it leaves.</p></a>
+    <a class="card" href="design/adr-0002-tx-power-stage.md"><span class="lab">Decision</span>
+      <h3>ADR-0002 · TX power stage</h3><p>Switch selection, and the two
+      consequences worth knowing about.</p></a>
+    <a class="card" href="design/friction-log.md"><span class="lab">Retro</span>
+      <h3>Friction log</h3><p>What cost time, and which MakeHardware file should
+      change to stop it happening again.</p></a>
+  </div>
+</section>
+
+<footer>
+  Built by <span class="mono">.github/workflows/pages.yml</span> from the
+  repository's own sources. Every number here reproduces from a script under
+  <span class="mono">sim/</span> — see the repository README.
+</footer>
+</div>
+</body>
+</html>

@@ -341,7 +341,15 @@ starting geometry for a 400 V resonant power link, in the same way the LMG2610
 is the wrong starting part — both are sound choices for the application they
 were designed for.
 
-### F9 — PCB coils cannot reach the efficiency the thermal path requires *(blocking)*
+### F9 — the v1 coil cannot reach the efficiency the thermal path requires *(blocking)*
+
+> **SCOPE CORRECTED 2026-08-28.** This finding originally read "PCB coils
+> cannot reach the efficiency the thermal path requires" and concluded Litz was
+> required. That generalised a single-layer result to a whole conductor
+> technology. A six-layer etched coil reaches k*Q = 77 against a requirement of
+> 49 — see `docs/design/coil-model.md` Result 4. What follows is still true of
+> **the v1 coil as documented**, which is what this finding is about; it is not
+> true of etched coils in general.
 
 Coil-to-coil efficiency in an inductive link is set by the product **k·Q**, not
 by resistance alone:
@@ -365,11 +373,16 @@ Working backwards from an efficiency target instead:
 | 95% | 39 | 78 | 150 W (75 W per coil) |
 | 97% | 66 | 131 | 90 W (45 W per coil) |
 
-**This is the finding that decides the architecture.** With conduction-to-chassis
-cooling only, 150 W per coil is not dissipatable from a flat spiral behind
-ferrite; 45 W plausibly is. The v1 PCB coil is roughly an order of magnitude
-short in Q, and scaling it to the right inductance only reaches 87% — still
-381 W, still 191 W per coil.
+**The v1 coil is roughly an order of magnitude short in Q**, and scaling that
+same single-layer geometry to the right inductance only reaches 87%. With
+conduction cooling only, 150 W per pad is not dissipatable from a flat spiral
+behind ferrite; 45 W plausibly is.
+
+What the original version of this finding missed is that the shortfall is a
+property of *that coil*, not of etching. Parallel layers reduce resistance
+directly, and fine traces nearly remove the proximity penalty that dominates a
+wide-trace spiral. The corrected design — 32 turns, 0.80 mm trace, six layers
+in parallel, on the house's 4 x 8 inch rectangle — reaches 73 W.
 
 Note also that 0.8 Ω is presumably a DC measurement. At 85 kHz, skin and
 proximity effect in a 5 mm trace raise the AC resistance, so every PCB row above
@@ -381,9 +394,9 @@ as the one drawback without quantifying it. Quantified against a 3 kW target and
 a conduction-only thermal path, that drawback is disqualifying.
 
 **This does not settle the decision** — that belongs in an ADR during the design
-sprint, weighed against the manufacturability the white paper rightly values.
-It does mean the requirement must carry a k·Q number, and that a PCB coil cannot
-be assumed.
+sprint. It does mean the requirement must carry a k*Q number rather than name a
+technology, which is how `MEC-001` is written and why the correction above cost
+an analysis rather than a requirements rewrite.
 
 ### F10 — The resonant capacitor is a high-voltage part nobody has specified
 
@@ -414,7 +427,7 @@ Summing the conduction-loss terms that are now quantified, at 3 kW:
 
 | | v1 as documented | v2 with Litz coils and 30 mΩ GaN |
 |---|---|---|
-| Coil pair | 1170 W | 90 W |
+| Coil pair | 1170 W | 73 W (six-layer etched) |
 | LV bridge | 74 W | 37 W |
 | RX rectifier | 26 W | 26 W |
 | TX bridge | 29 W (and destroyed) | 20 W |
@@ -427,4 +440,6 @@ reaches ~90% end-to-end and puts roughly 300 W into the chassis, which a
 conduction path can be designed for.
 
 **3 kW is reachable, but not with the v1 magnetics.** That is the central
-conclusion of the baseline review.
+conclusion of the baseline review, and it survives the correction above — what
+changed is that the replacement is a better-built etched coil rather than a
+different conductor technology.

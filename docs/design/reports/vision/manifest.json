@@ -1,0 +1,67 @@
+{
+  "concepts": [
+    {
+      "id": "dock_belly",
+      "title": "A \u2014 Belly dock",
+      "notes": "The Mako sinks onto a horizontal cradle and its own weight holds it down. The RX pad is flush in the belly, the TX pad in the cradle floor, both horizontal and both facing up. Gravity does the clamping, so there is no actuator, and the 4x8 inch rectangle lies along the hull where it fits naturally. Alignment comes from two vee-guides that funnel the hull as it descends. Simplest of the three, and the pads end up the hardest to service.",
+      "source": "concepts/dock_belly.py",
+      "metrics": {
+        "bbox_mm": [
+          1700.0,
+          1110.0,
+          560.0
+        ],
+        "volume_mm3": 144024730.7,
+        "approx_mass_g_at_1p4": 201634.6
+      },
+      "images": {
+        "hero": "dock_belly/view-hero.png",
+        "front": "dock_belly/view-front.png",
+        "top": "dock_belly/view-top.png",
+        "iso": "dock_belly/iso.svg"
+      }
+    },
+    {
+      "id": "dock_flank",
+      "title": "B \u2014 Flank dock",
+      "notes": "The Mako holds station alongside a vertical dock face and a light clamp pulls it in. Both pads are vertical, the RX pad let into the flank. The pads stay clear of silt and are reachable for service without lifting the vehicle. It needs an active clamp to hold the gap, and the vehicle has to hold attitude while it docks \u2014 the coil sees the most misalignment of the three.",
+      "source": "concepts/dock_flank.py",
+      "metrics": {
+        "bbox_mm": [
+          1700.0,
+          656.0,
+          916.0
+        ],
+        "volume_mm3": 146067105.4,
+        "approx_mass_g_at_1p4": 204493.9
+      },
+      "images": {
+        "hero": "dock_flank/view-hero.png",
+        "front": "dock_flank/view-front.png",
+        "top": "dock_flank/view-top.png",
+        "iso": "dock_flank/iso.svg"
+      }
+    },
+    {
+      "id": "dock_saddle",
+      "title": "C \u2014 Saddle dock",
+      "notes": "The hull drops into a 90-degree vee and self-centres on two contact lines. A pad sits in each face of the vee, so the vehicle carries two RX coils at plus and minus 45 degrees on the lower flanks and the link splits across both. Alignment is the best of the three and needs no actuator, but it doubles the coil count and the receiver has to combine two links.",
+      "source": "concepts/dock_saddle.py",
+      "metrics": {
+        "bbox_mm": [
+          1700.0,
+          1080.0,
+          733.0
+        ],
+        "volume_mm3": 189398938.8,
+        "approx_mass_g_at_1p4": 265158.5
+      },
+      "images": {
+        "hero": "dock_saddle/view-hero.png",
+        "front": "dock_saddle/view-front.png",
+        "top": "dock_saddle/view-top.png",
+        "iso": "dock_saddle/iso.svg"
+      }
+    }
+  ]
+}

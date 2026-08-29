@@ -34,14 +34,22 @@ gap-to-diameter ratio of 0.3 to 0.5, where this dock sits at 0.067. At k of
 0.705 the required quality factor is 69, not the 98 the earlier assumption
 implied.
 
-Computed from real geometry rather than scaled from v1's figures, a 24-turn
-etched spiral in 4 oz copper reaches a quality factor of about 43, giving k
-times Q of 31 and 190 W - short of the 120 W budget before ferrite and
-cold-plate losses are even added. The same geometry in Litz reaches 187 to 374,
-giving 135 to 270. This requirement is therefore expected to exclude an etched
-coil, but it does so arithmetically rather than by assertion, and an etched
-coil that measures against it is admissible. See ``docs/design/coil-model.md``
-and ``docs/design/v1-baseline.md`` finding F9.
+An etched coil MEETS this requirement when it is built properly. On the house's
+102 by 203 mm rectangle, 32 turns of 0.80 mm trace in 4 oz copper with SIX
+LAYERS IN PARALLEL reaches k times Q of 77 at the worst point of the ``SYS-006``
+envelope, against the 49 required - a margin of 1.57. A single layer of the same
+geometry reaches only 13.5, and four layers 54.
+
+Two effects make that work, and both were missed in the first analysis. Parallel
+layers reduce resistance directly. And driving the trace down to 0.80 mm nearly
+eliminates proximity effect - the AC to DC resistance ratio falls from 1.77 at a
+3 mm trace to 1.06 - because the Kuhn and Ibrahim critical frequency scales as
+(w + s) over w squared. The coil stops being a proximity problem and becomes a
+pure DC-resistance problem, which is what layers fix.
+
+This requirement is deliberately written against k times Q and dissipation
+rather than against a conductor technology, so the choice is settled by
+arithmetic. See ``docs/design/coil-model.md`` Result 4.
 <<<
 VERIFICATION: Test
 BUDGET: 120 W
@@ -61,9 +69,11 @@ tuned for, and the two assemblies shall match each other within 2%.
 <<<
 RATIONALE: >>>
 For a 3.0 kW transfer at resonance with a 400 V bus on both ends, the mutual
-inductance must be about 81 microhenries, which at the computed coupling of
-0.705 means about 115 microhenries per coil - some ten times the v1 coil's 12
-microhenries.
+inductance must be about 81 microhenries. On the house's 102 by 203 mm
+rectangle the coupling is 0.461 at the nominal 20 mm gap, so the coil is about
+180 microhenries at 32 turns - fifteen times the v1 coil's 12 microhenries. The
+rectangle couples less well than a 300 mm circular pair (0.705) because a 20 mm
+gap is 20 percent of its short dimension rather than 7 percent of a diameter.
 The v1 coil is not merely small, it puts the link in a regime where holding
 3.0 kW requires running far off resonance, which directly defeats the resonance
 tracking the firmware exists to perform. The 2% matching limit exists because
@@ -86,9 +96,13 @@ misalignment envelope of ``SYS-006``, measured with both ferrite backings and
 both cold plates fitted.
 <<<
 RATIONALE: >>>
-0.40 is retained as the floor even though analysis computes 0.705 across the
-whole envelope in air, because the 1.76x margin is what absorbs the ferrite and
-cold-plate corrections that have not yet been modelled. Measuring with the backings and plates
+0.40 is retained as the floor. On the house's 102 by 203 mm rectangle the
+worst point of the envelope - 20 mm gap with 10 mm of lateral offset - computes
+to 0.437 in air, so the margin is now 1.09 rather than the 1.76 a 300 mm
+circular pair would have given. That is thin, and it is thin in the direction
+that matters: ferrite raises coupling but a conductive cold plate lowers it, and
+neither is modelled. If FEA shows the plate costing more than about 8 percent of
+coupling, either this floor or the coil dimensions have to move. Measuring with the backings and plates
 fitted matters because both change the field pattern substantially; a coupling
 figure taken on bare coils is not the figure the system will run at. No
 coupling coefficient appears anywhere in the v1 source material.

@@ -20,11 +20,15 @@ chunks:
   - id: V1
     title: Vision, v1 baseline review and link budget
     discipline: documentation
-    status: done
+    status: in_progress
     depends_on: []
     estimate_sessions: 1
     outputs: [requirements/00-vision.sdoc, docs/design/vision.md, docs/design/v1-baseline.md, sim/link-budget/link_budget.py, concepts/]
     notes: >-
+      REOPENED. The artefacts were produced but never reviewed, so the stage's
+      own exit condition was never met — see docs/design/reviews/gate-1-vision.md.
+      Concepts rebuilt at system scope as three docking arrangements and put in
+      front of the human; the gate closes when that record is answered.
       Established that the v1 magnetics cannot reach 3 kW and that coil-to-coil
       efficiency is the constraint that decides the architecture.
 
@@ -59,7 +63,7 @@ chunks:
     status: done
     depends_on: [R1]
     estimate_sessions: 2
-    outputs: [sim/coil/, docs/design/coil-model.md]
+    outputs: [sim/coil/coil_rect.py, sim/coil/, docs/design/coil-model.md]
     notes: >-
       CRITICAL PATH AND EARLIEST RISK, and now an analysis chunk rather than a
       bench one: no laboratory access, so the quality factor the whole
@@ -73,12 +77,14 @@ chunks:
       implies 127 kHz, not the stated 85 kHz — so they cannot serve as the
       check.
 
-      DONE: k computes to 0.705 worst case across the SYS-006 envelope, not the
-      0.5 assumed, so the coil needs 115 uH rather than 162 and MEC-001 asks for
-      Q >= 69 rather than 98. Etched spiral reaches Q about 43 (190 W, short of
-      the 120 W budget); Litz reaches 187-374 (22-44 W). Ferrite, cold-plate
-      eddy loss and seawater in the gap remain unmodelled and carry forward
-      into M2 and M3 as an FEA task.
+      DONE, and CORRECTED. The house coil is a 102 x 203 mm rectangle, not a
+      circle, and the first analysis generalised a single-layer result to a whole
+      conductor technology. Recomputed with coil_rect.py: 32 turns of 0.80 mm
+      trace in 4 oz with SIX LAYERS in parallel reaches k*Q = 77 worst case
+      against the 49 required. Fine traces nearly remove proximity effect
+      (R_ac/R_dc 1.06), so the coil becomes a DC-resistance problem that layers
+      fix. An etched coil MEETS MEC-001. Inter-layer proximity is now the largest
+      modelling uncertainty and is the first FEA task in M2.
 
   - id: M2
     title: Coil technology decision, magnetics design and compensation network

@@ -77,3 +77,44 @@ Meanwhile `pypdf` in a clean venv extracts the same documents without trouble.
 Python phase. A hardware toolbox whose central rule is "never take a number from
 memory when a datasheet exists" cannot ship without a working PDF text
 extractor.
+
+---
+
+**Four workflow stages ran with no human review, because the workflow has exit
+conditions but no mechanism.** `docs/02-workflow.md` states an exit condition
+for every stage — "the human points at one concept and its numbers without
+qualifying", "the human has looked at the image and agreed to it" — and nothing
+anywhere causes that to happen. So it did not, four times running: the vision
+concepts were rendered and never shown, the StrictDoc HTML export was generated
+on every validation run and never mentioned, and the concepts themselves were
+built at the wrong scope (two bare coil pads where the human wanted to see a
+product) with nobody in a position to catch it.
+The cost was not the wasted renders. It was that the vision stage was reported
+as complete, and the plan, requirements and architecture were all built on top
+of an agreement that had never been made.
+**Fix `docs/02-workflow.md` and add `skills/hw-review/`:** make the review an
+artefact-producing step with a committed sign-off record, and make "stage is
+`done`" conditional on that record existing — the same discipline `req-trace
+--gate` applies to evidence, applied to agreement. A draft of the skill is in
+this repo at `.claude/skills/hw-review/` and works today; it should move
+upstream. The single rule that matters: **an artefact the human has not seen is
+not a deliverable.**
+
+---
+
+**A wrong conclusion survived because one configuration was generalised to a
+whole technology.** The coil analysis tested a single-layer etched spiral,
+found it 70 W short, and wrote up "PCB coils cannot reach the efficiency the
+thermal path requires". Parallel layers — the obvious lever — were never
+modelled. Six layers turn a 190 W failure into a 73 W pass, so the headline
+finding of the project was wrong for two days.
+`MEC-001` was unaffected, because it was written against k·Q and dissipation
+rather than naming a conductor. That is the requirements discipline doing
+exactly its job, and it is why the correction cost an analysis rather than a
+requirements rewrite.
+**Fix `skills/hw-simulation/SKILL.md`:** add a rule alongside "cross-check
+against closed form" — **before concluding that an approach cannot work, list
+the design levers you did not vary and say why.** A negative result from one
+configuration is a result about that configuration. The existing corner-sweeping
+rule covers tolerance, temperature and supply; it does not cover the geometry
+and topology choices that are usually the real levers.

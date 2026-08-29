@@ -1,11 +1,23 @@
 # Coil model — inductance, coupling and quality factor by analysis
 
+> **CORRECTED 2026-08-28.** An earlier version of this document concluded that
+> an etched PCB coil could not meet `MEC-001` and that Litz was required. **That
+> conclusion was wrong**, and wrong in a way worth naming: it rested on a
+> *single-layer* analysis that was then generalised to "the etched spiral" as a
+> category. Parallel layers are the obvious lever and were never modelled.
+> The corrected result is in [Result 4](#result-4--the-rectangular-pcb-coil-that-works)
+> — a 4 × 8 inch, six-layer PCB coil clears the requirement with 1.57× margin.
+> The circular single-layer analysis below is kept because its method is sound
+> and its intermediate results still hold; only the conclusion drawn from it was
+> overreaching.
+
 Chunk **M1**. Written without laboratory access, so every number here is a model
 output and the caveats are part of the result. Reproduce with:
 
 ```bash
 cd sim/coil
-/opt/hw-py/bin/python coil_model.py        # inductance and coaxial coupling
+/opt/hw-py/bin/python coil_rect.py         # THE DESIGN — rectangular, multilayer
+/opt/hw-py/bin/python coil_model.py        # circular inductance and coaxial coupling
 /opt/hw-py/bin/python coil_coupling.py     # coupling across the misalignment envelope
 /opt/hw-py/bin/python coil_resistance.py   # AC resistance and quality factor
 ```
@@ -115,3 +127,100 @@ Until those are modelled, `MEC-001` cannot be marked satisfied. The honest
 status is that analysis points firmly at Litz and rules the etched spiral out
 by a margin larger than the modelling uncertainty — which is enough to proceed
 with M2, and not enough to close the requirement.
+
+
+---
+
+## Result 4 — the rectangular PCB coil that works
+
+The house constraint is a roughly **4 × 8 inch rectangular** PCB coil with
+passive cooling. `coil_rect.py` handles that geometry directly — Grover's
+rectangular-loop formula for each turn's self-inductance, numerical Neumann
+integration for every turn pair and for the coil-to-coil mutual, so gap, lateral
+offset and tilt all work without a symmetry assumption.
+
+### The rectangle costs coupling, and fine traces buy it back
+
+| | 300 mm circular | **102 × 203 mm** |
+|---|---|---|
+| Coupling k at 20 mm | 0.705 | **0.461** |
+| Turns to reach M = 80.9 µH | 24 | **32** |
+| Trace width that fits | 3.0 mm | **0.80 mm** |
+| R_ac / R_dc | 1.77 | **1.06** |
+
+The coupling penalty is geometric: a 20 mm gap is 20% of the short dimension
+here, against 7% of the 300 mm diameter. That is the price of the smaller pad.
+
+The compensation is unexpected and useful. Driving the trace to 0.80 mm
+**almost eliminates proximity effect** — the AC/DC resistance ratio falls from
+1.77 to 1.06, because the Kuhn–Ibrahim critical frequency scales as
+(w + s)/w² and rises steeply as the trace narrows. The coil stops being a
+proximity problem and becomes a **pure DC-resistance problem**, which is
+precisely what parallel layers fix.
+
+### Layers are the lever
+
+At 32 turns and 0.80 mm trace:
+
+| Layers | R_ac | Q | k·Q | Loss | Per pad | vs k·Q ≥ 49 |
+|---|---|---|---|---|---|---|
+| 1 | 3.27 Ω | 29 | 13.5 | 412 W | 206 W | fails |
+| 2 | 1.64 Ω | 59 | 27.1 | 214 W | 107 W | fails |
+| 4 | 0.82 Ω | 117 | 54.1 | 109 W | 54 W | **passes**, 1.10× |
+| **6** | **0.55 Ω** | **176** | **81.2** | **73 W** | **36 W** | **passes, 1.66×** |
+| 8 | 0.41 Ω | 235 | 108.3 | 55 W | 27 W | passes, 2.21× |
+
+**Six layers is the design point.** Four passes on paper but with only 1.10×
+margin, and the layer model is optimistic (below) — that is not enough headroom
+to also absorb ferrite and cold-plate losses that have not been modelled at all.
+
+### The design point, across the full misalignment envelope
+
+**32 turns · 0.80 mm trace · 0.28 mm clearance · 6 layers in parallel · 4 oz ·
+102 × 203 mm outer**, giving L = 180 µH and M = 82.9 µH against the 80.9 µH
+required.
+
+| Gap | Lateral | Tilt | k | k·Q | Loss |
+|---|---|---|---|---|---|
+| 5 mm | 0 | 0° | 0.799 | 141 | 42 W |
+| 10 mm | 10 mm | 3° | 0.618 | 109 | 55 W |
+| 20 mm | 0 | 0° | 0.461 | 81 | 73 W |
+| **20 mm** | **10 mm** | **0°** | **0.437** | **77.0** | **77 W** |
+
+**Worst case k·Q = 77 against a requirement of 49 — a 1.57× margin.**
+
+### The thermal problem got harder, not easier
+
+38 W leaving a 102 × 203 mm pad is **1858 W/m²**, against 764 W/m² for the same
+allowance on the 300 mm circular pad. The rectangular pad is 3.6× smaller in
+area, so the same watts are a substantially harder extraction. `MEC-004`'s
+**temperature limit is the binding form of that requirement**, not its per-pad
+watt allocation — and the watt figure should be re-derived from the temperature
+once the ferrite and cold-plate stack is modelled.
+
+### What is still open, and what now matters most
+
+1. **Inter-layer proximity is now the largest modelling uncertainty.** The
+   layer table assumes ideal 1/N resistance scaling. Real stacked spirals do
+   worse, because each layer sits in the others' field. A turn-to-turn model
+   cannot capture it. This single unknown decides whether six layers is right
+   or whether eight are needed, so it is the first thing FEA should answer.
+2. Ferrite backing, cold-plate eddy loss and seawater in the gap remain
+   unmodelled and all push the wrong way.
+3. Kuhn–Ibrahim is still outside its fitted trace width — but at 0.80 mm the AC
+   correction is only 6%, so the error it carries is now small enough not to
+   matter much. The single-layer circular case, where the correction was 77%,
+   was where that caveat really bit.
+
+### Why the earlier conclusion was wrong
+
+Worth recording, because the failure mode is general. The single-layer circular
+analysis was correct as far as it went. The error was scope: one configuration
+was tested and the conclusion was written about a whole conductor technology.
+Three cheap levers went unexamined — layers, trace width, and the interaction
+between them — and the first of them turns a 190 W failure into a 73 W pass.
+
+`MEC-001` itself needs no change. It was written against k·Q and pad
+dissipation rather than against a coil technology, precisely so the decision
+would be settled by arithmetic. A six-layer etched coil meets it. **That is the
+requirement working correctly, and the analysis around it that failed.**
