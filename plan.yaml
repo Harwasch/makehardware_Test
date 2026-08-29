@@ -20,17 +20,30 @@ chunks:
   - id: V1
     title: Vision, v1 baseline review and link budget
     discipline: documentation
-    status: in_progress
+    status: done
     depends_on: []
     estimate_sessions: 1
     outputs: [requirements/00-vision.sdoc, docs/design/vision.md, docs/design/v1-baseline.md, sim/link-budget/link_budget.py, concepts/]
     notes: >-
-      REOPENED. The artefacts were produced but never reviewed, so the stage's
-      own exit condition was never met — see docs/design/reviews/gate-1-vision.md.
-      Concepts rebuilt at system scope as three docking arrangements and put in
-      front of the human; the gate closes when that record is answered.
-      Established that the v1 magnetics cannot reach 3 kW and that coil-to-coil
+      Artefacts complete. The AGREEMENT on them is chunk G1, which is still
+      open — the vision stage's exit condition was never met, so the plan and
+      requirements downstream were built on an unreviewed vision. Established that the v1 magnetics cannot reach 3 kW and that coil-to-coil
       efficiency is the constraint that decides the architecture.
+
+  - id: G1
+    title: Vision review gate — the human agrees the concepts and the numbers
+    discipline: documentation
+    status: in_progress
+    depends_on: [V1]
+    estimate_sessions: 1
+    outputs: [docs/design/reviews/gate-1-vision.md, docs/design/reports/gate-1-vision-review.html]
+    notes: >-
+      The agreement the workflow requires and never got. Three docking
+      arrangements are in front of the human with the corrected coil analysis;
+      five questions are open. Design chunks depend on this rather than on V1,
+      because designing against an unagreed vision is what produced two bare
+      coil pads when the human wanted to see a product. Closes when the record
+      carries answers.
 
   - id: R1
     title: System and discipline requirements from the agreed vision
@@ -90,7 +103,7 @@ chunks:
     title: Coil technology decision, magnetics design and compensation network
     discipline: mechanical
     status: todo
-    depends_on: [M1]
+    depends_on: [M1, G1]
     estimate_sessions: 2
     outputs: [docs/design/adr-0001-coil-technology.md, cad/coil_pad.py, docs/design/magnetics.md]
     notes: >-
@@ -117,7 +130,7 @@ chunks:
     title: Power architecture, topology and part selection
     discipline: electrical
     status: todo
-    depends_on: [R1]
+    depends_on: [R1, G1]
     estimate_sessions: 2
     outputs: [docs/design/adr-0002-tx-power-stage.md, docs/reference/manifest.yaml]
     notes: >-
