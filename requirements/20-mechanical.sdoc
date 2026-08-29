@@ -96,13 +96,16 @@ misalignment envelope of ``SYS-006``, measured with both ferrite backings and
 both cold plates fitted.
 <<<
 RATIONALE: >>>
-0.40 is retained as the floor. On the house's 102 by 203 mm rectangle the
-worst point of the envelope - 20 mm gap with 10 mm of lateral offset - computes
-to 0.437 in air, so the margin is now 1.09 rather than the 1.76 a 300 mm
-circular pair would have given. That is thin, and it is thin in the direction
-that matters: ferrite raises coupling but a conductive cold plate lowers it, and
-neither is modelled. If FEA shows the plate costing more than about 8 percent of
-coupling, either this floor or the coil dimensions have to move. Measuring with the backings and plates
+0.40 is retained as the floor. On the house's 102 by 203 mm rectangle, across
+the tightened ``SYS-006`` envelope, the coupling computes to 0.645 at the 10 mm
+nominal gap with 5 mm of offset and 0.558 at the 14 mm limit - a margin of 1.40
+at the worst point, against the 1.09 the earlier 20 mm free-docking envelope
+would have left. The decision to charge on deck in a locating bracket is what
+bought that back.
+
+The floor stays at 0.40 rather than being raised to the computed figure, because
+ferrite raises coupling but a conductive cold plate lowers it through induced
+eddy currents, and neither is modelled. The 1.40 margin is what absorbs that. Measuring with the backings and plates
 fitted matters because both change the field pattern substantially; a coupling
 figure taken on bare coils is not the figure the system will run at. No
 coupling coefficient appears anywhere in the v1 source material.

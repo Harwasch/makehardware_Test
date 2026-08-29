@@ -126,19 +126,27 @@ RELATIONS:
 
 [REQUIREMENT]
 UID: SYS-006
-TITLE: Coupling at the docked position
+TITLE: Coupling across the bracket's tolerance envelope
 STATEMENT: >>>
 The system shall meet ``SYS-001`` and ``SYS-004`` at any coil-to-coil gap from
-5 mm to 20 mm with lateral misalignment up to 10 mm and angular misalignment up
-to 3 degrees.
+8 mm to 14 mm, with lateral misalignment up to 5 mm and angular misalignment up
+to 2 degrees.
 <<<
 RATIONALE: >>>
-The vision interview states the dock holds the vehicle close and square. The
-misalignment allowances are what a mechanically registered dock should achieve
-without a precision mechanism; they exist so the magnetics are designed for a
-range rather than for one nominal position that will never occur twice. The
-resulting coupling coefficient is expected to be about 0.5 and is confirmed by
-``MEC-003``.
+Tightened at the gate-1 review from the 5-to-20 mm and 10 mm envelope first
+assumed, because the decision to charge on deck in a locating bracket changes
+what the mechanism can hold. The gap is now set by two housing walls and a
+running clearance rather than by a vehicle hull: 4 mm of wall each side plus
+2 mm gives 10 mm nominal, and 14 mm is that plus a tolerance stack, potting
+variation and an allowance for debris on the faces. 8 mm is the practical floor
+before the two housings touch.
+
+5 mm of lateral offset and 2 degrees of tilt are conservative for a bracket with
+locating features - a kinematic or tapered-rail mount should hold considerably
+better - and they are set here as what the magnetics must tolerate rather than
+what the mechanism is expected to deliver. Analysis puts the coupling at 0.645
+at the 10 mm nominal with 5 mm offset and 0.558 at the 14 mm limit. See
+``docs/design/coil-model.md``.
 <<<
 VERIFICATION: Test
 STATUS: Draft

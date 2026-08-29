@@ -88,17 +88,26 @@ STATUS: Draft
 
 [REQUIREMENT]
 UID: VIS-005
-TITLE: The dock holds the vehicle close and square
+TITLE: The vehicle is recovered to deck and set into a locating bracket
 STATEMENT: >>>
-The design may assume the Mako is mechanically registered against the dock, with
-a coil-to-coil gap under 20 mm and good alignment, rather than free-floating.
+The Mako shall be recovered onto the deck of the Leviathan and set into a
+mounting bracket with locating features, and charging shall happen there - not
+in the water and not while free-floating.
 <<<
 RATIONALE: >>>
-Stated in the vision interview. This is a substantial advantage over the EV
-wireless charging literature the v1 design drew from: it buys a coupling
-coefficient around 0.5 instead of 0.2, which reduces the coil inductance needed
-and improves achievable efficiency for the same coil quality. The design should
-spend that advantage deliberately rather than let it go unused.
+Decided at the gate-1 review, 2026-08-28. This is a substantial advantage over
+the EV wireless charging literature the v1 design drew from, and a larger one
+than first assumed. With both pads in rigid housings on a common bracket the gap
+is set by two housing walls and a clearance - about 10 mm - rather than by a
+vehicle hull, and the locating features fix alignment rather than leaving it to
+a docking manoeuvre. Analysis puts the coupling at 0.645 at a 10 mm gap with
+5 mm of offset, against 0.437 at the 20 mm free-docking case and about 0.2 in
+the EV literature. That advantage is what makes an etched PCB coil viable, so it
+should be spent deliberately and not given back in tolerance.
+
+It also settles the thermal case, and not favourably: BOTH pads are on an open
+deck at up to the ``SYS-016`` ambient. There is no seawater heat sink on either
+side, so the ``MEC-001`` loss allowance stays symmetric.
 <<<
 VERIFICATION: Inspection
 STATUS: Draft

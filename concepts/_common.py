@@ -1,66 +1,68 @@
-"""Shared geometry for the Ulysses docking concepts.
+"""Shared geometry for the Ulysses charging-system concepts.
 
-Dimensions that are REAL come from the analysis:
-  * coil pad 102 x 203 mm (4 x 8 inch), from the house constraint
-  * pad stack 16 mm: 6-layer PCB + ferrite tile + cold plate
-  * coil-to-coil gap 20 mm maximum, per SYS-006
+SCOPE: the wireless charging system only. The vehicle is not modelled and is
+not ours — what we deliver is the deck bracket, the two coil pads and their
+electronics. The vehicle appears only as the interface plate its pad bolts to.
 
-Dimensions that are PLACEHOLDER: the Mako hull. Its real form factor is not
-yet known and is an open question for the vision review. It is drawn as a
-1.4 m capsule so the pad has something to sit on at a believable scale.
+Dimensions that are REAL, from the analysis:
+  * coil pad 102 x 203 mm (4 x 8 inch), customer-fixed
+  * pad stack 16 mm: 6-layer PCB (2.4) + ferrite tile (5.0) + cold plate (8.6)
+  * coil-to-coil gap 10 mm nominal: 4 mm housing wall each side + 2 mm clearance
 """
 from build123d import *
 
-PAD_W, PAD_L, PAD_T = 102.0, 203.0, 16.0     # the 4 x 8 inch coil assembly
-GAP = 20.0                                    # coil-to-coil, SYS-006 maximum
-HULL_D, HULL_L = 300.0, 1400.0                # PLACEHOLDER vehicle
+PAD_W, PAD_L = 102.0, 203.0
+PCB_T, FERRITE_T, PLATE_T = 2.4, 5.0, 8.6
+PAD_T = PCB_T + FERRITE_T + PLATE_T          # 16 mm
+WALL = 4.0                                    # housing wall over the coil face
+GAP = 10.0                                    # coil to coil, nominal
 
 
-def coil_pad(w=PAD_W, l=PAD_L, t=PAD_T):
-    """The coil assembly: PCB, ferrite tile, cold plate, shown as one stack."""
-    pcb = Box(w, l, 2.4)
-    ferrite = Pos(0, 0, -(2.4 + 5.0) / 2) * Box(w + 8, l + 8, 5.0)
-    plate = Pos(0, 0, -(2.4 / 2 + 5.0 + 8.6 / 2)) * Box(w + 20, l + 20, 8.6)
-    plate = fillet(plate.edges().filter_by(Axis.Z), radius=6)
-    # spiral shown as concentric rectangles so the coil reads as a coil
-    turns = None
-    for i in range(10):
-        o = i * 4.4
-        ring = Box(w - 12 - 2 * o, l - 12 - 2 * o, 0.7) - Box(
-            w - 15.2 - 2 * o, l - 15.2 - 2 * o, 0.7)
-        turns = ring if turns is None else turns + ring
-    turns = Pos(0, 0, 1.55) * turns
-    return pcb + ferrite + plate + turns
+def coil_pad(turns=12):
+    """The pad assembly: spiral, PCB, ferrite tile, cold plate."""
+    pcb = Box(PAD_W, PAD_L, PCB_T)
+    spiral = None
+    for i in range(turns):
+        o = i * 3.6
+        ring = Box(PAD_W - 14 - 2 * o, PAD_L - 14 - 2 * o, 0.6) - \
+               Box(PAD_W - 16.4 - 2 * o, PAD_L - 16.4 - 2 * o, 0.6)
+        spiral = ring if spiral is None else spiral + ring
+    spiral = Pos(0, 0, PCB_T / 2 + 0.3) * spiral
+    ferrite = Pos(0, 0, -(PCB_T + FERRITE_T) / 2) * Box(PAD_W + 10, PAD_L + 10, FERRITE_T)
+    plate = Pos(0, 0, -(PCB_T / 2 + FERRITE_T + PLATE_T / 2)) * \
+            Box(PAD_W + 26, PAD_L + 26, PLATE_T)
+    plate = fillet(plate.edges().filter_by(Axis.Z), radius=8)
+    return pcb + spiral + ferrite + plate
 
 
-def hull(d=HULL_D, l=HULL_L):
-    """PLACEHOLDER Mako hull — a capsule with a tail fin cluster."""
-    body = Cylinder(d / 2, l, rotation=(0, 90, 0))
-    nose = Pos(l / 2, 0, 0) * Sphere(d / 2)
-    tail = Pos(-l / 2, 0, 0) * Sphere(d / 2)
-    v = body + nose + tail
-    for ang in (0, 90, 180, 270):
-        fin = Rot(ang, 0, 0) * Pos(-l / 2 + 90, 0, d / 2 + 55) * Box(200, 8, 150)
-        v += fin
-    return v
+def housing(extra_h=0.0):
+    """Sealed housing around a pad — the wall over the coil face sets the gap."""
+    w, l = PAD_W + 46, PAD_L + 46
+    h = PAD_T + WALL + 6 + extra_h
+    shell = Box(w, l, h)
+    shell = fillet(shell.edges().filter_by(Axis.Z), radius=10)
+    shell -= Pos(0, 0, -3) * Box(w - 14, l - 14, h - 8)
+    for sx in (-1, 1):
+        for sy in (-1, 1):
+            shell += Pos(sx * (w / 2 + 9), sy * (l / 2 - 26), -h / 2 + 7) * Box(24, 40, 14)
+    return shell
 
 
-def enclosure(w, l, h):
-    """A sealed electronics enclosure."""
+def electronics(w=150, l=210, h=78):
+    """The converter enclosure that feeds a pad."""
     e = Box(w, l, h)
-    e = fillet(e.edges().filter_by(Axis.Z), radius=8)
-    lid = Pos(0, 0, h / 2 - 1.5) * Box(w - 16, l - 16, 3)
-    return e + lid
+    e = fillet(e.edges().filter_by(Axis.Z), radius=9)
+    e += Pos(0, 0, h / 2 - 2) * Box(w - 22, l - 22, 4)
+    for i in range(6):                      # conduction fins into the mount
+        e += Pos(-w / 2 - 5, -l / 2 + 24 + i * 32, 0) * Box(10, 22, h - 12)
+    return e
 
 
-def strut(a, b, r=14.0):
-    """A round structural strut between two points."""
-    import math
-    ax, ay, az = a
-    bx, by, bz = b
-    dx, dy, dz = bx - ax, by - ay, bz - az
-    ln = math.sqrt(dx * dx + dy * dy + dz * dz)
-    s = Cylinder(r, ln)
-    pitch = math.degrees(math.acos(max(-1.0, min(1.0, dz / ln))))
-    yaw = math.degrees(math.atan2(dy, dx))
-    return Pos((ax + bx) / 2, (ay + by) / 2, (az + bz) / 2) * Rot(0, pitch, yaw) * s
+def deck_plate(w, l, t=18.0):
+    """The bracket's base, bolted to deck."""
+    p = Box(w, l, t)
+    p = fillet(p.edges().filter_by(Axis.Z), radius=12)
+    for sx in (-1, 1):
+        for sy in (-1, 1):
+            p -= Pos(sx * (w / 2 - 26), sy * (l / 2 - 26), 0) * Cylinder(7, t)
+    return p
