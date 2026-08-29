@@ -1,67 +1,80 @@
 # Gate 1 — Vision
 
-**Status:** OPEN. Awaiting decisions.
+**Status:** DECIDED, one item delegated.
 **Artifact:** https://claude.ai/code/artifact/bf64b8ca-0644-432a-8dc5-34ff2fab3592
-**Raised:** 2026-08-28
+**Raised:** 2026-08-28 · **Answered:** 2026-08-28
 
-## Why this gate is being run late
+## Why this gate ran late
 
 It should have run before the plan, requirements and architecture stages. It did
 not: the concepts were built, rendered, examined by the agent and never shown.
-The three stages downstream have therefore been proceeding on an unreviewed
-vision. This record exists partly to close that gap and partly so the omission
-is visible rather than tidied away.
+Three stages downstream were built on an unreviewed vision. Recorded here rather
+than tidied away, because the mechanism that now prevents it —
+[`hw-review`](../../../.claude/skills/hw-review/SKILL.md) — exists only because
+this happened.
 
-## What was put up for review
+## Decisions
 
-**Three docking arrangements**, each rendered from real build123d geometry under
-`concepts/`:
+| Question | Decision |
+|---|---|
+| **Docking arrangement** | **Belly dock, no actuator.** Concept A. |
+| **Charging environment** | **Recovered to deck**, into a mounting bracket with locating features. Not in the water. |
+| **Scope** | **The wireless charging system only.** The vehicle is not ours and is not to be modelled. |
+| **Pad geometry** | **Rectangular, 4 × 8 inch, fixed for now.** |
+| **Coil technology** | **Delegated** — my call, to be backed by published sources. See below. |
 
-| | Arrangement | Argues for | Argues against |
+## What each decision changed
+
+**Scope — the vehicle is out.** The three system concepts were rebuilt to show
+the charging system alone: deck bracket, both pads in housings, the gap, and the
+converter enclosure. The vehicle appears only as the interface plate its pad
+bolts to. The concepts now differ on the remaining real mechanical decision —
+how the two pads locate to each other:
+
+| | Locating approach | Argues for | Argues against |
 |---|---|---|---|
-| **A** | Belly dock — vehicle settles onto a cradle | no actuator, gravity clamps | pads face up, collect silt |
-| **B** | Flank dock — vehicle alongside a vertical face | pads shed silt, serviceable in place | needs an active clamp |
-| **C** | Saddle dock — hull nests into a 90° vee | self-centring, best alignment | doubles the coil count |
+| **A** | Cone, vee and flat — kinematic | best repeatability, no over-constraint | three point contacts carry no heat and take the whole landing load |
+| **B** | Tapered rails | wide capture, line contact carries heat and load | over-constrained; the fit must be loose for thermal growth, and looseness is alignment error |
+| **C** | Perimeter nest | nothing protrudes, full perimeter carries load | most over-constrained, aligns least precisely, traps silt and water |
 
-**A correction to the coil analysis.** The earlier conclusion — that an etched
-PCB coil could not meet `MEC-001` and Litz was required — was wrong. It rested
-on a single-layer analysis generalised to a whole conductor technology. On the
-house's 4 × 8 inch rectangle, **32 turns of 0.80 mm trace in 4 oz copper with
-six layers in parallel** reaches k·Q = 77 at the worst point of the `SYS-006`
-envelope, against the 49 required — a 1.57× margin.
+**Deck charging tightened the envelope, and it is worth a lot.** With both pads
+in rigid housings on a common bracket, the gap is two housing walls and a
+clearance — not a vehicle hull. `SYS-006` tightens from 5–20 mm gap and 10 mm
+offset to **8–14 mm and 5 mm**.
 
-## What is being asked
-
-| Question | Options | Answer |
+| | Old free-docking envelope | **Deck bracket** |
 |---|---|---|
-| Docking arrangement | A belly · B flank · C saddle · other | *(open)* |
-| Coil technology | Six-layer etched PCB, 102 × 203 mm — confirm | *(open)* |
-| Pad aspect ratio | Is 4 × 8 in fixed, or is there room to square it | *(open)* |
-| Mako form factor | The hull in every render is a placeholder | *(open)* |
-| Charging environment | In water, or recovered to deck first | *(open)* |
+| Worst-case coupling | 0.437 | **0.558** at 14 mm, **0.645** at 10 mm |
+| 4 layers, k·Q | 53 (1.09×) | **66–76 (1.34–1.55×)** |
+| 6 layers, k·Q | 80 (1.64×) | **98–114 (2.01–2.32×)** |
+| `MEC-003` margin | 1.09× | **1.40×** |
 
-## What changed before the review was raised
+That is what moves an etched PCB coil from marginal to comfortable.
 
-* `docs/design/coil-model.md` — Result 4 added; the Litz conclusion retracted
-  with the reasoning for why it was overreaching.
-* `docs/design/v1-baseline.md` — finding F9's scope corrected. It is now about
-  the v1 coil specifically, not about etched coils as a class.
-* `requirements/20-mechanical.sdoc` — `MEC-001`, `MEC-002` and `MEC-003`
-  rationales rewritten against the rectangular multilayer geometry. **No
-  requirement statement changed** — `MEC-001` was written against k·Q rather
-  than a technology, which is why the correction cost an analysis and not a
-  requirements rewrite.
-* `concepts/` — the two coil-pad concepts replaced with three system-scope
-  docking concepts.
+**Deck charging also settles the thermal case, unfavourably.** Both pads sit on
+an open deck at the `SYS-016` ambient of +55 °C. There is no seawater heat sink
+on either side, so `MEC-001`'s loss allowance stays symmetric — recorded in
+`VIS-005` so it is not quietly revisited later.
 
-## What changes when it is answered
+## The delegated decision
 
-The docking arrangement sets coil orientation, the alignment the link can count
-on, whether pads can be serviced, and whether anything has to actuate. `MEC-003`
-in particular is close: the computed worst-case coupling is 0.437 against a 0.40
-floor, a margin of 1.09, and the arrangement chosen moves that number.
+Coil technology is mine to make and to defend with sources. It is **not recorded
+here as decided**, because the evidence is still being gathered: published
+*measured* quality factors for multilayer PCB coils at 80–120 kHz, and how badly
+the ideal 1/N resistance scaling for parallel layers breaks down in practice.
+That single unknown decides whether four layers, six layers or neither is right.
 
-The charging-environment answer decides whether the two pads share a symmetric
-thermal budget. In the water the RX pad has an essentially infinite heat sink
-and `MEC-001`'s allocation should be split unevenly; on deck at +55 °C it should
-not.
+It will be recorded in `docs/design/adr-0001-coil-technology.md` with its
+citations. **Until that ADR exists this gate is not fully closed**, and `G1`
+stays `in_progress` in the plan.
+
+## Requirements changed
+
+* `VIS-005` — restated: recovered to deck into a locating bracket, not docked
+  in the water. Rationale carries the coupling figures and the symmetric
+  thermal consequence.
+* `SYS-006` — envelope tightened to 8–14 mm gap, 5 mm lateral, 2° tilt, with
+  the derivation of each number.
+* `MEC-003` — rationale updated; the 0.40 floor stays, now with 1.40× margin.
+
+No requirement *statement* was weakened to accommodate a decision.

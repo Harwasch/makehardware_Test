@@ -14,4 +14,4 @@ happening again.
 
 | Gate | Stage | Status |
 |---|---|---|
-| 1 | Vision | **open** — awaiting decisions |
+| 1 | Vision | **decided**, one item delegated — coil technology ADR outstanding |
