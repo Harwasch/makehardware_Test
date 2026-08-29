@@ -158,9 +158,21 @@ The compensation is unexpected and useful. Driving the trace to 0.80 mm
 proximity problem and becomes a **pure DC-resistance problem**, which is
 precisely what parallel layers fix.
 
-### Layers are the lever
+### Layers are the lever — but NOT as 1/N
 
-At 32 turns and 0.80 mm trace:
+> **CORRECTED AGAIN, 2026-08-29.** The table below assumed parallel layers cut
+> resistance by 1/N. **They do not**, and the error was in this repo's own code:
+> dividing R_dc by the layer count and then applying the proximity factor
+> divides the proximity loss by N as well. Proximity loss is independent of the
+> current a conductor carries, so it *rises* as N. The corrected model is
+> `R_ac(N) = R_dc1/N + N·R_prox1`, which has a minimum. Measured confirmation
+> and the resulting design are in
+> [`adr-0001-coil-technology.md`](adr-0001-coil-technology.md); the corrected
+> answer is 21 turns of 0.30 mm trace in **12–16 transposed layers**, and a
+> plain parallel stack fails. The table is left below as the record of what the
+> broken model said.
+
+At 32 turns and 0.80 mm trace, **per the defective 1/N model**:
 
 | Layers | R_ac | Q | k·Q | Loss | Per pad | vs k·Q ≥ 49 |
 |---|---|---|---|---|---|---|
@@ -170,9 +182,9 @@ At 32 turns and 0.80 mm trace:
 | **6** | **0.55 Ω** | **176** | **81.2** | **73 W** | **36 W** | **passes, 1.66×** |
 | 8 | 0.41 Ω | 235 | 108.3 | 55 W | 27 W | passes, 2.21× |
 
-**Six layers is the design point.** Four passes on paper but with only 1.10×
-margin, and the layer model is optimistic (below) — that is not enough headroom
-to also absorb ferrite and cold-plate losses that have not been modelled at all.
+**Six layers was the design point, and it was wrong** — with the corrected
+model, six plain layers sit past the optimum and are *worse* than four. See
+ADR-0001.
 
 ### The design point, across the full misalignment envelope
 
@@ -200,11 +212,10 @@ once the ferrite and cold-plate stack is modelled.
 
 ### What is still open, and what now matters most
 
-1. **Inter-layer proximity is now the largest modelling uncertainty.** The
-   layer table assumes ideal 1/N resistance scaling. Real stacked spirals do
-   worse, because each layer sits in the others' field. A turn-to-turn model
-   cannot capture it. This single unknown decides whether six layers is right
-   or whether eight are needed, so it is the first thing FEA should answer.
+1. ~~Inter-layer proximity is the largest modelling uncertainty.~~
+   **RESOLVED, against us.** Published measurement says two parallel layers cut
+   resistance by 15.9%, not 50%. The uncertainty flagged here was the right one
+   and the answer was the unfavourable one. See ADR-0001.
 2. Ferrite backing, cold-plate eddy loss and seawater in the gap remain
    unmodelled and all push the wrong way.
 3. Kuhn–Ibrahim is still outside its fitted trace width — but at 0.80 mm the AC

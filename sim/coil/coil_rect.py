@@ -115,8 +115,16 @@ def kq_for_eta(target):
 
 
 def analyse(a_out, b_out, n, w, t, clearance, layers=1, gap=20e-3,
-            lateral=0.0, tilt_deg=0.0, t_c=100.0, n_side=40):
-    """Full analysis of a rectangular spiral pair."""
+            lateral=0.0, tilt_deg=0.0, t_c=100.0, n_side=40,
+            transposition=0.0):
+    """Full analysis of a rectangular spiral pair.
+
+    `transposition` is the fraction of the layer proximity penalty removed by
+    transposing the stack, so that every layer spends equal time at every
+    depth. 0.0 is a plain parallel stack; 1.0 would remove 75% of the penalty,
+    which is the most the published evidence supports (see below). Use 0.0
+    unless the construction actually transposes.
+    """
     pitch = w + clearance
     turns = turn_sizes(a_out, b_out, n, pitch)
     if min(min(a, b) for a, b in turns) <= 4.0 * pitch:
@@ -136,15 +144,37 @@ def analyse(a_out, b_out, n, w, t, clearance, layers=1, gap=20e-3,
             for i in range(n) for j in range(n))
 
     length = sum(2.0 * (a + b) for a, b in turns)
-    r_dc = rho_cu(t_c) * length / (w * t * layers)
     fr, f_c = kuhn_ibrahim(w, clearance, t, t_c=t_c)
-    r_ac = r_dc * fr
+
+    # Layer model. The obvious form -- divide R_dc by N, then apply the
+    # proximity factor -- is WRONG, and it was wrong in this file until
+    # 2026-08-29. It divides the proximity loss by N as well.
+    #
+    # Proximity resistance is proportional to conductor volume and to B
+    # squared, and is INDEPENDENT of the current that conductor carries
+    # (Nguyen and Fortin Blanchette, Electronics 2020, 9, 1324, Eq. 2).
+    # Parallel layers do not change total ampere-turns, so B is unchanged:
+    # every layer added is another slab of copper eddy-heating in the same
+    # field. Transport loss falls as 1/N; proximity loss RISES as N.
+    #
+    #     R_ac(N) = R_dc1 / N  +  N * R_prox1
+    #
+    # which has a minimum at N_opt = sqrt(R_dc1 / R_prox1) and gets worse
+    # beyond it. Measured confirmation: Yin et al., Electronics 2024, 13, 426,
+    # Table 12 -- two identical PCB spiral layers in parallel at 100 kHz cut
+    # resistance by 15.9%, not the 50% that 1/N predicts.
+    r_dc1 = rho_cu(t_c) * length / (w * t)          # ONE layer
+    r_prox1 = r_dc1 * (fr - 1.0)                    # ONE layer's proximity excess
+    r_dc = r_dc1 / layers                           # transport term
+    r_ac = r_dc + layers * r_prox1 * (1.0 - transposition * 0.75)
     q = W0 * L / r_ac
     k = M / L
     return dict(L=L, M=M, k=k, Q=q, kQ=k * q, eta=eta_max(k, q),
                 loss=P_TGT * (1.0 - eta_max(k, q)), length=length, pitch=pitch,
                 fr=fr, f_crit=f_c, r_dc=r_dc, r_ac=r_ac, n=n, w=w, t=t,
-                layers=layers, inner=turns[-1])
+                layers=layers, inner=turns[-1], r_dc1=r_dc1, r_prox1=r_prox1,
+                n_opt=math.sqrt(r_dc1 / r_prox1) if r_prox1 > 0 else float('inf'),
+                transposition=transposition)
 
 
 def main():

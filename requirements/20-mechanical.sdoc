@@ -34,22 +34,24 @@ gap-to-diameter ratio of 0.3 to 0.5, where this dock sits at 0.067. At k of
 0.705 the required quality factor is 69, not the 98 the earlier assumption
 implied.
 
-An etched coil MEETS this requirement when it is built properly. On the house's
-102 by 203 mm rectangle, 32 turns of 0.80 mm trace in 4 oz copper with SIX
-LAYERS IN PARALLEL reaches k times Q of 77 at the worst point of the ``SYS-006``
-envelope, against the 49 required - a margin of 1.57. A single layer of the same
-geometry reaches only 13.5, and four layers 54.
+An etched coil MEETS this requirement, but only as a TRANSPOSED multi-track
+winding - a plain parallel-layer stack does not. On the house's 102 by 203 mm
+rectangle, 21 turns of 0.30 mm trace in 4 oz copper with 12 to 16 transposed
+layers reaches k times Q of 69 to 83 against the 49 required. The same geometry
+as a plain parallel stack reaches only 46.4, and fails.
 
-Two effects make that work, and both were missed in the first analysis. Parallel
-layers reduce resistance directly. And driving the trace down to 0.80 mm nearly
-eliminates proximity effect - the AC to DC resistance ratio falls from 1.77 at a
-3 mm trace to 1.06 - because the Kuhn and Ibrahim critical frequency scales as
-(w + s) over w squared. The coil stops being a proximity problem and becomes a
-pure DC-resistance problem, which is what layers fix.
+The reason is that parallel layers do not reduce resistance as 1 over N.
+Proximity resistance depends on conductor volume and on B squared and NOT on the
+current a conductor carries, so parallel layers - which do not change total
+ampere-turns - add proximity loss in proportion to N while reducing transport
+loss as 1 over N. Measured: two identical PCB layers in parallel at 100 kHz cut
+resistance by 15.9 percent, not 50. Transposing the stack, so every layer spends
+equal time at every depth, is the published fix, and even a quarter-transposed
+stack passes.
 
 This requirement is deliberately written against k times Q and dissipation
 rather than against a conductor technology, so the choice is settled by
-arithmetic. See ``docs/design/coil-model.md`` Result 4.
+arithmetic. See ``docs/design/adr-0001-coil-technology.md``.
 <<<
 VERIFICATION: Test
 BUDGET: 120 W
@@ -226,4 +228,41 @@ STATUS: Draft
 RELATIONS:
 - TYPE: Parent
   VALUE: SYS-010
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: MEC-009
+TITLE: The mounting bracket is the heat sink
+STATEMENT: >>>
+The mounting bracket shall conduct the full pad dissipation of ``MEC-004`` into
+free air with at least 12 times the pad footprint in external surface area, and
+shall hold the coil conductor below 100 degC in the ``SYS-016`` ambient with no
+pumped coolant and no forced air.
+<<<
+RATIONALE: >>>
+This requirement exists because the pad cannot cool itself and the arithmetic is
+not close. A flat plate in still air sheds roughly 150 W per square metre at an
+acceptable temperature rise, so the 207 square centimetre pad sheds about 3.1 W
+from its own faces. The design has to remove about 36 W. The pad face is
+therefore irrelevant to the thermal problem and every watt leaves through the
+bracket, which needs roughly 2400 square centimetres of external surface - about
+twelve times the pad footprint.
+
+A finned aluminium deck bracket of about 400 by 500 mm provides that
+comfortably, which is exactly why the decision to charge on deck in a bracket is
+what makes an etched coil viable at all. A hull-mounted pad with only its own
+faces to work with could not have been cooled by any coil technology.
+
+The 12 times figure is researched but NOT independently verified - the
+verification pass on the thermal topic did not run - so it must be confirmed
+against a second source before this requirement is closed. The concrete warning
+behind it is measured: a published fully transposed multi-track PCB coil at
+3.3 kW reached 90.3 degC and was still rising when power was cut at 33 minutes.
+See ``docs/design/adr-0001-coil-technology.md``.
+<<<
+VERIFICATION: Simulation
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-007
   ROLE: Refines
