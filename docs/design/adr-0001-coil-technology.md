@@ -12,14 +12,20 @@ and **the mounting bracket designed as the heat sink**.
 
 | | |
 |---|---|
+| Pad | 102 × 203 mm (4 × 8 in), fixed |
 | Construction | multi-track, **transposed** layer-to-layer |
-| Trace / clearance | **0.30 mm / 0.20 mm** (skin depth at 85 kHz is 0.26 mm) |
-| Layers | **12–16** in parallel |
-| Turns | 21, on the 102 × 203 mm pad |
-| Predicted Q | 92 plain · **136–164 transposed** |
-| Predicted k·Q | 46 plain · **69–83 transposed** (requirement 49) |
-| Pad dissipation | **36–43 W** |
-| Bracket external area | **≥ 12× the pad footprint** |
+| Turns | **24** |
+| Trace / space | **0.25 mm / 0.20 mm** — skin depth at 85 kHz is 0.26 mm |
+| Copper | **4 oz** (0.14 mm, 0.54 skin depths) |
+| Layers | **16** in parallel · 12 is the floor |
+| Mutual inductance | 94.6 µH at worst case, against 80.9 µH required |
+| **k·Q, worst case** | **75.0** at 16 layers · 61.1 at 12 · requirement **49** |
+| Pad dissipation | **39 W** at 16 layers · 48 W at 12 |
+| Bracket external area | **≥ 14× the pad footprint** |
+
+Sized against the **binding condition**, which is the 14 mm gap with 5 mm of
+offset — the far corner of the `SYS-006` envelope, not the nominal. At the
+10 mm nominal it reaches k·Q = 109 and 27 W per pad.
 
 ## Context
 
@@ -90,15 +96,19 @@ for a copper-Litz WPT3 pad of the same footprint from the same lab. Litz wins by
 1.7× on Q — **and the transposed PCB coil is still comfortably above what this
 design needs.**
 
-| Construction | k·Q | η coil-to-coil | Per pad |
-|---|---|---|---|
-| Plain parallel stack | 46.4 | 95.8% | 63 W |
-| Half-transposed | 58.7 | 96.7% | 50 W |
-| **Fully transposed multi-track** | **82.6** | **97.6%** | **36 W** |
-| *Requirement* | *49* | *96.0%* | *60 W* |
+At the chosen 24 turns / 0.25 mm / 4 oz / 16 layers, at the worst corner of the
+envelope:
 
-**Even a quarter-transposed stack passes.** That is the margin the decision rests
-on, and it is why this is a comfortable choice rather than a marginal one.
+| Transposition | k·Q | Per pad | vs 49 |
+|---|---|---|---|
+| None — plain parallel stack | 45.2 | 66 W | **fails** |
+| Half effective | 60.9 | 48 W | passes, 1.24× |
+| **Fully transposed** | **75.0** | **39 W** | **passes, 1.53×** |
+
+**The decision survives transposition being only half as effective as intended.**
+That is the margin it rests on, and it is why this is a defensible choice rather
+than a marginal one — but it also shows how completely it depends on
+transposition happening at all.
 
 ## The binding constraint is thermal, and it is the bracket's problem
 
@@ -145,9 +155,18 @@ still rising when power was cut at 33 minutes**. A published transposed PCB coil
 at our power did not reach thermal equilibrium in half an hour. That is the
 risk this ADR accepts, and `MEC-009` is what must retire it.
 
-**Bad.** 12–16 layers is a thicker and more expensive board than 4–6, and the
-via stitching that makes the transposition work adds its own resistance and its
-own fabrication risk.
+**Bad, and it cuts against the reason PCB was chosen.** Sixteen layers at 4 oz
+is **64 oz of copper in one board**. That is a heavy-copper multilayer at the
+far edge of standard capability, not the cheap commodity board the PCB choice
+was meant to buy — and the via stitching that makes the transposition work adds
+its own resistance and its own fabrication risk. **A fab-capability check is
+required before this is committed**, and it is the first thing that could send
+the decision back to Litz. Twelve layers is the floor that still passes
+(k·Q = 61.1, 48 W/pad) if sixteen proves unbuildable.
+
+The alternative of thinner copper on more layers is worse, not better: 2 oz on
+20 layers reaches k·Q = 52.7 and only passes if transposition is nearly perfect,
+where 4 oz on 12 passes even at half effectiveness.
 
 ## Alternatives considered
 

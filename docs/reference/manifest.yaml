@@ -173,3 +173,67 @@ documents:
     blocked: not yet fetched - may be more stringent than IEC 60945 per location class
     needed_by: [SYS-016]
     retrieved: null
+
+  # ---- coil technology evidence, ADR-0001 -----------------------------------
+  - id: yin-2024-pcb-coil
+    title: Improved Design of PCB Coil for Magnetically Coupled Wireless Power Transfer
+    publisher: Electronics (MDPI) 2024, 13(2), 426
+    url: https://www.mdpi.com/2079-9292/13/2/426
+    local: null
+    blocked: open access; PDF via res.mdpi.com (the HTML page returns 403)
+    retrieved: 2026-08-29
+    needed_by: [MEC-001]
+    notes: >-
+      Table 12 is the measured basis for rejecting 1/N layer scaling. 90 mm PCB
+      spiral, 8 turns, 2.8 mm trace, 2 oz, 100 kHz: one layer 189 mOhm / Q 17.44;
+      two layers in parallel 159 mOhm / Q 20.81 - a 15.9% resistance reduction
+      where 1/N predicts 50%. The parallel identification is INFERRED from the
+      unchanged self-inductance (5.25 -> 5.27 uH) against their series build's
+      20.85 uH; the paper does not use the word "parallel".
+
+  - id: nguyen-2020-proximity
+    title: Investigation of Parallel Windings and Litz Structures for Planar Magnetics
+    publisher: Electronics (MDPI) 2020, 9, 1324
+    url: https://www.mdpi.com/2079-9292/9/8/1324
+    local: null
+    blocked: open access, not yet archived locally
+    retrieved: 2026-08-29
+    needed_by: [MEC-001]
+    notes: >-
+      Eq. 2 gives per-conductor proximity resistance as proportional to
+      conductor volume and B squared and INDEPENDENT of the current that
+      conductor carries. This is why parallel layers add proximity loss as N
+      while cutting transport loss as 1/N. NOTE, from the adversarial review:
+      this paper concerns in-plane parallel STRANDS, not stacked layers, so it
+      supports the mechanism but is not a second measurement of the layer case.
+
+  - id: ornl-ecce-2024-transposed-pcb
+    title: Multi-layer PCB coil design with layer transposition for an 11 kW wireless charger
+    publisher: ORNL / University of Kentucky, IEEE ECCE 2024
+    url: null
+    local: null
+    blocked: not fetched directly - cited via the research pass; obtain before release
+    retrieved: null
+    needed_by: [MEC-001]
+    notes: >-
+      The basis for requiring transposition. Sequential layering gave up to 31%
+      induced-voltage and 50% self-inductance imbalance between parallel layers
+      in 3D FEA; transposition cut those to 0.4% and 0.7%, validated under 1% on
+      a fabricated prototype. Same team sized their 85 kHz conductor to exactly
+      one skin depth: 0.22 mm trace on 0.25 mm space, 1 oz - the origin of this
+      design's 0.25 mm trace.
+
+  - id: narvaez-transposed-multitrack
+    title: Measured comparison of a transposed multi-track PCB coil against a Litz WPT3 pad
+    publisher: Narvaez, Carretero, Lope, Acero et al.
+    url: null
+    local: null
+    blocked: not fetched directly - cited via the research pass; obtain before release
+    retrieved: null
+    needed_by: [MEC-001, MEC-009]
+    notes: >-
+      The measured anchor for ADR-0001 and its strongest caution. Same lab, same
+      ~380 mm footprint, 85 kHz: transposed multi-track PCB measured Q = 153,
+      copper Litz WPT3 pad measured Q = 260. At 3.3 kW their PCB coil delivered
+      93% coil-to-coil, and in the thermal run the receiver reached 90.3 degC
+      and was STILL RISING when power was cut at 33 minutes.

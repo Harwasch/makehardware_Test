@@ -36,9 +36,10 @@ implied.
 
 An etched coil MEETS this requirement, but only as a TRANSPOSED multi-track
 winding - a plain parallel-layer stack does not. On the house's 102 by 203 mm
-rectangle, 21 turns of 0.30 mm trace in 4 oz copper with 12 to 16 transposed
-layers reaches k times Q of 69 to 83 against the 49 required. The same geometry
-as a plain parallel stack reaches only 46.4, and fails.
+rectangle, 24 turns of 0.25 mm trace in 4 oz copper with 16 transposed layers
+reaches k times Q of 75.0 at the WORST corner of the ``SYS-006`` envelope,
+against the 49 required. Twelve layers reaches 61.1. The same geometry as a
+plain parallel stack reaches 45.2, and fails.
 
 The reason is that parallel layers do not reduce resistance as 1 over N.
 Proximity resistance depends on conductor volume and on B squared and NOT on the

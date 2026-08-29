@@ -14,4 +14,4 @@ happening again.
 
 | Gate | Stage | Status |
 |---|---|---|
-| 1 | Vision | **decided**, one item delegated — coil technology ADR outstanding |
+| 1 | Vision | **closed** — ADR-0001 records the delegated coil decision |

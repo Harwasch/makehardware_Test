@@ -33,7 +33,7 @@ chunks:
   - id: G1
     title: Vision review gate — the human agrees the concepts and the numbers
     discipline: documentation
-    status: in_progress
+    status: done
     depends_on: [V1]
     estimate_sessions: 1
     outputs: [docs/design/reviews/gate-1-vision.md, docs/design/reports/gate-1-vision-review.html]
@@ -42,8 +42,9 @@ chunks:
       arrangements are in front of the human with the corrected coil analysis;
       five questions are open. Design chunks depend on this rather than on V1,
       because designing against an unagreed vision is what produced two bare
-      coil pads when the human wanted to see a product. Closes when the record
-      carries answers.
+      coil pads when the human wanted to see a product. CLOSED: belly dock, no
+      actuator, charging on deck in a locating bracket, scope limited to the
+      charging system, 4 x 8 inch pad, and PCB kept per ADR-0001.
 
   - id: R1
     title: System and discipline requirements from the agreed vision

@@ -11,11 +11,11 @@ handled directly rather than approximated:
     lateral offset and tilt all work
   * AC resistance from Kuhn and Ibrahim, with a layers-in-parallel term
 
-MULTILAYER CAVEAT, and it is the load-bearing one: parallel layers are modelled
-as an ideal 1/N reduction in resistance. Real stacked spirals suffer inter-layer
-proximity, which a turn-to-turn model cannot capture, so every multilayer Q here
-is optimistic. Design to a layer count with margin, and treat the two-layer
-column as indicative only.
+LAYER MODEL: parallel layers do NOT reduce resistance as 1/N. Proximity loss is
+independent of the current a conductor carries, so it rises as N while transport
+loss falls as 1/N -- see the note in analyse(). Transposing the stack removes
+most of that penalty and is what makes this design work; see
+docs/design/adr-0001-coil-technology.md.
 
 Run:  /opt/hw-py/bin/python sim/coil/coil_rect.py
 """
@@ -178,97 +178,75 @@ def analyse(a_out, b_out, n, w, t, clearance, layers=1, gap=20e-3,
 
 
 def main():
-    M_REQ = V_FUND * V_FUND / (P_TGT * W0)
+    # The ADR-0001 design point.
     A_OUT, B_OUT = 0.102, 0.203        # 4.0 x 8.0 inch
     T_CU = 0.140e-3                    # 4 oz
+    N, W, CL = 24, 0.25e-3, 0.20e-3    # one skin depth class, per ORNL/Kentucky
+    GAP, LAT = 10e-3, 5e-3             # SYS-006 nominal, worst offset
+    M_REQ = V_FUND * V_FUND / (P_TGT * W0)
     KQ_REQ = kq_for_eta(1.0 - 120.0 / P_TGT)
 
     print("=" * 78)
-    print("RECTANGULAR PCB COIL — 4 x 8 inch, passive cooling")
+    print("RECTANGULAR PCB COIL — ADR-0001 design point")
     print("=" * 78)
-    print(f"Outer {A_OUT*1e3:.0f} x {B_OUT*1e3:.0f} mm, 4 oz copper, {F_NOM/1e3:.0f} kHz, "
-          f"20 mm gap")
-    print(f"Mutual inductance needed for {P_TGT/1000:.0f} kW at resonance: "
-          f"M = {M_REQ*1e6:.1f} uH")
-    print(f"MEC-001 requires k*Q >= {KQ_REQ:.0f} (120 W of {P_TGT/1000:.0f} kW)")
-    print(f"Skin depth at {F_NOM/1e3:.0f} kHz, 100 C: {skin_depth(t_c=100.0)*1e3:.3f} mm "
-          f"-> 4 oz is {T_CU/skin_depth(t_c=100.0):.2f} skin depths\n")
+    print(f"{A_OUT*1e3:.0f} x {B_OUT*1e3:.0f} mm, {N} turns, {W*1e3:.2f} mm trace on "
+          f"{CL*1e3:.2f} mm, 4 oz, {F_NOM/1e3:.0f} kHz")
+    print(f"Skin depth at 100 C: {skin_depth(t_c=100.0)*1e3:.3f} mm — the trace is "
+          f"{W/skin_depth(t_c=100.0):.2f} skin depths")
+    print(f"Need M >= {M_REQ*1e6:.1f} uH and k*Q >= {KQ_REQ:.0f}\n")
 
-    print("STEP 1 — turns and trace width needed to reach the mutual inductance")
-    print(f"  {'turns':>6}{'trace':>8}{'clear':>8}{'L':>9}{'M':>9}{'k':>7}"
-          f"{'R_ac/R_dc':>11}{'Q(1 layer)':>12}")
-    cands = []
-    for n, w, c in ((24, 1.20e-3, 0.30e-3), (28, 1.00e-3, 0.30e-3),
-                    (32, 0.80e-3, 0.28e-3), (36, 0.70e-3, 0.25e-3),
-                    (40, 0.60e-3, 0.22e-3)):
-        r = analyse(A_OUT, B_OUT, n, w, T_CU, c)
-        if r is None:
-            print(f"  {n:6d}  spiral closes on itself"); continue
-        flag = "  <- meets M" if r["M"] >= M_REQ else ""
-        print(f"  {n:6d}{w*1e3:7.2f}m{c*1e3:7.2f}m{r['L']*1e6:8.1f}u{r['M']*1e6:8.2f}u"
-              f"{r['k']:7.3f}{r['fr']:11.2f}{r['Q']:12.0f}{flag}")
-        if r["M"] >= M_REQ:
-            cands.append(r)
-    print("\n  Fine traces almost eliminate proximity effect: R_ac/R_dc falls to")
-    print("  near unity, so the coil becomes a pure DC-resistance problem --")
-    print("  which is exactly what parallel layers fix.\n")
+    print("WHY A PLAIN PARALLEL STACK FAILS")
+    print(f"  R_ac(N) = R_dc1/N + N*R_prox1 has a MINIMUM — adding layers past it")
+    print(f"  makes the coil worse, because proximity loss rises with N.")
+    print(f"  {'N':>3}{'R_dc/N':>9}{'N*R_prox':>10}{'R_ac':>9}{'Q':>7}{'k*Q':>7}")
+    for n_lay in (1, 2, 4, 8, 13, 16, 20):
+        r = analyse(A_OUT, B_OUT, N, W, T_CU, CL, layers=n_lay, gap=GAP, lateral=LAT)
+        print(f"  {n_lay:3d}{r['r_dc']:8.3f}o{n_lay*r['r_prox1']:9.3f}o"
+              f"{r['r_ac']:8.3f}o{r['Q']:7.0f}{r['kQ']:7.1f}")
+    r1 = analyse(A_OUT, B_OUT, N, W, T_CU, CL, layers=1, gap=GAP, lateral=LAT)
+    print(f"  optimum N = sqrt(R_dc1/R_prox1) = {r1['n_opt']:.1f}\n")
 
-    base = cands[0]
-    print(f"STEP 2 — layers in parallel, at {base['n']} turns / "
-          f"{base['w']*1e3:.2f} mm trace")
-    print(f"  {'layers':>7}{'R_ac':>9}{'Q':>7}{'k*Q':>8}{'eta':>9}{'loss':>8}"
-          f"{'per pad':>10}")
-    chosen = None
-    for lay in (1, 2, 4, 6, 8):
-        r = analyse(A_OUT, B_OUT, base["n"], base["w"], T_CU, 0.28e-3, layers=lay)
-        ok = "  PASS" if r["kQ"] >= KQ_REQ else "  fails"
-        print(f"  {lay:7d}{r['r_ac']:8.3f}o{r['Q']:7.0f}{r['kQ']:8.1f}"
-              f"{r['eta']*100:8.2f}%{r['loss']:7.0f} W{r['loss']/2:9.0f} W{ok}")
-        if chosen is None and r["kQ"] >= KQ_REQ * 1.4:
-            chosen = r
-    print()
+    print("WHAT TRANSPOSITION BUYS")
+    print(f"  {'transposed':>11}{'layers':>8}{'R_ac':>9}{'Q':>7}{'k*Q':>7}"
+          f"{'eta':>9}{'per pad':>9}   vs {KQ_REQ:.0f}")
+    for tr in (0.0, 0.25, 0.50, 0.75, 1.0):
+        best = None
+        for n_lay in range(1, 21):
+            r = analyse(A_OUT, B_OUT, N, W, T_CU, CL, layers=n_lay, gap=GAP,
+                        lateral=LAT, transposition=tr)
+            if best is None or r["kQ"] > best["kQ"]:
+                best = r
+        ok = "PASS" if best["kQ"] >= KQ_REQ else "fail"
+        print(f"  {tr*100:10.0f}%{best['layers']:8d}{best['r_ac']:8.3f}o{best['Q']:7.0f}"
+              f"{best['kQ']:7.1f}{best['eta']*100:8.2f}%{best['loss']/2:8.0f} W   {ok}")
 
-    print("STEP 3 — the chosen design across the SYS-006 misalignment envelope")
-    print(f"  {chosen['n']} turns, {chosen['w']*1e3:.2f} mm trace, "
-          f"{chosen['layers']} layers in parallel, 4 oz")
-    print(f"  {'gap':>7}{'lateral':>9}{'tilt':>7}{'k':>8}{'k*Q':>8}{'loss':>9}")
+    print("\nACROSS THE SYS-006 ENVELOPE, fully transposed, 16 layers  [ADR-0001]")
+    print(f"  {'gap':>7}{'lateral':>9}{'k':>8}{'k*Q':>8}{'per pad':>10}")
     worst = None
-    for gap in (5e-3, 10e-3, 20e-3):
-        for lat in (0.0, 10e-3):
-            for tilt in (0.0, 3.0):
-                r = analyse(A_OUT, B_OUT, chosen["n"], chosen["w"], T_CU, 0.28e-3,
-                            layers=chosen["layers"], gap=gap, lateral=lat,
-                            tilt_deg=tilt)
-                if worst is None or r["kQ"] < worst["kQ"]:
-                    worst = r
-                print(f"  {gap*1e3:6.0f}mm{lat*1e3:8.0f}mm{tilt:6.1f}d"
-                      f"{r['k']:8.3f}{r['kQ']:8.1f}{r['loss']:8.0f} W")
-    print(f"\n  WORST CASE: k = {worst['k']:.3f}, k*Q = {worst['kQ']:.1f}, "
-          f"{worst['loss']:.0f} W ({worst['loss']/2:.0f} W per pad)")
-    print(f"  Requirement k*Q >= {KQ_REQ:.0f}: "
-          f"{'PASS' if worst['kQ'] >= KQ_REQ else 'FAIL'}, "
-          f"margin {worst['kQ']/KQ_REQ:.2f}x")
+    for gap in (8e-3, 10e-3, 14e-3):
+        for lat in (0.0, 5e-3):
+            r = analyse(A_OUT, B_OUT, N, W, T_CU, CL, layers=16, gap=gap,
+                        lateral=lat, transposition=1.0)
+            if worst is None or r["kQ"] < worst["kQ"]:
+                worst = r
+            print(f"  {gap*1e3:6.0f}mm{lat*1e3:8.0f}mm{r['k']:8.3f}{r['kQ']:8.1f}"
+                  f"{r['loss']/2:9.0f} W")
+    print(f"\n  WORST: k*Q = {worst['kQ']:.1f} ({worst['kQ']/KQ_REQ:.2f}x), "
+          f"M = {worst['M']*1e6:.1f} uH, {worst['loss']/2:.0f} W per pad")
 
     area = A_OUT * B_OUT
-    print(f"\n  HEAT FLUX: {worst['loss']/2:.0f} W over "
-          f"{area*1e6:.0f} mm2 = {worst['loss']/2/area:.0f} W/m2")
-    print(f"  For scale, the 300 mm circular pad carried "
-          f"{764:.0f} W/m2 at the same allowance.")
-    print("  The rectangular pad is 3.6x smaller in area, so the same watts are")
-    print("  a much harder extraction problem. MEC-004's temperature limit is")
-    print("  the binding form, not the per-pad watt allocation.")
-
     print("\n" + "=" * 78)
-    print("STILL OPEN")
+    print("THE THERMAL CONSTRAINT IS THE BINDING ONE")
     print("=" * 78)
-    print("  * Inter-layer proximity. The 1/N layer scaling above is ideal and")
-    print("    real stacked spirals do worse. This is now the single largest")
-    print("    modelling uncertainty and it decides the layer count.")
-    print("  * Ferrite backing, cold-plate eddy loss, seawater in the gap.")
-    print("    None modelled, all push the wrong way. FEA task in M2/M3.")
-    print("  * Kuhn and Ibrahim is used outside its fitted trace width, though")
-    print("    at these fine traces the AC correction is small enough that the")
-    print("    error it carries is small too.")
+    print(f"  A flat plate in still air sheds about 150 W/m2 at an acceptable rise.")
+    print(f"  This pad is {area*1e4:.0f} cm2, so its own faces shed about "
+          f"{150*area:.1f} W.")
+    print(f"  It must lose {worst['loss']/2:.0f} W — {worst['loss']/2/(150*area):.0f}x that.")
+    print(f"  So every watt leaves through the BRACKET, which needs about")
+    print(f"  {worst['loss']/2/150*1e4:.0f} cm2 of external surface = "
+          f"{worst['loss']/2/150/area:.0f}x the pad footprint. That is MEC-009.")
+    print("\n  Caveat: the 150 W/m2 figure is researched but its verification pass")
+    print("  did not run. Confirm against a second source before closing MEC-009.")
 
 
 if __name__ == "__main__":

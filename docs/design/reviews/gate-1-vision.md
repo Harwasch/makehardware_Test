@@ -1,6 +1,6 @@
 # Gate 1 — Vision
 
-**Status:** DECIDED, one item delegated.
+**Status:** CLOSED.
 **Artifact:** https://claude.ai/code/artifact/bf64b8ca-0644-432a-8dc5-34ff2fab3592
 **Raised:** 2026-08-28 · **Answered:** 2026-08-28
 
@@ -21,7 +21,7 @@ this happened.
 | **Charging environment** | **Recovered to deck**, into a mounting bracket with locating features. Not in the water. |
 | **Scope** | **The wireless charging system only.** The vehicle is not ours and is not to be modelled. |
 | **Pad geometry** | **Rectangular, 4 × 8 inch, fixed for now.** |
-| **Coil technology** | **Delegated** — my call, to be backed by published sources. See below. |
+| **Coil technology** | **PCB, kept** — transposed multi-track, 16 layers. [ADR-0001](../adr-0001-coil-technology.md). |
 
 ## What each decision changed
 
@@ -56,17 +56,36 @@ an open deck at the `SYS-016` ambient of +55 °C. There is no seawater heat sink
 on either side, so `MEC-001`'s loss allowance stays symmetric — recorded in
 `VIS-005` so it is not quietly revisited later.
 
-## The delegated decision
+## The delegated decision — resolved
 
-Coil technology is mine to make and to defend with sources. It is **not recorded
-here as decided**, because the evidence is still being gathered: published
-*measured* quality factors for multilayer PCB coils at 80–120 kHz, and how badly
-the ideal 1/N resistance scaling for parallel layers breaks down in practice.
-That single unknown decides whether four layers, six layers or neither is right.
+**PCB is kept.** [ADR-0001](../adr-0001-coil-technology.md) records the decision
+with its sources.
 
-It will be recorded in `docs/design/adr-0001-coil-technology.md` with its
-citations. **Until that ADR exists this gate is not fully closed**, and `G1`
-stays `in_progress` in the plan.
+The research commissioned to defend the six-layer plain stack **refuted it**,
+and found the defect that produced it: this repo's own code divided the
+proximity loss by the layer count along with the transport loss. Proximity loss
+is independent of the current a conductor carries, so parallel layers add it as
+N while cutting transport as 1/N — there is an optimum, and six plain layers sat
+past it. Measured confirmation: two identical PCB layers in parallel at 100 kHz
+cut resistance by 15.9%, not the 50% that 1/N predicts.
+
+**Transposition is what saves it**, and the evidence is direct rather than
+modelled: a fully transposed multi-track PCB coil measures Q = 153 at 85 kHz,
+against Q = 260 for a Litz pad of the same footprint from the same lab. Litz is
+genuinely 1.7× better; transposed PCB is still comfortably above what this
+design needs.
+
+**Final:** 24 turns · 0.25 mm trace on 0.20 mm space · 4 oz · **16 transposed
+layers** · k·Q = 75.0 at the worst corner of the envelope against 49 required.
+It passes even if transposition is only half as effective as intended.
+
+Two things this decision buys that the human should see plainly. It costs a
+**64 oz heavy-copper 16-layer board** — not the cheap commodity PCB the choice
+was meant to buy, and a fab-capability check is the first thing that could send
+it back to Litz. And the binding constraint turned out to be **thermal, not
+electrical**: the pad sheds 3 W from its own faces and must lose 39 W, so the
+bracket carries all of it and needs ~14× the pad footprint in external surface.
+That is now `MEC-009`.
 
 ## Requirements changed
 

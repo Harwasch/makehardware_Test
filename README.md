@@ -14,7 +14,7 @@ material is preserved under `docs/reference/source/`.
 
 ![Project plan](docs/plan.svg)
 
-**4/27 chunks complete** · 16 sessions on the critical path
+**5/27 chunks complete** · 16 sessions on the critical path
 
 <!-- PLAN:END -->
 
