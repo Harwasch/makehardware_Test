@@ -1,9 +1,14 @@
 # Vision — Ulysses LARS Charger, revision 2
 
-Captured 2026-08-28. Source material: the v1 white paper and firmware, reviewed
-in [`v1-baseline.md`](v1-baseline.md). Agreed intent lives in
+Captured 2026-08-28, decided at [gate 1](reviews/gate-1-vision.md). Source
+material: the v1 white paper and firmware, reviewed in
+[`v1-baseline.md`](v1-baseline.md). Agreed intent lives in
 [`requirements/00-vision.sdoc`](../../requirements/00-vision.sdoc) as `VIS-001`
-through `VIS-010`.
+through `VIS-012`.
+
+**Scope: the wireless charging system only.** The vehicle is not ours and is not
+modelled; it appears in the renders below only as the interface plate its pad
+bolts to.
 
 ## The thing, in one paragraph
 
@@ -25,74 +30,96 @@ short and about the four numbers it never states. All four turned out to matter:
 | How firm is 3 kW | Design for it, let physics move it | Licence to report honestly when a number cannot be met. |
 | Cooling | Conduction to chassis only | **This is the constraint that decides the magnetics.** |
 
-## The one decision this vision turns on
-
-Everything else follows from a single number: how much heat may be made in a
-coil pad that has no coolant.
+## The decision this vision turned on
 
 Coil-to-coil efficiency in an inductive link is governed by the product of
 coupling and quality factor, **k·Q** — not by resistance alone:
 
 > η_max = (kQ)² / (1 + √(1 + (kQ)²))²
 
-At the k ≈ 0.5 the dock geometry buys us:
+`MEC-001` allows the coil pair 120 W of 3 kW, which is **k·Q ≥ 49**. Charging on
+deck in a locating bracket sets the gap by two housing walls rather than a
+vehicle hull, which buys a coupling of 0.43–0.57 across the `SYS-006` envelope.
 
-| Coil | Q at 85 kHz | k·Q | η | Loss at 3 kW | Per pad |
-|---|---|---|---|---|---|
-| v1 PCB coil as documented (12 µH) | 8 | 4 | **61%** | 1170 W | 585 W |
-| PCB coil scaled to the right inductance (162 µH) | 29 | 15 | 87% | 381 W | 191 W |
-| Litz, conservative (Q = 150) | 150 | 75 | 97.4% | 79 W | 40 W |
-| Litz, good (Q = 300) | 300 | 150 | 98.7% | 40 W | 20 W |
+**The coil is an etched PCB**, decided in
+[ADR-0001](adr-0001-coil-technology.md) and backed by published measurements:
+24 turns of 0.25 mm trace in 4 oz copper, **16 transposed layers**, reaching
+k·Q = 75.0 at the worst corner. A plain parallel-layer stack of the same
+geometry reaches 45.2 and fails — parallel layers do not reduce resistance as
+1/N, and transposition is what makes the difference.
 
-Two things follow, and they are the substance of v2:
+The binding constraint turned out to be **thermal, not electrical**: the pad
+sheds about 3 W from its own faces and must lose 39 W, so every watt leaves
+through the bracket. That is `MEC-009`, and it is why the deck-mount decision
+is what makes an etched coil viable at all.
 
-1. **The v1 coil is 13× too small in inductance** for a 3 kW link at 400 V. At
-   resonance with 360 V fundamental on both ends, a 12 µH pair wants to transfer
-   40 kW at 112 A. Holding it to 3 kW means running far off resonance — which is
-   the exact opposite of what the v1 resonance-tracking firmware is built to do.
-   The magnetics and the control are fighting each other.
-2. **A PCB coil cannot reach the efficiency that conduction-only cooling
-   demands.** Even scaled to the right inductance it lands at 87%, i.e. 191 W
-   per pad. Litz reaches 97–99%, i.e. 20–45 W per pad.
+## What we need from you
 
-The root cause of both is visible in the white paper: p.6 says the coil geometry
-came from a paper on an **induction stove**. An induction hob coil is meant to be
-low-inductance, high-current and tightly coupled to a steel pan. It is an
-excellent coil for that job and the wrong starting point for a 400 V resonant
-link — the same category of error as building a 3 kW H-bridge from a part
-specified for 75 W flyback converters.
+The concepts below differ on **how the two pads locate to each other** — the
+remaining mechanical decision. The coil, the docking arrangement and the
+charging environment are already decided at gate 1.
 
-## The two concepts
+## The choice
 
-Rendered from real geometry by `vision-board`; both are 300 mm coils over the
-same ferrite ring and the same bolt-down aluminium cold plate, so the only thing
-that differs is the conductor.
+| | **A — Cone, vee and flat** | **B — Tapered rails** | **C — Perimeter nest** |
+|---|---|---|---|
+| Envelope (mm) | 390.0 × 325.0 × 133.0 | 420.0 × 313.0 × 167.85 | 438.0 × 353.0 × 133.0 |
+| Volume (mm³) | 6,386,028 | 8,786,468 | 8,612,814 |
+| Approx. mass (g) | 8,940 | 12,301 | 12,058 |
 
-| | **A — PCB coil pad** | **B — Litz coil pad** |
-|---|---|---|
-| Conductor | 27-turn spiral, 4 layers in parallel | 27 turns of 2000/40 Litz in a moulded former |
-| Envelope | 340 × 340 × **16.9** mm | 340 × 340 × **21.2** mm |
-| Mass (approx.) | 1.80 kg | 2.24 kg |
-| Q at 85 kHz | ≈ 29 | 150–300 |
-| Coil-to-coil η | 87% | 97–99% |
-| **Heat per pad at 3 kW** | **191 W** | **20–45 W** |
-| Manufacture | ordinary PCB fab, no winding operation | separate winding process with its own tolerance |
-| Inductance repeatability | excellent — etched geometry | good, but needs a wound-part tolerance |
+## A — Cone, vee and flat
 
-`build/vision/` holds the shaded and line views of each.
+Three hardened pins on the bracket: one lands in a cone, one in a vee, one on a flat. That constrains exactly six degrees of freedom with no over-constraint, so the pad lands in the same place every time and thermal growth does not fight it. Standard metrology practice. Repeatability is the best of the three and the contact is three small points, which is also the drawback -- point contacts carry no heat and take the whole landing load.
 
-Concept A is what `VIS-009` wants and it is genuinely the cheaper, more
-repeatable part. Concept B is what `VIS-006` and `VIS-007` require. **They
-conflict, and B is expected to win**, because 191 W leaving a flat pad through
-ferrite into a bolted plate, with no coolant, is not a thermal design — it is a
-thermal impossibility, whereas 45 W is an ordinary one.
+**390.0 × 325.0 × 133.0 mm** · 6,386,028 mm³ · ~8,940 g at 1.4 g/cm³ · model: `concepts/locate_cone_vee.py`
 
-That decision is deliberately *not* taken here. It is taken in an ADR during the
-design sprint, against a measured coil rather than a formula, because the whole
-argument rests on a Q that nobody in this programme has yet put on a bench. The
-requirements are therefore written against **k·Q and pad dissipation**, not
-against a coil technology — so whichever conductor meets the number wins on
-evidence.
+![A — Cone, vee and flat — three-quarter view](vision/locate_cone_vee/view-hero.png)
+
+| Front | Top |
+|---|---|
+| ![front](vision/locate_cone_vee/view-front.png) | ![top](vision/locate_cone_vee/view-top.png) |
+
+<details><summary>Dimensioned isometric line drawing</summary>
+
+![A — Cone, vee and flat — isometric](vision/locate_cone_vee/iso.svg)
+
+</details>
+
+## B — Tapered rails
+
+Two long tapered rails either side of the pad. The lead-in is wide at the top and closes to the running fit at the bottom, so a sloppy approach still lands centred. Capture range is much larger than a kinematic mount and the contact is a line rather than three points, which carries heat and load far better. The cost is that a line contact over-constrains: the fit has to be loose enough for thermal growth, and that looseness is alignment error.
+
+**420.0 × 313.0 × 167.85 mm** · 8,786,468 mm³ · ~12,301 g at 1.4 g/cm³ · model: `concepts/locate_tapered_rails.py`
+
+![B — Tapered rails — three-quarter view](vision/locate_tapered_rails/view-hero.png)
+
+| Front | Top |
+|---|---|
+| ![front](vision/locate_tapered_rails/view-front.png) | ![top](vision/locate_tapered_rails/view-top.png) |
+
+<details><summary>Dimensioned isometric line drawing</summary>
+
+![B — Tapered rails — isometric](vision/locate_tapered_rails/iso.svg)
+
+</details>
+
+## C — Perimeter nest
+
+The receiver housing drops into a shallow pocket sized to it, with a lead-in chamfer the whole way round. Nothing protrudes above the deck bracket, so there is nothing to snag a line or bend in handling, and the full perimeter carries load and heat. It is the most over-constrained of the three -- the clearance has to absorb the tolerance stack of the whole pocket, so it aligns less precisely than either alternative, and it holds silt and water.
+
+**438.0 × 353.0 × 133.0 mm** · 8,612,814 mm³ · ~12,058 g at 1.4 g/cm³ · model: `concepts/locate_nest.py`
+
+![C — Perimeter nest — three-quarter view](vision/locate_nest/view-hero.png)
+
+| Front | Top |
+|---|---|
+| ![front](vision/locate_nest/view-front.png) | ![top](vision/locate_nest/view-top.png) |
+
+<details><summary>Dimensioned isometric line drawing</summary>
+
+![C — Perimeter nest — isometric](vision/locate_nest/iso.svg)
+
+</details>
 
 ## What v2 keeps from v1
 

@@ -118,3 +118,22 @@ the design levers you did not vary and say why.** A negative result from one
 configuration is a result about that configuration. The existing corner-sweeping
 rule covers tolerance, temperature and supply; it does not cover the geometry
 and topology choices that are usually the real levers.
+
+---
+
+**Both of the tooling defects logged above are FIXED upstream, and the review
+gap is now a first-class stage.** MakeHardware v0.2.0 (commit `93ed502`) lands
+`skills/hw-review/`, `bin/review-gate`, `bin/review-artifact`, a
+`docs/review/` template and a `review:` field in `plan.yaml` that
+`plan-render --check` enforces — so a chunk cannot be called done without a
+committed sign-off. It also fixes `block_diagram.py`'s budget roll-up: child
+rails are now referred through the voltage ratio, and where a voltage is
+missing it rolls up 1:1 and *says so* rather than inventing a ratio.
+This session was running v0.1.0 the whole time, from a branch that had since
+been deleted upstream, and never checked for an update.
+**Fix `skills/hw-doctor` or `hooks/session-start.sh`:** report the installed
+plugin commit against the marketplace's current head at session start. A
+toolbox whose whole value is current practice should notice when it is running
+a version that no longer exists on the remote. The project-local
+`.claude/skills/hw-review/` drafted in this session is deleted; the upstream
+skill supersedes it and is better.

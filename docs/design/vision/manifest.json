@@ -1,0 +1,76 @@
+{
+  "concepts": [
+    {
+      "id": "locate_cone_vee",
+      "title": "A \u2014 Cone, vee and flat",
+      "notes": "Three hardened pins on the bracket: one lands in a cone, one in a vee, one on a flat. That constrains exactly six degrees of freedom with no over-constraint, so the pad lands in the same place every time and thermal growth does not fight it. Standard metrology practice. Repeatability is the best of the three and the contact is three small points, which is also the drawback -- point contacts carry no heat and take the whole landing load.",
+      "rationale": "",
+      "material": "steel",
+      "source": "concepts/locate_cone_vee.py",
+      "metrics": {
+        "bbox_mm": [
+          390.0,
+          325.0,
+          133.0
+        ],
+        "volume_mm3": 6386028.1,
+        "approx_mass_g_at_1p4": 8940.4
+      },
+      "images": {
+        "hero": "locate_cone_vee/view-hero.png",
+        "front": "locate_cone_vee/view-front.png",
+        "top": "locate_cone_vee/view-top.png",
+        "iso": "locate_cone_vee/iso.svg"
+      },
+      "styling": []
+    },
+    {
+      "id": "locate_tapered_rails",
+      "title": "B \u2014 Tapered rails",
+      "notes": "Two long tapered rails either side of the pad. The lead-in is wide at the top and closes to the running fit at the bottom, so a sloppy approach still lands centred. Capture range is much larger than a kinematic mount and the contact is a line rather than three points, which carries heat and load far better. The cost is that a line contact over-constrains: the fit has to be loose enough for thermal growth, and that looseness is alignment error.",
+      "rationale": "",
+      "material": "cobalt",
+      "source": "concepts/locate_tapered_rails.py",
+      "metrics": {
+        "bbox_mm": [
+          420.0,
+          313.0,
+          167.85
+        ],
+        "volume_mm3": 8786467.8,
+        "approx_mass_g_at_1p4": 12301.1
+      },
+      "images": {
+        "hero": "locate_tapered_rails/view-hero.png",
+        "front": "locate_tapered_rails/view-front.png",
+        "top": "locate_tapered_rails/view-top.png",
+        "iso": "locate_tapered_rails/iso.svg"
+      },
+      "styling": []
+    },
+    {
+      "id": "locate_nest",
+      "title": "C \u2014 Perimeter nest",
+      "notes": "The receiver housing drops into a shallow pocket sized to it, with a lead-in chamfer the whole way round. Nothing protrudes above the deck bracket, so there is nothing to snag a line or bend in handling, and the full perimeter carries load and heat. It is the most over-constrained of the three -- the clearance has to absorb the tolerance stack of the whole pocket, so it aligns less precisely than either alternative, and it holds silt and water.",
+      "rationale": "",
+      "material": "sand",
+      "source": "concepts/locate_nest.py",
+      "metrics": {
+        "bbox_mm": [
+          438.0,
+          353.0,
+          133.0
+        ],
+        "volume_mm3": 8612814.4,
+        "approx_mass_g_at_1p4": 12057.9
+      },
+      "images": {
+        "hero": "locate_nest/view-hero.png",
+        "front": "locate_nest/view-front.png",
+        "top": "locate_nest/view-top.png",
+        "iso": "locate_nest/iso.svg"
+      },
+      "styling": []
+    }
+  ]
+}

@@ -1,0 +1,229 @@
+<mxfile host="MakeHardware" type="device">
+  <diagram name="Project plan" id="project-plan">
+    <mxGraphModel dx="4840" dy="606" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4840" pageHeight="606" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="Ulysses LARS Charger" style="text=1;html=1;fillColor=none;strokeColor=none;align=left;verticalAlign=middle;fontSize=16;fontColor=#0b0b0b;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="20" y="14" width="520" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="subtitle" value="5/27 chunks complete · 16 sessions on the critical path · generated from plan.yaml" style="text=1;html=1;fillColor=none;strokeColor=none;align=left;verticalAlign=middle;fontSize=10;fontColor=#898781;" parent="1" vertex="1">
+          <mxGeometry x="20" y="38" width="620" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="V1" value="&lt;b&gt;V1&lt;/b&gt; · Vision, v1 baseline review and link budget&lt;br/&gt;&lt;font color=&quot;#0ca30c&quot;&gt;✓ Done&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  documentation · 1 session&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0ca30c;strokeWidth=3;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="20" y="82" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="G1" value="&lt;b&gt;G1&lt;/b&gt; · Vision review gate — the human agrees the concepts and the numbers&lt;br/&gt;&lt;font color=&quot;#0ca30c&quot;&gt;✓ Done&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  documentation · 1 session&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0ca30c;strokeWidth=1;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="320" y="82" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="R1" value="&lt;b&gt;R1&lt;/b&gt; · System and discipline requirements from the agreed vision&lt;br/&gt;&lt;font color=&quot;#0ca30c&quot;&gt;✓ Done&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  documentation · 1 session&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0ca30c;strokeWidth=3;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="320" y="166" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="R2" value="&lt;b&gt;R2&lt;/b&gt; · Environmental envelope from the marine standards&lt;br/&gt;&lt;font color=&quot;#0ca30c&quot;&gt;✓ Done&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  documentation · 1 session&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0ca30c;strokeWidth=1;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="320" y="250" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="M1" value="&lt;b&gt;M1&lt;/b&gt; · Coil electromagnetic modelling — predict L, R_ac, Q and k by analysis&lt;br/&gt;&lt;font color=&quot;#0ca30c&quot;&gt;✓ Done&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  mechanical · 2 sessions&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0ca30c;strokeWidth=3;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="620" y="82" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="M2" value="&lt;b&gt;M2&lt;/b&gt; · Coil technology decision, magnetics design and compensation network&lt;br/&gt;&lt;font color=&quot;#898781&quot;&gt;○ To do&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  mechanical · 2 sessions&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#898781;strokeWidth=3;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="1220" y="82" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="M3" value="&lt;b&gt;M3&lt;/b&gt; · Coil pad thermal design, conduction path and packaging&lt;br/&gt;&lt;font color=&quot;#898781&quot;&gt;○ To do&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  mechanical · 2 sessions&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#898781;strokeWidth=1;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="1820" y="82" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="E1" value="&lt;b&gt;E1&lt;/b&gt; · Power architecture, topology and part selection&lt;br/&gt;&lt;font color=&quot;#898781&quot;&gt;○ To do&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  electrical · 2 sessions&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#898781;strokeWidth=1;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="620" y="166" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="E1B" value="&lt;b&gt;E1B&lt;/b&gt; · Block diagram and power budget across all three boards&lt;br/&gt;&lt;font color=&quot;#2a78d6&quot;&gt;▶ In progress&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  electrical · 1 session&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#2a78d6;strokeWidth=3;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="1820" y="166" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="E2" value="&lt;b&gt;E2&lt;/b&gt; · TX board schematic capture and ERC&lt;br/&gt;&lt;font color=&quot;#898781&quot;&gt;○ To do&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  electrical · 2 sessions&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#898781;strokeWidth=3;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="2120" y="82" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="E3" value="&lt;b&gt;E3&lt;/b&gt; · RX board schematic capture and ERC&lt;br/&gt;&lt;font color=&quot;#898781&quot;&gt;○ To do&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  electrical · 1 session&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#898781;strokeWidth=1;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="2120" y="166" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="E4" value="&lt;b&gt;E4&lt;/b&gt; · HVLV dual-active-bridge schematic capture and ERC&lt;br/&gt;&lt;font color=&quot;#898781&quot;&gt;○ To do&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  electrical · 2 sessions&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#898781;strokeWidth=3;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="2120" y="250" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="E5" value="&lt;b&gt;E5&lt;/b&gt; · TX PCB layout, DRC and fabrication outputs&lt;br/&gt;&lt;font color=&quot;#898781&quot;&gt;○ To do&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  electrical · 2 sessions&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#898781;strokeWidth=3;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="2720" y="82" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="E6" value="&lt;b&gt;E6&lt;/b&gt; · RX PCB layout, DRC and fabrication outputs&lt;br/&gt;&lt;font color=&quot;#898781&quot;&gt;○ To do&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  electrical · 1 session&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#898781;strokeWidth=1;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="2420" y="82" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="E7" value="&lt;b&gt;E7&lt;/b&gt; · HVLV PCB layout, DRC and fabrication outputs&lt;br/&gt;&lt;font color=&quot;#898781&quot;&gt;○ To do&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  electrical · 2 sessions&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#898781;strokeWidth=3;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="2720" y="166" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="E8" value="&lt;b&gt;E8&lt;/b&gt; · In-band communication link — modulation, demodulation and damping&lt;br/&gt;&lt;font color=&quot;#898781&quot;&gt;○ To do&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  electrical · 2 sessions&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#898781;strokeWidth=1;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="1820" y="250" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="E9" value="&lt;b&gt;E9&lt;/b&gt; · Leviathan-side instance — configuration, harness and commissioning&lt;br/&gt;&lt;font color=&quot;#898781&quot;&gt;○ To do&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  electrical · 1 session&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#898781;strokeWidth=1;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="3320" y="82" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="S1" value="&lt;b&gt;S1&lt;/b&gt; · Resonant link simulation, cross-checked against the closed form&lt;br/&gt;&lt;font color=&quot;#898781&quot;&gt;○ To do&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  test · 1 session&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#898781;strokeWidth=1;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="1820" y="334" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="S2" value="&lt;b&gt;S2&lt;/b&gt; · Power stage simulation — ZVS, dead time and switching loss&lt;br/&gt;&lt;font color=&quot;#898781&quot;&gt;○ To do&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  test · 1 session&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#898781;strokeWidth=1;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="1220" y="166" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="F1" value="&lt;b&gt;F1&lt;/b&gt; · TX resonance-tracking firmware rework&lt;br/&gt;&lt;font color=&quot;#898781&quot;&gt;○ To do&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  firmware · 2 sessions&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#898781;strokeWidth=3;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="2120" y="334" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="F2" value="&lt;b&gt;F2&lt;/b&gt; · HVLV CC/CV control firmware with real constants&lt;br/&gt;&lt;font color=&quot;#898781&quot;&gt;○ To do&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  firmware · 2 sessions&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#898781;strokeWidth=1;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="2120" y="418" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="F3" value="&lt;b&gt;F3&lt;/b&gt; · Protection, fault handling and safe-state behaviour&lt;br/&gt;&lt;font color=&quot;#898781&quot;&gt;○ To do&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  firmware · 1 session&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#898781;strokeWidth=1;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="2720" y="250" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="F4" value="&lt;b&gt;F4&lt;/b&gt; · Link protocol, handshake and coexistence with resonance tracking&lt;br/&gt;&lt;font color=&quot;#898781&quot;&gt;○ To do&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  firmware · 2 sessions&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#898781;strokeWidth=3;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="2720" y="334" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="T1" value="&lt;b&gt;T1&lt;/b&gt; · Analysis and simulation close-out against the requirements&lt;br/&gt;&lt;font color=&quot;#898781&quot;&gt;○ To do&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  test · 2 sessions&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#898781;strokeWidth=3;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="3320" y="166" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="T2" value="&lt;b&gt;T2&lt;/b&gt; · Bench verification — deferred until laboratory access&lt;br/&gt;&lt;font color=&quot;#d03b3b&quot;&gt;✕ Blocked&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  test · 3 sessions&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d03b3b;strokeWidth=3;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="3920" y="82" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="D1" value="&lt;b&gt;D1&lt;/b&gt; · Design record — ADRs, architecture and interfaces consolidated&lt;br/&gt;&lt;font color=&quot;#898781&quot;&gt;○ To do&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  documentation · 1 session&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#898781;strokeWidth=1;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="2120" y="502" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="D2" value="&lt;b&gt;D2&lt;/b&gt; · User documentation and spec sheet&lt;br/&gt;&lt;font color=&quot;#898781&quot;&gt;○ To do&lt;/font&gt;&lt;font color=&quot;#898781&quot; style=&quot;font-size:9px&quot;&gt;  ·  documentation · 1 session&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#898781;strokeWidth=1;align=left;spacingLeft=8;verticalAlign=middle;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="3920" y="166" width="210" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="V1--G1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="V1" target="G1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="V1--R1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52514e;strokeWidth=2;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="V1" target="R1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="V1--R2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="V1" target="R2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R1--M1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52514e;strokeWidth=2;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="R1" target="M1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="M1--M2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52514e;strokeWidth=2;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="M1" target="M2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="G1--M2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="G1" target="M2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="M2--M3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="M2" target="M3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R1--E1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="R1" target="E1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="G1--E1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="G1" target="E1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E1--E1B" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="E1" target="E1B">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="M2--E1B" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52514e;strokeWidth=2;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="M2" target="E1B">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E1B--E2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52514e;strokeWidth=2;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="E1B" target="E2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E1B--E3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="E1B" target="E3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E1B--E4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52514e;strokeWidth=2;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="E1B" target="E4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E2--E5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52514e;strokeWidth=2;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="E2" target="E5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="S2--E5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="S2" target="E5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E3--E6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="E3" target="E6">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E4--E7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52514e;strokeWidth=2;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="E4" target="E7">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="S2--E7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="S2" target="E7">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E1--E8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="E1" target="E8">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="M2--E8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="M2" target="E8">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E4--E9" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="E4" target="E9">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E7--E9" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="E7" target="E9">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="M2--S1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="M2" target="S1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E1--S1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="E1" target="S1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E1--S2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="E1" target="S2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E1B--F1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52514e;strokeWidth=2;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="E1B" target="F1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E1B--F2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="E1B" target="F2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="F1--F3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="F1" target="F3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="F2--F3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="F2" target="F3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="S2--F3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="S2" target="F3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E8--F4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="E8" target="F4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="F1--F4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52514e;strokeWidth=2;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="F1" target="F4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E5--T1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52514e;strokeWidth=2;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="E5" target="T1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E6--T1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="E6" target="T1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E7--T1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52514e;strokeWidth=2;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="E7" target="T1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="F3--T1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="F3" target="T1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="F4--T1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52514e;strokeWidth=2;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="F4" target="T1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="M3--T1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="M3" target="T1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="S1--T1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="S1" target="T1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="T1--T2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#52514e;strokeWidth=2;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="T1" target="T2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="M2--D1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="M2" target="D1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E1B--D1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="E1B" target="D1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="T1--D2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#898781;strokeWidth=1;endArrow=block;endSize=6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="T1" target="D2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
