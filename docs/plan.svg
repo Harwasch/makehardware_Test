@@ -112,8 +112,8 @@
 <text x="20" y="865" class="tb ink2">TEST</text>
 <line x1="20" y1="871" x2="2176" y2="871" class="ax" stroke-width="1" opacity="0.35"/>
 <text x="20" y="895.0" class="t ink">S1 · Resonant link simulation, cross-checked</text>
-<rect x="1019" y="881.0" width="110" height="20" rx="4" class="bar-todo"/>
-<text x="1027" y="895.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
+<rect x="1019" y="881.0" width="110" height="20" rx="4" class="bar-in_progress"/>
+<text x="1027" y="895.0" class="ts" fill="#ffffff" opacity="0.96">▶ In progress</text>
 <text x="20" y="929.0" class="t ink">S2 · Power stage simulation — ZVS, dead time</text>
 <rect x="787" y="915.0" width="110" height="20" rx="4" class="bar-todo"/>
 <text x="795" y="929.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>

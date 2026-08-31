@@ -130,10 +130,33 @@ documents:
     url: https://www.infineon.com/cms/en/product/power/mosfet/n-channel/bsc190n15ns3-g
     local: null
     blocked: not yet fetched
+    needed_by: [ELE-003]
     notes: >-
       v1 LV-side DAB switch, two paralleled per branch. 150 V rating bounds the
       LV bus — which the white paper never states. See the open question in
       docs/design/v1-baseline.md.
+      BLOCKING A LIVE NUMBER: sim/dab/run_dab.py uses R_ds(on) = 19 mOhm scaled
+      1.6x for temperature, taken from the family designation and NOT from this
+      datasheet. ELE-003's conduction figure of 76 W moves with it, and ELE-003
+      already fails its 100 W budget at that value. Confirm before re-budgeting.
+
+  - id: mursda860-datasheet
+    title: MURSDA860 ultrafast/Schottky rectifier — ratings unknown
+    part: MURSDA860
+    publisher: unknown
+    url: null
+    local: null
+    blocked: part number not resolved
+    needed_by: [ELE-007]
+    notes: >-
+      Named on page 5 of the white paper as the RX rectifier, twelve devices,
+      three paralleled per bridge leg. No voltage, current or forward-drop
+      rating is given there and the part number does not resolve to a
+      manufacturer datasheet from here. It matters more than it looks:
+      sim-findings.md F16 puts the rectifier output at 471-622 V rather than
+      the 400 V assumed, so the voltage class is an open question, and
+      sim/link/link.cir therefore uses a GENERIC fast diode rather than a
+      vendor model. Ask the human for the real part.
 
   - id: lmg352xr030-datasheet
     title: LMG352xR030 650 V 30 mOhm GaN FET with integrated driver, protection and temperature reporting

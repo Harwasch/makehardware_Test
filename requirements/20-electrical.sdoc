@@ -70,19 +70,50 @@ The vehicle-side dual active bridge, from rectified DC to pack terminals, shall
 dissipate no more than 100 W at 3.0 kW throughput.
 <<<
 RATIONALE: >>>
-The low-voltage bridge carries 62.5 A at 48 V, about 44 A rms per branch. With
-the v1 choice of two BSC190N15NS3 per branch the bridge alone costs 74 W of
-conduction, leaving only 26 W for the high-voltage bridge, the transformer and
-all switching loss - not feasible. Four devices per branch brings it to 37 W and
-leaves 63 W, which is. This requirement is what forces that change.
+CORRECTED 2026-08-31 against simulation. The earlier figures in this field -
+74 W for two devices per branch and 37 W for four - were understated about
+twofold, because the half-cycle conduction factor was dropped. Each switch
+position conducts for half the cycle, so a device carries I rms over root two
+times N with N in parallel, and the whole low-voltage bridge costs
+2 times I rms squared times R ds over N.
+
+``sim/dab/run_dab.py`` puts 70.7 A rms in the tank at 3.0 kW and the most
+favourable phase shift. That gives 152 W for the v1 choice of two
+BSC190N15NS3 per branch, and 76 W for four. The conclusion the old numbers
+drove - four devices per branch rather than two - is unchanged and
+strengthened, because two per branch now exceeds this entire requirement by
+52% on conduction alone.
+
+The 100 W budget itself is NOT met and this requirement is not close to
+satisfied. Four per branch spends 76 W of the 100 W on low-voltage conduction
+before the high-voltage bridge, the transformer or any switching loss. Either
+the allocation rises, the device changes, or the phase shift and frequency move.
+That is E1's to settle and it is why this requirement stays Draft.
+
+R ds(on) here is the 19 milliohm family figure for BSC190N15NS3 scaled 1.6 times
+for temperature and is NOT confirmed against a fetched datasheet - recorded as
+blocked in ``docs/reference/manifest.yaml``. The shortfall is real at any
+plausible value; its size is not yet pinned. See
+``docs/design/sim-findings.md`` finding F17.
 <<<
 VERIFICATION: Simulation
+EVIDENCE: >>>
+``docs/design/sim-dab.md``, run 2026-08-31 on ngspice-42, cross-checked against
+the single-phase-shift closed form to within 1.6% on every point, corners swept
+over phase shift 30 to 90 degrees and 100 to 150 kHz. Low-voltage bridge
+conduction is 76 W of the 100 W allowed, at four devices per branch and the most
+favourable corner, with nothing yet allocated to the high-voltage bridge, the
+transformer or switching loss. NOT SATISFIED - this evidence is what shows the
+budget does not close.
+<<<
 BUDGET: 100 W
 STATUS: Draft
 RELATIONS:
 - TYPE: Parent
   VALUE: SYS-004
   ROLE: Refines
+- TYPE: File
+  VALUE: sim/dab/dab.cir
 
 [REQUIREMENT]
 UID: ELE-004

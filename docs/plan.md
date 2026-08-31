@@ -179,15 +179,15 @@ UNBLOCKED. The Leviathan pack is 48 V nominal, the same as the Mako's, so one lo
 
 #### S1 — Resonant link simulation, cross-checked against the closed form
 
-ngspice model of the compensated link. Must reconcile with sim/link-budget/link_budget.py; a disagreement means one of them is wrong.
+ngspice decks written and running, every point cross-checked against closed form. Three findings in sim-findings.md: F14 the v1 coils cannot transfer 3 kW by a factor of 6.75 in k, F16 the corrected coil works but puts 471-622 V on the rectifier rather than the 400 V the block diagram assumes, F17 the vehicle DAB loss budget does not close and ELE-003's rationale was corrected. A DAB power-transfer deck is included even though the DAB belongs to E1, because the white paper gives no transformer parameters and the deck solves for them. NOT done: run ahead of M2 and E1, so the numbers are provisional, and F16 needs an architecture decision from the human before the operating point is settled.
 
 * **Needs first:** M2, E1
 * **Estimate:** 1 session
-* **Produces:** `sim/link/`, `docs/design/link-simulation.md`
+* **Produces:** `sim/link/`, `sim/dab/`, `docs/design/sim-link.md`, `docs/design/sim-dab.md`, `docs/design/sim-findings.md`
 
 #### S2 — Power stage simulation — ZVS, dead time and switching loss
 
-Dead time is safety-critical here and v1 never set it in firmware at all. Sweep corners; a dead time that works at 25 C and shoots through at 85 C is the failure this chunk exists to catch.
+Dead time is safety-critical here and v1 never set it in firmware at all. Sweep corners; a dead time that works at 25 C and shoots through at 85 C is the failure this chunk exists to catch. BLOCKED IN PRACTICE: this needs real device models, and the LMG3526R030 is the only power part whose datasheet has been fetched. BSC190N15NS3, IPB60R120C7 and the RX rectifier are all blocked in docs/reference/manifest.yaml. The S1 decks deliberately use ideal sources and carry no switching loss at all.
 
 * **Needs first:** E1
 * **Estimate:** 1 session
