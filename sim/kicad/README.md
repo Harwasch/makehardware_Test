@@ -33,21 +33,48 @@ git clone <this repo>
 kicad sim/kicad/dab-sim.kicad_pro          # or File > Open Project
 ```
 
-Open the schematic, then **Inspect → Simulator**. The sheet already carries its
-own SPICE directives — you can see them on the drawing, bottom left:
+**The Simulator is in the Schematic Editor, not the Project Manager.** Open the
+schematic first — double-click `dab-sim.kicad_sch` in the project tree, or press
+the Schematic Editor button — and the **Inspect** menu appears. Simulator is
+under it.
+
+**Run will ask you for the simulation settings the first time. Give it:**
+
+| Field | Value |
+|---|---|
+| Analysis | Transient |
+| Time step | `10n` |
+| Final time | `500u` |
+| Time to start saving data | `400u` |
+
+or, if the dialog offers a custom/direct command box, paste
+`.tran 10n 500u 400u` into it. KiCad stores the command in the schematic, so it
+only asks once.
+
+**Why it asks, when the directive is right there on the sheet.** KiCad treats a
+text item as *the simulation command* only when its **first line** starts with a
+`.`. The directive block on this sheet reads
 
 ```
-K1 L1 L2 0.9999
+K1 L1 L2 0.9999          <- first line, does not start with a dot
 .tran 10n 500u 400u
 ```
 
-so the simulation command is already set. Press **Run**. It settles in a few
-seconds; the analysis skips the first 400 µs of start-up and shows the last
-100 µs.
+Both lines are exported into the netlist correctly — the coupling and the
+analysis are genuinely there, which is why `run.sh` works — but the GUI does not
+recognise the block as a simulation command, so it prompts.
 
-If Run is greyed out or complains there is no command, open
-**Simulation → Settings**, choose **Transient**, and enter `10n 500u 400u`
-(step, stop, start).
+**The permanent fix takes five seconds in eeschema:** double-click that text,
+delete the `.tran` line from it, then place a *separate* text item containing
+only
+
+```
+.tran 10n 500u 400u
+```
+
+Two text items, each a directive, the second one starting with a dot. Run stops
+asking. The analysis settles in a few seconds; it skips the first 400 µs of
+start-up and shows the last 100 µs.
 
 ### 3. Probing
 
