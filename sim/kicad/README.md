@@ -33,11 +33,23 @@ Datasheet, so `kicad-cli sch export netlist --format spice` emits `S1 __S1`
 with no nodes and no model. Every simulated part here carries `Sim.Device`,
 `Sim.Pins` and `Sim.Params` as instance properties for that reason.
 
-**Cosmetic wires can short a control pin.** Drawing a rail across the top of a
-switch row put the wire straight through each switch's `C+` pin, shorting VLV
-to the gate net; ngspice reported `singular matrix: check node vg2#branch` and
-produced zero data rows. The connections here are made with net labels, and
-only the four vertical leg wires are drawn.
+**Cosmetic wires can short a control pin.** The SWITCH symbol puts its control
+pins at the same heights as its power pins, one grid column to the left, so a
+rail drawn straight across a row of switches passes through every `C+` pin and
+shorts the supply to the gate net. ngspice reports `singular matrix: check node
+vg2#branch` and produces zero data rows. The rails here are drawn ABOVE and
+BELOW the switch rows with short stubs down to each pin, which is why the top
+rail sits at y = 68.58 rather than on the pin row.
+
+## Reading it
+
+The sheet is wired, not labelled: every power connection is a drawn line, so
+the two H-bridges, their body diodes, the transformer and the 56 uH can be
+traced by eye. Only the four gate nets `G1`-`G4` are labels, which is normal
+practice — drawing them would put eight wires across the sheet for no gain.
+The power nets carry labels as well as wires (`VLV_48V`, `LA`, `LB`, `HA`,
+`HB`, `VHV_400V`) so the exported netlist reads in those names instead of
+`Net-_D1-A_`.
 
 ## Reproducing the numbers outside the GUI
 

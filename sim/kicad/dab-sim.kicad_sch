@@ -2,7 +2,7 @@
 	(version 20250610)
 	(generator "konnect")
 	(generator_version "10.0")
-	(uuid "6673a31f-388f-4c6b-8449-8580eafdaa8a")
+	(uuid "8bdc63a0-d120-4e49-a0a7-406cc55b9f90")
 	(paper "A3")
 	(lib_symbols
 		(symbol "Simulation_SPICE:VDC"
@@ -539,6 +539,207 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Simulation_SPICE:D"
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "D"
+				(at 0 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "D"
+				(at 0 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml#cha_DIODEs"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Diode for simulation or PCB"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Sim.Device" "D"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Sim.Pins" "1=K 2=A"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Sim.Params" "rs=50m cjo=10p"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "simulation"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "D_0_1"
+				(polyline
+					(pts
+						(xy -1.27 1.27)
+						(xy -1.27 -1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 1.27)
+						(xy 1.27 -1.27)
+						(xy -1.27 0)
+						(xy 1.27 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 0)
+						(xy -1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "D_1_1"
+				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 3.81 0 180)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Device:L"
 			(pin_numbers
 				(hide yes)
@@ -1042,926 +1243,805 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Simulation_SPICE:D"
-			(pin_names
-				(offset 1.016)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "D"
-				(at 0 2.54 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "D"
-				(at 0 -2.54 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" "https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml#cha_DIODEs"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Diode for simulation or PCB"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Sim.Device" "D"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Sim.Pins" "1=K 2=A"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Sim.Params" "rs=50m cjo=10p"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "simulation"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "D_0_1"
-				(polyline
-					(pts
-						(xy -1.27 1.27)
-						(xy -1.27 -1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 1.27)
-						(xy 1.27 -1.27)
-						(xy -1.27 0)
-						(xy 1.27 1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 0)
-						(xy -1.27 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "D_1_1"
-				(pin passive line
-					(at -3.81 0 0)
-					(length 2.54)
-					(name "K"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 3.81 0 180)
-					(length 2.54)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
+	)
+	(junction
+		(at 59.69 68.58)
+		(diameter 0)
+		(uuid "5d8b93af-6515-4b6f-bebc-f2b1d2e39bd5")
+	)
+	(junction
+		(at 110.49 68.58)
+		(diameter 0)
+		(uuid "e1faf61b-b560-4686-9fd2-03e7337fc895")
+	)
+	(junction
+		(at 69.85 68.58)
+		(diameter 0)
+		(uuid "75effc6b-9be0-4a4d-be58-e93dcae2ef79")
+	)
+	(junction
+		(at 59.69 130.81)
+		(diameter 0)
+		(uuid "00f9af10-5efc-4bec-83f1-f22ae05f6f6c")
+	)
+	(junction
+		(at 110.49 130.81)
+		(diameter 0)
+		(uuid "9077012c-129b-4be0-913c-be0a0753c119")
+	)
+	(junction
+		(at 69.85 130.81)
+		(diameter 0)
+		(uuid "e723ff5c-f1d6-4b85-b00d-cd495216e9c9")
+	)
+	(junction
+		(at 59.69 88.9)
+		(diameter 0)
+		(uuid "9885ec14-59d7-4385-851e-0563e2c36f47")
+	)
+	(junction
+		(at 59.69 110.49)
+		(diameter 0)
+		(uuid "c2d90527-f59d-4818-928a-3cb320cd94d2")
+	)
+	(junction
+		(at 110.49 88.9)
+		(diameter 0)
+		(uuid "7a44b9db-b968-49d5-9dd8-508ac22063a1")
+	)
+	(junction
+		(at 110.49 110.49)
+		(diameter 0)
+		(uuid "fa747b1f-6d47-4551-8187-3cf453fc7301")
+	)
+	(junction
+		(at 59.69 96.52)
+		(diameter 0)
+		(uuid "87deda01-b060-4b83-b5e6-bb0fa07ce719")
+	)
+	(junction
+		(at 110.49 104.14)
+		(diameter 0)
+		(uuid "abbfac8c-f694-4c51-8d5f-fc0a6d0b8cde")
+	)
+	(junction
+		(at 240.03 68.58)
+		(diameter 0)
+		(uuid "ce7deeae-696e-4970-a1ba-03a212af1072")
+	)
+	(junction
+		(at 199.39 68.58)
+		(diameter 0)
+		(uuid "9b30a365-98dd-406e-8b67-333d1a478b22")
+	)
+	(junction
+		(at 250.19 68.58)
+		(diameter 0)
+		(uuid "f7d9a068-bdba-4070-b8a7-b449c62102c3")
+	)
+	(junction
+		(at 240.03 130.81)
+		(diameter 0)
+		(uuid "088d5ba7-0345-40bd-9419-b31a86bb9051")
+	)
+	(junction
+		(at 199.39 130.81)
+		(diameter 0)
+		(uuid "672e139a-2c81-4594-9436-9edb9612f4c1")
+	)
+	(junction
+		(at 250.19 130.81)
+		(diameter 0)
+		(uuid "2bf73512-61b5-4e32-904b-691feef9fc72")
+	)
+	(junction
+		(at 190.5 88.9)
+		(diameter 0)
+		(uuid "666ecd75-179b-4d30-a5ff-0c8e8885a2e1")
+	)
+	(junction
+		(at 190.5 110.49)
+		(diameter 0)
+		(uuid "d3194eaa-7be5-4b19-958e-753f2aa67fd1")
+	)
+	(junction
+		(at 240.03 88.9)
+		(diameter 0)
+		(uuid "6991d0e4-ff32-49c3-8044-a01a35a841c9")
+	)
+	(junction
+		(at 240.03 110.49)
+		(diameter 0)
+		(uuid "26205b53-ce7f-4d89-add1-077964af007f")
+	)
+	(junction
+		(at 190.5 96.52)
+		(diameter 0)
+		(uuid "32b96c70-29cd-429f-864b-5008ef28e81d")
+	)
+	(junction
+		(at 240.03 104.14)
+		(diameter 0)
+		(uuid "0ebe743f-0a93-4753-9892-b96734aa1dad")
+	)
+	(junction
+		(at 77.47 130.81)
+		(diameter 0)
+		(uuid "49bc95a2-7831-4f83-9b29-cda5e141a764")
+	)
+	(junction
+		(at 227.33 130.81)
+		(diameter 0)
+		(uuid "ab939b0a-0af4-4e44-b265-1070be92d39f")
 	)
 	(wire
 		(pts
-			(xy 74.93 90.17)
-			(xy 74.93 124.46)
+			(xy 35.56 95.25)
+			(xy 35.56 68.58)
 		)
-		(uuid "a66fe624-4701-458e-810c-b16077555b49")
+		(uuid "2a0f8d52-be65-4427-afe7-e2e914150b21")
 	)
 	(wire
 		(pts
-			(xy 115.57 90.17)
-			(xy 115.57 124.46)
+			(xy 35.56 68.58)
+			(xy 119.38 68.58)
 		)
-		(uuid "5a81bb67-d6a7-4691-beb0-ffe88921c3e2")
+		(uuid "8152e09a-f8f5-4709-918f-8390b93a0abd")
 	)
 	(wire
 		(pts
-			(xy 245.11 90.17)
-			(xy 245.11 124.46)
+			(xy 59.69 68.58)
+			(xy 59.69 74.93)
 		)
-		(uuid "526266a6-1a92-4567-baa5-9d457b97e91a")
+		(uuid "88fe05e0-cdd1-432e-a5d3-cdc72eaddfec")
 	)
 	(wire
 		(pts
-			(xy 284.48 90.17)
-			(xy 284.48 124.46)
+			(xy 110.49 68.58)
+			(xy 110.49 74.93)
 		)
-		(uuid "9f2ff11d-c7f2-4d36-bc41-0abf5eb6ce38")
+		(uuid "f8ddb09c-da92-4644-a2ff-0d609c12553a")
 	)
-	(text ".model SWMOD SW(Ron=5m Roff=1e6 Vt=2.5 Vh=0.1)\nK1 L1 L2 0.9999\n.tran 20n 400u 300u"
-		(at 40 210 0)
+	(wire
+		(pts
+			(xy 69.85 68.58)
+			(xy 69.85 76.2)
+		)
+		(uuid "20367a73-bb8b-476f-8cc3-62139d5a23b3")
+	)
+	(wire
+		(pts
+			(xy 119.38 68.58)
+			(xy 119.38 76.2)
+		)
+		(uuid "0d6ca75e-3605-4b1b-8fdc-5bd0d1062ea7")
+	)
+	(wire
+		(pts
+			(xy 35.56 105.41)
+			(xy 35.56 130.81)
+		)
+		(uuid "ae2f3da1-2650-4655-8ba7-a7be4326481b")
+	)
+	(wire
+		(pts
+			(xy 35.56 130.81)
+			(xy 119.38 130.81)
+		)
+		(uuid "b44cba08-2957-4baf-8d05-8eb9c396f6cc")
+	)
+	(wire
+		(pts
+			(xy 59.69 130.81)
+			(xy 59.69 124.46)
+		)
+		(uuid "921be7dd-e439-4051-b6ec-7b9794ee2ad3")
+	)
+	(wire
+		(pts
+			(xy 110.49 130.81)
+			(xy 110.49 124.46)
+		)
+		(uuid "ff55666a-d238-40c6-9729-bdf432acb09c")
+	)
+	(wire
+		(pts
+			(xy 69.85 130.81)
+			(xy 69.85 123.19)
+		)
+		(uuid "050af392-3a1e-4f37-a9ad-40dcafadf729")
+	)
+	(wire
+		(pts
+			(xy 119.38 130.81)
+			(xy 119.38 123.19)
+		)
+		(uuid "c60091b9-46de-46e7-9f0d-8048ffa43bd1")
+	)
+	(wire
+		(pts
+			(xy 59.69 85.09)
+			(xy 59.69 114.3)
+		)
+		(uuid "73df1821-8eb6-4ce9-8cef-16c2e1285b8a")
+	)
+	(wire
+		(pts
+			(xy 110.49 85.09)
+			(xy 110.49 114.3)
+		)
+		(uuid "cb445226-6045-4d07-8fd5-96051aca7dbe")
+	)
+	(wire
+		(pts
+			(xy 69.85 83.82)
+			(xy 69.85 88.9)
+		)
+		(uuid "2c4fb352-6fd5-4e30-b514-11ae61888e0c")
+	)
+	(wire
+		(pts
+			(xy 69.85 88.9)
+			(xy 59.69 88.9)
+		)
+		(uuid "b5feccde-73f1-4033-bb5a-3f22c4c65463")
+	)
+	(wire
+		(pts
+			(xy 69.85 115.57)
+			(xy 69.85 110.49)
+		)
+		(uuid "bfbc46a9-30de-4a53-923f-c8cef5accce6")
+	)
+	(wire
+		(pts
+			(xy 69.85 110.49)
+			(xy 59.69 110.49)
+		)
+		(uuid "f1c2b5b8-5b43-40f3-a3c5-fbc7a8e83c79")
+	)
+	(wire
+		(pts
+			(xy 119.38 83.82)
+			(xy 119.38 88.9)
+		)
+		(uuid "130f572f-9dcb-4f0f-ad1a-79061764ff2d")
+	)
+	(wire
+		(pts
+			(xy 119.38 88.9)
+			(xy 110.49 88.9)
+		)
+		(uuid "104f6bfa-a286-4454-903d-f995907613a2")
+	)
+	(wire
+		(pts
+			(xy 119.38 115.57)
+			(xy 119.38 110.49)
+		)
+		(uuid "baf36724-ba71-4c91-8f6f-b3edfbfcff5e")
+	)
+	(wire
+		(pts
+			(xy 119.38 110.49)
+			(xy 110.49 110.49)
+		)
+		(uuid "ca6e6caf-65c7-484a-8be4-db9786884315")
+	)
+	(wire
+		(pts
+			(xy 59.69 96.52)
+			(xy 85.09 96.52)
+		)
+		(uuid "a3670666-49b0-41e8-ac1c-63b7a6c8f43f")
+	)
+	(wire
+		(pts
+			(xy 85.09 104.14)
+			(xy 110.49 104.14)
+		)
+		(uuid "9244da1d-bafc-42a0-9a2c-8b347dbc2a2b")
+	)
+	(wire
+		(pts
+			(xy 265.43 95.25)
+			(xy 265.43 68.58)
+		)
+		(uuid "83b8430e-f9b2-4220-a14f-3168af416f98")
+	)
+	(wire
+		(pts
+			(xy 190.5 68.58)
+			(xy 265.43 68.58)
+		)
+		(uuid "5b760b37-1d96-456d-86c9-d06e05176319")
+	)
+	(wire
+		(pts
+			(xy 190.5 68.58)
+			(xy 190.5 74.93)
+		)
+		(uuid "2316430f-9d5c-4b69-8078-facba07b5567")
+	)
+	(wire
+		(pts
+			(xy 240.03 68.58)
+			(xy 240.03 74.93)
+		)
+		(uuid "1e0947d6-50ee-46e8-9897-be35c6bde865")
+	)
+	(wire
+		(pts
+			(xy 199.39 68.58)
+			(xy 199.39 76.2)
+		)
+		(uuid "3407d74f-b525-430d-af7f-1caa2ed71ef2")
+	)
+	(wire
+		(pts
+			(xy 250.19 68.58)
+			(xy 250.19 76.2)
+		)
+		(uuid "fe2e117c-b788-4c07-9a97-e5e17b451d73")
+	)
+	(wire
+		(pts
+			(xy 265.43 105.41)
+			(xy 265.43 130.81)
+		)
+		(uuid "0294e983-fcb3-4256-a18d-77e2bd0387c7")
+	)
+	(wire
+		(pts
+			(xy 190.5 130.81)
+			(xy 265.43 130.81)
+		)
+		(uuid "58642e9e-009c-483a-a35d-c1bf6dfae65c")
+	)
+	(wire
+		(pts
+			(xy 190.5 130.81)
+			(xy 190.5 124.46)
+		)
+		(uuid "d5a5a087-b9a8-46f4-a8ab-a62d190dfdcd")
+	)
+	(wire
+		(pts
+			(xy 240.03 130.81)
+			(xy 240.03 124.46)
+		)
+		(uuid "9d1573d9-1215-43de-ab29-70c2bbe791fe")
+	)
+	(wire
+		(pts
+			(xy 199.39 130.81)
+			(xy 199.39 123.19)
+		)
+		(uuid "430b002c-a5c0-467d-8f02-ab9660bc808f")
+	)
+	(wire
+		(pts
+			(xy 250.19 130.81)
+			(xy 250.19 123.19)
+		)
+		(uuid "38dcf015-0a0f-4126-b38e-998584b0599f")
+	)
+	(wire
+		(pts
+			(xy 190.5 85.09)
+			(xy 190.5 114.3)
+		)
+		(uuid "10e0e5f3-6ce0-4747-9ff2-c44e6fa3a416")
+	)
+	(wire
+		(pts
+			(xy 240.03 85.09)
+			(xy 240.03 114.3)
+		)
+		(uuid "48d50aac-d5d6-4e70-992c-96769767054e")
+	)
+	(wire
+		(pts
+			(xy 199.39 83.82)
+			(xy 199.39 88.9)
+		)
+		(uuid "717b3e09-290d-4c27-80ed-f7e777e1b174")
+	)
+	(wire
+		(pts
+			(xy 199.39 88.9)
+			(xy 190.5 88.9)
+		)
+		(uuid "efdcfac2-6773-45a0-beaa-f325aa5ce340")
+	)
+	(wire
+		(pts
+			(xy 199.39 115.57)
+			(xy 199.39 110.49)
+		)
+		(uuid "79ea14ba-cd2e-443c-bc36-d15988abafdf")
+	)
+	(wire
+		(pts
+			(xy 199.39 110.49)
+			(xy 190.5 110.49)
+		)
+		(uuid "3da0fc83-3d4a-4843-bf0b-0631617899ca")
+	)
+	(wire
+		(pts
+			(xy 250.19 83.82)
+			(xy 250.19 88.9)
+		)
+		(uuid "5946ac33-fe99-41d5-a5a1-20ce309c1809")
+	)
+	(wire
+		(pts
+			(xy 250.19 88.9)
+			(xy 240.03 88.9)
+		)
+		(uuid "46223733-833c-4ff2-90dd-b94bd655c0f1")
+	)
+	(wire
+		(pts
+			(xy 250.19 115.57)
+			(xy 250.19 110.49)
+		)
+		(uuid "d295ad71-12a1-4356-b96c-f03cf174522c")
+	)
+	(wire
+		(pts
+			(xy 250.19 110.49)
+			(xy 240.03 110.49)
+		)
+		(uuid "4f08805e-cef9-4606-b282-06d49c5c1e16")
+	)
+	(wire
+		(pts
+			(xy 190.5 96.52)
+			(xy 199.39 96.52)
+		)
+		(uuid "d6b373d0-891b-41ea-bb7d-3ff88854f70d")
+	)
+	(wire
+		(pts
+			(xy 207.01 96.52)
+			(xy 214.63 96.52)
+		)
+		(uuid "8d79834e-4f96-4e28-a675-9443c2a42637")
+	)
+	(wire
+		(pts
+			(xy 214.63 104.14)
+			(xy 240.03 104.14)
+		)
+		(uuid "2c632e18-61af-4734-8ef1-16ecf482732c")
+	)
+	(text "K1 L1 L2 0.9999\n.tran 10n 500u 400u"
+		(at 35 148 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "14f834f3-f316-41b1-8e1e-f32500f001ec")
-	)
-	(text "DUAL ACTIVE BRIDGE  -  48 V Mako pack  <->  400 V link,  3 kW,  single phase shift\n\nL3 = 56 uH is the customer-supplied series inductance on the HIGH-voltage side of the\nPCB-coil planar transformer. It is what sets power transfer, with the turns ratio and\nthe switching frequency:   P = V1 * (V2/n) * phi * (pi - phi) / (2 * pi^2 * f * L)\n\nL1 / L2 are the transformer, n = 8.33 (L2/L1 = n^2), K1 couples them at 0.9999 so the\nleakage is L3 and nothing else.  f = 100 kHz.  phi = 54 deg  ->  VG3/VG4 delayed 1.5 us.\n\nD1-D8 are the body diodes. They are not decoration: without a freewheel path the\n100 ns dead time chops the inductor current and the transfer falls from 3.0 kW to\n1.2 kW. Deleting them does not make the model simpler, it makes it wrong.\n\nSimulated: 3016 W in, 2943 W out, 97.6%.  Closed form: 3001 W.  Agreement 0.5%."
-		(at 40 225 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "01c9c1bc-f29b-431b-aa70-161918bdbcaf")
-	)
-	(label "VLV"
-		(at 39.37 105.41 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "d3fa7c77-7fe3-48bb-b34e-209dddff5584")
-	)
-	(label "VLV"
-		(at 74.93 80.01 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "f1f2405c-4e75-4b78-9ac1-9b2fa631d822")
-	)
-	(label "VLV"
-		(at 115.57 80.01 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "b383ec48-2b7b-4a6e-8a34-d5d89839b8c8")
-	)
-	(label "LA"
-		(at 74.93 90.17 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "e0a69a34-6030-4c4d-bcf6-c5f7f1d41084")
-	)
-	(label "LA"
-		(at 74.93 124.46 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "7cc0ddc3-666c-4a0a-9a1d-8072aa3a2b15")
-	)
-	(label "LA"
-		(at 149.86 102.87 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "59791407-8f59-4d8d-8e88-03a395a1751a")
-	)
-	(label "LB"
-		(at 115.57 90.17 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "07d4fdd0-9b6b-4d2f-ad27-4beb123043ea")
-	)
-	(label "LB"
-		(at 115.57 124.46 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "2b8c9a3e-a50d-4307-a305-96774c675658")
-	)
-	(label "LB"
-		(at 149.86 110.49 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "93c247ba-ffe4-41b1-bda7-070b8eb1a4a3")
-	)
-	(label "SEC"
-		(at 180.34 102.87 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "79f4aec4-2a45-4eac-824c-36e208cbbb98")
-	)
-	(label "SEC"
-		(at 204.47 81.28 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "2153faaa-e188-40d8-add7-10fe0c23ea83")
-	)
-	(label "HA"
-		(at 204.47 88.9 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "8f9fa0db-2df0-4b9f-aff2-8514f53a3ccd")
-	)
-	(label "HA"
-		(at 245.11 90.17 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "ddd2be17-d720-4489-a1e6-be04b817141f")
-	)
-	(label "HA"
-		(at 245.11 124.46 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "2473f145-f98c-4313-955c-614524a063a0")
-	)
-	(label "HB"
-		(at 180.34 110.49 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "3b9b21b1-12ea-4344-82ad-2f6fbe286304")
-	)
-	(label "HB"
-		(at 284.48 90.17 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "8fbeef53-905a-418b-902b-435eec45a777")
-	)
-	(label "HB"
-		(at 284.48 124.46 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "539c08b3-f095-432d-9c21-06bff01cb8b2")
-	)
-	(label "VHV"
-		(at 320.04 105.41 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "51f2bfd2-c102-4653-8acf-27ffae5aad73")
-	)
-	(label "VHV"
-		(at 245.11 80.01 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "de659f7d-7876-44b0-a4b6-68e280546b06")
-	)
-	(label "VHV"
-		(at 284.48 80.01 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "d5fe5ecf-5b6f-4c8a-bc7f-4c9f7891f2e0")
+		(uuid "d12c718a-18fa-4bb4-b386-b1e4c19ffbf0")
 	)
 	(label "G1"
-		(at 49.53 175.26 0)
+		(at 54.61 74.93 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "100e6751-ac9a-44f5-a9ef-06d9b440a931")
+		(uuid "08d0cd19-b084-4fa6-95bd-ce4d4bd3d29d")
 	)
 	(label "G1"
-		(at 69.85 80.01 0)
+		(at 105.41 114.3 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "185cfd87-9c24-4452-8ffe-3565f7b0d283")
+		(uuid "619fcc50-b259-43f0-836b-98a3246cba71")
 	)
 	(label "G1"
-		(at 110.49 124.46 0)
+		(at 54.61 170.18 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "7661833a-8c51-40b3-8964-fdbed835e3df")
+		(uuid "bc7b76b3-bc74-442e-bf6b-3b6a92a05c60")
 	)
 	(label "G2"
-		(at 100.33 175.26 0)
+		(at 54.61 114.3 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "0714bbf9-8cc0-45f3-a728-7c6c64687995")
+		(uuid "5aab9a41-de9d-4700-808e-102d315e4ec8")
 	)
 	(label "G2"
-		(at 69.85 124.46 0)
+		(at 105.41 74.93 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "37603bd5-cea8-4c8b-adf3-1e766c196643")
+		(uuid "95c99a4f-a97e-4a61-b3c7-d31c7538d376")
 	)
 	(label "G2"
-		(at 110.49 80.01 0)
+		(at 105.41 170.18 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "84ca4d8f-494c-4d56-8da7-58c4af68c095")
+		(uuid "3078a03b-41e7-4f46-844f-00d369953b71")
 	)
 	(label "G3"
-		(at 149.86 175.26 0)
+		(at 185.42 74.93 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "b098d990-5e75-447c-8ebf-e7be5b5a5289")
+		(uuid "b4978959-c9e1-46ea-b2fb-7d1421486355")
 	)
 	(label "G3"
-		(at 240.03 80.01 0)
+		(at 234.95 114.3 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "5a4b32cf-8d8a-4a32-89cc-67d3a15be5e9")
+		(uuid "c3aad6dd-38d6-47f7-a3f7-13839af4fae4")
 	)
 	(label "G3"
-		(at 279.4 124.46 0)
+		(at 154.94 170.18 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "a6cddd36-7b91-44bd-bf8c-2ada40e88469")
+		(uuid "3a3dd5eb-ce2d-43b0-bcee-9fa3a41796d8")
 	)
 	(label "G4"
-		(at 199.39 175.26 0)
+		(at 185.42 114.3 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "4131652d-33d0-4826-8c17-ec85f1dddafd")
+		(uuid "b8686c3d-93b0-40ec-a367-29359551c7f6")
 	)
 	(label "G4"
-		(at 240.03 124.46 0)
+		(at 234.95 74.93 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "db1c11fd-3e58-4b15-af08-9e45a600f40a")
+		(uuid "225d626d-f7b0-471c-899c-315eb14674fd")
 	)
 	(label "G4"
-		(at 279.4 80.01 0)
+		(at 204.47 170.18 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "4f7c31e9-f03e-4771-bc0e-d8c97e56517a")
+		(uuid "3105e588-537d-4a57-90e9-f95635b7d54c")
 	)
 	(label "GND"
-		(at 39.37 115.57 0)
+		(at 54.61 85.09 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "1b82ace7-83ae-4db1-a706-ffb3413b6812")
+		(uuid "bc8237b2-0e3d-4aa5-af4b-0cce2db2e4c3")
 	)
 	(label "GND"
-		(at 320.04 115.57 0)
+		(at 54.61 124.46 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "8231a172-fcd8-4056-9db4-08b4cdbc7bcf")
+		(uuid "effc4ee7-3c30-4831-8047-68bc7d2130a1")
 	)
 	(label "GND"
-		(at 74.93 134.62 0)
+		(at 105.41 85.09 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "f548ad75-85a0-47d5-abf0-86633af0be44")
+		(uuid "67a67795-54f0-4876-a211-3d20a92f8211")
 	)
 	(label "GND"
-		(at 115.57 134.62 0)
+		(at 105.41 124.46 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "59a24afd-07f0-4b67-9f84-d27118fa06a2")
+		(uuid "3ae309fe-e3a5-4e4a-96a1-1ca3baa01362")
 	)
 	(label "GND"
-		(at 245.11 134.62 0)
+		(at 185.42 85.09 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "a4fbbad6-ff2f-408b-b28e-8bf48e59715c")
+		(uuid "93db02c1-ad2b-4763-b288-061800483bff")
 	)
 	(label "GND"
-		(at 284.48 134.62 0)
+		(at 185.42 124.46 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "b7717019-517f-4e0b-839c-050dc69cde9f")
+		(uuid "b1191411-8e69-4cb8-9501-6997793353d9")
 	)
 	(label "GND"
-		(at 69.85 90.17 0)
+		(at 234.95 85.09 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "74fc7f23-725f-4a5b-b2b0-f6aadc531c06")
+		(uuid "8bd05202-8838-4d96-8c45-252b8ed414fe")
 	)
 	(label "GND"
-		(at 69.85 134.62 0)
+		(at 234.95 124.46 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "77fd8418-7688-44aa-86b3-d8bec21ce615")
+		(uuid "7391e564-78d2-44d2-8bb8-4ec6484f585f")
 	)
 	(label "GND"
-		(at 110.49 90.17 0)
+		(at 54.61 180.34 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "0632eb4f-3427-4fcd-8a6a-143ada0d5edc")
+		(uuid "773700a7-f3ef-4b45-b3fa-6f3419ed1301")
 	)
 	(label "GND"
-		(at 110.49 134.62 0)
+		(at 105.41 180.34 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "38b21aba-564b-4d26-9e13-f74ae7ea3345")
+		(uuid "e9f6efbf-f6ec-4165-9f17-95b444763c18")
 	)
 	(label "GND"
-		(at 240.03 90.17 0)
+		(at 154.94 180.34 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "ad6138fa-f207-4d7d-9fb6-d7df7b6d948f")
+		(uuid "177e1246-cdfb-4a01-ad1a-164b031813b1")
 	)
 	(label "GND"
-		(at 240.03 134.62 0)
+		(at 204.47 180.34 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "1779718f-252d-4877-b367-8726b3d2cebb")
+		(uuid "e86865a4-124f-4c1b-9918-a987ddefd8e3")
 	)
-	(label "GND"
-		(at 279.4 90.17 0)
+	(label "VLV_48V"
+		(at 45.72 68.58 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "c057ffc3-bdb6-4f4d-a996-693a5769e79b")
-	)
-	(label "GND"
-		(at 279.4 134.62 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "9d6c3e62-69bc-48e6-9704-ed606ed65fb9")
-	)
-	(label "GND"
-		(at 49.53 185.42 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "f99207d6-3234-45b6-a4d3-6d1ca6a4a68a")
-	)
-	(label "GND"
-		(at 100.33 185.42 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "b0a1544c-4eec-4bf5-8b30-41550625388d")
-	)
-	(label "GND"
-		(at 149.86 185.42 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "de217ee2-67af-4b3d-b19b-965829944b0f")
-	)
-	(label "GND"
-		(at 199.39 185.42 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "fa66b4ba-1e76-4804-ac1a-58972f8b779d")
-	)
-	(label "VLV"
-		(at 83.82 85.09 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "16c6840d-6685-49e1-933d-43f2d9f2f962")
-	)
-	(label "VLV"
-		(at 124.46 85.09 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "b8bee709-fe2c-4d39-886b-a48362f8370a")
+		(uuid "edb02d48-0f91-49f2-beb4-cd78780a4081")
 	)
 	(label "LA"
-		(at 91.44 85.09 0)
+		(at 59.69 91.44 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "37314fd5-3cba-4fc2-aadf-2a1544508edf")
-	)
-	(label "LA"
-		(at 83.82 129.54 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "257edc72-341f-46da-ba9d-26cf3846cd74")
+		(uuid "db5fd15f-1cd7-4d76-a782-746fa281168d")
 	)
 	(label "LB"
-		(at 132.08 85.09 0)
+		(at 110.49 91.44 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "2f9452a7-54a8-4174-ac2b-d05cbc4d4633")
+		(uuid "b9e6b91f-da4e-47a8-a0d8-3d61e0662d8c")
 	)
-	(label "LB"
-		(at 124.46 129.54 180)
+	(label "VHV_400V"
+		(at 220.98 68.58 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify left bottom)
 		)
-		(uuid "6af36c1e-bdde-4a74-8256-02fae5699c98")
-	)
-	(label "VHV"
-		(at 254 85.09 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "09be30eb-dfbb-4aee-a77d-87a2bde8214f")
-	)
-	(label "VHV"
-		(at 294.64 85.09 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "1b3f5c2f-9e5b-4470-9a72-0c4c4fa8825a")
+		(uuid "bc696fe2-9f4e-4997-b592-f975d5a2a499")
 	)
 	(label "HA"
-		(at 261.62 85.09 0)
+		(at 190.5 91.44 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "baa4e912-a569-4b18-bdd3-e8cceb668737")
-	)
-	(label "HA"
-		(at 254 129.54 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "df3997c9-6f5c-454b-84c4-6c65ff926f96")
+		(uuid "0e4a59a0-454c-4b41-ad83-17f3c49ab129")
 	)
 	(label "HB"
-		(at 302.26 85.09 0)
+		(at 240.03 91.44 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "7bef19f3-2fdf-49f8-97b1-0c976adfad6c")
+		(uuid "35727d08-0d29-43bc-bf4e-d0b002994ab8")
 	)
-	(label "HB"
-		(at 294.64 129.54 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "40e21a75-28c5-44df-b1cc-1171965b56c4")
-	)
-	(label "GND"
-		(at 91.44 129.54 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "99a8b439-6b63-4e7f-9816-98421b3897db")
-	)
-	(label "GND"
-		(at 132.08 129.54 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "32ad5aea-2c79-4334-a78b-4bf37bc03637")
-	)
-	(label "GND"
-		(at 261.62 129.54 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "8f22bed3-b1e1-4e24-ac6d-a575a1c71d38")
-	)
-	(label "GND"
-		(at 302.26 129.54 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "3ebd8317-69c0-483c-896d-bb2eaecc1f7a")
-	)
+  (text "DUAL ACTIVE BRIDGE   48 V Mako pack  <->  400 V link,  3 kW,  single phase shift\n\nL1 / L2 are the planar transformer, n = 8.33 so L2 = L1 * n^2, coupled by K1 at 0.9999.\nL3 = 56 uH is the customer-supplied series inductance on the HIGH-voltage side, and it is\nwhat sets power transfer together with the turns ratio and the switching frequency:\n\n        P = V1 * (V2/n) * phi * (pi - phi) / (2 * pi^2 * f * L)\n\nf = 100 kHz.  phi = 54 deg, set by delaying VG3 and VG4 by 1.5 us of the 10 us period.\n85 kHz wants 41.9 deg; above about 119 kHz this transformer cannot reach 3 kW at all.\n\nD1-D8 are the body diodes and the model is WRONG without them: with no freewheel path the\n100 ns dead time chops the inductor current and the transfer falls from 3.0 kW to 1.2 kW.\n\nOnly the four gate nets G1-G4 are labels. Every power connection is drawn as a wire.\n\nSimulated 3005 W in, 2938 W out, 97.8%.   Closed form 3001 W.   Agreement 0.1%."
+    (at 35 250 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid "7d1670ef-7c19-4b41-b327-9f8ea6476b8f")
+  )
 	(symbol
 		(lib_id "Simulation_SPICE:VDC")
-		(at 39.37 110.49 0)
+		(at 35.56 100.33 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "dc9d065c-e50d-4009-9dff-7c106b56ba91")
+		(uuid "f8946385-0d6c-4f81-9678-dbd515bb107a")
 		(property "Reference" "V1"
-			(at 41.91 107.95 0)
+			(at 38.1 97.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1970,7 +2050,7 @@
 			)
 		)
 		(property "Value" "48"
-			(at 41.91 110.49 0)
+			(at 38.1 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1979,7 +2059,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 39.37 110.49 0)
+			(at 35.56 100.33 0)
 			(hide yes)
 			(effects
 				(font
@@ -1988,7 +2068,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 39.37 110.49 0)
+			(at 35.56 100.33 0)
 			(hide yes)
 			(effects
 				(font
@@ -1998,7 +2078,7 @@
 		)
 		(instances
 			(project "dab-sim"
-				(path "6673a31f-388f-4c6b-8449-8580eafdaa8a"
+				(path "8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
 					(reference "V1")
 					(unit 1)
 				)
@@ -2007,14 +2087,14 @@
 	)
 	(symbol
 		(lib_id "Simulation_SPICE:SWITCH")
-		(at 74.93 85.09 0)
+		(at 59.69 80.01 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "1cd7703d-ef16-4812-a2d4-4832c8f4f45d")
+		(uuid "d1f99772-7694-49dc-ac54-0b131b0b8d90")
 		(property "Reference" "S1"
-			(at 77.47 82.55 0)
+			(at 62.23 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2023,7 +2103,7 @@
 			)
 		)
 		(property "Value" "SWITCH"
-			(at 77.47 85.09 0)
+			(at 62.23 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2032,7 +2112,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 74.93 85.09 0)
+			(at 59.69 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -2041,7 +2121,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 74.93 85.09 0)
+			(at 59.69 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -2050,7 +2130,7 @@
 			)
 		)
 		(property "Sim.Device" "SW"
-			(at 74.93 85.09 0)
+			(at 59.69 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -2059,7 +2139,7 @@
 			)
 		)
 		(property "Sim.Type" "V"
-			(at 74.93 85.09 0)
+			(at 59.69 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -2068,7 +2148,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=no+ 2=no- 3=ctrl+ 4=ctrl-"
-			(at 74.93 85.09 0)
+			(at 59.69 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -2077,7 +2157,7 @@
 			)
 		)
 		(property "Sim.Params" "thr=2.5 ron=5m roff=1meg"
-			(at 74.93 85.09 0)
+			(at 59.69 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -2087,7 +2167,7 @@
 		)
 		(instances
 			(project "dab-sim"
-				(path "6673a31f-388f-4c6b-8449-8580eafdaa8a"
+				(path "8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
 					(reference "S1")
 					(unit 1)
 				)
@@ -2096,14 +2176,14 @@
 	)
 	(symbol
 		(lib_id "Simulation_SPICE:SWITCH")
-		(at 74.93 129.54 0)
+		(at 59.69 119.38 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "cbc0438f-dc02-408c-801d-ce36b03ed203")
+		(uuid "3d9444b8-7570-49b2-9842-a2d8d1c2c69f")
 		(property "Reference" "S2"
-			(at 77.47 127 0)
+			(at 62.23 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2112,7 +2192,7 @@
 			)
 		)
 		(property "Value" "SWITCH"
-			(at 77.47 129.54 0)
+			(at 62.23 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2121,7 +2201,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 74.93 129.54 0)
+			(at 59.69 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -2130,7 +2210,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 74.93 129.54 0)
+			(at 59.69 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -2139,7 +2219,7 @@
 			)
 		)
 		(property "Sim.Device" "SW"
-			(at 74.93 129.54 0)
+			(at 59.69 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -2148,7 +2228,7 @@
 			)
 		)
 		(property "Sim.Type" "V"
-			(at 74.93 129.54 0)
+			(at 59.69 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -2157,7 +2237,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=no+ 2=no- 3=ctrl+ 4=ctrl-"
-			(at 74.93 129.54 0)
+			(at 59.69 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -2166,7 +2246,7 @@
 			)
 		)
 		(property "Sim.Params" "thr=2.5 ron=5m roff=1meg"
-			(at 74.93 129.54 0)
+			(at 59.69 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -2176,7 +2256,7 @@
 		)
 		(instances
 			(project "dab-sim"
-				(path "6673a31f-388f-4c6b-8449-8580eafdaa8a"
+				(path "8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
 					(reference "S2")
 					(unit 1)
 				)
@@ -2185,14 +2265,14 @@
 	)
 	(symbol
 		(lib_id "Simulation_SPICE:SWITCH")
-		(at 115.57 85.09 0)
+		(at 110.49 80.01 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "766a7a92-c331-4348-83ee-20f7f39b98fb")
+		(uuid "67b4e848-f3c2-4e12-8680-81bb4230a0ed")
 		(property "Reference" "S3"
-			(at 118.11 82.55 0)
+			(at 113.03 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2201,7 +2281,7 @@
 			)
 		)
 		(property "Value" "SWITCH"
-			(at 118.11 85.09 0)
+			(at 113.03 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2210,7 +2290,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 115.57 85.09 0)
+			(at 110.49 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -2219,7 +2299,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 115.57 85.09 0)
+			(at 110.49 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -2228,7 +2308,7 @@
 			)
 		)
 		(property "Sim.Device" "SW"
-			(at 115.57 85.09 0)
+			(at 110.49 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -2237,7 +2317,7 @@
 			)
 		)
 		(property "Sim.Type" "V"
-			(at 115.57 85.09 0)
+			(at 110.49 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -2246,7 +2326,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=no+ 2=no- 3=ctrl+ 4=ctrl-"
-			(at 115.57 85.09 0)
+			(at 110.49 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -2255,7 +2335,7 @@
 			)
 		)
 		(property "Sim.Params" "thr=2.5 ron=5m roff=1meg"
-			(at 115.57 85.09 0)
+			(at 110.49 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -2265,7 +2345,7 @@
 		)
 		(instances
 			(project "dab-sim"
-				(path "6673a31f-388f-4c6b-8449-8580eafdaa8a"
+				(path "8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
 					(reference "S3")
 					(unit 1)
 				)
@@ -2274,14 +2354,14 @@
 	)
 	(symbol
 		(lib_id "Simulation_SPICE:SWITCH")
-		(at 115.57 129.54 0)
+		(at 110.49 119.38 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "f98a6452-01e0-4fed-b56c-f7e308dad463")
+		(uuid "36e5023d-68aa-4931-9ba6-f45841dfe2c2")
 		(property "Reference" "S4"
-			(at 118.11 127 0)
+			(at 113.03 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2290,7 +2370,7 @@
 			)
 		)
 		(property "Value" "SWITCH"
-			(at 118.11 129.54 0)
+			(at 113.03 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2299,7 +2379,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 115.57 129.54 0)
+			(at 110.49 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -2308,7 +2388,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 115.57 129.54 0)
+			(at 110.49 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -2317,7 +2397,7 @@
 			)
 		)
 		(property "Sim.Device" "SW"
-			(at 115.57 129.54 0)
+			(at 110.49 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -2326,7 +2406,7 @@
 			)
 		)
 		(property "Sim.Type" "V"
-			(at 115.57 129.54 0)
+			(at 110.49 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -2335,7 +2415,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=no+ 2=no- 3=ctrl+ 4=ctrl-"
-			(at 115.57 129.54 0)
+			(at 110.49 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -2344,7 +2424,7 @@
 			)
 		)
 		(property "Sim.Params" "thr=2.5 ron=5m roff=1meg"
-			(at 115.57 129.54 0)
+			(at 110.49 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -2354,7 +2434,7 @@
 		)
 		(instances
 			(project "dab-sim"
-				(path "6673a31f-388f-4c6b-8449-8580eafdaa8a"
+				(path "8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
 					(reference "S4")
 					(unit 1)
 				)
@@ -2363,14 +2443,14 @@
 	)
 	(symbol
 		(lib_id "Device:L")
-		(at 149.86 106.68 0)
+		(at 85.09 100.33 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "d64c60b6-212d-4821-8183-3692a2089445")
+		(uuid "9bc4c768-7e63-423e-b7c3-450f038ae20a")
 		(property "Reference" "L1"
-			(at 148.59 106.68 90)
+			(at 83.82 100.33 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2378,7 +2458,7 @@
 			)
 		)
 		(property "Value" "40u"
-			(at 151.765 106.68 90)
+			(at 86.995 100.33 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2386,7 +2466,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 149.86 106.68 0)
+			(at 85.09 100.33 0)
 			(hide yes)
 			(effects
 				(font
@@ -2395,7 +2475,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 149.86 106.68 0)
+			(at 85.09 100.33 0)
 			(hide yes)
 			(effects
 				(font
@@ -2405,7 +2485,7 @@
 		)
 		(instances
 			(project "dab-sim"
-				(path "6673a31f-388f-4c6b-8449-8580eafdaa8a"
+				(path "8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
 					(reference "L1")
 					(unit 1)
 				)
@@ -2414,14 +2494,14 @@
 	)
 	(symbol
 		(lib_id "Device:L")
-		(at 180.34 106.68 0)
+		(at 214.63 100.33 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "6903c3fa-5f59-4061-8e08-993bf46dc476")
+		(uuid "367dedec-f9cb-44ca-8c8f-54dd26dd9ded")
 		(property "Reference" "L2"
-			(at 179.07 106.68 90)
+			(at 213.36 100.33 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2429,7 +2509,7 @@
 			)
 		)
 		(property "Value" "2.778m"
-			(at 182.245 106.68 90)
+			(at 216.535 100.33 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2437,7 +2517,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 180.34 106.68 0)
+			(at 214.63 100.33 0)
 			(hide yes)
 			(effects
 				(font
@@ -2446,7 +2526,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 180.34 106.68 0)
+			(at 214.63 100.33 0)
 			(hide yes)
 			(effects
 				(font
@@ -2456,7 +2536,7 @@
 		)
 		(instances
 			(project "dab-sim"
-				(path "6673a31f-388f-4c6b-8449-8580eafdaa8a"
+				(path "8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
 					(reference "L2")
 					(unit 1)
 				)
@@ -2465,14 +2545,14 @@
 	)
 	(symbol
 		(lib_id "Device:L")
-		(at 204.47 85.09 0)
+		(at 203.2 96.52 90)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "f36975e5-830b-49bd-8e70-7cf75d4544f7")
+		(uuid "d981bb1d-3ecc-47d2-861f-80db51a012d0")
 		(property "Reference" "L3"
-			(at 203.2 85.09 90)
+			(at 203.2 97.79 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2480,7 +2560,7 @@
 			)
 		)
 		(property "Value" "56u"
-			(at 206.375 85.09 90)
+			(at 203.2 94.615 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2488,7 +2568,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 204.47 85.09 0)
+			(at 203.2 96.52 0)
 			(hide yes)
 			(effects
 				(font
@@ -2497,7 +2577,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 204.47 85.09 0)
+			(at 203.2 96.52 0)
 			(hide yes)
 			(effects
 				(font
@@ -2507,7 +2587,7 @@
 		)
 		(instances
 			(project "dab-sim"
-				(path "6673a31f-388f-4c6b-8449-8580eafdaa8a"
+				(path "8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
 					(reference "L3")
 					(unit 1)
 				)
@@ -2516,14 +2596,14 @@
 	)
 	(symbol
 		(lib_id "Simulation_SPICE:SWITCH")
-		(at 245.11 85.09 0)
+		(at 190.5 80.01 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "c8f537b6-a9ca-443a-9629-a791007a78b9")
+		(uuid "f0ffffb9-8477-4e3e-86d7-6c83c46c65b6")
 		(property "Reference" "S5"
-			(at 247.65 82.55 0)
+			(at 193.04 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2532,7 +2612,7 @@
 			)
 		)
 		(property "Value" "SWITCH"
-			(at 247.65 85.09 0)
+			(at 193.04 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2541,7 +2621,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 245.11 85.09 0)
+			(at 190.5 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -2550,7 +2630,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 245.11 85.09 0)
+			(at 190.5 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -2559,7 +2639,7 @@
 			)
 		)
 		(property "Sim.Device" "SW"
-			(at 245.11 85.09 0)
+			(at 190.5 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -2568,7 +2648,7 @@
 			)
 		)
 		(property "Sim.Type" "V"
-			(at 245.11 85.09 0)
+			(at 190.5 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -2577,7 +2657,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=no+ 2=no- 3=ctrl+ 4=ctrl-"
-			(at 245.11 85.09 0)
+			(at 190.5 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -2586,7 +2666,7 @@
 			)
 		)
 		(property "Sim.Params" "thr=2.5 ron=5m roff=1meg"
-			(at 245.11 85.09 0)
+			(at 190.5 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -2596,7 +2676,7 @@
 		)
 		(instances
 			(project "dab-sim"
-				(path "6673a31f-388f-4c6b-8449-8580eafdaa8a"
+				(path "8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
 					(reference "S5")
 					(unit 1)
 				)
@@ -2605,14 +2685,14 @@
 	)
 	(symbol
 		(lib_id "Simulation_SPICE:SWITCH")
-		(at 245.11 129.54 0)
+		(at 190.5 119.38 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "66662881-8b75-4cb7-a4ae-cdecd8801eb7")
+		(uuid "3be66e44-e07a-40af-a5bb-64921b1b9353")
 		(property "Reference" "S6"
-			(at 247.65 127 0)
+			(at 193.04 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2621,7 +2701,7 @@
 			)
 		)
 		(property "Value" "SWITCH"
-			(at 247.65 129.54 0)
+			(at 193.04 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2630,7 +2710,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 245.11 129.54 0)
+			(at 190.5 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -2639,7 +2719,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 245.11 129.54 0)
+			(at 190.5 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -2648,7 +2728,7 @@
 			)
 		)
 		(property "Sim.Device" "SW"
-			(at 245.11 129.54 0)
+			(at 190.5 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -2657,7 +2737,7 @@
 			)
 		)
 		(property "Sim.Type" "V"
-			(at 245.11 129.54 0)
+			(at 190.5 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -2666,7 +2746,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=no+ 2=no- 3=ctrl+ 4=ctrl-"
-			(at 245.11 129.54 0)
+			(at 190.5 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -2675,7 +2755,7 @@
 			)
 		)
 		(property "Sim.Params" "thr=2.5 ron=5m roff=1meg"
-			(at 245.11 129.54 0)
+			(at 190.5 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -2685,7 +2765,7 @@
 		)
 		(instances
 			(project "dab-sim"
-				(path "6673a31f-388f-4c6b-8449-8580eafdaa8a"
+				(path "8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
 					(reference "S6")
 					(unit 1)
 				)
@@ -2694,14 +2774,14 @@
 	)
 	(symbol
 		(lib_id "Simulation_SPICE:SWITCH")
-		(at 284.48 85.09 0)
+		(at 240.03 80.01 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "8d853b54-6042-4000-878c-98ad3bf3f438")
+		(uuid "1dc9d7b1-e104-474b-9ce9-5d93bd4483cc")
 		(property "Reference" "S7"
-			(at 287.02 82.55 0)
+			(at 242.57 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2710,7 +2790,7 @@
 			)
 		)
 		(property "Value" "SWITCH"
-			(at 287.02 85.09 0)
+			(at 242.57 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2719,7 +2799,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 284.48 85.09 0)
+			(at 240.03 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -2728,7 +2808,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 284.48 85.09 0)
+			(at 240.03 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -2737,7 +2817,7 @@
 			)
 		)
 		(property "Sim.Device" "SW"
-			(at 284.48 85.09 0)
+			(at 240.03 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -2746,7 +2826,7 @@
 			)
 		)
 		(property "Sim.Type" "V"
-			(at 284.48 85.09 0)
+			(at 240.03 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -2755,7 +2835,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=no+ 2=no- 3=ctrl+ 4=ctrl-"
-			(at 284.48 85.09 0)
+			(at 240.03 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -2764,7 +2844,7 @@
 			)
 		)
 		(property "Sim.Params" "thr=2.5 ron=5m roff=1meg"
-			(at 284.48 85.09 0)
+			(at 240.03 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -2774,7 +2854,7 @@
 		)
 		(instances
 			(project "dab-sim"
-				(path "6673a31f-388f-4c6b-8449-8580eafdaa8a"
+				(path "8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
 					(reference "S7")
 					(unit 1)
 				)
@@ -2783,14 +2863,14 @@
 	)
 	(symbol
 		(lib_id "Simulation_SPICE:SWITCH")
-		(at 284.48 129.54 0)
+		(at 240.03 119.38 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "712dc4e5-85ac-468a-85c3-a05dcf5b3770")
+		(uuid "07f88652-b9fb-4972-94f8-6fb81284717e")
 		(property "Reference" "S8"
-			(at 287.02 127 0)
+			(at 242.57 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2799,7 +2879,7 @@
 			)
 		)
 		(property "Value" "SWITCH"
-			(at 287.02 129.54 0)
+			(at 242.57 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2808,7 +2888,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 284.48 129.54 0)
+			(at 240.03 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -2817,7 +2897,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 284.48 129.54 0)
+			(at 240.03 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -2826,7 +2906,7 @@
 			)
 		)
 		(property "Sim.Device" "SW"
-			(at 284.48 129.54 0)
+			(at 240.03 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -2835,7 +2915,7 @@
 			)
 		)
 		(property "Sim.Type" "V"
-			(at 284.48 129.54 0)
+			(at 240.03 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -2844,7 +2924,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=no+ 2=no- 3=ctrl+ 4=ctrl-"
-			(at 284.48 129.54 0)
+			(at 240.03 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -2853,7 +2933,7 @@
 			)
 		)
 		(property "Sim.Params" "thr=2.5 ron=5m roff=1meg"
-			(at 284.48 129.54 0)
+			(at 240.03 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -2863,7 +2943,7 @@
 		)
 		(instances
 			(project "dab-sim"
-				(path "6673a31f-388f-4c6b-8449-8580eafdaa8a"
+				(path "8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
 					(reference "S8")
 					(unit 1)
 				)
@@ -2872,14 +2952,14 @@
 	)
 	(symbol
 		(lib_id "Simulation_SPICE:VDC")
-		(at 320.04 110.49 0)
+		(at 265.43 100.33 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "07e10102-cf4e-4584-b670-177f33e968a9")
+		(uuid "17950589-c0e1-42ef-bc9c-6995af14b13d")
 		(property "Reference" "V2"
-			(at 322.58 107.95 0)
+			(at 267.97 97.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2888,7 +2968,7 @@
 			)
 		)
 		(property "Value" "400"
-			(at 322.58 110.49 0)
+			(at 267.97 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2897,7 +2977,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 320.04 110.49 0)
+			(at 265.43 100.33 0)
 			(hide yes)
 			(effects
 				(font
@@ -2906,7 +2986,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 320.04 110.49 0)
+			(at 265.43 100.33 0)
 			(hide yes)
 			(effects
 				(font
@@ -2916,7 +2996,7 @@
 		)
 		(instances
 			(project "dab-sim"
-				(path "6673a31f-388f-4c6b-8449-8580eafdaa8a"
+				(path "8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
 					(reference "V2")
 					(unit 1)
 				)
@@ -2925,14 +3005,14 @@
 	)
 	(symbol
 		(lib_id "Simulation_SPICE:VPULSE")
-		(at 49.53 180.34 0)
+		(at 54.61 175.26 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "ae7c3e3f-ca2b-4afd-8f25-de2a21b56774")
+		(uuid "6258184e-de2c-40c9-91ae-bbf3dfdc7841")
 		(property "Reference" "VG1"
-			(at 52.07 177.8 0)
+			(at 57.15 172.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2941,7 +3021,7 @@
 			)
 		)
 		(property "Value" "PULSE(0 5 0 10n 10n 4.9u 10u)"
-			(at 52.07 180.34 0)
+			(at 57.15 175.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2950,7 +3030,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 49.53 180.34 0)
+			(at 54.61 175.26 0)
 			(hide yes)
 			(effects
 				(font
@@ -2959,7 +3039,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 49.53 180.34 0)
+			(at 54.61 175.26 0)
 			(hide yes)
 			(effects
 				(font
@@ -2969,7 +3049,7 @@
 		)
 		(instances
 			(project "dab-sim"
-				(path "6673a31f-388f-4c6b-8449-8580eafdaa8a"
+				(path "8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
 					(reference "VG1")
 					(unit 1)
 				)
@@ -2978,14 +3058,14 @@
 	)
 	(symbol
 		(lib_id "Simulation_SPICE:VPULSE")
-		(at 100.33 180.34 0)
+		(at 105.41 175.26 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "86d79fec-7754-4351-8274-f4976a41fccd")
+		(uuid "553b8737-4c4c-4487-8415-3d4c2583b505")
 		(property "Reference" "VG2"
-			(at 102.87 177.8 0)
+			(at 107.95 172.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2994,7 +3074,7 @@
 			)
 		)
 		(property "Value" "PULSE(0 5 5u 10n 10n 4.9u 10u)"
-			(at 102.87 180.34 0)
+			(at 107.95 175.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3003,7 +3083,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 100.33 180.34 0)
+			(at 105.41 175.26 0)
 			(hide yes)
 			(effects
 				(font
@@ -3012,7 +3092,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 100.33 180.34 0)
+			(at 105.41 175.26 0)
 			(hide yes)
 			(effects
 				(font
@@ -3022,7 +3102,7 @@
 		)
 		(instances
 			(project "dab-sim"
-				(path "6673a31f-388f-4c6b-8449-8580eafdaa8a"
+				(path "8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
 					(reference "VG2")
 					(unit 1)
 				)
@@ -3031,14 +3111,14 @@
 	)
 	(symbol
 		(lib_id "Simulation_SPICE:VPULSE")
-		(at 149.86 180.34 0)
+		(at 154.94 175.26 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "69e615a5-65c9-4966-87d2-b6653116f59c")
+		(uuid "98a1e4aa-ddea-40c0-8cef-1dfd6eacc677")
 		(property "Reference" "VG3"
-			(at 152.4 177.8 0)
+			(at 157.48 172.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3047,7 +3127,7 @@
 			)
 		)
 		(property "Value" "PULSE(0 5 1.5u 10n 10n 4.9u 10u)"
-			(at 152.4 180.34 0)
+			(at 157.48 175.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3056,7 +3136,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 149.86 180.34 0)
+			(at 154.94 175.26 0)
 			(hide yes)
 			(effects
 				(font
@@ -3065,7 +3145,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 149.86 180.34 0)
+			(at 154.94 175.26 0)
 			(hide yes)
 			(effects
 				(font
@@ -3075,7 +3155,7 @@
 		)
 		(instances
 			(project "dab-sim"
-				(path "6673a31f-388f-4c6b-8449-8580eafdaa8a"
+				(path "8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
 					(reference "VG3")
 					(unit 1)
 				)
@@ -3084,14 +3164,14 @@
 	)
 	(symbol
 		(lib_id "Simulation_SPICE:VPULSE")
-		(at 199.39 180.34 0)
+		(at 204.47 175.26 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "54ceb127-05d4-450b-b9b0-f599ccbf3d4b")
+		(uuid "e4cf2857-1194-4a00-92d4-0ac3e569cd65")
 		(property "Reference" "VG4"
-			(at 201.93 177.8 0)
+			(at 207.01 172.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3100,7 +3180,7 @@
 			)
 		)
 		(property "Value" "PULSE(0 5 6.5u 10n 10n 4.9u 10u)"
-			(at 201.93 180.34 0)
+			(at 207.01 175.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3109,7 +3189,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 199.39 180.34 0)
+			(at 204.47 175.26 0)
 			(hide yes)
 			(effects
 				(font
@@ -3118,7 +3198,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 199.39 180.34 0)
+			(at 204.47 175.26 0)
 			(hide yes)
 			(effects
 				(font
@@ -3128,7 +3208,7 @@
 		)
 		(instances
 			(project "dab-sim"
-				(path "6673a31f-388f-4c6b-8449-8580eafdaa8a"
+				(path "8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
 					(reference "VG4")
 					(unit 1)
 				)
@@ -3136,67 +3216,15 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 39.37 115.57 0)
-		(unit 1)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "85009aa8-9302-4b58-b040-c687c6efa4cc")
-		(property "Reference" "#PWR001"
-			(at 39.37 121.92 0)
-			(hide yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 39.37 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 39.37 115.57 0)
-			(hide yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 39.37 115.57 0)
-			(hide yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(instances
-			(project "dab-sim"
-				(path "/6673a31f-388f-4c6b-8449-8580eafdaa8a"
-					(reference "#PWR001")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Simulation_SPICE:D")
-		(at 87.63 85.09 0)
+		(at 69.85 80.01 270)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "924d42f5-2c2b-4b5d-a8e1-553d70e45552")
+		(uuid "b6c9f4b8-b01f-452a-b58b-71fdfdffdcaf")
 		(property "Reference" "D1"
-			(at 87.63 82.55 0)
+			(at 72.39 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3204,7 +3232,7 @@
 			)
 		)
 		(property "Value" "D"
-			(at 87.63 87.63 0)
+			(at 67.31 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3212,7 +3240,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 87.63 85.09 0)
+			(at 69.85 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -3221,7 +3249,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 87.63 85.09 0)
+			(at 69.85 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -3230,7 +3258,7 @@
 			)
 		)
 		(property "Sim.Device" "D"
-			(at 87.63 85.09 0)
+			(at 69.85 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -3239,16 +3267,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 87.63 85.09 0)
-			(hide yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Sim.Params" "is=5e-9 rs=20m n=1.6 cjo=200p tt=30n bv=1200"
-			(at 87.63 85.09 0)
+			(at 69.85 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -3258,7 +3277,7 @@
 		)
 		(instances
 			(project "dab-sim"
-				(path "6673a31f-388f-4c6b-8449-8580eafdaa8a"
+				(path "8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
 					(reference "D1")
 					(unit 1)
 				)
@@ -3267,14 +3286,14 @@
 	)
 	(symbol
 		(lib_id "Simulation_SPICE:D")
-		(at 87.63 129.54 0)
+		(at 69.85 119.38 270)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "6799a3c2-2728-4bab-aaca-83528d9f27c2")
+		(uuid "4759e4dd-8fcc-42e6-98b0-f5b2e969dfe7")
 		(property "Reference" "D2"
-			(at 87.63 127 0)
+			(at 72.39 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3282,7 +3301,7 @@
 			)
 		)
 		(property "Value" "D"
-			(at 87.63 132.08 0)
+			(at 67.31 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3290,7 +3309,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 87.63 129.54 0)
+			(at 69.85 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -3299,7 +3318,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 87.63 129.54 0)
+			(at 69.85 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -3308,7 +3327,7 @@
 			)
 		)
 		(property "Sim.Device" "D"
-			(at 87.63 129.54 0)
+			(at 69.85 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -3317,16 +3336,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 87.63 129.54 0)
-			(hide yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Sim.Params" "is=5e-9 rs=20m n=1.6 cjo=200p tt=30n bv=1200"
-			(at 87.63 129.54 0)
+			(at 69.85 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -3336,7 +3346,7 @@
 		)
 		(instances
 			(project "dab-sim"
-				(path "6673a31f-388f-4c6b-8449-8580eafdaa8a"
+				(path "8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
 					(reference "D2")
 					(unit 1)
 				)
@@ -3345,14 +3355,14 @@
 	)
 	(symbol
 		(lib_id "Simulation_SPICE:D")
-		(at 128.27 85.09 0)
+		(at 119.38 80.01 270)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "719255ee-7f5d-4567-9a55-cfa03339cb5d")
+		(uuid "0849dcb2-4548-4a04-814e-2e927898d688")
 		(property "Reference" "D3"
-			(at 128.27 82.55 0)
+			(at 121.92 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3360,7 +3370,7 @@
 			)
 		)
 		(property "Value" "D"
-			(at 128.27 87.63 0)
+			(at 116.84 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3368,7 +3378,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 128.27 85.09 0)
+			(at 119.38 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -3377,7 +3387,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 128.27 85.09 0)
+			(at 119.38 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -3386,7 +3396,7 @@
 			)
 		)
 		(property "Sim.Device" "D"
-			(at 128.27 85.09 0)
+			(at 119.38 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -3395,16 +3405,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 128.27 85.09 0)
-			(hide yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Sim.Params" "is=5e-9 rs=20m n=1.6 cjo=200p tt=30n bv=1200"
-			(at 128.27 85.09 0)
+			(at 119.38 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -3414,7 +3415,7 @@
 		)
 		(instances
 			(project "dab-sim"
-				(path "6673a31f-388f-4c6b-8449-8580eafdaa8a"
+				(path "8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
 					(reference "D3")
 					(unit 1)
 				)
@@ -3423,14 +3424,14 @@
 	)
 	(symbol
 		(lib_id "Simulation_SPICE:D")
-		(at 128.27 129.54 0)
+		(at 119.38 119.38 270)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "ab624180-fc1f-4bf7-93f4-8cfdfe2470b7")
+		(uuid "ff40d06c-5729-43f1-a5ef-3b18d992c22c")
 		(property "Reference" "D4"
-			(at 128.27 127 0)
+			(at 121.92 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3438,7 +3439,7 @@
 			)
 		)
 		(property "Value" "D"
-			(at 128.27 132.08 0)
+			(at 116.84 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3446,7 +3447,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 128.27 129.54 0)
+			(at 119.38 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -3455,7 +3456,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 128.27 129.54 0)
+			(at 119.38 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -3464,7 +3465,7 @@
 			)
 		)
 		(property "Sim.Device" "D"
-			(at 128.27 129.54 0)
+			(at 119.38 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -3473,16 +3474,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 128.27 129.54 0)
-			(hide yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Sim.Params" "is=5e-9 rs=20m n=1.6 cjo=200p tt=30n bv=1200"
-			(at 128.27 129.54 0)
+			(at 119.38 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -3492,7 +3484,7 @@
 		)
 		(instances
 			(project "dab-sim"
-				(path "6673a31f-388f-4c6b-8449-8580eafdaa8a"
+				(path "8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
 					(reference "D4")
 					(unit 1)
 				)
@@ -3501,14 +3493,14 @@
 	)
 	(symbol
 		(lib_id "Simulation_SPICE:D")
-		(at 257.81 85.09 0)
+		(at 199.39 80.01 270)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "c119f915-e07b-4fc6-aefc-8a6f6885b291")
+		(uuid "8d96ca08-5a80-46ee-bd33-51f4b85ab4f0")
 		(property "Reference" "D5"
-			(at 257.81 82.55 0)
+			(at 201.93 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3516,7 +3508,7 @@
 			)
 		)
 		(property "Value" "D"
-			(at 257.81 87.63 0)
+			(at 196.85 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3524,7 +3516,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 257.81 85.09 0)
+			(at 199.39 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -3533,7 +3525,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 257.81 85.09 0)
+			(at 199.39 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -3542,7 +3534,7 @@
 			)
 		)
 		(property "Sim.Device" "D"
-			(at 257.81 85.09 0)
+			(at 199.39 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -3551,16 +3543,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 257.81 85.09 0)
-			(hide yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Sim.Params" "is=5e-9 rs=20m n=1.6 cjo=200p tt=30n bv=1200"
-			(at 257.81 85.09 0)
+			(at 199.39 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -3570,7 +3553,7 @@
 		)
 		(instances
 			(project "dab-sim"
-				(path "6673a31f-388f-4c6b-8449-8580eafdaa8a"
+				(path "8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
 					(reference "D5")
 					(unit 1)
 				)
@@ -3579,14 +3562,14 @@
 	)
 	(symbol
 		(lib_id "Simulation_SPICE:D")
-		(at 257.81 129.54 0)
+		(at 199.39 119.38 270)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "fb9b9fd3-14fc-4f1e-af08-1f2a01f4aa5c")
+		(uuid "a6a48d60-62a2-4776-9fac-2644be0146d4")
 		(property "Reference" "D6"
-			(at 257.81 127 0)
+			(at 201.93 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3594,7 +3577,7 @@
 			)
 		)
 		(property "Value" "D"
-			(at 257.81 132.08 0)
+			(at 196.85 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3602,7 +3585,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 257.81 129.54 0)
+			(at 199.39 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -3611,7 +3594,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 257.81 129.54 0)
+			(at 199.39 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -3620,7 +3603,7 @@
 			)
 		)
 		(property "Sim.Device" "D"
-			(at 257.81 129.54 0)
+			(at 199.39 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -3629,16 +3612,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 257.81 129.54 0)
-			(hide yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Sim.Params" "is=5e-9 rs=20m n=1.6 cjo=200p tt=30n bv=1200"
-			(at 257.81 129.54 0)
+			(at 199.39 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -3648,7 +3622,7 @@
 		)
 		(instances
 			(project "dab-sim"
-				(path "6673a31f-388f-4c6b-8449-8580eafdaa8a"
+				(path "8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
 					(reference "D6")
 					(unit 1)
 				)
@@ -3657,14 +3631,14 @@
 	)
 	(symbol
 		(lib_id "Simulation_SPICE:D")
-		(at 298.45 85.09 0)
+		(at 250.19 80.01 270)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "2e4d784d-20df-4ec7-ad3f-2384561f7b39")
+		(uuid "0acb15a2-b311-4627-91d2-c3953dffeabb")
 		(property "Reference" "D7"
-			(at 298.45 82.55 0)
+			(at 252.73 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3672,7 +3646,7 @@
 			)
 		)
 		(property "Value" "D"
-			(at 298.45 87.63 0)
+			(at 247.65 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3680,7 +3654,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 298.45 85.09 0)
+			(at 250.19 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -3689,7 +3663,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 298.45 85.09 0)
+			(at 250.19 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -3698,7 +3672,7 @@
 			)
 		)
 		(property "Sim.Device" "D"
-			(at 298.45 85.09 0)
+			(at 250.19 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -3707,16 +3681,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 298.45 85.09 0)
-			(hide yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Sim.Params" "is=5e-9 rs=20m n=1.6 cjo=200p tt=30n bv=1200"
-			(at 298.45 85.09 0)
+			(at 250.19 80.01 0)
 			(hide yes)
 			(effects
 				(font
@@ -3726,7 +3691,7 @@
 		)
 		(instances
 			(project "dab-sim"
-				(path "6673a31f-388f-4c6b-8449-8580eafdaa8a"
+				(path "8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
 					(reference "D7")
 					(unit 1)
 				)
@@ -3735,14 +3700,14 @@
 	)
 	(symbol
 		(lib_id "Simulation_SPICE:D")
-		(at 298.45 129.54 0)
+		(at 250.19 119.38 270)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "66590038-1a7d-4a54-9cdb-21e013d095db")
+		(uuid "57a7a1b7-a940-49cd-909b-d60f30a53279")
 		(property "Reference" "D8"
-			(at 298.45 127 0)
+			(at 252.73 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3750,7 +3715,7 @@
 			)
 		)
 		(property "Value" "D"
-			(at 298.45 132.08 0)
+			(at 247.65 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3758,7 +3723,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 298.45 129.54 0)
+			(at 250.19 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -3767,7 +3732,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 298.45 129.54 0)
+			(at 250.19 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -3776,7 +3741,7 @@
 			)
 		)
 		(property "Sim.Device" "D"
-			(at 298.45 129.54 0)
+			(at 250.19 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -3785,16 +3750,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 298.45 129.54 0)
-			(hide yes)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Sim.Params" "is=5e-9 rs=20m n=1.6 cjo=200p tt=30n bv=1200"
-			(at 298.45 129.54 0)
+			(at 250.19 119.38 0)
 			(hide yes)
 			(effects
 				(font
@@ -3804,8 +3760,112 @@
 		)
 		(instances
 			(project "dab-sim"
-				(path "6673a31f-388f-4c6b-8449-8580eafdaa8a"
+				(path "8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
 					(reference "D8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 77.47 130.81 0)
+		(unit 1)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "fa13fed2-b864-4bf2-933e-7b0e769b8f54")
+		(property "Reference" "#PWR001"
+			(at 77.47 137.16 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 77.47 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 77.47 130.81 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 77.47 130.81 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(instances
+			(project "dab-sim"
+				(path "/8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
+					(reference "#PWR001")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 227.33 130.81 0)
+		(unit 1)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "83dfbfb0-42a6-43b2-8ca4-7749475d8111")
+		(property "Reference" "#PWR002"
+			(at 227.33 137.16 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 227.33 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 227.33 130.81 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 227.33 130.81 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(instances
+			(project "dab-sim"
+				(path "/8bdc63a0-d120-4e49-a0a7-406cc55b9f90"
+					(reference "#PWR002")
 					(unit 1)
 				)
 			)
