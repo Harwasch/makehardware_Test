@@ -1,0 +1,146 @@
+# Architecture views over hw/block-diagram.yaml.
+#
+# The master spec owns the CONTENT — parts, rails, currents, the power budget
+# that `block-diagram --check` gates. This file owns only how it is DRAWN: which
+# sheet a block appears on, which stage of the power path it sits in, and which
+# blocks are two instances of one design.
+#
+# Rendered by scripts/arch_diagram.py. Stages run left to right and are the
+# power path; rows within a stage are free. Nothing here may name a block the
+# master does not define, and every master block must appear on some sheet —
+# both are checked.
+
+project: Ulysses LARS Charger
+revision: C
+
+# --------------------------------------------------------------------------
+# Modules — one design, built more than once. Drawn once, listed here so the
+# duplication is visible rather than implied by two identical subtrees.
+# --------------------------------------------------------------------------
+modules:
+  dab:
+    title: Dual active bridge
+    subtitle: 48 V ↔ 400 V, isolated, bidirectional — ONE design, built twice
+    note: >-
+      The dock instance inverts 48 V from the Leviathan pack into the 400 V
+      link; the vehicle instance rectifies 400 V back down into the Mako pack.
+      Same schematic, same layout, same firmware image — the direction is a
+      configuration item, not a design difference (SYS-015). Drawing it once is
+      the point: two mirrored subtrees invite two divergent designs.
+    instances:
+      dock:    {label: "Dock — 48 V → 400 V", rail_in: V48_LEV,  rail_out: HV400}
+      vehicle: {label: "Vehicle — 400 V → 48 V", rail_in: HVDC,  rail_out: V48_MAKO}
+    # role: [dock block, vehicle block]
+    roles:
+      - {role: lv_bridge,  pair: [U40, U22], stage: 0, row: 0}
+      - {role: xfmr,       pair: [U41, U21], stage: 1, row: 0}
+      - {role: hv_bridge,  pair: [U42, U20], stage: 2, row: 0}
+      - {role: controller, pair: [U43, U23], stage: 0, row: 1}
+      - {role: isolation,  pair: [U44, U24], stage: 1, row: 1}
+      - {role: gate_bias,  pair: [U45, U25], stage: 2, row: 1}
+      - {role: aux_48_12,  pair: [U47, U26], stage: 0, row: 2}
+      - {role: aux_12_3v3, pair: [U46, U27], stage: 1, row: 2}
+    unpaired:
+      - {id: J4, stage: 2, row: 2,
+         note: "vehicle instance only — the dock has no debug header"}
+    # Stated rather than inferred from the master's buses: chaining a three-node
+    # net pairwise implies an LV-to-HV path that does not exist, because the
+    # power goes through the transformer.
+    links:
+      - {from: lv_bridge,  to: xfmr,       label: "LV winding"}
+      - {from: xfmr,       to: hv_bridge,  label: "8.33:1"}
+      - {from: controller, to: lv_bridge,  label: LV_PWM, kind: other}
+      - {from: controller, to: isolation,  label: PWM, kind: other}
+      - {from: isolation,  to: gate_bias,  label: "isolated PWM", kind: other}
+      - {from: gate_bias,  to: hv_bridge,  label: "gate drive", kind: other}
+      - {from: aux_48_12,  to: aux_12_3v3, label: "12 V"}
+      - {from: aux_12_3v3, to: controller, label: "3.3 V"}
+
+# --------------------------------------------------------------------------
+# Sheets.
+# --------------------------------------------------------------------------
+sheets:
+
+  - id: system
+    title: System power path
+    subtitle: 48 V on the deck to 48 V in the vehicle, across an air gap
+    stages: [Leviathan pack, Dock converter, Transmitter, Air gap, Receiver, Vehicle converter, Mako pack]
+    nodes:
+      - {id: J0, stage: 0, row: 0}
+      - {ref: module, module: dab, instance: dock, id: DAB_DOCK, stage: 1, row: 0,
+         name: Dock DAB, part: "U40-U47 · see the DAB sheet"}
+      - {ref: group, id: TX, stage: 2, row: 0, name: Transmitter,
+         part: "U1-U9, C1, L1 · see the link sheet", kind: power,
+         members: [U1, U2, U3, U5, U6, U7, U8, U9, C1, L1, J2]}
+      - {ref: gap, id: GAP, stage: 3, row: 0, name: Resonant air gap,
+         part: "8-14 mm · k ≥ 0.40 · 85 kHz", kind: other}
+      - {ref: group, id: RX, stage: 4, row: 0, name: Receiver,
+         part: "L2, C2, U10-U13 · see the link sheet", kind: power,
+         members: [L2, C2, U10, U11, U12, U13]}
+      - {ref: module, module: dab, instance: vehicle, id: DAB_VEH, stage: 5, row: 0,
+         name: Vehicle DAB, part: "U20-U27, J4 · see the DAB sheet"}
+      - {id: J3, stage: 6, row: 0}
+    links:
+      - {from: J0,       to: DAB_DOCK, label: "48 V · 75 A"}
+      - {from: DAB_DOCK, to: TX,       label: "400 V · 8.4 A"}
+      - {from: TX,       to: GAP,      label: "85 kHz · 8.33 A rms"}
+      - {from: GAP,      to: RX,       label: "3.0 kW + in-band data"}
+      - {from: RX,       to: DAB_VEH,  label: "400 V · 8.0 A"}
+      - {from: DAB_VEH,  to: J3,       label: "48 V · 75 A"}
+
+  - id: dab
+    title: Dual active bridge module
+    subtitle: One design, built twice — dock (48 V → 400 V) and vehicle (400 V → 48 V)
+    from_module: dab
+    stages: [Low-voltage side, Isolation barrier, High-voltage side]
+
+  - id: link
+    title: Transmitter, coils and receiver
+    subtitle: The resonant link — power left to right, control below it
+    stages: [TX bridge, TX tank, TX coil, Air gap, RX coil, RX tank, RX output]
+    nodes:
+      # --- the power path, one row, left to right ---
+      - {id: U1,  stage: 0, row: 1}
+      - {id: U2,  stage: 0, row: 2}
+      - {id: C1,  stage: 1, row: 1}
+      - {id: L1,  stage: 2, row: 1}
+      - {ref: gap, id: GAP, stage: 3, row: 1, name: Air gap,
+         part: "8-14 mm · 5 mm offset · 2°", kind: other}
+      - {id: L2,  stage: 4, row: 1}
+      - {id: C2,  stage: 5, row: 1}
+      - {id: U10, stage: 6, row: 1}
+      # --- control and sense, below it ---
+      - {id: U9,  stage: 1, row: 3}
+      - {id: U13, stage: 5, row: 3}
+      - {id: U7,  stage: 0, row: 4}
+      - {id: U8,  stage: 1, row: 4}
+      - {id: U11, stage: 5, row: 4}
+      - {id: U12, stage: 6, row: 4}
+      # --- aux and debug, bottom ---
+      - {id: J2,  stage: 0, row: 5}
+      - {id: U5,  stage: 1, row: 5}
+      - {id: U6,  stage: 2, row: 5}
+      - {id: U3,  stage: 0, row: 6}
+    edge_ports:
+      - {id: IN_HV,  stage: 0, row: 0, name: "from dock DAB", part: "400 V link"}
+      - {id: OUT_HV, stage: 6, row: 0, name: "to vehicle DAB", part: "400 V link"}
+    links:
+      - {from: IN_HV, to: U1, label: HV400}
+      - {from: IN_HV, to: U2, label: HV400}
+      - {from: U1,  to: C1,  label: PWR_TX_TANK}
+      - {from: U2,  to: C1}
+      - {from: C1,  to: L1,  label: PWR_TX_COIL}
+      - {from: L1,  to: GAP, label: PWR_LINK}
+      - {from: GAP, to: L2}
+      - {from: L2,  to: C2,  label: PWR_RX_COIL}
+      - {from: C2,  to: U10, label: PWR_RX_RECT}
+      - {from: U10, to: OUT_HV, label: PWR_HVDC_LINK}
+      - {from: U7,  to: U1,  label: TX_PWM, kind: other}
+      - {from: U7,  to: U2,  kind: other}
+      - {from: U7,  to: U9,  kind: other}
+      - {from: U8,  to: U7,  label: TX_ADC, kind: analog}
+      - {from: U9,  to: C1,  label: DAMP_TAP, kind: other}
+      - {from: J2,  to: U7,  label: SWD_TX, kind: swd}
+      - {from: U11, to: U12, label: RX_ADC, kind: analog}
+      - {from: U12, to: U13, label: RX_LSK, kind: other}
+      - {from: U13, to: C2,  label: LSK_TAP, kind: other}

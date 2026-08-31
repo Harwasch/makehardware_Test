@@ -1,26 +1,22 @@
-# Review — Architecture — 36 blocks on four readable sheets, 10 rails
+# Review — Architecture — three modular sheets
 
 `architecture` · requested 2026-08-31 · branch `claude/wireless-charging-design-hf0aix`
 
-Re-opened 2026-08-31. The previous architecture packet embedded a diagram with eight overlapping block pairs, which you spotted. Root cause: the generator pins the layout to hand positions read back out of the .drawio and never tests them for collisions, so when rev C added the seven dock-DAB blocks the pre-existing twenty-nine stayed at their old coordinates and eight pairs landed on top of each other — and block-diagram --check exited 0 on it. Fixed by a fresh layout. Fourteen block names were also being cut mid-word at 24 characters and have been shortened in the spec. Beyond that, 36 blocks and 23 buses do not fit one readable sheet, so the master spec now carries a sheet: tag per block and scripts/block_sheets.py derives four subsystem views from it — dock converter, transmitter, receiver, vehicle converter — with stub connectors where a signal leaves the sheet. The master stays the single source of truth, so the power budget still rolls up across the whole system. Every sheet is checked for overlapping boxes, which is what the gate was missing.
+Rebuilt 2026-08-31 after you rejected the previous two attempts. You were right that the column grid was the problem, not just the collisions: the generator's heuristic put eight of the dock sheet's ten blocks in one column, routed buses straight through boxes, and drew the dual active bridge twice because the master spec instantiates it twice. The views are now drawn by scripts/arch_diagram.py on a stage grid — stages run left to right in the direction power flows, and every vertical run happens in a gutter that is empty by construction, so a wire cannot cross a box. That is now asserted geometrically rather than checked by eye: all three sheets report zero wire-over-box crossings. Three sheets. SYSTEM is the whole power path in one row: 48 V Leviathan pack, dock DAB, transmitter, air gap, receiver, vehicle DAB, 48 V Mako pack. DAB is the dual active bridge drawn ONCE, each box carrying both instance designators (U40 / U22 and so on) — one design, one schematic, one firmware image, with direction as a configuration item. LINK is the transmitter, coils and receiver as a logical chain with control below it. The master spec still owns every part, rail and current, and block-diagram.svg is kept as the power-budget sheet because that is where the rail headroom bars live.
 
 ## What you are agreeing to
 
-**block-diagram-dock.svg**
+**arch-dab.svg**
 
-![block-diagram-dock.svg](../design/block-diagram-dock.svg)
+![arch-dab.svg](../design/arch-dab.svg)
 
-**block-diagram-rx.svg**
+**arch-link.svg**
 
-![block-diagram-rx.svg](../design/block-diagram-rx.svg)
+![arch-link.svg](../design/arch-link.svg)
 
-**block-diagram-tx.svg**
+**arch-system.svg**
 
-![block-diagram-tx.svg](../design/block-diagram-tx.svg)
-
-**block-diagram-veh.svg**
-
-![block-diagram-veh.svg](../design/block-diagram-veh.svg)
+![arch-system.svg](../design/arch-system.svg)
 
 **block-diagram.svg**
 
@@ -32,13 +28,14 @@ Sources and working files. Not part of the agreement — these change as work go
 
 | File | Opens in |
 |---|---|
+| [hw/architecture.yaml](https://github.com/Harwasch/makehardware_Test/blob/claude/wireless-charging-design-hf0aix/hw/architecture.yaml) | plain text on GitHub |
 | [hw/block-diagram.yaml](https://github.com/Harwasch/makehardware_Test/blob/claude/wireless-charging-design-hf0aix/hw/block-diagram.yaml) | plain text on GitHub |
 
 ## What we need decided
 
-1. Are the four sheets the right division — dock converter, transmitter, receiver, vehicle converter?
-2. V48_LEV and V48_MAKO both sit at 95% of the 80 A their connectors can deliver. That is tight enough that I would rather size the connectors up now than discover it at layout. Do you want that?
-3. HV400 is at 84% of 10 A. Same question, less urgently.
+1. Do the three sheets read now — system power path, the DAB drawn once, and the TX/coils/RX chain?
+2. The dock DAB has no debug header where the vehicle instance has J4. If it really is one design built twice, that asymmetry is a defect in the master spec. Should I add one?
+3. V48_LEV and V48_MAKO both sit at 95% of the 80 A their connectors can deliver. I would rather size the connectors up now than find it at layout. Do you want that?
 
 ## Decision
 

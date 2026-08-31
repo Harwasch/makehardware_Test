@@ -110,7 +110,7 @@ Provisional diagram written and block-diagram --check passes, but the currents a
 
 * **Needs first:** E1, M2
 * **Estimate:** 1 session
-* **Produces:** `hw/block-diagram.yaml`, `docs/design/block-diagram.svg`, `scripts/block_sheets.py`, `hw/sheets/`
+* **Produces:** `hw/block-diagram.yaml`, `docs/design/block-diagram.svg`, `hw/architecture.yaml`, `scripts/arch_diagram.py`, `docs/design/arch-system.svg`, `docs/design/arch-dab.svg`, `docs/design/arch-link.svg`
 * **Human review:** `architecture` must be signed off before this chunk can be done
 
 #### E2 — TX board schematic capture and ERC  *(critical path)*

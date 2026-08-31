@@ -210,3 +210,25 @@ an aluminium test rig it reads 23 kg against a real 44 kg — the difference
 between a one-person and a two-person lift.
 **Fix `scripts/vision_board.py`:** carry a density per material and quote the
 mass at it, or omit the mass when the material is not one it knows.
+
+---
+
+**The three-column layout is not fixable from the spec side, so the
+architecture views are now drawn outside the plugin.** The customer rejected
+`block-diagram`'s output twice. Fixing the stale-position collisions and
+splitting into four subsystem sheets was not enough, because the layout engine
+itself is the problem: it assigns columns by a heuristic that put eight of the
+dock sheet's ten blocks in column one, it routes buses vertically straight
+through boxes, and it has no notion of a module, so the dual active bridge was
+drawn twice because the master spec instantiates it twice.
+`scripts/arch_diagram.py` replaces the views with a stage grid — stages run left
+to right in the direction power flows, every vertical run happens in a gutter
+that is empty by construction, and a `modules:` section in
+`hw/architecture.yaml` draws one design once however many times it is built. The
+master spec still owns all content and still feeds the power budget.
+**Fix `scripts/block_diagram.py`:** the useful primitives are a stage/flow
+direction per block, gutter routing rather than free vertical runs, and module
+instancing. Without those, any power-electronics diagram past a handful of
+blocks comes out unreadable, and the gate cannot tell — `--check` passed every
+version the customer rejected. A geometric assertion that no wire crosses a box
+is four lines and would have caught all of it.

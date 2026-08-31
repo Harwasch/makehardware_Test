@@ -265,43 +265,44 @@ reviews:
     - requirements/README.md
     - requirements/hardware.sgra
 - id: architecture
-  title: Architecture — 36 blocks on four readable sheets, 10 rails
+  title: Architecture — three modular sheets
   stage: architecture
-  summary: 'Re-opened 2026-08-31. The previous architecture packet embedded a diagram with
-    eight overlapping block pairs, which you spotted. Root cause: the generator pins the layout
-    to hand positions read back out of the .drawio and never tests them for collisions, so
-    when rev C added the seven dock-DAB blocks the pre-existing twenty-nine stayed at their
-    old coordinates and eight pairs landed on top of each other — and block-diagram --check
-    exited 0 on it. Fixed by a fresh layout. Fourteen block names were also being cut mid-word
-    at 24 characters and have been shortened in the spec. Beyond that, 36 blocks and 23 buses
-    do not fit one readable sheet, so the master spec now carries a sheet: tag per block and
-    scripts/block_sheets.py derives four subsystem views from it — dock converter, transmitter,
-    receiver, vehicle converter — with stub connectors where a signal leaves the sheet. The
-    master stays the single source of truth, so the power budget still rolls up across the
-    whole system. Every sheet is checked for overlapping boxes, which is what the gate was
-    missing.'
+  summary: 'Rebuilt 2026-08-31 after you rejected the previous two attempts. You were right
+    that the column grid was the problem, not just the collisions: the generator''s heuristic
+    put eight of the dock sheet''s ten blocks in one column, routed buses straight through
+    boxes, and drew the dual active bridge twice because the master spec instantiates it twice.
+    The views are now drawn by scripts/arch_diagram.py on a stage grid — stages run left to
+    right in the direction power flows, and every vertical run happens in a gutter that is
+    empty by construction, so a wire cannot cross a box. That is now asserted geometrically
+    rather than checked by eye: all three sheets report zero wire-over-box crossings. Three
+    sheets. SYSTEM is the whole power path in one row: 48 V Leviathan pack, dock DAB, transmitter,
+    air gap, receiver, vehicle DAB, 48 V Mako pack. DAB is the dual active bridge drawn ONCE,
+    each box carrying both instance designators (U40 / U22 and so on) — one design, one schematic,
+    one firmware image, with direction as a configuration item. LINK is the transmitter, coils
+    and receiver as a logical chain with control below it. The master spec still owns every
+    part, rail and current, and block-diagram.svg is kept as the power-budget sheet because
+    that is where the rail headroom bars live.'
   questions:
-  - Are the four sheets the right division — dock converter, transmitter, receiver, vehicle
-    converter?
-  - V48_LEV and V48_MAKO both sit at 95% of the 80 A their connectors can deliver. That is
-    tight enough that I would rather size the connectors up now than discover it at layout.
-    Do you want that?
-  - HV400 is at 84% of 10 A. Same question, less urgently.
+  - Do the three sheets read now — system power path, the DAB drawn once, and the TX/coils/RX
+    chain?
+  - The dock DAB has no debug header where the vehicle instance has J4. If it really is one
+    design built twice, that asymmetry is a defect in the master spec. Should I add one?
+  - V48_LEV and V48_MAKO both sit at 95% of the 80 A their connectors can deliver. I would
+    rather size the connectors up now than find it at layout. Do you want that?
   artifacts:
-  - path: docs/design/block-diagram-dock.svg
-    sha256: cac7b48c44721a99
-  - path: docs/design/block-diagram-rx.svg
-    sha256: 7814138bb601e998
-  - path: docs/design/block-diagram-tx.svg
-    sha256: a595045f6b75ade8
-  - path: docs/design/block-diagram-veh.svg
-    sha256: 7ec9e9c66bf53e3c
+  - path: docs/design/arch-dab.svg
+    sha256: dd2b617104939355
+  - path: docs/design/arch-link.svg
+    sha256: ac4b824ca77afb73
+  - path: docs/design/arch-system.svg
+    sha256: 1c84a63c4b858931
   - path: docs/design/block-diagram.svg
     sha256: 493caa017f8b1d87
   references:
+  - hw/architecture.yaml
   - hw/block-diagram.yaml
   requested: '2026-08-31'
-  requested_commit: 33178dc
+  requested_commit: f298820
   status: requested
   packet: docs/review/architecture.md
   history:
@@ -350,4 +351,34 @@ reviews:
     - docs/design/block-diagram-rx.svg
     - docs/design/block-diagram-tx.svg
     - docs/design/block-diagram-veh.svg
+  - 'on': '2026-08-31'
+    action: requested
+    commit: f298820
+    questions:
+    - Do the three sheets read now — system power path, the DAB drawn once, and the TX/coils/RX
+      chain?
+    - The dock DAB has no debug header where the vehicle instance has J4. If it really is
+      one design built twice, that asymmetry is a defect in the master spec. Should I add
+      one?
+    - V48_LEV and V48_MAKO both sit at 95% of the 80 A their connectors can deliver. I would
+      rather size the connectors up now than find it at layout. Do you want that?
+    summary: 'Rebuilt 2026-08-31 after you rejected the previous two attempts. You were right
+      that the column grid was the problem, not just the collisions: the generator''s heuristic
+      put eight of the dock sheet''s ten blocks in one column, routed buses straight through
+      boxes, and drew the dual active bridge twice because the master spec instantiates it
+      twice. The views are now drawn by scripts/arch_diagram.py on a stage grid — stages run
+      left to right in the direction power flows, and every vertical run happens in a gutter
+      that is empty by construction, so a wire cannot cross a box. That is now asserted geometrically
+      rather than checked by eye: all three sheets report zero wire-over-box crossings. Three
+      sheets. SYSTEM is the whole power path in one row: 48 V Leviathan pack, dock DAB, transmitter,
+      air gap, receiver, vehicle DAB, 48 V Mako pack. DAB is the dual active bridge drawn
+      ONCE, each box carrying both instance designators (U40 / U22 and so on) — one design,
+      one schematic, one firmware image, with direction as a configuration item. LINK is the
+      transmitter, coils and receiver as a logical chain with control below it. The master
+      spec still owns every part, rail and current, and block-diagram.svg is kept as the power-budget
+      sheet because that is where the rail headroom bars live.'
+    added:
+    - docs/design/arch-dab.svg
+    - docs/design/arch-link.svg
+    - docs/design/arch-system.svg
 artifact_url: https://claude.ai/code/artifact/2eecc843-ba3d-4362-b04f-0cf91ea4be1b

@@ -189,7 +189,9 @@ chunks:
     estimate_sessions: 1
     review: architecture
     outputs: [hw/block-diagram.yaml, docs/design/block-diagram.svg,
-              scripts/block_sheets.py, hw/sheets/]
+              hw/architecture.yaml, scripts/arch_diagram.py,
+              docs/design/arch-system.svg, docs/design/arch-dab.svg,
+              docs/design/arch-link.svg]
     notes: >-
       Provisional diagram written and block-diagram --check passes, but the
       currents are estimates: this chunk cannot close until E1 settles the
