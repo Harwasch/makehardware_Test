@@ -1,0 +1,213 @@
+# Human review sign-off ledger — written by `review-gate`.
+#
+# A stage is done when its review here says `approved` and no artefact
+# has changed since. The digests are how staleness is detected; do not
+# hand-edit them. To record a decision:
+#
+#   review-gate sign <id> --approve --by <name> --note "what they said"
+#   review-gate sign <id> --changes "what they want different"
+reviews:
+- id: vision
+  title: Vision, concepts and the coil decision
+  stage: vision
+  summary: Scope is the charging system only. Belly dock, no actuator, charging on deck in
+    a locating bracket — all decided. The three concepts below differ on how the two pads
+    locate to each other, which is the remaining mechanical decision. The coil is settled
+    in ADR-0001 as a 16-layer transposed etched PCB, and the write-up says plainly where I
+    got it wrong twice before landing there.
+  questions:
+  - Which locating approach — cone/vee/flat, tapered rails, or perimeter nest?
+  - 16 layers at 4 oz is a 64 oz heavy-copper board. Is that acceptable, or should I re-open
+    Litz?
+  artifacts:
+  - path: docs/design/adr-0001-coil-technology.md
+    sha256: 6ddd3e6cd0dd0b49
+  - path: docs/design/vision.md
+    sha256: e81664a25b8fe750
+  - path: docs/design/vision/locate_cone_vee/iso.svg
+    sha256: b155829b383f15f2
+  - path: docs/design/vision/locate_cone_vee/view-front.png
+    sha256: aae0ccb25702e953
+  - path: docs/design/vision/locate_cone_vee/view-hero.png
+    sha256: 09d4be0a0eef468a
+  - path: docs/design/vision/locate_cone_vee/view-top.png
+    sha256: 88ee598ee1c64f1a
+  - path: docs/design/vision/locate_nest/iso.svg
+    sha256: 49ff3b6d1dd51d30
+  - path: docs/design/vision/locate_nest/view-front.png
+    sha256: b71bf3da2cbf2ae2
+  - path: docs/design/vision/locate_nest/view-hero.png
+    sha256: 681dfa30413de43e
+  - path: docs/design/vision/locate_nest/view-top.png
+    sha256: 4ef49e36b032e398
+  - path: docs/design/vision/locate_tapered_rails/iso.svg
+    sha256: 72ac6790e59ea175
+  - path: docs/design/vision/locate_tapered_rails/view-front.png
+    sha256: 58344dfb69860c46
+  - path: docs/design/vision/locate_tapered_rails/view-hero.png
+    sha256: cb92e4be31fbf74f
+  - path: docs/design/vision/locate_tapered_rails/view-top.png
+    sha256: 8c76ece62f29d83e
+  - path: docs/design/vision/manifest.json
+    sha256: 4c5c39019c7241ed
+  references:
+  - concepts/README.md
+  - concepts/_common.py
+  - concepts/locate_cone_vee.py
+  - concepts/locate_nest.py
+  - concepts/locate_tapered_rails.py
+  - sim/coil/coil_coupling.py
+  - sim/coil/coil_model.py
+  - sim/coil/coil_rect.py
+  - sim/coil/coil_resistance.py
+  requested: '2026-08-31'
+  requested_commit: 01181dd
+  status: requested
+  packet: docs/review/vision.md
+  history:
+  - 'on': '2026-08-31'
+    action: requested
+    commit: 01181dd
+    questions:
+    - Which locating approach — cone/vee/flat, tapered rails, or perimeter nest?
+    - 16 layers at 4 oz is a 64 oz heavy-copper board. Is that acceptable, or should I re-open
+      Litz?
+    summary: Scope is the charging system only. Belly dock, no actuator, charging on deck
+      in a locating bracket — all decided. The three concepts below differ on how the two
+      pads locate to each other, which is the remaining mechanical decision. The coil is settled
+      in ADR-0001 as a 16-layer transposed etched PCB, and the write-up says plainly where
+      I got it wrong twice before landing there.
+    added:
+    - docs/design/adr-0001-coil-technology.md
+    - docs/design/vision.md
+    - docs/design/vision/locate_cone_vee/iso.svg
+    - docs/design/vision/locate_cone_vee/view-front.png
+    - docs/design/vision/locate_cone_vee/view-hero.png
+    - docs/design/vision/locate_cone_vee/view-top.png
+    - docs/design/vision/locate_nest/iso.svg
+    - docs/design/vision/locate_nest/view-front.png
+    - docs/design/vision/locate_nest/view-hero.png
+    - docs/design/vision/locate_nest/view-top.png
+    - docs/design/vision/locate_tapered_rails/iso.svg
+    - docs/design/vision/locate_tapered_rails/view-front.png
+    - docs/design/vision/locate_tapered_rails/view-hero.png
+    - docs/design/vision/locate_tapered_rails/view-top.png
+    - docs/design/vision/manifest.json
+- id: plan
+  title: Project plan — 27 chunks, 16 sessions on the critical path
+  stage: plan
+  summary: The work as I understand it, with dependencies. No chunk requires laboratory access;
+    bench verification is held as T2, blocked, rather than deleted. The two things worth your
+    eye are whether this is all the work — test, documentation and manufacturing are what
+    people forget — and whether the order is right, since you know constraints I do not.
+  questions:
+  - Is this all the work, or is a whole lane missing?
+  - Is the order right — anything with a lead time that should start sooner?
+  artifacts:
+  - path: docs/plan.md
+    sha256: bc0b349f3482a38e
+  - path: docs/plan.svg
+    sha256: 77fc96c0d7bcd2b9
+  references:
+  - plan.yaml
+  requested: '2026-08-31'
+  requested_commit: 01181dd
+  status: requested
+  packet: docs/review/plan.md
+  history:
+  - 'on': '2026-08-31'
+    action: requested
+    commit: 01181dd
+    questions:
+    - Is this all the work, or is a whole lane missing?
+    - Is the order right — anything with a lead time that should start sooner?
+    summary: The work as I understand it, with dependencies. No chunk requires laboratory
+      access; bench verification is held as T2, blocked, rather than deleted. The two things
+      worth your eye are whether this is all the work — test, documentation and manufacturing
+      are what people forget — and whether the order is right, since you know constraints
+      I do not.
+    added:
+    - docs/plan.md
+    - docs/plan.svg
+- id: requirements
+  title: Requirements — 66 requirements, 0% verified
+  stage: requirements
+  summary: VIS through SYS to ELE/MEC/FW, with SYS-004 dividing 300 W of loss among five children
+    that sum exactly to the parent. Coverage is 0% verified and that is correct — no design
+    artefact exists yet, so every gap is a missing evidence pointer rather than a defect.
+    Nothing has been marked Verified to improve the number. What I need is your eye on the
+    numbers themselves.
+  questions:
+  - Are the numbers right — particularly the 3 kW target, the 0.3-0.5C charge policy and the
+    90% efficiency budget?
+  - Is anything missing that you would expect to see as a requirement?
+  artifacts:
+  - path: docs/design/requirements-map.svg
+    sha256: 860d63491bd799e6
+  references:
+  - requirements/00-vision.sdoc
+  - requirements/10-system.sdoc
+  - requirements/20-electrical.sdoc
+  - requirements/20-firmware.sdoc
+  - requirements/20-mechanical.sdoc
+  - requirements/README.md
+  - requirements/hardware.sgra
+  requested: '2026-08-31'
+  requested_commit: 01181dd
+  status: requested
+  packet: docs/review/requirements.md
+  history:
+  - 'on': '2026-08-31'
+    action: requested
+    commit: 01181dd
+    questions:
+    - Are the numbers right — particularly the 3 kW target, the 0.3-0.5C charge policy and
+      the 90% efficiency budget?
+    - Is anything missing that you would expect to see as a requirement?
+    summary: VIS through SYS to ELE/MEC/FW, with SYS-004 dividing 300 W of loss among five
+      children that sum exactly to the parent. Coverage is 0% verified and that is correct
+      — no design artefact exists yet, so every gap is a missing evidence pointer rather than
+      a defect. Nothing has been marked Verified to improve the number. What I need is your
+      eye on the numbers themselves.
+    added:
+    - docs/design/requirements-map.svg
+- id: architecture
+  title: Architecture — 29 blocks, 8 rails, two converter instances
+  stage: architecture
+  summary: 'One bidirectional converter design deployed twice: LV-to-HV on the dock to make
+    the 400 V link, HV-to-LV on the vehicle into the pack. Both packs are 48 V so one low-voltage
+    specification covers both ends. The power budget closes on every rail. The TX power stage
+    is settled in ADR-0002 against a datasheet I read directly; the rest of the parts are
+    still open in E1.'
+  questions:
+  - Is a rail missing, or a bus on the wrong controller?
+  - Is one converter design used in both orientations the right call, versus two purpose-built
+    ones?
+  artifacts:
+  - path: docs/design/adr-0002-tx-power-stage.md
+    sha256: 0bc34701cf80a661
+  - path: docs/design/block-diagram.svg
+    sha256: ca6b8a19b74dfca2
+  references:
+  - hw/block-diagram.yaml
+  requested: '2026-08-31'
+  requested_commit: 01181dd
+  status: requested
+  packet: docs/review/architecture.md
+  history:
+  - 'on': '2026-08-31'
+    action: requested
+    commit: 01181dd
+    questions:
+    - Is a rail missing, or a bus on the wrong controller?
+    - Is one converter design used in both orientations the right call, versus two purpose-built
+      ones?
+    summary: 'One bidirectional converter design deployed twice: LV-to-HV on the dock to make
+      the 400 V link, HV-to-LV on the vehicle into the pack. Both packs are 48 V so one low-voltage
+      specification covers both ends. The power budget closes on every rail. The TX power
+      stage is settled in ADR-0002 against a datasheet I read directly; the rest of the parts
+      are still open in E1.'
+    added:
+    - docs/design/adr-0002-tx-power-stage.md
+    - docs/design/block-diagram.svg
+artifact_url: https://claude.ai/code/artifact/2eecc843-ba3d-4362-b04f-0cf91ea4be1b
