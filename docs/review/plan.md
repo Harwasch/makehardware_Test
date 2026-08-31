@@ -1,8 +1,8 @@
-# Review — Project plan — 27 chunks, 16 sessions on the critical path
+# Review — Project plan — 28 chunks
 
 `plan` · requested 2026-08-31 · branch `claude/wireless-charging-design-hf0aix`
 
-The work as I understand it, with dependencies. No chunk requires laboratory access; bench verification is held as T2, blocked, rather than deleted. The two things worth your eye are whether this is all the work — test, documentation and manufacturing are what people forget — and whether the order is right, since you know constraints I do not.
+Re-opened 2026-08-31. One chunk added: M4, the test packaging design, which SYS-017 and MEC-010 now require and which T2 depends on — without a rig that sets the gap, MEC-001 and MEC-003 cannot be verified at all. M3 picks up an extra obligation: it now owes the mechanical team a number for MEC-009 (required surface area and interface thermal resistance) rather than just a pad design, and owes the 150 W/m2 figure a second source. Six chunks are in_progress and none are done, which is honest rather than slow: four of them are blocked behind these unsigned reviews, and plan-render --check enforces that.
 
 ## What you are agreeing to
 
@@ -24,8 +24,8 @@ Sources and working files. Not part of the agreement — these change as work go
 
 ## What we need decided
 
-1. Is this all the work, or is a whole lane missing?
-2. Is the order right — anything with a lead time that should start sooner?
+1. M4 is estimated at 2 sessions. Is a shimmed pin rig with two finned sinks a two-session job in your shop?
+2. T2 (bench verification) stays blocked by your no-lab instruction. Confirm that still holds?
 
 ## Decision
 
@@ -35,7 +35,7 @@ Answer in the Claude session that sent you this link. There is nothing to run an
 
 Say which option you want **and why**: the reason is worth more than the choice, and it is what gets re-read later when a number has to move. If something is wrong, say what would be right.
 
-<details><summary>How the answer gets recorded</summary>
+**How the answer gets recorded**
 
 The agent writes your decision, in your words, into [`docs/review/reviews.yaml`](https://github.com/Harwasch/makehardware_Test/blob/claude/wireless-charging-design-hf0aix/docs/review/reviews.yaml):
 
@@ -45,8 +45,6 @@ review-gate sign plan --changes "what to change"
 ```
 
 Until that happens, any chunk of work depending on this review cannot be marked done.
-
-</details>
 
 ---
 

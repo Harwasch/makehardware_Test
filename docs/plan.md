@@ -3,7 +3,7 @@
 What work exists, what each piece is, and what has to happen first.
 **Statuses are deliberately not in this file** — see the chart in the README for those. This is the scope, and it is what the plan review signs off.
 
-27 chunks · 16 sessions on the critical path · disciplines: electrical, firmware, mechanical, test, documentation
+28 chunks · 16 sessions on the critical path · disciplines: electrical, firmware, mechanical, test, documentation
 
 ![dependency chart](plan.svg)
 
@@ -22,7 +22,7 @@ Artefacts complete and pushed; the AGREEMENT on them is not. Held at in_progress
 
 #### G1 — Vision review gate — the human agrees the concepts and the numbers
 
-The agreement the workflow requires and never got. Three docking arrangements are in front of the human with the corrected coil analysis; five questions are open. Design chunks depend on this rather than on V1, because designing against an unagreed vision is what produced two bare coil pads when the human wanted to see a product. CLOSED: belly dock, no actuator, charging on deck in a locating bracket, scope limited to the charging system, 4 x 8 inch pad, and PCB kept per ADR-0001. RE-OPENED under the v0.2.0 review mechanism: those decisions were taken in chat and never signed into a ledger, and the locating approach is still open.
+The agreement the workflow requires and never got. Three docking arrangements are in front of the human with the corrected coil analysis; five questions are open. Design chunks depend on this rather than on V1, because designing against an unagreed vision is what produced two bare coil pads when the human wanted to see a product. CLOSED: belly dock, no actuator, charging on deck, scope limited to the charging system, 4 x 8 inch pad, and PCB kept per ADR-0001. CLOSED 2026-08-31: scope narrowed to the electronics plus a test packaging (VIS-013), integration and the fixture to the mechanical team, and the locating scheme set to pins (VIS-005). The three locating concepts are withdrawn and MEC-009 re-aimed as an interface requirement rather than deleted with them. RE-OPENED under the v0.2.0 review mechanism: these decisions were taken in chat and are not yet signed into the ledger.
 
 * **Needs first:** V1
 * **Estimate:** 1 session
@@ -80,11 +80,19 @@ Picks PCB or Litz against M1's predictions, then sizes turns, geometry, ferrite 
 
 #### M3 — Coil pad thermal design, conduction path and packaging
 
-gmsh + CalculiX. VIS-006 allows no coolant, so this chunk is what proves the M2 choice survives. The dock enclosure sits on OPEN DECK on a surface vessel operating worldwide, so the ambient envelope comes from the marine standards plus solar gain — settled in R2.
+gmsh + CalculiX. VIS-006 allows no coolant, so this chunk is what proves the M2 choice survives. The dock enclosure sits on OPEN DECK on a surface vessel operating worldwide, so the ambient envelope comes from the marine standards plus solar gain — settled in R2. MEC-009 is now an INTERFACE requirement on a structure the mechanical team builds (VIS-013), so this chunk owes them a number — required surface area and interface thermal resistance — not just a pad design. It also owes the 150 W/m2 still-air figure a second source; it is single-sourced and the whole 12x follows from it.
 
 * **Needs first:** M2
 * **Estimate:** 2 sessions
 * **Produces:** `cad/coil_pad.py`, `sim/thermal/`, `docs/design/thermal.md`
+
+#### M4 — Test packaging design — pin locating, shim-set gap, its own heat sink
+
+SYS-017 and MEC-010. The bench rig that holds the coil pair at the SYS-006 envelope, without which MEC-001, MEC-003 and SYS-006 cannot be verified at all — every one of them is written "across the envelope" and the corners are where they are closest to failing. Concept geometry already exists in concepts/test_packaging.py; this chunk takes it to a buildable part with tolerances on the pin pattern and a shim schedule. It must meet MEC-009 itself, because a thermal measurement on a rig with a smaller heat sink would understate the temperature the delivered system runs at.
+
+* **Needs first:** M2, M3
+* **Estimate:** 2 sessions
+* **Produces:** `cad/test_packaging.py`, `docs/design/test-packaging.md`
 
 ### electrical
 
@@ -102,7 +110,7 @@ Provisional diagram written and block-diagram --check passes, but the currents a
 
 * **Needs first:** E1, M2
 * **Estimate:** 1 session
-* **Produces:** `hw/block-diagram.yaml`, `docs/design/block-diagram.svg`
+* **Produces:** `hw/block-diagram.yaml`, `docs/design/block-diagram.svg`, `scripts/block_sheets.py`, `hw/sheets/`
 * **Human review:** `architecture` must be signed off before this chunk can be done
 
 #### E2 — TX board schematic capture and ERC  *(critical path)*
@@ -197,7 +205,7 @@ Everything closeable without a laboratory: the Analysis and Simulation requireme
 
 OUT OF SCOPE FOR NOW by instruction: no laboratory work. Held in the plan rather than deleted, because the Test-method requirements are real and the coil quality factor in particular is a prediction until something is measured. This chunk is what closes them.
 
-* **Needs first:** T1
+* **Needs first:** T1, M4
 * **Estimate:** 3 sessions
 * **Produces:** `docs/design/verification-report.md`
 

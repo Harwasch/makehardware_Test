@@ -47,10 +47,14 @@ chunks:
       five questions are open. Design chunks depend on this rather than on V1,
       because designing against an unagreed vision is what produced two bare
       coil pads when the human wanted to see a product. CLOSED: belly dock, no
-      actuator, charging on deck in a locating bracket, scope limited to the
-      charging system, 4 x 8 inch pad, and PCB kept per ADR-0001. RE-OPENED
-      under the v0.2.0 review mechanism: those decisions were taken in chat and
-      never signed into a ledger, and the locating approach is still open.
+      actuator, charging on deck, scope limited to the charging system, 4 x 8
+      inch pad, and PCB kept per ADR-0001. CLOSED 2026-08-31: scope narrowed to
+      the electronics plus a test packaging (VIS-013), integration and the
+      fixture to the mechanical team, and the locating scheme set to pins
+      (VIS-005). The three locating concepts are withdrawn and MEC-009 re-aimed
+      as an interface requirement rather than deleted with them. RE-OPENED under
+      the v0.2.0 review mechanism: these decisions were taken in chat and are
+      not yet signed into the ledger.
 
   - id: R1
     title: System and discipline requirements from the agreed vision
@@ -137,7 +141,29 @@ chunks:
       gmsh + CalculiX. VIS-006 allows no coolant, so this chunk is what proves
       the M2 choice survives. The dock enclosure sits on OPEN DECK on a surface
       vessel operating worldwide, so the ambient envelope comes from the marine
-      standards plus solar gain — settled in R2.
+      standards plus solar gain — settled in R2. MEC-009 is now an INTERFACE
+      requirement on a structure the mechanical team builds (VIS-013), so this
+      chunk owes them a number — required surface area and interface thermal
+      resistance — not just a pad design. It also owes the 150 W/m2 still-air
+      figure a second source; it is single-sourced and the whole 12x follows
+      from it.
+
+  - id: M4
+    title: Test packaging design — pin locating, shim-set gap, its own heat sink
+    discipline: mechanical
+    status: todo
+    depends_on: [M2, M3]
+    estimate_sessions: 2
+    outputs: [cad/test_packaging.py, docs/design/test-packaging.md]
+    notes: >-
+      SYS-017 and MEC-010. The bench rig that holds the coil pair at the SYS-006
+      envelope, without which MEC-001, MEC-003 and SYS-006 cannot be verified at
+      all — every one of them is written "across the envelope" and the corners
+      are where they are closest to failing. Concept geometry already exists in
+      concepts/test_packaging.py; this chunk takes it to a buildable part with
+      tolerances on the pin pattern and a shim schedule. It must meet MEC-009
+      itself, because a thermal measurement on a rig with a smaller heat sink
+      would understate the temperature the delivered system runs at.
 
   # ---- electrical ----------------------------------------------------------
   - id: E1
@@ -162,7 +188,8 @@ chunks:
     depends_on: [E1, M2]
     estimate_sessions: 1
     review: architecture
-    outputs: [hw/block-diagram.yaml, docs/design/block-diagram.svg]
+    outputs: [hw/block-diagram.yaml, docs/design/block-diagram.svg,
+              scripts/block_sheets.py, hw/sheets/]
     notes: >-
       Provisional diagram written and block-diagram --check passes, but the
       currents are estimates: this chunk cannot close until E1 settles the
@@ -350,7 +377,7 @@ chunks:
     title: Bench verification — deferred until laboratory access
     discipline: test
     status: blocked
-    depends_on: [T1]
+    depends_on: [T1, M4]
     estimate_sessions: 3
     outputs: [docs/design/verification-report.md]
     notes: >-

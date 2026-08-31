@@ -233,12 +233,15 @@ RELATIONS:
 
 [REQUIREMENT]
 UID: MEC-009
-TITLE: The mounting bracket is the heat sink
+TITLE: Interface requirement - the mounting structure is the heat sink
 STATEMENT: >>>
-The mounting bracket shall conduct the full pad dissipation of ``MEC-004`` into
-free air with at least 12 times the pad footprint in external surface area, and
-shall hold the coil conductor below 100 degC in the ``SYS-016`` ambient with no
-pumped coolant and no forced air.
+The structure each pad mounts to - the deck fixture, the vehicle mounting and
+the test packaging alike - shall conduct the full pad dissipation of ``MEC-004``
+into free air with at least 12 times the pad footprint in external surface area,
+and shall hold the coil conductor below 100 degC in the ``SYS-016`` ambient with
+no pumped coolant and no forced air. This programme shall state this as a
+numbered interface requirement to whoever builds that structure, and shall meet
+it in the test packaging.
 <<<
 RATIONALE: >>>
 This requirement exists because the pad cannot cool itself and the arithmetic is
@@ -249,10 +252,20 @@ therefore irrelevant to the thermal problem and every watt leaves through the
 bracket, which needs roughly 2400 square centimetres of external surface - about
 twelve times the pad footprint.
 
-A finned aluminium deck bracket of about 400 by 500 mm provides that
-comfortably, which is exactly why the decision to charge on deck in a bracket is
-what makes an etched coil viable at all. A hull-mounted pad with only its own
-faces to work with could not have been cooled by any coil technology.
+A finned aluminium plate of about 400 by 500 mm provides that comfortably, which
+is exactly why the decision to charge on deck in a fixture is what makes an
+etched coil viable at all. A hull-mounted pad with only its own faces to work
+with could not have been cooled by any coil technology.
+
+The fixture became the mechanical team's on 2026-08-31 (``VIS-013``). This
+requirement was NOT withdrawn with it, and the distinction is the whole point:
+we no longer design the bracket, but the coil we do design is only viable
+because something cools it, so the surface area becomes a number we levy on the
+integrator rather than a number we satisfy ourselves. Handing over a coil
+without handing over its heat sink requirement is how a design that closed on
+paper arrives at a 90 degC pad. The test packaging must meet it too, because a
+thermal measurement taken on a rig with a smaller heat sink would understate the
+temperature the delivered system runs at.
 
 The 12 times figure is researched but NOT independently verified - the
 verification pass on the thermal topic did not run - so it must be confirmed
@@ -266,4 +279,37 @@ STATUS: Draft
 RELATIONS:
 - TYPE: Parent
   VALUE: SYS-007
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: MEC-010
+TITLE: Test packaging construction and pin locating
+STATEMENT: >>>
+The test packaging shall locate each coil assembly on two dowel pins in a
+hole-and-slot pattern, shall set the gap of ``SYS-017`` with shims or a
+graduated adjuster readable to 0.5 mm, and shall be producible by 3-axis
+machining and sheet fabrication from stock material with no programme-specific
+tooling.
+<<<
+RATIONALE: >>>
+Hole-and-slot on two pins is the standard way to fix a plate in six degrees of
+freedom without over-constraining it: the round hole fixes position, the slot
+fixes rotation and leaves the pin-spacing tolerance and thermal growth somewhere
+to go. Locating on two round holes instead is the common mistake - it fights the
+pin spacing and either binds or has to be opened up until it no longer locates.
+
+Shims set the gap rather than a screw thread because a shim stack is directly
+measurable with the same gauge that verifies it, and ``SYS-017`` needs the gap
+KNOWN to 0.5 mm rather than merely adjustable.
+
+The producibility clause mirrors ``MEC-006``. It is here rather than inherited
+because the test packaging is test equipment and would otherwise sit outside
+that requirement's scope, and a rig that needs its own tooling does not get
+built in time to verify anything.
+<<<
+VERIFICATION: Inspection
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-017
   ROLE: Refines

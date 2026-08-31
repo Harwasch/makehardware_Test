@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1048" height="4792" viewBox="0 0 1048 4792" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" role="img" aria-label="Requirements map: 66 requirements, 0 verified, 76 gaps">
+<svg xmlns="http://www.w3.org/2000/svg" width="1048" height="4914" viewBox="0 0 1048 4914" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" role="img" aria-label="Requirements map: 69 requirements, 0 verified, 78 gaps">
 <style>
 .s{fill:#fcfcfb} .card{fill:#ffffff} .ink{fill:#0b0b0b} .ink2{fill:#52514e} .ax{stroke:#c3c2b7}
 @media (prefers-color-scheme:dark){.s{fill:#1a1a19} .card{fill:#242422} .ink{fill:#ffffff} .ink2{fill:#c3c2b7} .ax{stroke:#383835}}
 .mut{fill:#898781} .t{font-size:11.5px} .tb{font-size:12px;font-weight:600} .ts{font-size:10px} .h{font-size:16px;font-weight:600} .hd{font-size:11px;font-weight:600}
 </style>
-<rect width="1048" height="4792" class="s" rx="6"/>
+<rect width="1048" height="4914" class="s" rx="6"/>
 <text x="24" y="30" class="h ink">Requirements map</text>
-<text x="24" y="50" class="t ink2">66 requirements · 0 verified · 0 with evidence (0.0%) · 76 gap(s), marked in red</text>
+<text x="24" y="50" class="t ink2">69 requirements · 0 verified · 0 with evidence (0.0%) · 78 gap(s), marked in red</text>
 <text x="24" y="68" class="ts mut">an arrow points from a requirement to the one that refines it</text>
 <text x="24" y="86" class="hd ink2">VISION — what was asked for</text>
 <text x="392" y="86" class="hd ink2">SYSTEM — testable at the product</text>
@@ -28,6 +28,7 @@
 <path d="M288.0,1347.6666666666667 H340.0 V1612.0 H389.0" fill="none" stroke="#898781" stroke-width="1.2" opacity="0.6" marker-end="url(#ra)"/>
 <path d="M288.0,4662.0 H340.0 V4662.0 H389.0" fill="none" stroke="#898781" stroke-width="1.2" opacity="0.6" marker-end="url(#ra)"/>
 <path d="M288.0,2130.5 H340.0 V2222.0 H389.0" fill="none" stroke="#898781" stroke-width="1.2" opacity="0.6" marker-end="url(#ra)"/>
+<path d="M288.0,4784.0 H340.0 V4784.0 H389.0" fill="none" stroke="#898781" stroke-width="1.2" opacity="0.6" marker-end="url(#ra)"/>
 <path d="M656.0,2588.0 H708.0 V2344.0 H757.0" fill="none" stroke="#898781" stroke-width="1.2" opacity="0.6" marker-end="url(#ra)"/>
 <path d="M656.0,2588.0 H708.0 V2466.0 H757.0" fill="none" stroke="#898781" stroke-width="1.2" opacity="0.6" marker-end="url(#ra)"/>
 <path d="M656.0,2588.0 H708.0 V2588.0 H757.0" fill="none" stroke="#898781" stroke-width="1.2" opacity="0.6" marker-end="url(#ra)"/>
@@ -66,6 +67,7 @@
 <path d="M656.0,3625.0 H708.0 V3686.0 H757.0" fill="none" stroke="#898781" stroke-width="1.2" opacity="0.6" marker-end="url(#ra)"/>
 <path d="M656.0,3869.0 H708.0 V3930.0 H757.0" fill="none" stroke="#898781" stroke-width="1.2" opacity="0.6" marker-end="url(#ra)"/>
 <path d="M656.0,2039.0 H708.0 V2100.0 H757.0" fill="none" stroke="#898781" stroke-width="1.2" opacity="0.6" marker-end="url(#ra)"/>
+<path d="M656.0,4784.0 H708.0 V4784.0 H757.0" fill="none" stroke="#898781" stroke-width="1.2" opacity="0.6" marker-end="url(#ra)"/>
 <g><title>VIS-001 — Return the Mako to operation quickly</title>
 <rect x="24.0" y="218.0" width="264" height="104" rx="6" class="card ax" stroke-width="1"/>
 <rect x="24.0" y="218.0" width="5" height="104" fill="#898781" rx="2.5"/>
@@ -105,13 +107,13 @@
 <text x="38.0" y="1752.0" class="ts mut">Inspection</text>
 <text x="38.0" y="1766.0" class="ts mut">refined by 1 requirement</text>
 </g>
-<g><title>VIS-005 — The vehicle is recovered to deck and set into a locating bracket</title>
+<g><title>VIS-005 — The vehicle is recovered to deck and set into a locating fixture</title>
 <rect x="24.0" y="1804.0" width="264" height="104" rx="6" class="card ax" stroke-width="1"/>
 <rect x="24.0" y="1804.0" width="5" height="104" fill="#898781" rx="2.5"/>
 <text x="38.0" y="1824.0" class="tb ink">VIS-005</text>
 <text x="278.0" y="1824.0" class="ts" text-anchor="end" fill="#898781">· Draft</text>
 <text x="38.0" y="1843.0" class="t ink2">The vehicle is recovered to deck and</text>
-<text x="38.0" y="1858.0" class="t ink2">set into a locating bracket</text>
+<text x="38.0" y="1858.0" class="t ink2">set into a locating fixture</text>
 <text x="38.0" y="1874.0" class="ts mut">Inspection</text>
 <text x="38.0" y="1888.0" class="ts mut">refined by 1 requirement</text>
 </g>
@@ -185,6 +187,16 @@
 <text x="38.0" y="4680.0" class="ts mut">Inspection</text>
 <text x="38.0" y="4694.0" class="ts mut">refined by 1 requirement</text>
 </g>
+<g><title>VIS-013 — Scope is the charger electronics and a test packaging</title>
+<rect x="24.0" y="4732.0" width="264" height="104" rx="6" class="card ax" stroke-width="1"/>
+<rect x="24.0" y="4732.0" width="5" height="104" fill="#898781" rx="2.5"/>
+<text x="38.0" y="4752.0" class="tb ink">VIS-013</text>
+<text x="278.0" y="4752.0" class="ts" text-anchor="end" fill="#898781">· Draft</text>
+<text x="38.0" y="4771.0" class="t ink2">Scope is the charger electronics and a</text>
+<text x="38.0" y="4786.0" class="t ink2">test packaging</text>
+<text x="38.0" y="4802.0" class="ts mut">Inspection</text>
+<text x="38.0" y="4816.0" class="ts mut">refined by 1 requirement</text>
+</g>
 <g><title>SYS-001 — Maximum power delivery</title>
 <rect x="392.0" y="950.0" width="264" height="104" rx="6" class="card ax" stroke-width="1"/>
 <rect x="392.0" y="950.0" width="5" height="104" fill="#898781" rx="2.5"/>
@@ -231,12 +243,12 @@
 <text x="406.0" y="593.0" class="ts mut">Test</text>
 <text x="406.0" y="607.0" class="ts mut">refined by 2 requirements</text>
 </g>
-<g><title>SYS-006 — Coupling across the bracket&#x27;s tolerance envelope</title>
+<g><title>SYS-006 — Coupling across the fixture&#x27;s tolerance envelope</title>
 <rect x="392.0" y="1804.0" width="264" height="104" rx="6" class="card ax" stroke-width="1"/>
 <rect x="392.0" y="1804.0" width="5" height="104" fill="#898781" rx="2.5"/>
 <text x="406.0" y="1824.0" class="tb ink">SYS-006</text>
 <text x="646.0" y="1824.0" class="ts" text-anchor="end" fill="#898781">· Draft</text>
-<text x="406.0" y="1843.0" class="t ink2">Coupling across the bracket&#x27;s</text>
+<text x="406.0" y="1843.0" class="t ink2">Coupling across the fixture&#x27;s</text>
 <text x="406.0" y="1858.0" class="t ink2">tolerance envelope</text>
 <text x="406.0" y="1874.0" class="ts mut">Test</text>
 <text x="406.0" y="1888.0" class="ts mut">refined by 1 requirement</text>
@@ -336,6 +348,16 @@
 <text x="406.0" y="2224.0" class="t ink2">marine service</text>
 <text x="406.0" y="2240.0" class="ts mut">Simulation</text>
 <text x="406.0" y="2254.0" class="ts mut">refined by 1 requirement</text>
+</g>
+<g><title>SYS-017 — Test packaging holds the coil pair across the SYS-006 envelope</title>
+<rect x="392.0" y="4732.0" width="264" height="104" rx="6" class="card ax" stroke-width="1"/>
+<rect x="392.0" y="4732.0" width="5" height="104" fill="#898781" rx="2.5"/>
+<text x="406.0" y="4752.0" class="tb ink">SYS-017</text>
+<text x="646.0" y="4752.0" class="ts" text-anchor="end" fill="#898781">· Draft</text>
+<text x="406.0" y="4771.0" class="t ink2">Test packaging holds the coil pair</text>
+<text x="406.0" y="4786.0" class="t ink2">across the SYS-006 envelope</text>
+<text x="406.0" y="4802.0" class="ts mut">Inspection</text>
+<text x="406.0" y="4816.0" class="ts mut">refined by 1 requirement</text>
 </g>
 <g><title>ELE-001 — TX inverter loss · no evidence, no design artefact</title>
 <rect x="760.0" y="2292.0" width="264" height="104" rx="6" class="card" stroke="#d03b3b" stroke-width="2"/>
@@ -720,26 +742,38 @@
 <text x="774.0" y="3962.0" class="ts" fill="#d03b3b">✕ evidence</text>
 <text x="834.4" y="3962.0" class="ts" fill="#d03b3b">✕ artefact linked</text>
 </g>
-<g><title>MEC-009 — The mounting bracket is the heat sink · no evidence, no design artefact</title>
+<g><title>MEC-009 — Interface requirement - the mounting structure is the heat sink · no evidence, no design artefact</title>
 <rect x="760.0" y="2048.0" width="264" height="104" rx="6" class="card" stroke="#d03b3b" stroke-width="2"/>
 <rect x="760.0" y="2048.0" width="5" height="104" fill="#898781" rx="2.5"/>
 <text x="774.0" y="2068.0" class="tb ink">MEC-009</text>
 <text x="1014.0" y="2068.0" class="ts" text-anchor="end" fill="#898781">· Draft</text>
-<text x="774.0" y="2087.0" class="t ink2">The mounting bracket is the heat sink</text>
+<text x="774.0" y="2087.0" class="t ink2">Interface requirement - the mounting</text>
+<text x="774.0" y="2102.0" class="t ink2">structure is the heat sink</text>
 <text x="774.0" y="2118.0" class="ts mut">Simulation</text>
 <text x="774.0" y="2132.0" class="ts" fill="#d03b3b">✕ evidence</text>
 <text x="834.4" y="2132.0" class="ts" fill="#d03b3b">✕ artefact linked</text>
 </g>
-<rect x="24" y="4753" width="10" height="10" rx="2" fill="#898781"/>
-<text x="39" y="4762" class="ts ink2">· Draft</text>
-<rect x="101.0" y="4753" width="10" height="10" rx="2" fill="#2a78d6"/>
-<text x="116.0" y="4762" class="ts ink2">= Agreed</text>
-<rect x="184.4" y="4753" width="10" height="10" rx="2" fill="#e08a1e"/>
-<text x="199.4" y="4762" class="ts ink2">▶ Implemented</text>
-<rect x="299.8" y="4753" width="10" height="10" rx="2" fill="#0ca30c"/>
-<text x="314.8" y="4762" class="ts ink2">✓ Verified</text>
-<rect x="396.0" y="4753" width="10" height="10" rx="2" fill="#8b5cf6"/>
-<text x="411.0" y="4762" class="ts ink2">~ Waived</text>
-<rect x="479.4" y="4753" width="10" height="10" rx="2" fill="none" stroke="#d03b3b" stroke-width="2"/>
-<text x="494.4" y="4762" class="ts ink2">red border = a gap the gate is failing on</text>
+<g><title>MEC-010 — Test packaging construction and pin locating · no evidence, no design artefact</title>
+<rect x="760.0" y="4732.0" width="264" height="104" rx="6" class="card" stroke="#d03b3b" stroke-width="2"/>
+<rect x="760.0" y="4732.0" width="5" height="104" fill="#898781" rx="2.5"/>
+<text x="774.0" y="4752.0" class="tb ink">MEC-010</text>
+<text x="1014.0" y="4752.0" class="ts" text-anchor="end" fill="#898781">· Draft</text>
+<text x="774.0" y="4771.0" class="t ink2">Test packaging construction and pin</text>
+<text x="774.0" y="4786.0" class="t ink2">locating</text>
+<text x="774.0" y="4802.0" class="ts mut">Inspection</text>
+<text x="774.0" y="4816.0" class="ts" fill="#d03b3b">✕ evidence</text>
+<text x="834.4" y="4816.0" class="ts" fill="#d03b3b">✕ artefact linked</text>
+</g>
+<rect x="24" y="4875" width="10" height="10" rx="2" fill="#898781"/>
+<text x="39" y="4884" class="ts ink2">· Draft</text>
+<rect x="101.0" y="4875" width="10" height="10" rx="2" fill="#2a78d6"/>
+<text x="116.0" y="4884" class="ts ink2">= Agreed</text>
+<rect x="184.4" y="4875" width="10" height="10" rx="2" fill="#e08a1e"/>
+<text x="199.4" y="4884" class="ts ink2">▶ Implemented</text>
+<rect x="299.8" y="4875" width="10" height="10" rx="2" fill="#0ca30c"/>
+<text x="314.8" y="4884" class="ts ink2">✓ Verified</text>
+<rect x="396.0" y="4875" width="10" height="10" rx="2" fill="#8b5cf6"/>
+<text x="411.0" y="4884" class="ts ink2">~ Waived</text>
+<rect x="479.4" y="4875" width="10" height="10" rx="2" fill="none" stroke="#d03b3b" stroke-width="2"/>
+<text x="494.4" y="4884" class="ts ink2">red border = a gap the gate is failing on</text>
 </svg>

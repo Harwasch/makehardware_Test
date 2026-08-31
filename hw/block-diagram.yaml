@@ -134,12 +134,14 @@ blocks:
 
   # ======================= DOCK / TX BOARD =======================
   - id: J0
+    sheet: dock
     name: Leviathan pack connector
     kind: connector
     part: TBD-48V-75A
 
   - id: U40
-    name: Dock DAB low-voltage bridge (16x)
+    sheet: dock
+    name: Dock DAB LV bridge 16x
     kind: power
     part: BSC190N15NS3
     powered_by:
@@ -155,13 +157,15 @@ blocks:
       per ELE-003.
 
   - id: U41
-    name: Dock DAB planar transformer
+    sheet: dock
+    name: Dock DAB transformer
     kind: other
     part: TBD-planar-48V-400V
     notes: same design as U21, 1:8.33
 
   - id: U42
-    name: Dock DAB high-voltage bridge (4x)
+    sheet: dock
+    name: Dock DAB HV bridge 4x
     kind: power
     part: IPB60R120C7
     powered_by:
@@ -173,6 +177,7 @@ blocks:
       provisional pending E1.
 
   - id: U43
+    sheet: dock
     name: Dock DAB controller
     kind: mcu
     part: STM32H723ZGT6
@@ -183,7 +188,8 @@ blocks:
     notes: same design as U23
 
   - id: U44
-    name: Dock PWM and analog isolation
+    sheet: dock
+    name: Dock signal isolation
     kind: interface
     part: ISO7740
     powered_by:
@@ -192,7 +198,8 @@ blocks:
         max_current_a: 0.035
 
   - id: U45
-    name: Dock DAB isolated gate bias
+    sheet: dock
+    name: Dock isolated gate bias
     kind: regulator
     part: UCC14240-Q1
     powered_by:
@@ -202,7 +209,8 @@ blocks:
     notes: same design as U25
 
   - id: U46
-    name: Dock digital buck 12V to 3.3V
+    sheet: dock
+    name: Dock buck 12V to 3.3V
     kind: regulator
     part: TPSM560R6
     powered_by:
@@ -211,7 +219,8 @@ blocks:
         max_current_a: 0.004
 
   - id: U47
-    name: Dock converter aux buck 48V to 12V
+    sheet: dock
+    name: Dock buck 48V to 12V
     kind: regulator
     part: TPSM5601R5
     powered_by:
@@ -220,6 +229,7 @@ blocks:
         max_current_a: 0.400
 
   - id: U1
+    sheet: tx
     name: TX bridge leg A (2x GaN)
     kind: power
     part: LMG3526R030
@@ -238,6 +248,7 @@ blocks:
       HV400 draw is half the 7.5 A bus current per leg.
 
   - id: U2
+    sheet: tx
     name: TX bridge leg B (2x GaN)
     kind: power
     part: LMG3526R030
@@ -250,6 +261,7 @@ blocks:
         max_current_a: 0.090
 
   - id: U3
+    sheet: tx
     name: TX isolated gate bias
     kind: regulator
     part: UCC14240-Q1
@@ -260,7 +272,8 @@ blocks:
     notes: (est) 2 W out at ~80% — confirm against the datasheet
 
   - id: U5
-    name: TX board aux buck 48V to 12V
+    sheet: tx
+    name: TX buck 48V to 12V
     kind: regulator
     part: TPSM5601R5
     powered_by:
@@ -275,7 +288,8 @@ blocks:
       isolated gate bias in U3 still crosses the barrier to the bridge.
 
   - id: U6
-    name: TX digital buck 12V to 3.3V
+    sheet: tx
+    name: TX buck 12V to 3.3V
     kind: regulator
     part: TPSM560R6
     powered_by:
@@ -284,6 +298,7 @@ blocks:
         max_current_a: 0.004
 
   - id: U7
+    sheet: tx
     name: TX controller
     kind: mcu
     part: STM32H723ZGT6
@@ -294,7 +309,8 @@ blocks:
     notes: (est) retained from v1 — advanced timers and fast ADC are the reason
 
   - id: U8
-    name: Tank current sense amplifier
+    sheet: tx
+    name: Tank current sense amp
     kind: analog
     part: OPA2328
     powered_by:
@@ -304,6 +320,7 @@ blocks:
     notes: 1 MHz / 2% chain per ELE-010
 
   - id: U9
+    sheet: tx
     name: Handshake damping switch
     kind: power
     part: TBD-relay-or-FET
@@ -317,7 +334,8 @@ blocks:
       hardware — the same network at full drive dissipates 5.9 kW.
 
   - id: C1
-    name: TX resonant capacitor bank
+    sheet: tx
+    name: TX resonant cap bank
     kind: other
     part: TBD-1500V-12Arms
     notes: >-
@@ -325,28 +343,33 @@ blocks:
       tank current. Absent from the v1 white paper entirely.
 
   - id: L1
+    sheet: tx
     name: TX coil assembly
     kind: other
     part: TBD-162uH-kQ49
     notes: MEC-001..004. Technology decided by ADR against a measured Q.
 
   - id: J2
+    sheet: tx
     name: TX debug header
     kind: connector
     part: FTSH-105-01
 
   # ======================= VEHICLE / RX =======================
   - id: L2
+    sheet: rx
     name: RX coil assembly
     kind: other
     part: TBD-162uH-kQ49
 
   - id: C2
-    name: RX resonant capacitor bank
+    sheet: rx
+    name: RX resonant cap bank
     kind: other
     part: TBD-1500V-12Arms
 
   - id: U10
+    sheet: rx
     name: RX rectifier
     kind: power
     part: TBD-SiC-or-synchronous
@@ -356,6 +379,7 @@ blocks:
       recovery loss at 100 kHz. SiC Schottky or synchronous rectification.
 
   - id: U11
+    sheet: rx
     name: RX link current sense
     kind: sensor
     part: TMCS1133
@@ -365,6 +389,7 @@ blocks:
         max_current_a: 0.015
 
   - id: U12
+    sheet: rx
     name: RX controller
     kind: mcu
     part: STM32G431
@@ -375,7 +400,8 @@ blocks:
     notes: (est) retained from v1
 
   - id: U13
-    name: Load-shift keying modulator
+    sheet: rx
+    name: Load-shift keying drive
     kind: power
     part: TBD-FET-switched-load
     powered_by:
@@ -389,7 +415,8 @@ blocks:
 
   # ======================= VEHICLE / HVLV =======================
   - id: U20
-    name: HVLV high-voltage bridge (4x)
+    sheet: veh
+    name: HVLV HV bridge 4x
     kind: power
     part: IPB60R120C7
     powered_by:
@@ -402,13 +429,15 @@ blocks:
     notes: 600 V on a 400 V bus is only 1.5x — ELE-006 wants 650 V. Revisit in E1.
 
   - id: U21
+    sheet: veh
     name: HVLV planar transformer
     kind: other
     part: TBD-planar-400V-48V
     notes: 8.33:1 nominal. Planar to keep the BOM cost down, per the v1 rationale.
 
   - id: U22
-    name: HVLV low-voltage bridge (16x)
+    sheet: veh
+    name: HVLV LV bridge 16x
     kind: power
     part: BSC190N15NS3
     powered_by:
@@ -421,6 +450,7 @@ blocks:
       the whole 100 W ELE-003 budget on the LV side alone; four give 37 W.
 
   - id: U23
+    sheet: veh
     name: HVLV controller
     kind: mcu
     part: STM32H723ZGT6
@@ -431,6 +461,7 @@ blocks:
     notes: (est) TIM1/TIM8 phase shift, retained from v1
 
   - id: U24
+    sheet: veh
     name: PWM and analog isolation
     kind: interface
     part: ISO7740
@@ -441,6 +472,7 @@ blocks:
     notes: with ISO224 for the analog path; 800 V reinforced per ELE-011
 
   - id: U25
+    sheet: veh
     name: HVLV isolated gate bias
     kind: regulator
     part: UCC14240-Q1
@@ -451,7 +483,8 @@ blocks:
     notes: (est) two devices, high side of the HV bridge
 
   - id: U26
-    name: Vehicle aux buck 48V to 12V
+    sheet: veh
+    name: Vehicle buck 48V to 12V
     kind: regulator
     part: TPSM5601R5
     powered_by:
@@ -463,7 +496,8 @@ blocks:
       controllers and the isolated bias for a 16-FET bridge.
 
   - id: U27
-    name: Vehicle digital buck 12V to 3.3V
+    sheet: veh
+    name: Vehicle buck 12V to 3.3V
     kind: regulator
     part: TPSM560R6
     powered_by:
@@ -472,6 +506,7 @@ blocks:
         max_current_a: 0.004
 
   - id: J3
+    sheet: veh
     name: Mako pack connector
     kind: connector
     part: TBD-48V-75A
@@ -484,6 +519,7 @@ blocks:
       the SYS-003 pack window, which is what ELE-008 sizes the copper for.
 
   - id: J4
+    sheet: veh
     name: Vehicle debug header
     kind: connector
     part: FTSH-105-01

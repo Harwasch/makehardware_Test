@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1216" height="2930" viewBox="0 0 1216 2930" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" role="img" aria-label="Electrical block diagram: Ulysses LARS Charger, 36 blocks, 10 rails, 23 buses">
+<svg xmlns="http://www.w3.org/2000/svg" width="1376" height="3438" viewBox="0 0 1376 3438" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" role="img" aria-label="Electrical block diagram: Ulysses LARS Charger, 36 blocks, 10 rails, 23 buses">
 <style>
 .s{fill:#fcfcfb} .bx{fill:#ffffff;stroke:#c3c2b7} .ink{fill:#0b0b0b} .ink2{fill:#52514e} .ax{stroke:#c3c2b7} .gt{fill:#c3c2b7}
 @media (prefers-color-scheme:dark){.s{fill:#1a1a19} .bx{fill:#242422;stroke:#383835} .ink{fill:#ffffff} .ink2{fill:#c3c2b7} .ax{stroke:#383835} .gt{fill:#383835}}
 .mut{fill:#898781}
 .t{font-size:12px} .tb{font-size:12.5px;font-weight:600} .ts{font-size:10px} .tr{font-size:11.5px;font-weight:600} .h{font-size:15px;font-weight:600} .hh{font-size:11px;font-weight:600;letter-spacing:0.06em}
 </style>
-<rect width="1216" height="2930" class="s" rx="6"/>
+<rect width="1376" height="3438" class="s" rx="6"/>
 <text x="24" y="27" class="h ink">Ulysses LARS Charger  ·  rev C</text>
 <text x="24" y="46" class="t ink2">36 blocks · 10 rails · 23 buses</text>
 <text x="24" y="61" class="ts mut">generated from block-diagram.yaml — edit the spec, not this file</text>
@@ -81,388 +81,388 @@
 <text x="34.0" y="612.0" class="tb ink">J0 · Leviathan pack connector</text>
 <text x="34.0" y="628.0" class="t ink2">TBD-48V-75A</text>
 <text x="34.0" y="646.0" class="ts mut">CONNECTOR</text>
-<rect x="24.0" y="708.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="34.0" y="728.0" class="tb ink">U2 · TX bridge leg B (2x GaN)</text>
-<text x="34.0" y="744.0" class="t ink2">LMG3526R030</text>
-<text x="34.0" y="762.0" class="ts mut">POWER</text>
-<rect x="167.0" y="752.0" width="33.0" height="15" rx="7.5" fill="#0ca30c"/>
-<text x="183.5" y="763.0" class="ts" fill="#ffffff" text-anchor="middle">TX12</text>
-<rect x="124.0" y="752.0" width="39.0" height="15" rx="7.5" fill="#e08a1e"/>
-<text x="143.5" y="763.0" class="ts" fill="#ffffff" text-anchor="middle">HV400</text>
-<rect x="24.0" y="1332.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="34.0" y="1352.0" class="tb ink">J2 · TX debug header</text>
-<text x="34.0" y="1368.0" class="t ink2">FTSH-105-01</text>
-<text x="34.0" y="1386.0" class="ts mut">CONNECTOR</text>
 <rect x="24.0" y="696.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="34.0" y="716.0" class="tb ink">U40 · Dock DAB low-voltage bri</text>
-<text x="34.0" y="732.0" class="t ink2">BSC190N15NS3</text>
+<text x="34.0" y="716.0" class="tb ink">U2 · TX bridge leg B (2x GaN)</text>
+<text x="34.0" y="732.0" class="t ink2">LMG3526R030</text>
 <text x="34.0" y="750.0" class="ts mut">POWER</text>
-<rect x="155.0" y="740.0" width="45.0" height="15" rx="7.5" fill="#8b5cf6"/>
-<text x="177.5" y="751.0" class="ts" fill="#ffffff" text-anchor="middle">DOCK12</text>
-<rect x="100.0" y="740.0" width="51.0" height="15" rx="7.5" fill="#d03b3b"/>
-<text x="125.5" y="751.0" class="ts" fill="#ffffff" text-anchor="middle">V48_LEV</text>
+<rect x="167.0" y="740.0" width="33.0" height="15" rx="7.5" fill="#0ca30c"/>
+<text x="183.5" y="751.0" class="ts" fill="#ffffff" text-anchor="middle">TX12</text>
+<rect x="124.0" y="740.0" width="39.0" height="15" rx="7.5" fill="#e08a1e"/>
+<text x="143.5" y="751.0" class="ts" fill="#ffffff" text-anchor="middle">HV400</text>
 <rect x="24.0" y="800.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="34.0" y="820.0" class="tb ink">U42 · Dock DAB high-voltage br</text>
-<text x="34.0" y="836.0" class="t ink2">IPB60R120C7</text>
-<text x="34.0" y="854.0" class="ts mut">POWER</text>
-<rect x="155.0" y="844.0" width="45.0" height="15" rx="7.5" fill="#8b5cf6"/>
-<text x="177.5" y="855.0" class="ts" fill="#ffffff" text-anchor="middle">DOCK12</text>
-<rect x="24.0" y="604.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="34.0" y="624.0" class="tb ink">U1 · TX bridge leg A (2x GaN)</text>
-<text x="34.0" y="640.0" class="t ink2">LMG3526R030</text>
-<text x="34.0" y="658.0" class="ts mut">POWER</text>
-<rect x="167.0" y="648.0" width="33.0" height="15" rx="7.5" fill="#0ca30c"/>
-<text x="183.5" y="659.0" class="ts" fill="#ffffff" text-anchor="middle">TX12</text>
-<rect x="124.0" y="648.0" width="39.0" height="15" rx="7.5" fill="#e08a1e"/>
-<text x="143.5" y="659.0" class="ts" fill="#ffffff" text-anchor="middle">HV400</text>
-<rect x="24.0" y="1228.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="34.0" y="1248.0" class="tb ink">U9 · Handshake damping switch</text>
-<text x="34.0" y="1264.0" class="t ink2">TBD-relay-or-FET</text>
-<text x="34.0" y="1282.0" class="ts mut">POWER</text>
-<rect x="167.0" y="1272.0" width="33.0" height="15" rx="7.5" fill="#0ca30c"/>
-<text x="183.5" y="1283.0" class="ts" fill="#ffffff" text-anchor="middle">TX12</text>
+<text x="34.0" y="820.0" class="tb ink">J2 · TX debug header</text>
+<text x="34.0" y="836.0" class="t ink2">FTSH-105-01</text>
+<text x="34.0" y="854.0" class="ts mut">CONNECTOR</text>
 <rect x="24.0" y="904.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="34.0" y="924.0" class="tb ink">U45 · Dock DAB isolated gate b</text>
-<text x="34.0" y="940.0" class="t ink2">UCC14240-Q1</text>
-<text x="34.0" y="958.0" class="ts mut">REGULATOR</text>
+<text x="34.0" y="924.0" class="tb ink">U40 · Dock DAB LV bridge 16x</text>
+<text x="34.0" y="940.0" class="t ink2">BSC190N15NS3</text>
+<text x="34.0" y="958.0" class="ts mut">POWER</text>
 <rect x="155.0" y="948.0" width="45.0" height="15" rx="7.5" fill="#8b5cf6"/>
 <text x="177.5" y="959.0" class="ts" fill="#ffffff" text-anchor="middle">DOCK12</text>
-<rect x="24.0" y="1436.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="34.0" y="1456.0" class="tb ink">U10 · RX rectifier</text>
-<text x="34.0" y="1472.0" class="t ink2">TBD-SiC-or-synchronous</text>
-<text x="34.0" y="1490.0" class="ts mut">POWER</text>
-<rect x="24.0" y="1540.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="34.0" y="1560.0" class="tb ink">U13 · Load-shift keying modula</text>
-<text x="34.0" y="1576.0" class="t ink2">TBD-FET-switched-load</text>
-<text x="34.0" y="1594.0" class="ts mut">POWER</text>
-<rect x="161.0" y="1584.0" width="39.0" height="15" rx="7.5" fill="#0ca30c"/>
-<text x="180.5" y="1595.0" class="ts" fill="#ffffff" text-anchor="middle">VEH12</text>
-<rect x="24.0" y="1644.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="34.0" y="1664.0" class="tb ink">U20 · HVLV high-voltage bridge</text>
-<text x="34.0" y="1680.0" class="t ink2">IPB60R120C7</text>
-<text x="34.0" y="1698.0" class="ts mut">POWER</text>
-<rect x="161.0" y="1688.0" width="39.0" height="15" rx="7.5" fill="#0ca30c"/>
-<text x="180.5" y="1699.0" class="ts" fill="#ffffff" text-anchor="middle">VEH12</text>
-<rect x="124.0" y="1688.0" width="33.0" height="15" rx="7.5" fill="#d03b3b"/>
-<text x="140.5" y="1699.0" class="ts" fill="#ffffff" text-anchor="middle">HVDC</text>
-<rect x="24.0" y="1748.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="34.0" y="1768.0" class="tb ink">U22 · HVLV low-voltage bridge </text>
-<text x="34.0" y="1784.0" class="t ink2">BSC190N15NS3</text>
-<text x="34.0" y="1802.0" class="ts mut">POWER</text>
-<rect x="161.0" y="1792.0" width="39.0" height="15" rx="7.5" fill="#0ca30c"/>
-<text x="180.5" y="1803.0" class="ts" fill="#ffffff" text-anchor="middle">VEH12</text>
-<rect x="24.0" y="2268.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="34.0" y="2288.0" class="tb ink">J4 · Vehicle debug header</text>
-<text x="34.0" y="2304.0" class="t ink2">FTSH-105-01</text>
-<text x="34.0" y="2322.0" class="ts mut">CONNECTOR</text>
+<rect x="100.0" y="948.0" width="51.0" height="15" rx="7.5" fill="#d03b3b"/>
+<text x="125.5" y="959.0" class="ts" fill="#ffffff" text-anchor="middle">V48_LEV</text>
 <rect x="24.0" y="1008.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="34.0" y="1028.0" class="tb ink">U46 · Dock digital buck 12V to</text>
-<text x="34.0" y="1044.0" class="t ink2">TPSM560R6</text>
-<text x="34.0" y="1062.0" class="ts mut">REGULATOR</text>
+<text x="34.0" y="1028.0" class="tb ink">U42 · Dock DAB HV bridge 4x</text>
+<text x="34.0" y="1044.0" class="t ink2">IPB60R120C7</text>
+<text x="34.0" y="1062.0" class="ts mut">POWER</text>
 <rect x="155.0" y="1052.0" width="45.0" height="15" rx="7.5" fill="#8b5cf6"/>
 <text x="177.5" y="1063.0" class="ts" fill="#ffffff" text-anchor="middle">DOCK12</text>
 <rect x="24.0" y="1112.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="34.0" y="1132.0" class="tb ink">U47 · Dock converter aux buck </text>
-<text x="34.0" y="1148.0" class="t ink2">TPSM5601R5</text>
-<text x="34.0" y="1166.0" class="ts mut">REGULATOR</text>
-<rect x="149.0" y="1156.0" width="51.0" height="15" rx="7.5" fill="#d03b3b"/>
-<text x="174.5" y="1167.0" class="ts" fill="#ffffff" text-anchor="middle">V48_LEV</text>
-<rect x="24.0" y="812.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="34.0" y="832.0" class="tb ink">U3 · TX isolated gate bias</text>
-<text x="34.0" y="848.0" class="t ink2">UCC14240-Q1</text>
-<text x="34.0" y="866.0" class="ts mut">REGULATOR</text>
-<rect x="167.0" y="856.0" width="33.0" height="15" rx="7.5" fill="#0ca30c"/>
-<text x="183.5" y="867.0" class="ts" fill="#ffffff" text-anchor="middle">TX12</text>
-<rect x="24.0" y="1020.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="34.0" y="1040.0" class="tb ink">U5 · TX board aux buck 48V to</text>
-<text x="34.0" y="1056.0" class="t ink2">TPSM5601R5</text>
-<text x="34.0" y="1074.0" class="ts mut">REGULATOR</text>
-<rect x="149.0" y="1064.0" width="51.0" height="15" rx="7.5" fill="#d03b3b"/>
-<text x="174.5" y="1075.0" class="ts" fill="#ffffff" text-anchor="middle">V48_LEV</text>
-<rect x="24.0" y="1124.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="34.0" y="1144.0" class="tb ink">U6 · TX digital buck 12V to 3</text>
-<text x="34.0" y="1160.0" class="t ink2">TPSM560R6</text>
-<text x="34.0" y="1178.0" class="ts mut">REGULATOR</text>
-<rect x="167.0" y="1168.0" width="33.0" height="15" rx="7.5" fill="#0ca30c"/>
-<text x="183.5" y="1179.0" class="ts" fill="#ffffff" text-anchor="middle">TX12</text>
-<rect x="24.0" y="1852.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="34.0" y="1872.0" class="tb ink">U25 · HVLV isolated gate bias</text>
-<text x="34.0" y="1888.0" class="t ink2">UCC14240-Q1</text>
-<text x="34.0" y="1906.0" class="ts mut">REGULATOR</text>
-<rect x="161.0" y="1896.0" width="39.0" height="15" rx="7.5" fill="#0ca30c"/>
-<text x="180.5" y="1907.0" class="ts" fill="#ffffff" text-anchor="middle">VEH12</text>
-<rect x="24.0" y="1956.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="34.0" y="1976.0" class="tb ink">U26 · Vehicle aux buck 48V to </text>
-<text x="34.0" y="1992.0" class="t ink2">TPSM5601R5</text>
-<text x="34.0" y="2010.0" class="ts mut">REGULATOR</text>
-<rect x="143.0" y="2000.0" width="57.0" height="15" rx="7.5" fill="#e08a1e"/>
-<text x="171.5" y="2011.0" class="ts" fill="#ffffff" text-anchor="middle">V48_MAKO</text>
-<rect x="24.0" y="2060.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="34.0" y="2080.0" class="tb ink">U27 · Vehicle digital buck 12V</text>
-<text x="34.0" y="2096.0" class="t ink2">TPSM560R6</text>
-<text x="34.0" y="2114.0" class="ts mut">REGULATOR</text>
-<rect x="161.0" y="2104.0" width="39.0" height="15" rx="7.5" fill="#0ca30c"/>
-<text x="180.5" y="2115.0" class="ts" fill="#ffffff" text-anchor="middle">VEH12</text>
-<rect x="24.0" y="2164.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="34.0" y="2184.0" class="tb ink">J3 · Mako pack connector</text>
-<text x="34.0" y="2200.0" class="t ink2">TBD-48V-75A</text>
-<text x="34.0" y="2218.0" class="ts mut">CONNECTOR</text>
-<rect x="143.0" y="2208.0" width="57.0" height="15" rx="7.5" fill="#e08a1e"/>
-<text x="171.5" y="2219.0" class="ts" fill="#ffffff" text-anchor="middle">V48_MAKO</text>
-<rect x="410.0" y="592.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="420.0" y="612.0" class="tb ink">U41 · Dock DAB planar transfor</text>
-<text x="420.0" y="628.0" class="t ink2">TBD-planar-48V-400V</text>
-<text x="420.0" y="646.0" class="ts mut">OTHER</text>
-<rect x="410.0" y="500.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="420.0" y="520.0" class="tb ink">U7 · TX controller</text>
-<text x="420.0" y="536.0" class="t ink2">STM32H723ZGT6</text>
-<text x="420.0" y="554.0" class="ts mut">MCU</text>
-<rect x="547.0" y="544.0" width="39.0" height="15" rx="7.5" fill="#2a78d6"/>
-<text x="566.5" y="555.0" class="ts" fill="#ffffff" text-anchor="middle">TX3V3</text>
-<rect x="410.0" y="696.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="420.0" y="716.0" class="tb ink">U43 · Dock DAB controller</text>
-<text x="420.0" y="732.0" class="t ink2">STM32H723ZGT6</text>
-<text x="420.0" y="750.0" class="ts mut">MCU</text>
-<rect x="535.0" y="740.0" width="51.0" height="15" rx="7.5" fill="#0f9b8e"/>
-<text x="560.5" y="751.0" class="ts" fill="#ffffff" text-anchor="middle">DOCK3V3</text>
-<rect x="410.0" y="604.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="420.0" y="624.0" class="tb ink">C1 · TX resonant capacitor ba</text>
-<text x="420.0" y="640.0" class="t ink2">TBD-1500V-12Arms</text>
-<text x="420.0" y="658.0" class="ts mut">OTHER</text>
-<rect x="410.0" y="800.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="420.0" y="820.0" class="tb ink">U44 · Dock PWM and analog isol</text>
-<text x="420.0" y="836.0" class="t ink2">ISO7740</text>
-<text x="420.0" y="854.0" class="ts mut">INTERFACE</text>
-<rect x="535.0" y="844.0" width="51.0" height="15" rx="7.5" fill="#0f9b8e"/>
-<text x="560.5" y="855.0" class="ts" fill="#ffffff" text-anchor="middle">DOCK3V3</text>
-<rect x="410.0" y="708.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="420.0" y="728.0" class="tb ink">C2 · RX resonant capacitor ba</text>
-<text x="420.0" y="744.0" class="t ink2">TBD-1500V-12Arms</text>
-<text x="420.0" y="762.0" class="ts mut">OTHER</text>
-<rect x="410.0" y="812.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="420.0" y="832.0" class="tb ink">U12 · RX controller</text>
-<text x="420.0" y="848.0" class="t ink2">STM32G431</text>
-<text x="420.0" y="866.0" class="ts mut">MCU</text>
-<rect x="541.0" y="856.0" width="45.0" height="15" rx="7.5" fill="#2a78d6"/>
-<text x="563.5" y="867.0" class="ts" fill="#ffffff" text-anchor="middle">VEH3V3</text>
-<rect x="410.0" y="1124.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="420.0" y="1144.0" class="tb ink">U24 · PWM and analog isolation</text>
-<text x="420.0" y="1160.0" class="t ink2">ISO7740</text>
-<text x="420.0" y="1178.0" class="ts mut">INTERFACE</text>
-<rect x="541.0" y="1168.0" width="45.0" height="15" rx="7.5" fill="#2a78d6"/>
-<text x="563.5" y="1179.0" class="ts" fill="#ffffff" text-anchor="middle">VEH3V3</text>
-<rect x="410.0" y="916.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="420.0" y="936.0" class="tb ink">U21 · HVLV planar transformer</text>
-<text x="420.0" y="952.0" class="t ink2">TBD-planar-400V-48V</text>
-<text x="420.0" y="970.0" class="ts mut">OTHER</text>
-<rect x="410.0" y="1020.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="420.0" y="1040.0" class="tb ink">U23 · HVLV controller</text>
-<text x="420.0" y="1056.0" class="t ink2">STM32H723ZGT6</text>
-<text x="420.0" y="1074.0" class="ts mut">MCU</text>
-<rect x="541.0" y="1064.0" width="45.0" height="15" rx="7.5" fill="#2a78d6"/>
-<text x="563.5" y="1075.0" class="ts" fill="#ffffff" text-anchor="middle">VEH3V3</text>
-<rect x="796.0" y="500.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="806.0" y="520.0" class="tb ink">U8 · Tank current sense ampli</text>
-<text x="806.0" y="536.0" class="t ink2">OPA2328</text>
-<text x="806.0" y="554.0" class="ts mut">ANALOG</text>
-<rect x="933.0" y="544.0" width="39.0" height="15" rx="7.5" fill="#2a78d6"/>
-<text x="952.5" y="555.0" class="ts" fill="#ffffff" text-anchor="middle">TX3V3</text>
-<rect x="796.0" y="604.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="806.0" y="624.0" class="tb ink">L1 · TX coil assembly</text>
-<text x="806.0" y="640.0" class="t ink2">TBD-162uH-kQ49</text>
-<text x="806.0" y="658.0" class="ts mut">OTHER</text>
-<rect x="796.0" y="708.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="806.0" y="728.0" class="tb ink">L2 · RX coil assembly</text>
-<text x="806.0" y="744.0" class="t ink2">TBD-162uH-kQ49</text>
-<text x="806.0" y="762.0" class="ts mut">OTHER</text>
-<rect x="796.0" y="812.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
-<text x="806.0" y="832.0" class="tb ink">U11 · RX link current sense</text>
-<text x="806.0" y="848.0" class="t ink2">TMCS1133</text>
-<text x="806.0" y="866.0" class="ts mut">SENSOR</text>
-<rect x="927.0" y="856.0" width="45.0" height="15" rx="7.5" fill="#2a78d6"/>
-<text x="949.5" y="867.0" class="ts" fill="#ffffff" text-anchor="middle">VEH3V3</text>
-<path d="M210.0,1367.0 H250.0 V546.6666666666666 H406.0" fill="none" stroke="#64748b" stroke-width="1.8" stroke-linejoin="round"/>
-<circle cx="210.0" cy="1367.0" r="2.6" fill="#64748b"/>
-<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(408.0,546.6666666666666)" fill="#64748b"/>
-<text x="255" y="960" class="ts" fill="#64748b" text-anchor="start">SWD_TX</text>
-<path d="M210.0,2303.0 H269.0 V1072.5 H406.0" fill="none" stroke="#64748b" stroke-width="1.8" stroke-linejoin="round"/>
-<circle cx="210.0" cy="2303.0" r="2.6" fill="#64748b"/>
-<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(408.0,1072.5)" fill="#64748b"/>
-<text x="274" y="1691" class="ts" fill="#64748b" text-anchor="start">SWD_VEH</text>
-<path d="M596.0,535.0 H792.0" fill="none" stroke="#d03b3b" stroke-width="1.8" stroke-linejoin="round"/>
-<circle cx="596.0" cy="535.0" r="2.6" fill="#d03b3b"/>
-<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(794.0,535.0)" fill="#d03b3b"/>
-<text x="696" y="528" class="ts" fill="#d03b3b" text-anchor="middle">TX_ADC</text>
-<path d="M596.0,847.0 H792.0" fill="none" stroke="#d03b3b" stroke-width="1.8" stroke-linejoin="round"/>
-<circle cx="596.0" cy="847.0" r="2.6" fill="#d03b3b"/>
-<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(794.0,847.0)" fill="#d03b3b"/>
-<text x="696" y="840" class="ts" fill="#d03b3b" text-anchor="middle">RX_ADC</text>
-<path d="M210.0,1586.6666666666667 H307.0 V858.6666666666666 H406.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
-<circle cx="210.0" cy="1586.6666666666667" r="2.6" fill="#52514e"/>
-<circle cx="407.0" cy="858.6666666666666" r="3" fill="#52514e"/>
-<text x="312" y="1226" class="ts" fill="#52514e" text-anchor="start">RX_LSK</text>
-<path d="M596.0,1055.0 H716.0 V835.3333333333334 H406.0" fill="none" stroke="#e08a1e" stroke-width="1.8" stroke-linejoin="round"/>
-<circle cx="596.0" cy="1055.0" r="2.6" fill="#e08a1e"/>
-<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(408.0,835.3333333333334)" fill="#e08a1e"/>
-<text x="721" y="948" class="ts" fill="#e08a1e" text-anchor="start">VEH_LINK</text>
-<path d="M210.0,1765.5 H345.0 V1055.0 H406.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
-<circle cx="210.0" cy="1765.5" r="2.6" fill="#52514e"/>
-<circle cx="407.0" cy="1055.0" r="3" fill="#52514e"/>
-<text x="350" y="1413" class="ts" fill="#52514e" text-anchor="start">HVLV_LV_PWM</text>
-<path d="M210.0,627.0 H364.0 V731.0 H20.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
+<text x="34.0" y="1132.0" class="tb ink">U1 · TX bridge leg A (2x GaN)</text>
+<text x="34.0" y="1148.0" class="t ink2">LMG3526R030</text>
+<text x="34.0" y="1166.0" class="ts mut">POWER</text>
+<rect x="167.0" y="1156.0" width="33.0" height="15" rx="7.5" fill="#0ca30c"/>
+<text x="183.5" y="1167.0" class="ts" fill="#ffffff" text-anchor="middle">TX12</text>
+<rect x="124.0" y="1156.0" width="39.0" height="15" rx="7.5" fill="#e08a1e"/>
+<text x="143.5" y="1167.0" class="ts" fill="#ffffff" text-anchor="middle">HV400</text>
+<rect x="24.0" y="1216.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="34.0" y="1236.0" class="tb ink">U9 · Handshake damping switch</text>
+<text x="34.0" y="1252.0" class="t ink2">TBD-relay-or-FET</text>
+<text x="34.0" y="1270.0" class="ts mut">POWER</text>
+<rect x="167.0" y="1260.0" width="33.0" height="15" rx="7.5" fill="#0ca30c"/>
+<text x="183.5" y="1271.0" class="ts" fill="#ffffff" text-anchor="middle">TX12</text>
+<rect x="24.0" y="1320.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="34.0" y="1340.0" class="tb ink">U45 · Dock isolated gate bias</text>
+<text x="34.0" y="1356.0" class="t ink2">UCC14240-Q1</text>
+<text x="34.0" y="1374.0" class="ts mut">REGULATOR</text>
+<rect x="155.0" y="1364.0" width="45.0" height="15" rx="7.5" fill="#8b5cf6"/>
+<text x="177.5" y="1375.0" class="ts" fill="#ffffff" text-anchor="middle">DOCK12</text>
+<rect x="24.0" y="1424.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="34.0" y="1444.0" class="tb ink">U10 · RX rectifier</text>
+<text x="34.0" y="1460.0" class="t ink2">TBD-SiC-or-synchronous</text>
+<text x="34.0" y="1478.0" class="ts mut">POWER</text>
+<rect x="24.0" y="1528.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="34.0" y="1548.0" class="tb ink">U13 · Load-shift keying drive</text>
+<text x="34.0" y="1564.0" class="t ink2">TBD-FET-switched-load</text>
+<text x="34.0" y="1582.0" class="ts mut">POWER</text>
+<rect x="161.0" y="1572.0" width="39.0" height="15" rx="7.5" fill="#0ca30c"/>
+<text x="180.5" y="1583.0" class="ts" fill="#ffffff" text-anchor="middle">VEH12</text>
+<rect x="24.0" y="1632.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="34.0" y="1652.0" class="tb ink">U20 · HVLV HV bridge 4x</text>
+<text x="34.0" y="1668.0" class="t ink2">IPB60R120C7</text>
+<text x="34.0" y="1686.0" class="ts mut">POWER</text>
+<rect x="161.0" y="1676.0" width="39.0" height="15" rx="7.5" fill="#0ca30c"/>
+<text x="180.5" y="1687.0" class="ts" fill="#ffffff" text-anchor="middle">VEH12</text>
+<rect x="124.0" y="1676.0" width="33.0" height="15" rx="7.5" fill="#d03b3b"/>
+<text x="140.5" y="1687.0" class="ts" fill="#ffffff" text-anchor="middle">HVDC</text>
+<rect x="24.0" y="1736.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="34.0" y="1756.0" class="tb ink">U22 · HVLV LV bridge 16x</text>
+<text x="34.0" y="1772.0" class="t ink2">BSC190N15NS3</text>
+<text x="34.0" y="1790.0" class="ts mut">POWER</text>
+<rect x="161.0" y="1780.0" width="39.0" height="15" rx="7.5" fill="#0ca30c"/>
+<text x="180.5" y="1791.0" class="ts" fill="#ffffff" text-anchor="middle">VEH12</text>
+<rect x="24.0" y="1840.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="34.0" y="1860.0" class="tb ink">J4 · Vehicle debug header</text>
+<text x="34.0" y="1876.0" class="t ink2">FTSH-105-01</text>
+<text x="34.0" y="1894.0" class="ts mut">CONNECTOR</text>
+<rect x="24.0" y="1944.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="34.0" y="1964.0" class="tb ink">U46 · Dock buck 12V to 3.3V</text>
+<text x="34.0" y="1980.0" class="t ink2">TPSM560R6</text>
+<text x="34.0" y="1998.0" class="ts mut">REGULATOR</text>
+<rect x="155.0" y="1988.0" width="45.0" height="15" rx="7.5" fill="#8b5cf6"/>
+<text x="177.5" y="1999.0" class="ts" fill="#ffffff" text-anchor="middle">DOCK12</text>
+<rect x="24.0" y="2048.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="34.0" y="2068.0" class="tb ink">U47 · Dock buck 48V to 12V</text>
+<text x="34.0" y="2084.0" class="t ink2">TPSM5601R5</text>
+<text x="34.0" y="2102.0" class="ts mut">REGULATOR</text>
+<rect x="149.0" y="2092.0" width="51.0" height="15" rx="7.5" fill="#d03b3b"/>
+<text x="174.5" y="2103.0" class="ts" fill="#ffffff" text-anchor="middle">V48_LEV</text>
+<rect x="24.0" y="2152.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="34.0" y="2172.0" class="tb ink">U3 · TX isolated gate bias</text>
+<text x="34.0" y="2188.0" class="t ink2">UCC14240-Q1</text>
+<text x="34.0" y="2206.0" class="ts mut">REGULATOR</text>
+<rect x="167.0" y="2196.0" width="33.0" height="15" rx="7.5" fill="#0ca30c"/>
+<text x="183.5" y="2207.0" class="ts" fill="#ffffff" text-anchor="middle">TX12</text>
+<rect x="24.0" y="2256.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="34.0" y="2276.0" class="tb ink">U5 · TX buck 48V to 12V</text>
+<text x="34.0" y="2292.0" class="t ink2">TPSM5601R5</text>
+<text x="34.0" y="2310.0" class="ts mut">REGULATOR</text>
+<rect x="149.0" y="2300.0" width="51.0" height="15" rx="7.5" fill="#d03b3b"/>
+<text x="174.5" y="2311.0" class="ts" fill="#ffffff" text-anchor="middle">V48_LEV</text>
+<rect x="24.0" y="2360.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="34.0" y="2380.0" class="tb ink">U6 · TX buck 12V to 3.3V</text>
+<text x="34.0" y="2396.0" class="t ink2">TPSM560R6</text>
+<text x="34.0" y="2414.0" class="ts mut">REGULATOR</text>
+<rect x="167.0" y="2404.0" width="33.0" height="15" rx="7.5" fill="#0ca30c"/>
+<text x="183.5" y="2415.0" class="ts" fill="#ffffff" text-anchor="middle">TX12</text>
+<rect x="24.0" y="2464.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="34.0" y="2484.0" class="tb ink">U25 · HVLV isolated gate bias</text>
+<text x="34.0" y="2500.0" class="t ink2">UCC14240-Q1</text>
+<text x="34.0" y="2518.0" class="ts mut">REGULATOR</text>
+<rect x="161.0" y="2508.0" width="39.0" height="15" rx="7.5" fill="#0ca30c"/>
+<text x="180.5" y="2519.0" class="ts" fill="#ffffff" text-anchor="middle">VEH12</text>
+<rect x="24.0" y="2568.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="34.0" y="2588.0" class="tb ink">U26 · Vehicle buck 48V to 12V</text>
+<text x="34.0" y="2604.0" class="t ink2">TPSM5601R5</text>
+<text x="34.0" y="2622.0" class="ts mut">REGULATOR</text>
+<rect x="143.0" y="2612.0" width="57.0" height="15" rx="7.5" fill="#e08a1e"/>
+<text x="171.5" y="2623.0" class="ts" fill="#ffffff" text-anchor="middle">V48_MAKO</text>
+<rect x="24.0" y="2672.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="34.0" y="2692.0" class="tb ink">U27 · Vehicle buck 12V to 3.3V</text>
+<text x="34.0" y="2708.0" class="t ink2">TPSM560R6</text>
+<text x="34.0" y="2726.0" class="ts mut">REGULATOR</text>
+<rect x="161.0" y="2716.0" width="39.0" height="15" rx="7.5" fill="#0ca30c"/>
+<text x="180.5" y="2727.0" class="ts" fill="#ffffff" text-anchor="middle">VEH12</text>
+<rect x="24.0" y="2776.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="34.0" y="2796.0" class="tb ink">J3 · Mako pack connector</text>
+<text x="34.0" y="2812.0" class="t ink2">TBD-48V-75A</text>
+<text x="34.0" y="2830.0" class="ts mut">CONNECTOR</text>
+<rect x="143.0" y="2820.0" width="57.0" height="15" rx="7.5" fill="#e08a1e"/>
+<text x="171.5" y="2831.0" class="ts" fill="#ffffff" text-anchor="middle">V48_MAKO</text>
+<rect x="490.0" y="1216.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="500.0" y="1236.0" class="tb ink">U41 · Dock DAB transformer</text>
+<text x="500.0" y="1252.0" class="t ink2">TBD-planar-48V-400V</text>
+<text x="500.0" y="1270.0" class="ts mut">OTHER</text>
+<rect x="490.0" y="1320.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="500.0" y="1340.0" class="tb ink">U7 · TX controller</text>
+<text x="500.0" y="1356.0" class="t ink2">STM32H723ZGT6</text>
+<text x="500.0" y="1374.0" class="ts mut">MCU</text>
+<rect x="627.0" y="1364.0" width="39.0" height="15" rx="7.5" fill="#2a78d6"/>
+<text x="646.5" y="1375.0" class="ts" fill="#ffffff" text-anchor="middle">TX3V3</text>
+<rect x="490.0" y="1424.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="500.0" y="1444.0" class="tb ink">U43 · Dock DAB controller</text>
+<text x="500.0" y="1460.0" class="t ink2">STM32H723ZGT6</text>
+<text x="500.0" y="1478.0" class="ts mut">MCU</text>
+<rect x="615.0" y="1468.0" width="51.0" height="15" rx="7.5" fill="#0f9b8e"/>
+<text x="640.5" y="1479.0" class="ts" fill="#ffffff" text-anchor="middle">DOCK3V3</text>
+<rect x="490.0" y="1528.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="500.0" y="1548.0" class="tb ink">C1 · TX resonant cap bank</text>
+<text x="500.0" y="1564.0" class="t ink2">TBD-1500V-12Arms</text>
+<text x="500.0" y="1582.0" class="ts mut">OTHER</text>
+<rect x="490.0" y="1632.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="500.0" y="1652.0" class="tb ink">U44 · Dock signal isolation</text>
+<text x="500.0" y="1668.0" class="t ink2">ISO7740</text>
+<text x="500.0" y="1686.0" class="ts mut">INTERFACE</text>
+<rect x="615.0" y="1676.0" width="51.0" height="15" rx="7.5" fill="#0f9b8e"/>
+<text x="640.5" y="1687.0" class="ts" fill="#ffffff" text-anchor="middle">DOCK3V3</text>
+<rect x="490.0" y="1736.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="500.0" y="1756.0" class="tb ink">C2 · RX resonant cap bank</text>
+<text x="500.0" y="1772.0" class="t ink2">TBD-1500V-12Arms</text>
+<text x="500.0" y="1790.0" class="ts mut">OTHER</text>
+<rect x="490.0" y="1840.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="500.0" y="1860.0" class="tb ink">U12 · RX controller</text>
+<text x="500.0" y="1876.0" class="t ink2">STM32G431</text>
+<text x="500.0" y="1894.0" class="ts mut">MCU</text>
+<rect x="621.0" y="1884.0" width="45.0" height="15" rx="7.5" fill="#2a78d6"/>
+<text x="643.5" y="1895.0" class="ts" fill="#ffffff" text-anchor="middle">VEH3V3</text>
+<rect x="490.0" y="1944.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="500.0" y="1964.0" class="tb ink">U24 · PWM and analog isolation</text>
+<text x="500.0" y="1980.0" class="t ink2">ISO7740</text>
+<text x="500.0" y="1998.0" class="ts mut">INTERFACE</text>
+<rect x="621.0" y="1988.0" width="45.0" height="15" rx="7.5" fill="#2a78d6"/>
+<text x="643.5" y="1999.0" class="ts" fill="#ffffff" text-anchor="middle">VEH3V3</text>
+<rect x="490.0" y="2048.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="500.0" y="2068.0" class="tb ink">U21 · HVLV planar transformer</text>
+<text x="500.0" y="2084.0" class="t ink2">TBD-planar-400V-48V</text>
+<text x="500.0" y="2102.0" class="ts mut">OTHER</text>
+<rect x="490.0" y="2152.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="500.0" y="2172.0" class="tb ink">U23 · HVLV controller</text>
+<text x="500.0" y="2188.0" class="t ink2">STM32H723ZGT6</text>
+<text x="500.0" y="2206.0" class="ts mut">MCU</text>
+<rect x="621.0" y="2196.0" width="45.0" height="15" rx="7.5" fill="#2a78d6"/>
+<text x="643.5" y="2207.0" class="ts" fill="#ffffff" text-anchor="middle">VEH3V3</text>
+<rect x="956.0" y="1528.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="966.0" y="1548.0" class="tb ink">U8 · Tank current sense amp</text>
+<text x="966.0" y="1564.0" class="t ink2">OPA2328</text>
+<text x="966.0" y="1582.0" class="ts mut">ANALOG</text>
+<rect x="1093.0" y="1572.0" width="39.0" height="15" rx="7.5" fill="#2a78d6"/>
+<text x="1112.5" y="1583.0" class="ts" fill="#ffffff" text-anchor="middle">TX3V3</text>
+<rect x="956.0" y="1632.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="966.0" y="1652.0" class="tb ink">L1 · TX coil assembly</text>
+<text x="966.0" y="1668.0" class="t ink2">TBD-162uH-kQ49</text>
+<text x="966.0" y="1686.0" class="ts mut">OTHER</text>
+<rect x="956.0" y="1736.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="966.0" y="1756.0" class="tb ink">L2 · RX coil assembly</text>
+<text x="966.0" y="1772.0" class="t ink2">TBD-162uH-kQ49</text>
+<text x="966.0" y="1790.0" class="ts mut">OTHER</text>
+<rect x="956.0" y="1840.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="966.0" y="1860.0" class="tb ink">U11 · RX link current sense</text>
+<text x="966.0" y="1876.0" class="t ink2">TMCS1133</text>
+<text x="966.0" y="1894.0" class="ts mut">SENSOR</text>
+<rect x="1087.0" y="1884.0" width="45.0" height="15" rx="7.5" fill="#2a78d6"/>
+<text x="1109.5" y="1895.0" class="ts" fill="#ffffff" text-anchor="middle">VEH3V3</text>
+<path d="M210.0,835.0 H250.0 V1343.3333333333333 H486.0" fill="none" stroke="#64748b" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="210.0" cy="835.0" r="2.6" fill="#64748b"/>
+<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(488.0,1343.3333333333333)" fill="#64748b"/>
+<text x="255" y="1092" class="ts" fill="#64748b" text-anchor="start">SWD_TX</text>
+<path d="M210.0,1875.0 H269.0 V2187.0 H486.0" fill="none" stroke="#64748b" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="210.0" cy="1875.0" r="2.6" fill="#64748b"/>
+<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(488.0,2187.0)" fill="#64748b"/>
+<text x="274" y="2034" class="ts" fill="#64748b" text-anchor="start">SWD_VEH</text>
+<path d="M676.0,1355.0 H716.0 V1563.0 H952.0" fill="none" stroke="#d03b3b" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="676.0" cy="1355.0" r="2.6" fill="#d03b3b"/>
+<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(954.0,1563.0)" fill="#d03b3b"/>
+<text x="721" y="1462" class="ts" fill="#d03b3b" text-anchor="start">TX_ADC</text>
+<path d="M676.0,1875.0 H952.0" fill="none" stroke="#d03b3b" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="676.0" cy="1875.0" r="2.6" fill="#d03b3b"/>
+<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(954.0,1875.0)" fill="#d03b3b"/>
+<text x="816" y="1868" class="ts" fill="#d03b3b" text-anchor="middle">RX_ADC</text>
+<path d="M210.0,1574.6666666666667 H307.0 V1863.3333333333333 H486.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="210.0" cy="1574.6666666666667" r="2.6" fill="#52514e"/>
+<circle cx="487.0" cy="1863.3333333333333" r="3" fill="#52514e"/>
+<text x="312" y="1722" class="ts" fill="#52514e" text-anchor="start">RX_LSK</text>
+<path d="M676.0,2187.0 H735.0 V1886.6666666666667 H486.0" fill="none" stroke="#e08a1e" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="676.0" cy="2187.0" r="2.6" fill="#e08a1e"/>
+<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(488.0,1886.6666666666667)" fill="#e08a1e"/>
+<text x="740" y="2040" class="ts" fill="#e08a1e" text-anchor="start">VEH_LINK</text>
+<path d="M210.0,1771.0 H345.0 V2169.5 H486.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="210.0" cy="1771.0" r="2.6" fill="#52514e"/>
+<circle cx="487.0" cy="2169.5" r="3" fill="#52514e"/>
+<text x="350" y="1973" class="ts" fill="#52514e" text-anchor="start">HVLV_LV_PWM</text>
+<path d="M210.0,627.0 H364.0 V939.0 H20.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
 <circle cx="210.0" cy="627.0" r="2.6" fill="#52514e"/>
-<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(22.0,731.0)" fill="#52514e"/>
-<text x="369" y="682" class="ts" fill="#52514e" text-anchor="start">PWR_LEV_IN</text>
-<path d="M210.0,817.5 H402.0 V639.0 H20.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
-<circle cx="210.0" cy="817.5" r="2.6" fill="#52514e"/>
-<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(22.0,639.0)" fill="#52514e"/>
-<text x="407" y="731" class="ts" fill="#52514e" text-anchor="start">PWR_DOCK_HV</text>
-<path d="M210.0,650.6666666666666 H440.0 V627.3333333333334 H406.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
-<circle cx="210.0" cy="650.6666666666666" r="2.6" fill="#52514e"/>
-<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(408.0,627.3333333333334)" fill="#52514e"/>
-<text x="445" y="642" class="ts" fill="#52514e" text-anchor="start">PWR_TX_TANK</text>
-<path d="M596.0,639.0 H792.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
-<circle cx="596.0" cy="639.0" r="2.6" fill="#52514e"/>
-<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(794.0,639.0)" fill="#52514e"/>
-<text x="696" y="632" class="ts" fill="#52514e" text-anchor="middle">PWR_TX_COIL</text>
-<path d="M982.0,639.0 H1182.0 V731.3333333333334 H792.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
-<circle cx="982.0" cy="639.0" r="2.6" fill="#52514e"/>
-<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(794.0,731.3333333333334)" fill="#52514e"/>
-<text x="1187" y="688" class="ts" fill="#52514e" text-anchor="start">PWR_LINK</text>
-<path d="M596.0,743.0 H735.0 V754.6666666666666 H792.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
-<circle cx="596.0" cy="743.0" r="2.6" fill="#52514e"/>
-<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(794.0,754.6666666666666)" fill="#52514e"/>
-<text x="740" y="752" class="ts" fill="#52514e" text-anchor="start">PWR_RX_COIL</text>
-<path d="M210.0,1459.3333333333333 H459.0 V731.3333333333334 H406.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
-<circle cx="210.0" cy="1459.3333333333333" r="2.6" fill="#52514e"/>
-<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(408.0,731.3333333333334)" fill="#52514e"/>
-<text x="464" y="1098" class="ts" fill="#52514e" text-anchor="start">PWR_RX_RECT</text>
-<path d="M210.0,1482.6666666666667 H478.0 V1679.0 H20.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
-<circle cx="210.0" cy="1482.6666666666667" r="2.6" fill="#52514e"/>
-<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(22.0,1679.0)" fill="#52514e"/>
-<text x="483" y="1584" class="ts" fill="#52514e" text-anchor="start">PWR_HVDC_LINK</text>
-<path d="M210.0,1800.5 H516.0 V2199.0 H20.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
-<circle cx="210.0" cy="1800.5" r="2.6" fill="#52514e"/>
-<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(22.0,2199.0)" fill="#52514e"/>
-<text x="521" y="2003" class="ts" fill="#52514e" text-anchor="start">PWR_PACK</text>
-<path d="M210.0,1563.3333333333333 H535.0 V754.6666666666666 H406.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
-<circle cx="210.0" cy="1563.3333333333333" r="2.6" fill="#52514e"/>
-<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(408.0,754.6666666666666)" fill="#52514e"/>
-<text x="540" y="1162" class="ts" fill="#52514e" text-anchor="start">LSK_TAP</text>
-<path d="M210.0,1251.3333333333333 H554.0 V650.6666666666666 H406.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
-<circle cx="210.0" cy="1251.3333333333333" r="2.6" fill="#52514e"/>
-<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(408.0,650.6666666666666)" fill="#52514e"/>
-<text x="559" y="954" class="ts" fill="#52514e" text-anchor="start">DAMP_TAP</text>
-<line x1="288.0" y1="523.3333333333334" x2="288.0" y2="1274.6666666666667" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
-<text x="293.0" y="514.3333333333334" class="ts" fill="#52514e">TX_PWM</text>
-<line x1="410.0" y1="523.3333333333334" x2="288.0" y2="523.3333333333334" stroke="#52514e" stroke-width="1.6"/>
-<circle cx="410.0" cy="523.3333333333334" r="2.6" fill="#52514e"/>
-<rect x="284.0" y="519.3333333333334" width="8" height="8" rx="1.5" fill="#52514e"/>
-<line x1="210.0" y1="627.3333333333334" x2="288.0" y2="627.3333333333334" stroke="#52514e" stroke-width="1.6"/>
-<circle cx="210.0" cy="627.3333333333334" r="2.6" fill="#52514e"/>
-<circle cx="288.0" cy="627.3333333333334" r="3.2" fill="#52514e"/>
-<line x1="210.0" y1="743.0" x2="288.0" y2="743.0" stroke="#52514e" stroke-width="1.6"/>
-<circle cx="210.0" cy="743.0" r="2.6" fill="#52514e"/>
-<circle cx="288.0" cy="743.0" r="3.2" fill="#52514e"/>
-<line x1="210.0" y1="1274.6666666666667" x2="288.0" y2="1274.6666666666667" stroke="#52514e" stroke-width="1.6"/>
-<circle cx="210.0" cy="1274.6666666666667" r="2.6" fill="#52514e"/>
-<circle cx="288.0" cy="1274.6666666666667" r="3.2" fill="#52514e"/>
-<line x1="326.0" y1="1037.5" x2="326.0" y2="1667.3333333333333" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
-<text x="331.0" y="1028.5" class="ts" fill="#52514e">HVLV_ISO</text>
-<line x1="410.0" y1="1037.5" x2="326.0" y2="1037.5" stroke="#52514e" stroke-width="1.6"/>
-<circle cx="410.0" cy="1037.5" r="2.6" fill="#52514e"/>
-<rect x="322.0" y="1033.5" width="8" height="8" rx="1.5" fill="#52514e"/>
-<line x1="410.0" y1="1159.0" x2="326.0" y2="1159.0" stroke="#52514e" stroke-width="1.6"/>
-<circle cx="410.0" cy="1159.0" r="2.6" fill="#52514e"/>
-<circle cx="326.0" cy="1159.0" r="3.2" fill="#52514e"/>
-<line x1="210.0" y1="1667.3333333333333" x2="326.0" y2="1667.3333333333333" stroke="#52514e" stroke-width="1.6"/>
-<circle cx="210.0" cy="1667.3333333333333" r="2.6" fill="#52514e"/>
-<circle cx="326.0" cy="1667.3333333333333" r="3.2" fill="#52514e"/>
-<line x1="383.0" y1="627.0" x2="383.0" y2="835.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
-<text x="388.0" y="618.0" class="ts" fill="#52514e">PWR_DOCK_XFMR</text>
-<line x1="410.0" y1="627.0" x2="383.0" y2="627.0" stroke="#52514e" stroke-width="1.6"/>
-<circle cx="410.0" cy="627.0" r="2.6" fill="#52514e"/>
-<rect x="379.0" y="623.0" width="8" height="8" rx="1.5" fill="#52514e"/>
-<line x1="210.0" y1="719.3333333333334" x2="383.0" y2="719.3333333333334" stroke="#52514e" stroke-width="1.6"/>
-<circle cx="210.0" cy="719.3333333333334" r="2.6" fill="#52514e"/>
-<circle cx="383.0" cy="719.3333333333334" r="3.2" fill="#52514e"/>
-<line x1="210.0" y1="835.0" x2="383.0" y2="835.0" stroke="#52514e" stroke-width="1.6"/>
-<circle cx="210.0" cy="835.0" r="2.6" fill="#52514e"/>
-<circle cx="383.0" cy="835.0" r="3.2" fill="#52514e"/>
-<line x1="421.0" y1="731.0" x2="421.0" y2="939.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
-<text x="426.0" y="722.0" class="ts" fill="#52514e">DOCK_ISO</text>
-<line x1="410.0" y1="731.0" x2="421.0" y2="731.0" stroke="#52514e" stroke-width="1.6"/>
-<circle cx="410.0" cy="731.0" r="2.6" fill="#52514e"/>
-<rect x="417.0" y="727.0" width="8" height="8" rx="1.5" fill="#52514e"/>
-<line x1="410.0" y1="835.0" x2="421.0" y2="835.0" stroke="#52514e" stroke-width="1.6"/>
-<circle cx="410.0" cy="835.0" r="2.6" fill="#52514e"/>
-<circle cx="421.0" cy="835.0" r="3.2" fill="#52514e"/>
-<line x1="210.0" y1="939.0" x2="421.0" y2="939.0" stroke="#52514e" stroke-width="1.6"/>
-<circle cx="210.0" cy="939.0" r="2.6" fill="#52514e"/>
-<circle cx="421.0" cy="939.0" r="3.2" fill="#52514e"/>
-<line x1="210.0" y1="852.5" x2="421.0" y2="852.5" stroke="#52514e" stroke-width="1.6"/>
-<circle cx="210.0" cy="852.5" r="2.6" fill="#52514e"/>
-<circle cx="421.0" cy="852.5" r="3.2" fill="#52514e"/>
-<line x1="210.0" y1="742.6666666666666" x2="421.0" y2="742.6666666666666" stroke="#52514e" stroke-width="1.6"/>
-<circle cx="210.0" cy="742.6666666666666" r="2.6" fill="#52514e"/>
-<circle cx="421.0" cy="742.6666666666666" r="3.2" fill="#52514e"/>
-<line x1="497.0" y1="951.0" x2="497.0" y2="1783.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
-<text x="502.0" y="942.0" class="ts" fill="#52514e">PWR_DAB_XFMR</text>
-<line x1="410.0" y1="951.0" x2="497.0" y2="951.0" stroke="#52514e" stroke-width="1.6"/>
-<circle cx="410.0" cy="951.0" r="2.6" fill="#52514e"/>
-<rect x="493.0" y="947.0" width="8" height="8" rx="1.5" fill="#52514e"/>
-<line x1="210.0" y1="1690.6666666666667" x2="497.0" y2="1690.6666666666667" stroke="#52514e" stroke-width="1.6"/>
-<circle cx="210.0" cy="1690.6666666666667" r="2.6" fill="#52514e"/>
-<circle cx="497.0" cy="1690.6666666666667" r="3.2" fill="#52514e"/>
-<line x1="210.0" y1="1783.0" x2="497.0" y2="1783.0" stroke="#52514e" stroke-width="1.6"/>
-<circle cx="210.0" cy="1783.0" r="2.6" fill="#52514e"/>
-<circle cx="497.0" cy="1783.0" r="3.2" fill="#52514e"/>
-<text x="24" y="2364.0" class="tb ink2">DATA BUSES</text>
-<line x1="24" y1="2384.0" x2="46" y2="2384.0" stroke="#64748b" stroke-width="2.4" stroke-linecap="round"/>
-<text x="54" y="2388.0" class="ts ink2">SWD_TX · SWD</text>
-<line x1="24" y1="2406.0" x2="46" y2="2406.0" stroke="#64748b" stroke-width="2.4" stroke-linecap="round"/>
-<text x="54" y="2410.0" class="ts ink2">SWD_VEH · SWD</text>
-<line x1="24" y1="2428.0" x2="46" y2="2428.0" stroke="#d03b3b" stroke-width="2.4" stroke-linecap="round"/>
-<text x="54" y="2432.0" class="ts ink2">TX_ADC · ANALOG — tank current, 1 MHz chain per ELE-010</text>
-<line x1="24" y1="2450.0" x2="46" y2="2450.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
-<text x="54" y="2454.0" class="ts ink2">TX_PWM · OTHER — TIM1 complementary pairs with explicit dead time per FW-004</text>
-<line x1="24" y1="2472.0" x2="46" y2="2472.0" stroke="#d03b3b" stroke-width="2.4" stroke-linecap="round"/>
-<text x="54" y="2476.0" class="ts ink2">RX_ADC · ANALOG</text>
-<line x1="24" y1="2494.0" x2="46" y2="2494.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
-<text x="54" y="2498.0" class="ts ink2">RX_LSK · OTHER — load-shift keying drive, blanked against the TX tracker per FW-009</text>
-<line x1="24" y1="2516.0" x2="46" y2="2516.0" stroke="#e08a1e" stroke-width="2.4" stroke-linecap="round"/>
-<text x="54" y="2520.0" class="ts ink2">VEH_LINK · UART — RX controller to HVLV controller, vehicle-side coordination</text>
-<line x1="24" y1="2538.0" x2="46" y2="2538.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
-<text x="54" y="2542.0" class="ts ink2">HVLV_ISO · OTHER — phase-shift PWM across the isolation barrier</text>
-<line x1="24" y1="2560.0" x2="46" y2="2560.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
-<text x="54" y="2564.0" class="ts ink2">HVLV_LV_PWM · OTHER</text>
-<line x1="24" y1="2582.0" x2="46" y2="2582.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
-<text x="54" y="2586.0" class="ts ink2">PWR_LEV_IN · OTHER</text>
-<line x1="24" y1="2604.0" x2="46" y2="2604.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
-<text x="54" y="2608.0" class="ts ink2">PWR_DOCK_XFMR · OTHER — dock instance running LV to HV — the same design as U21, reversed</text>
-<line x1="24" y1="2626.0" x2="46" y2="2626.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
-<text x="54" y="2630.0" class="ts ink2">PWR_DOCK_HV · OTHER</text>
-<line x1="24" y1="2648.0" x2="46" y2="2648.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
-<text x="54" y="2652.0" class="ts ink2">DOCK_ISO · OTHER</text>
-<line x1="24" y1="2670.0" x2="46" y2="2670.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
-<text x="54" y="2674.0" class="ts ink2">PWR_TX_TANK · OTHER — TX bridge output into the series compensation</text>
-<line x1="24" y1="2692.0" x2="46" y2="2692.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
-<text x="54" y="2696.0" class="ts ink2">PWR_TX_COIL · OTHER</text>
-<line x1="24" y1="2714.0" x2="46" y2="2714.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
-<text x="54" y="2718.0" class="ts ink2">PWR_LINK · OTHER — THE AIR GAP. 3 kW at 8.33 A rms, k &gt;= 0.40, and the in-band data link of SYS-012 rides on this same path.</text>
-<line x1="24" y1="2736.0" x2="46" y2="2736.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
-<text x="54" y="2740.0" class="ts ink2">PWR_RX_COIL · OTHER</text>
-<line x1="24" y1="2758.0" x2="46" y2="2758.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
-<text x="54" y="2762.0" class="ts ink2">PWR_RX_RECT · OTHER</text>
-<line x1="24" y1="2780.0" x2="46" y2="2780.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
-<text x="54" y="2784.0" class="ts ink2">PWR_HVDC_LINK · OTHER</text>
-<line x1="24" y1="2802.0" x2="46" y2="2802.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
-<text x="54" y="2806.0" class="ts ink2">PWR_DAB_XFMR · OTHER — planar transformer, 8.33:1 nominal</text>
-<line x1="24" y1="2824.0" x2="46" y2="2824.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
-<text x="54" y="2828.0" class="ts ink2">PWR_PACK · OTHER</text>
-<line x1="24" y1="2846.0" x2="46" y2="2846.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
-<text x="54" y="2850.0" class="ts ink2">LSK_TAP · OTHER — load-shift keying modulates the RX tank; TX sees it on U8</text>
-<line x1="24" y1="2868.0" x2="46" y2="2868.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
-<text x="54" y="2872.0" class="ts ink2">DAMP_TAP · OTHER — handshake damping network across the TX tank</text>
-<text x="24" y="2914" class="ts mut">■ bus controller · ● bus member · pill on a block = the rail it runs from · every colour is also labelled</text>
+<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(22.0,939.0)" fill="#52514e"/>
+<text x="369" y="786" class="ts" fill="#52514e" text-anchor="start">PWR_LEV_IN</text>
+<path d="M210.0,1060.5 H402.0 V1147.0 H20.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="210.0" cy="1060.5" r="2.6" fill="#52514e"/>
+<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(22.0,1147.0)" fill="#52514e"/>
+<text x="407" y="1107" class="ts" fill="#52514e" text-anchor="start">PWR_DOCK_HV</text>
+<path d="M210.0,1158.6666666666667 H440.0 V1551.3333333333333 H486.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="210.0" cy="1158.6666666666667" r="2.6" fill="#52514e"/>
+<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(488.0,1551.3333333333333)" fill="#52514e"/>
+<text x="445" y="1358" class="ts" fill="#52514e" text-anchor="start">PWR_TX_TANK</text>
+<path d="M676.0,1563.0 H754.0 V1667.0 H952.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="676.0" cy="1563.0" r="2.6" fill="#52514e"/>
+<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(954.0,1667.0)" fill="#52514e"/>
+<text x="759" y="1618" class="ts" fill="#52514e" text-anchor="start">PWR_TX_COIL</text>
+<path d="M1142.0,1667.0 H1182.0 V1759.3333333333333 H952.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="1142.0" cy="1667.0" r="2.6" fill="#52514e"/>
+<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(954.0,1759.3333333333333)" fill="#52514e"/>
+<text x="1187" y="1716" class="ts" fill="#52514e" text-anchor="start">PWR_LINK</text>
+<path d="M676.0,1771.0 H773.0 V1782.6666666666667 H952.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="676.0" cy="1771.0" r="2.6" fill="#52514e"/>
+<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(954.0,1782.6666666666667)" fill="#52514e"/>
+<text x="778" y="1780" class="ts" fill="#52514e" text-anchor="start">PWR_RX_COIL</text>
+<path d="M210.0,1470.6666666666667 H459.0 V1759.3333333333333 H486.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="210.0" cy="1470.6666666666667" r="2.6" fill="#52514e"/>
+<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(488.0,1759.3333333333333)" fill="#52514e"/>
+<text x="464" y="1618" class="ts" fill="#52514e" text-anchor="start">PWR_RX_RECT</text>
+<path d="M210.0,1447.3333333333333 H478.0 V1667.0 H20.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="210.0" cy="1447.3333333333333" r="2.6" fill="#52514e"/>
+<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(22.0,1667.0)" fill="#52514e"/>
+<text x="483" y="1560" class="ts" fill="#52514e" text-anchor="start">PWR_HVDC_LINK</text>
+<path d="M210.0,1788.5 H516.0 V2811.0 H20.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="210.0" cy="1788.5" r="2.6" fill="#52514e"/>
+<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(22.0,2811.0)" fill="#52514e"/>
+<text x="521" y="2303" class="ts" fill="#52514e" text-anchor="start">PWR_PACK</text>
+<path d="M210.0,1551.3333333333333 H535.0 V1782.6666666666667 H486.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="210.0" cy="1551.3333333333333" r="2.6" fill="#52514e"/>
+<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(488.0,1782.6666666666667)" fill="#52514e"/>
+<text x="540" y="1670" class="ts" fill="#52514e" text-anchor="start">LSK_TAP</text>
+<path d="M210.0,1262.6666666666667 H554.0 V1574.6666666666667 H486.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="210.0" cy="1262.6666666666667" r="2.6" fill="#52514e"/>
+<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(488.0,1574.6666666666667)" fill="#52514e"/>
+<text x="559" y="1422" class="ts" fill="#52514e" text-anchor="start">DAMP_TAP</text>
+<line x1="288.0" y1="731.0" x2="288.0" y2="1366.6666666666667" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="293.0" y="722.0" class="ts" fill="#52514e">TX_PWM</text>
+<line x1="490.0" y1="1366.6666666666667" x2="288.0" y2="1366.6666666666667" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="490.0" cy="1366.6666666666667" r="2.6" fill="#52514e"/>
+<rect x="284.0" y="1362.6666666666667" width="8" height="8" rx="1.5" fill="#52514e"/>
+<line x1="210.0" y1="1135.3333333333333" x2="288.0" y2="1135.3333333333333" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="210.0" cy="1135.3333333333333" r="2.6" fill="#52514e"/>
+<circle cx="288.0" cy="1135.3333333333333" r="3.2" fill="#52514e"/>
+<line x1="210.0" y1="731.0" x2="288.0" y2="731.0" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="210.0" cy="731.0" r="2.6" fill="#52514e"/>
+<circle cx="288.0" cy="731.0" r="3.2" fill="#52514e"/>
+<line x1="210.0" y1="1239.3333333333333" x2="288.0" y2="1239.3333333333333" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="210.0" cy="1239.3333333333333" r="2.6" fill="#52514e"/>
+<circle cx="288.0" cy="1239.3333333333333" r="3.2" fill="#52514e"/>
+<line x1="326.0" y1="1655.3333333333333" x2="326.0" y2="2204.5" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="331.0" y="1646.3333333333333" class="ts" fill="#52514e">HVLV_ISO</text>
+<line x1="490.0" y1="2204.5" x2="326.0" y2="2204.5" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="490.0" cy="2204.5" r="2.6" fill="#52514e"/>
+<rect x="322.0" y="2200.5" width="8" height="8" rx="1.5" fill="#52514e"/>
+<line x1="490.0" y1="1979.0" x2="326.0" y2="1979.0" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="490.0" cy="1979.0" r="2.6" fill="#52514e"/>
+<circle cx="326.0" cy="1979.0" r="3.2" fill="#52514e"/>
+<line x1="210.0" y1="1655.3333333333333" x2="326.0" y2="1655.3333333333333" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="210.0" cy="1655.3333333333333" r="2.6" fill="#52514e"/>
+<circle cx="326.0" cy="1655.3333333333333" r="3.2" fill="#52514e"/>
+<line x1="383.0" y1="927.3333333333334" x2="383.0" y2="1251.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="388.0" y="918.3333333333334" class="ts" fill="#52514e">PWR_DOCK_XFMR</text>
+<line x1="490.0" y1="1251.0" x2="383.0" y2="1251.0" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="490.0" cy="1251.0" r="2.6" fill="#52514e"/>
+<rect x="379.0" y="1247.0" width="8" height="8" rx="1.5" fill="#52514e"/>
+<line x1="210.0" y1="927.3333333333334" x2="383.0" y2="927.3333333333334" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="210.0" cy="927.3333333333334" r="2.6" fill="#52514e"/>
+<circle cx="383.0" cy="927.3333333333334" r="3.2" fill="#52514e"/>
+<line x1="210.0" y1="1025.5" x2="383.0" y2="1025.5" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="210.0" cy="1025.5" r="2.6" fill="#52514e"/>
+<circle cx="383.0" cy="1025.5" r="3.2" fill="#52514e"/>
+<line x1="421.0" y1="950.6666666666666" x2="421.0" y2="1667.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="426.0" y="941.6666666666666" class="ts" fill="#52514e">DOCK_ISO</text>
+<line x1="490.0" y1="1459.0" x2="421.0" y2="1459.0" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="490.0" cy="1459.0" r="2.6" fill="#52514e"/>
+<rect x="417.0" y="1455.0" width="8" height="8" rx="1.5" fill="#52514e"/>
+<line x1="490.0" y1="1667.0" x2="421.0" y2="1667.0" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="490.0" cy="1667.0" r="2.6" fill="#52514e"/>
+<circle cx="421.0" cy="1667.0" r="3.2" fill="#52514e"/>
+<line x1="210.0" y1="1355.0" x2="421.0" y2="1355.0" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="210.0" cy="1355.0" r="2.6" fill="#52514e"/>
+<circle cx="421.0" cy="1355.0" r="3.2" fill="#52514e"/>
+<line x1="210.0" y1="1043.0" x2="421.0" y2="1043.0" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="210.0" cy="1043.0" r="2.6" fill="#52514e"/>
+<circle cx="421.0" cy="1043.0" r="3.2" fill="#52514e"/>
+<line x1="210.0" y1="950.6666666666666" x2="421.0" y2="950.6666666666666" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="210.0" cy="950.6666666666666" r="2.6" fill="#52514e"/>
+<circle cx="421.0" cy="950.6666666666666" r="3.2" fill="#52514e"/>
+<line x1="497.0" y1="1678.6666666666667" x2="497.0" y2="2083.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="502.0" y="1669.6666666666667" class="ts" fill="#52514e">PWR_DAB_XFMR</text>
+<line x1="490.0" y1="2083.0" x2="497.0" y2="2083.0" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="490.0" cy="2083.0" r="2.6" fill="#52514e"/>
+<rect x="493.0" y="2079.0" width="8" height="8" rx="1.5" fill="#52514e"/>
+<line x1="210.0" y1="1678.6666666666667" x2="497.0" y2="1678.6666666666667" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="210.0" cy="1678.6666666666667" r="2.6" fill="#52514e"/>
+<circle cx="497.0" cy="1678.6666666666667" r="3.2" fill="#52514e"/>
+<line x1="210.0" y1="1753.5" x2="497.0" y2="1753.5" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="210.0" cy="1753.5" r="2.6" fill="#52514e"/>
+<circle cx="497.0" cy="1753.5" r="3.2" fill="#52514e"/>
+<text x="24" y="2872.0" class="tb ink2">DATA BUSES</text>
+<line x1="24" y1="2892.0" x2="46" y2="2892.0" stroke="#64748b" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="2896.0" class="ts ink2">SWD_TX · SWD</text>
+<line x1="24" y1="2914.0" x2="46" y2="2914.0" stroke="#64748b" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="2918.0" class="ts ink2">SWD_VEH · SWD</text>
+<line x1="24" y1="2936.0" x2="46" y2="2936.0" stroke="#d03b3b" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="2940.0" class="ts ink2">TX_ADC · ANALOG — tank current, 1 MHz chain per ELE-010</text>
+<line x1="24" y1="2958.0" x2="46" y2="2958.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="2962.0" class="ts ink2">TX_PWM · OTHER — TIM1 complementary pairs with explicit dead time per FW-004</text>
+<line x1="24" y1="2980.0" x2="46" y2="2980.0" stroke="#d03b3b" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="2984.0" class="ts ink2">RX_ADC · ANALOG</text>
+<line x1="24" y1="3002.0" x2="46" y2="3002.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="3006.0" class="ts ink2">RX_LSK · OTHER — load-shift keying drive, blanked against the TX tracker per FW-009</text>
+<line x1="24" y1="3024.0" x2="46" y2="3024.0" stroke="#e08a1e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="3028.0" class="ts ink2">VEH_LINK · UART — RX controller to HVLV controller, vehicle-side coordination</text>
+<line x1="24" y1="3046.0" x2="46" y2="3046.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="3050.0" class="ts ink2">HVLV_ISO · OTHER — phase-shift PWM across the isolation barrier</text>
+<line x1="24" y1="3068.0" x2="46" y2="3068.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="3072.0" class="ts ink2">HVLV_LV_PWM · OTHER</text>
+<line x1="24" y1="3090.0" x2="46" y2="3090.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="3094.0" class="ts ink2">PWR_LEV_IN · OTHER</text>
+<line x1="24" y1="3112.0" x2="46" y2="3112.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="3116.0" class="ts ink2">PWR_DOCK_XFMR · OTHER — dock instance running LV to HV — the same design as U21, reversed</text>
+<line x1="24" y1="3134.0" x2="46" y2="3134.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="3138.0" class="ts ink2">PWR_DOCK_HV · OTHER</text>
+<line x1="24" y1="3156.0" x2="46" y2="3156.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="3160.0" class="ts ink2">DOCK_ISO · OTHER</text>
+<line x1="24" y1="3178.0" x2="46" y2="3178.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="3182.0" class="ts ink2">PWR_TX_TANK · OTHER — TX bridge output into the series compensation</text>
+<line x1="24" y1="3200.0" x2="46" y2="3200.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="3204.0" class="ts ink2">PWR_TX_COIL · OTHER</text>
+<line x1="24" y1="3222.0" x2="46" y2="3222.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="3226.0" class="ts ink2">PWR_LINK · OTHER — THE AIR GAP. 3 kW at 8.33 A rms, k &gt;= 0.40, and the in-band data link of SYS-012 rides on this same path.</text>
+<line x1="24" y1="3244.0" x2="46" y2="3244.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="3248.0" class="ts ink2">PWR_RX_COIL · OTHER</text>
+<line x1="24" y1="3266.0" x2="46" y2="3266.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="3270.0" class="ts ink2">PWR_RX_RECT · OTHER</text>
+<line x1="24" y1="3288.0" x2="46" y2="3288.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="3292.0" class="ts ink2">PWR_HVDC_LINK · OTHER</text>
+<line x1="24" y1="3310.0" x2="46" y2="3310.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="3314.0" class="ts ink2">PWR_DAB_XFMR · OTHER — planar transformer, 8.33:1 nominal</text>
+<line x1="24" y1="3332.0" x2="46" y2="3332.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="3336.0" class="ts ink2">PWR_PACK · OTHER</text>
+<line x1="24" y1="3354.0" x2="46" y2="3354.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="3358.0" class="ts ink2">LSK_TAP · OTHER — load-shift keying modulates the RX tank; TX sees it on U8</text>
+<line x1="24" y1="3376.0" x2="46" y2="3376.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="3380.0" class="ts ink2">DAMP_TAP · OTHER — handshake damping network across the TX tank</text>
+<text x="24" y="3422" class="ts mut">■ bus controller · ● bus member · pill on a block = the rail it runs from · every colour is also labelled</text>
 </svg>

@@ -43,6 +43,9 @@ plan-render --summary     # status and what is ready to start
 req-trace --gate          # traceability gate; exit 1 while gaps remain
 block-diagram             # refresh hw/block-diagram.drawio and the review image
 block-diagram --check     # architecture gate; exit 1 on an over-budget rail
+./scripts/block_sheets.py         # per-subsystem sheets; fails on overlapping blocks
+./scripts/vision_md.py            # render concepts/ -> vision-gallery.md, HTML flattened
+./scripts/md_flatten.py --check docs/review/*.md docs/design/*.md
 vision-board concepts/*.py --out build/vision
 ```
 

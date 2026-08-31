@@ -1,18 +1,30 @@
-# Review — Architecture — 29 blocks, 8 rails, two converter instances
+# Review — Architecture — 36 blocks on four readable sheets, 10 rails
 
 `architecture` · requested 2026-08-31 · branch `claude/wireless-charging-design-hf0aix`
 
-One bidirectional converter design deployed twice: LV-to-HV on the dock to make the 400 V link, HV-to-LV on the vehicle into the pack. Both packs are 48 V so one low-voltage specification covers both ends. The power budget closes on every rail. The TX power stage is settled in ADR-0002 against a datasheet I read directly; the rest of the parts are still open in E1.
+Re-opened 2026-08-31. The previous architecture packet embedded a diagram with eight overlapping block pairs, which you spotted. Root cause: the generator pins the layout to hand positions read back out of the .drawio and never tests them for collisions, so when rev C added the seven dock-DAB blocks the pre-existing twenty-nine stayed at their old coordinates and eight pairs landed on top of each other — and block-diagram --check exited 0 on it. Fixed by a fresh layout. Fourteen block names were also being cut mid-word at 24 characters and have been shortened in the spec. Beyond that, 36 blocks and 23 buses do not fit one readable sheet, so the master spec now carries a sheet: tag per block and scripts/block_sheets.py derives four subsystem views from it — dock converter, transmitter, receiver, vehicle converter — with stub connectors where a signal leaves the sheet. The master stays the single source of truth, so the power budget still rolls up across the whole system. Every sheet is checked for overlapping boxes, which is what the gate was missing.
 
 ## What you are agreeing to
+
+**block-diagram-dock.svg**
+
+![block-diagram-dock.svg](../design/block-diagram-dock.svg)
+
+**block-diagram-rx.svg**
+
+![block-diagram-rx.svg](../design/block-diagram-rx.svg)
+
+**block-diagram-tx.svg**
+
+![block-diagram-tx.svg](../design/block-diagram-tx.svg)
+
+**block-diagram-veh.svg**
+
+![block-diagram-veh.svg](../design/block-diagram-veh.svg)
 
 **block-diagram.svg**
 
 ![block-diagram.svg](../design/block-diagram.svg)
-
-| File | Opens in |
-|---|---|
-| [docs/design/adr-0002-tx-power-stage.md](https://github.com/Harwasch/makehardware_Test/blob/claude/wireless-charging-design-hf0aix/docs/design/adr-0002-tx-power-stage.md) | renders on GitHub |
 
 ## For context
 
@@ -24,8 +36,9 @@ Sources and working files. Not part of the agreement — these change as work go
 
 ## What we need decided
 
-1. Is a rail missing, or a bus on the wrong controller?
-2. Is one converter design used in both orientations the right call, versus two purpose-built ones?
+1. Are the four sheets the right division — dock converter, transmitter, receiver, vehicle converter?
+2. V48_LEV and V48_MAKO both sit at 95% of the 80 A their connectors can deliver. That is tight enough that I would rather size the connectors up now than discover it at layout. Do you want that?
+3. HV400 is at 84% of 10 A. Same question, less urgently.
 
 ## Decision
 
@@ -35,7 +48,7 @@ Answer in the Claude session that sent you this link. There is nothing to run an
 
 Say which option you want **and why**: the reason is worth more than the choice, and it is what gets re-read later when a number has to move. If something is wrong, say what would be right.
 
-<details><summary>How the answer gets recorded</summary>
+**How the answer gets recorded**
 
 The agent writes your decision, in your words, into [`docs/review/reviews.yaml`](https://github.com/Harwasch/makehardware_Test/blob/claude/wireless-charging-design-hf0aix/docs/review/reviews.yaml):
 
@@ -45,8 +58,6 @@ review-gate sign architecture --changes "what to change"
 ```
 
 Until that happens, any chunk of work depending on this review cannot be marked done.
-
-</details>
 
 ---
 

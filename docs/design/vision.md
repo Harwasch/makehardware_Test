@@ -1,14 +1,19 @@
 # Vision — Ulysses LARS Charger, revision 2
 
-Captured 2026-08-28, decided at [gate 1](reviews/gate-1-vision.md). Source
-material: the v1 white paper and firmware, reviewed in
-[`v1-baseline.md`](v1-baseline.md). Agreed intent lives in
+Captured 2026-08-28, decided at [gate 1](reviews/gate-1-vision.md), scope
+narrowed 2026-08-31. Source material: the v1 white paper and firmware, reviewed
+in [`v1-baseline.md`](v1-baseline.md). Agreed intent lives in
 [`requirements/00-vision.sdoc`](../../requirements/00-vision.sdoc) as `VIS-001`
-through `VIS-012`.
+through `VIS-013`.
 
-**Scope: the wireless charging system only.** The vehicle is not ours and is not
-modelled; it appears in the renders below only as the interface plate its pad
-bolts to.
+**Scope: the charger electronics, plus a test packaging.** `VIS-013`. The
+converters, the coil pair and their control are ours. Integration — the deck
+fixture, the vehicle mounting, the handling — belongs to the mechanical team.
+The vehicle is not modelled. What we build in metal is a bench rig that holds
+the coil pair at the `SYS-006` envelope so the magnetics can be measured.
+
+**The pads locate on pins.** `VIS-005`, set 2026-08-31. A two-pin hole-and-slot
+pattern, in the delivered system and in the test rig alike.
 
 ## The thing, in one paragraph
 
@@ -38,7 +43,7 @@ coupling and quality factor, **k·Q** — not by resistance alone:
 > η_max = (kQ)² / (1 + √(1 + (kQ)²))²
 
 `MEC-001` allows the coil pair 120 W of 3 kW, which is **k·Q ≥ 49**. Charging on
-deck in a locating bracket sets the gap by two housing walls rather than a
+deck in a pin-located fixture sets the gap by two housing walls rather than a
 vehicle hull, which buys a coupling of 0.43–0.57 across the `SYS-006` envelope.
 
 **The coil is an etched PCB**, decided in
@@ -50,76 +55,56 @@ geometry reaches 45.2 and fails — parallel layers do not reduce resistance as
 
 The binding constraint turned out to be **thermal, not electrical**: the pad
 sheds about 3 W from its own faces and must lose 39 W, so every watt leaves
-through the bracket. That is `MEC-009`, and it is why the deck-mount decision
-is what makes an etched coil viable at all.
+through the structure the pad is bolted to. That is `MEC-009`, and it is why the
+deck-mount decision is what makes an etched coil viable at all.
+
+Note what the scope change did *not* do. The fixture became the mechanical
+team's, but `MEC-009` was **re-aimed, not withdrawn** — it is now an interface
+requirement we levy on whoever builds that structure, and one the test packaging
+must meet itself. Handing over a coil without handing over its heat-sink
+requirement is how a design that closed on paper arrives at a 90 °C pad.
+
+## What we build in metal
+
+One thing, and it is test equipment: a rig that holds the two pads at a known
+gap and offset while the magnetics are measured. It is not a prototype of the
+deck fixture and is not marine, recoverable or handled.
+
+Three locating-feature concepts were studied at gate 1 — a kinematic
+cone-vee-flat mount, tapered rails and a perimeter nest. **All three are
+withdrawn**: they were fixture designs, and the fixture is not ours. Pins were
+chosen from among them as the interface, because a two-pin hole-and-slot pattern
+is the cheapest thing that fixes six degrees of freedom to the tolerance
+`SYS-006` needs, is producible under `MEC-006` with no programme tooling, and
+leaves the pad faces clear for the thermal path.
+
+The rig is rendered in **[`vision-gallery.md`](vision-gallery.md)**, from the
+parametric model in [`concepts/test_packaging.py`](../../concepts/test_packaging.py).
+Its envelope is 692 × 410 × 252 mm. The gallery quotes mass at 1.4 g/cm³, which
+is the tool's fixed assumption and wrong for this part — in aluminium the solid
+model is about 44 kg, and the built rig somewhat less because the electronics
+enclosures are drawn as solid blocks. Either way it is a two-person lift, not a
+bench-top item.
+
+Each pad conducts into a 340 × 380 mm finned sink giving 8,104 cm² against the
+207 cm² pad — 39 times the footprint where `MEC-009` asks for 12. **That margin
+should not be read as the thermal case being closed.** `MEC-009`'s 12× is a
+flat-plate-equivalent figure at 150 W/m², and a finned surface does not convect
+per unit area the way a flat plate does; fin efficiency and channel convection
+are still owed by the thermal chunk. The 150 W/m² figure itself is still
+single-sourced and unverified.
 
 ## What we need from you
 
-The concepts below differ on **how the two pads locate to each other** — the
-remaining mechanical decision. The coil, the docking arrangement and the
-charging environment are already decided at gate 1.
-
-## The choice
-
-| | **A — Cone, vee and flat** | **B — Tapered rails** | **C — Perimeter nest** |
-|---|---|---|---|
-| Envelope (mm) | 390.0 × 325.0 × 133.0 | 420.0 × 313.0 × 167.85 | 438.0 × 353.0 × 133.0 |
-| Volume (mm³) | 6,386,028 | 8,786,468 | 8,612,814 |
-| Approx. mass (g) | 8,940 | 12,301 | 12,058 |
-
-## A — Cone, vee and flat
-
-Three hardened pins on the bracket: one lands in a cone, one in a vee, one on a flat. That constrains exactly six degrees of freedom with no over-constraint, so the pad lands in the same place every time and thermal growth does not fight it. Standard metrology practice. Repeatability is the best of the three and the contact is three small points, which is also the drawback -- point contacts carry no heat and take the whole landing load.
-
-**390.0 × 325.0 × 133.0 mm** · 6,386,028 mm³ · ~8,940 g at 1.4 g/cm³ · model: `concepts/locate_cone_vee.py`
-
-![A — Cone, vee and flat — three-quarter view](vision/locate_cone_vee/view-hero.png)
-
-| Front | Top |
-|---|---|
-| ![front](vision/locate_cone_vee/view-front.png) | ![top](vision/locate_cone_vee/view-top.png) |
-
-<details><summary>Dimensioned isometric line drawing</summary>
-
-![A — Cone, vee and flat — isometric](vision/locate_cone_vee/iso.svg)
-
-</details>
-
-## B — Tapered rails
-
-Two long tapered rails either side of the pad. The lead-in is wide at the top and closes to the running fit at the bottom, so a sloppy approach still lands centred. Capture range is much larger than a kinematic mount and the contact is a line rather than three points, which carries heat and load far better. The cost is that a line contact over-constrains: the fit has to be loose enough for thermal growth, and that looseness is alignment error.
-
-**420.0 × 313.0 × 167.85 mm** · 8,786,468 mm³ · ~12,301 g at 1.4 g/cm³ · model: `concepts/locate_tapered_rails.py`
-
-![B — Tapered rails — three-quarter view](vision/locate_tapered_rails/view-hero.png)
-
-| Front | Top |
-|---|---|
-| ![front](vision/locate_tapered_rails/view-front.png) | ![top](vision/locate_tapered_rails/view-top.png) |
-
-<details><summary>Dimensioned isometric line drawing</summary>
-
-![B — Tapered rails — isometric](vision/locate_tapered_rails/iso.svg)
-
-</details>
-
-## C — Perimeter nest
-
-The receiver housing drops into a shallow pocket sized to it, with a lead-in chamfer the whole way round. Nothing protrudes above the deck bracket, so there is nothing to snag a line or bend in handling, and the full perimeter carries load and heat. It is the most over-constrained of the three -- the clearance has to absorb the tolerance stack of the whole pocket, so it aligns less precisely than either alternative, and it holds silt and water.
-
-**438.0 × 353.0 × 133.0 mm** · 8,612,814 mm³ · ~12,058 g at 1.4 g/cm³ · model: `concepts/locate_nest.py`
-
-![C — Perimeter nest — three-quarter view](vision/locate_nest/view-hero.png)
-
-| Front | Top |
-|---|---|
-| ![front](vision/locate_nest/view-front.png) | ![top](vision/locate_nest/view-top.png) |
-
-<details><summary>Dimensioned isometric line drawing</summary>
-
-![C — Perimeter nest — isometric](vision/locate_nest/iso.svg)
-
-</details>
+1. Is the scope line right — electronics plus a test rig, with integration and
+   the fixture going to the mechanical team?
+2. Pins: two dowels, hole and slot. Anything about the real fixture that would
+   make a different interface better?
+3. Is 8–14 mm of gap and 5 mm of offset the envelope the fixture can actually
+   hold? It is currently *our assumption about someone else's part*, which is
+   the weakest thing in this document.
+4. Is anything in the rig's envelope wrong — too big, too small, wrong
+   proportions?
 
 ## What v2 keeps from v1
 
@@ -138,3 +123,9 @@ change behaviour on hardware), but the control architecture is sound.
   HV side simplifies considerably.
 * The dock and vehicle ambient temperature, which sets what "conduction to
   chassis" is actually worth in °C/W.
+* The gap and misalignment the mechanical team's fixture can actually hold.
+  `SYS-006` states 8–14 mm and 5 mm as what the magnetics tolerate, which is the
+  right way round, but it is still an assumption about a part we do not design.
+* The 150 W/m² still-air figure behind `MEC-009`'s 12× surface area. Researched,
+  single-sourced, never independently confirmed; the verification pass on it did
+  not run.

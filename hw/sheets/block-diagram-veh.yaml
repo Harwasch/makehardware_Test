@@ -1,0 +1,173 @@
+# GENERATED from hw/block-diagram.yaml by scripts/block_sheets.py — edit the master, not this file.
+project: Ulysses LARS Charger — Vehicle converter — 400 V link to the 48 V Mako pack
+revision: C
+rails:
+- id: HVDC
+  voltage: 400.0
+  max_current_a: 10.0
+  notes: Rectified link output. No `from` — this rail is fed across the coils, so it is where
+    the wired tree restarts on the vehicle. (sourced by U10 on the rx sheet)
+- id: V48_MAKO
+  voltage: 48.0
+  source: U22
+  max_current_a: 80.0
+  notes: Pack rail. 3 kW at 48 V is 62.5 A, and 75 A at the bottom of the SYS-003 window;
+    80 A is the continuous rating the LV bridge and its copper are designed to (ELE-008).
+    No `from` — the DAB is galvanically isolated, and U20's declared draw on HVDC is the referred
+    current.
+- id: VEH12
+  voltage: 12.0
+  from: V48_MAKO
+  source: U26
+  max_current_a: 1.5
+  notes: vehicle gate-drive and isolated-bias input rail, RX and HVLV together
+- id: VEH3V3
+  voltage: 3.3
+  from: VEH12
+  source: U27
+  max_current_a: 0.8
+  notes: vehicle digital and analog domain, RX and HVLV together
+blocks:
+- id: U20
+  sheet: veh
+  name: HVLV HV bridge 4x
+  kind: power
+  part: IPB60R120C7
+  powered_by:
+  - rail: HVDC
+    typ_current_a: 7.5
+    max_current_a: 8.0
+  - rail: VEH12
+    typ_current_a: 0.03
+    max_current_a: 0.05
+  notes: 600 V on a 400 V bus is only 1.5x — ELE-006 wants 650 V. Revisit in E1.
+- id: U21
+  sheet: veh
+  name: HVLV planar transformer
+  kind: other
+  part: TBD-planar-400V-48V
+  notes: 8.33:1 nominal. Planar to keep the BOM cost down, per the v1 rationale.
+- id: U22
+  sheet: veh
+  name: HVLV LV bridge 16x
+  kind: power
+  part: BSC190N15NS3
+  powered_by:
+  - rail: VEH12
+    typ_current_a: 0.12
+    max_current_a: 0.2
+  notes: 'FOUR per branch, not the two of v1. At 48 V the bridge carries 62.5 A, about 44
+    A rms per branch: two devices give 74 W of conduction and blow the whole 100 W ELE-003
+    budget on the LV side alone; four give 37 W.'
+- id: U23
+  sheet: veh
+  name: HVLV controller
+  kind: mcu
+  part: STM32H723ZGT6
+  powered_by:
+  - rail: VEH3V3
+    typ_current_a: 0.25
+    max_current_a: 0.4
+  notes: (est) TIM1/TIM8 phase shift, retained from v1
+- id: U24
+  sheet: veh
+  name: PWM and analog isolation
+  kind: interface
+  part: ISO7740
+  powered_by:
+  - rail: VEH3V3
+    typ_current_a: 0.02
+    max_current_a: 0.035
+  notes: with ISO224 for the analog path; 800 V reinforced per ELE-011
+- id: U25
+  sheet: veh
+  name: HVLV isolated gate bias
+  kind: regulator
+  part: UCC14240-Q1
+  powered_by:
+  - rail: VEH12
+    typ_current_a: 0.36
+    max_current_a: 0.5
+  notes: (est) two devices, high side of the HV bridge
+- id: U26
+  sheet: veh
+  name: Vehicle buck 48V to 12V
+  kind: regulator
+  part: TPSM5601R5
+  powered_by:
+  - rail: V48_MAKO
+    typ_current_a: 0.2
+    max_current_a: 0.4
+  notes: 1.5 A part, not the 600 mA TPSM560R6 — the vehicle side carries two controllers and
+    the isolated bias for a 16-FET bridge.
+- id: U27
+  sheet: veh
+  name: Vehicle buck 12V to 3.3V
+  kind: regulator
+  part: TPSM560R6
+  powered_by:
+  - rail: VEH12
+    typ_current_a: 0.002
+    max_current_a: 0.004
+- id: J3
+  sheet: veh
+  name: Mako pack connector
+  kind: connector
+  part: TBD-48V-75A
+  powered_by:
+  - rail: V48_MAKO
+    typ_current_a: 62.5
+    max_current_a: 75.0
+  notes: The charge current itself. 62.5 A at 48 V nominal, 75 A at the bottom of the SYS-003
+    pack window, which is what ELE-008 sizes the copper for.
+- id: J4
+  sheet: veh
+  name: Vehicle debug header
+  kind: connector
+  part: FTSH-105-01
+- id: X_rx
+  name: to rx sheet
+  kind: connector
+  part: see block-diagram-rx.svg
+  notes: 'off-sheet endpoint of: U12, U10'
+buses:
+- id: SWD_VEH
+  kind: swd
+  between:
+  - J4
+  - U23
+- id: VEH_LINK
+  kind: uart
+  notes: RX controller to HVLV controller, vehicle-side coordination
+  controller: U23
+  members:
+  - X_rx
+- id: HVLV_ISO
+  kind: other
+  notes: phase-shift PWM across the isolation barrier
+  controller: U23
+  members:
+  - U24
+  - U20
+- id: HVLV_LV_PWM
+  kind: other
+  controller: U23
+  members:
+  - U22
+- id: PWR_HVDC_LINK
+  kind: other
+  between:
+  - X_rx
+  - U20
+- id: PWR_DAB_XFMR
+  kind: other
+  notes: planar transformer, 8.33:1 nominal
+  controller: U21
+  members:
+  - U20
+  - U22
+- id: PWR_PACK
+  kind: other
+  between:
+  - U22
+  - J3

@@ -88,19 +88,28 @@ STATUS: Draft
 
 [REQUIREMENT]
 UID: VIS-005
-TITLE: The vehicle is recovered to deck and set into a locating bracket
+TITLE: The vehicle is recovered to deck and set into a locating fixture
 STATEMENT: >>>
 The Mako shall be recovered onto the deck of the Leviathan and set into a
-mounting bracket with locating features, and charging shall happen there - not
-in the water and not while free-floating.
+mounting fixture that locates the two pads to each other on pins, and charging
+shall happen there - not in the water and not while free-floating.
 <<<
 RATIONALE: >>>
-Decided at the gate-1 review, 2026-08-28. This is a substantial advantage over
-the EV wireless charging literature the v1 design drew from, and a larger one
-than first assumed. With both pads in rigid housings on a common bracket the gap
-is set by two housing walls and a clearance - about 10 mm - rather than by a
-vehicle hull, and the locating features fix alignment rather than leaving it to
-a docking manoeuvre. Analysis puts the coupling at 0.645 at a 10 mm gap with
+Decided at the gate-1 review, 2026-08-28; the locating scheme was set to pins
+and the fixture assigned to the mechanical team on 2026-08-31. This is a
+substantial advantage over the EV wireless charging literature the v1 design
+drew from, and a larger one than first assumed. With both pads in rigid housings
+held on a common set of pins the gap is set by two housing walls and a clearance
+- about 10 mm - rather than by a vehicle hull, and the pins fix alignment rather
+than leaving it to a docking manoeuvre.
+
+Pins were chosen over the kinematic, tapered-rail and perimeter-nest schemes
+studied at gate 1 because a two-pin-and-slot pattern is the cheapest thing that
+fixes all six degrees of freedom to the tolerance ``SYS-006`` needs, is
+producible under ``MEC-006`` with no programme tooling, and leaves the pad faces
+clear so the whole face area is available to the thermal path of ``MEC-009``.
+The fixture itself is NOT in this programme's scope - see ``VIS-013`` - so what
+this requirement fixes is the interface: pins, and the envelope of ``SYS-006``. Analysis puts the coupling at 0.645 at a 10 mm gap with
 5 mm of offset, against 0.437 at the 20 mm free-docking case and about 0.2 in
 the EV literature. That advantage is what makes an etched PCB coil viable, so it
 should be spent deliberately and not given back in tolerance.
@@ -234,6 +243,36 @@ for in operation - it is what lets a single design serve both ends, which halves
 the design, layout, qualification and spares burden. It does mean the low-voltage
 side specification must cover both packs, and it means the low-voltage bridge is
 synchronous in both instances rather than a passive rectifier.
+<<<
+VERIFICATION: Inspection
+STATUS: Draft
+
+[REQUIREMENT]
+UID: VIS-013
+TITLE: Scope is the charger electronics and a test packaging
+STATEMENT: >>>
+This programme shall deliver the charger electronics - the dock converter, the
+transmitter, the coil pair, the receiver and the vehicle converter - together
+with a test packaging sufficient to hold the coil pair at the envelope of
+``SYS-006`` for verification. Integration of the charger into the Leviathan deck
+and into the Mako, including the mounting fixture and its locating pins, shall
+be carried out by the mechanical team and is outside this programme.
+<<<
+RATIONALE: >>>
+Set by the customer on 2026-08-31. The boundary matters because the three
+locating-feature concepts studied at gate 1 - a kinematic cone-vee-flat mount,
+tapered rails and a perimeter nest - were all fixture designs, and the fixture
+is not ours. They are withdrawn.
+
+Two things do NOT follow from the boundary, and both are easy to lose by
+accident. First, the thermal path is still ours to specify: ``MEC-004`` shows
+the pad cannot cool itself, so the requirement on the structure that cools it
+survives as an INTERFACE requirement in ``MEC-009`` rather than as a bracket
+design. A scope cut that quietly deleted it would leave a coil with no heat
+sink. Second, verification still needs hardware to hold the pads at a known gap
+and offset, which is what the test packaging is for: it is a piece of test
+equipment sized by ``SYS-006``, not a prototype of the fixture, and it is
+explicitly not required to be marine, recoverable or handled.
 <<<
 VERIFICATION: Inspection
 STATUS: Draft

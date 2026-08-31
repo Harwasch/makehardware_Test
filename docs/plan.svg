@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2196" height="1248" viewBox="0 0 2196 1248" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" role="img" aria-label="Project plan: Ulysses LARS Charger, 0 of 27 chunks done">
+<svg xmlns="http://www.w3.org/2000/svg" width="2196" height="1282" viewBox="0 0 2196 1282" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" role="img" aria-label="Project plan: Ulysses LARS Charger, 0 of 28 chunks done">
 <style>
 .s{fill:#fcfcfb} .ink{fill:#0b0b0b} .ink2{fill:#52514e} .ax{stroke:#c3c2b7} .bar-in_progress{fill:#2a78d6}
 @media (prefers-color-scheme:dark){.s{fill:#1a1a19} .ink{fill:#ffffff} .ink2{fill:#c3c2b7} .ax{stroke:#383835} .bar-in_progress{fill:#3987e5}}
@@ -7,42 +7,42 @@
 @media (prefers-color-scheme:dark){.crit{stroke:#ffffff;stroke-opacity:0.72}}
 .t{font-size:12px} .tb{font-size:12px;font-weight:600} .ts{font-size:10.5px} .h{font-size:15px;font-weight:600}
 </style>
-<rect width="2196" height="1248" class="s" rx="6"/>
+<rect width="2196" height="1282" class="s" rx="6"/>
 <text x="20" y="27" class="h ink">Ulysses LARS Charger</text>
-<text x="20" y="47" class="t ink2">0/27 chunks complete · 0% · 16 sessions on the critical path · 1 blocked</text>
-<line x1="320" y1="76" x2="320" y2="1170" class="ax" stroke-width="1" opacity="0.5"/>
+<text x="20" y="47" class="t ink2">0/28 chunks complete · 0% · 16 sessions on the critical path · 1 blocked</text>
+<line x1="320" y1="76" x2="320" y2="1204" class="ax" stroke-width="1" opacity="0.5"/>
 <text x="326" y="72" class="ts mut">S1</text>
-<line x1="436" y1="76" x2="436" y2="1170" class="ax" stroke-width="1" opacity="0.5"/>
+<line x1="436" y1="76" x2="436" y2="1204" class="ax" stroke-width="1" opacity="0.5"/>
 <text x="442" y="72" class="ts mut">S2</text>
-<line x1="552" y1="76" x2="552" y2="1170" class="ax" stroke-width="1" opacity="0.5"/>
+<line x1="552" y1="76" x2="552" y2="1204" class="ax" stroke-width="1" opacity="0.5"/>
 <text x="558" y="72" class="ts mut">S3</text>
-<line x1="668" y1="76" x2="668" y2="1170" class="ax" stroke-width="1" opacity="0.5"/>
+<line x1="668" y1="76" x2="668" y2="1204" class="ax" stroke-width="1" opacity="0.5"/>
 <text x="674" y="72" class="ts mut">S4</text>
-<line x1="784" y1="76" x2="784" y2="1170" class="ax" stroke-width="1" opacity="0.5"/>
+<line x1="784" y1="76" x2="784" y2="1204" class="ax" stroke-width="1" opacity="0.5"/>
 <text x="790" y="72" class="ts mut">S5</text>
-<line x1="900" y1="76" x2="900" y2="1170" class="ax" stroke-width="1" opacity="0.5"/>
+<line x1="900" y1="76" x2="900" y2="1204" class="ax" stroke-width="1" opacity="0.5"/>
 <text x="906" y="72" class="ts mut">S6</text>
-<line x1="1016" y1="76" x2="1016" y2="1170" class="ax" stroke-width="1" opacity="0.5"/>
+<line x1="1016" y1="76" x2="1016" y2="1204" class="ax" stroke-width="1" opacity="0.5"/>
 <text x="1022" y="72" class="ts mut">S7</text>
-<line x1="1132" y1="76" x2="1132" y2="1170" class="ax" stroke-width="1" opacity="0.5"/>
+<line x1="1132" y1="76" x2="1132" y2="1204" class="ax" stroke-width="1" opacity="0.5"/>
 <text x="1138" y="72" class="ts mut">S8</text>
-<line x1="1248" y1="76" x2="1248" y2="1170" class="ax" stroke-width="1" opacity="0.5"/>
+<line x1="1248" y1="76" x2="1248" y2="1204" class="ax" stroke-width="1" opacity="0.5"/>
 <text x="1254" y="72" class="ts mut">S9</text>
-<line x1="1364" y1="76" x2="1364" y2="1170" class="ax" stroke-width="1" opacity="0.5"/>
+<line x1="1364" y1="76" x2="1364" y2="1204" class="ax" stroke-width="1" opacity="0.5"/>
 <text x="1370" y="72" class="ts mut">S10</text>
-<line x1="1480" y1="76" x2="1480" y2="1170" class="ax" stroke-width="1" opacity="0.5"/>
+<line x1="1480" y1="76" x2="1480" y2="1204" class="ax" stroke-width="1" opacity="0.5"/>
 <text x="1486" y="72" class="ts mut">S11</text>
-<line x1="1596" y1="76" x2="1596" y2="1170" class="ax" stroke-width="1" opacity="0.5"/>
+<line x1="1596" y1="76" x2="1596" y2="1204" class="ax" stroke-width="1" opacity="0.5"/>
 <text x="1602" y="72" class="ts mut">S12</text>
-<line x1="1712" y1="76" x2="1712" y2="1170" class="ax" stroke-width="1" opacity="0.5"/>
+<line x1="1712" y1="76" x2="1712" y2="1204" class="ax" stroke-width="1" opacity="0.5"/>
 <text x="1718" y="72" class="ts mut">S13</text>
-<line x1="1828" y1="76" x2="1828" y2="1170" class="ax" stroke-width="1" opacity="0.5"/>
+<line x1="1828" y1="76" x2="1828" y2="1204" class="ax" stroke-width="1" opacity="0.5"/>
 <text x="1834" y="72" class="ts mut">S14</text>
-<line x1="1944" y1="76" x2="1944" y2="1170" class="ax" stroke-width="1" opacity="0.5"/>
+<line x1="1944" y1="76" x2="1944" y2="1204" class="ax" stroke-width="1" opacity="0.5"/>
 <text x="1950" y="72" class="ts mut">S15</text>
-<line x1="2060" y1="76" x2="2060" y2="1170" class="ax" stroke-width="1" opacity="0.5"/>
+<line x1="2060" y1="76" x2="2060" y2="1204" class="ax" stroke-width="1" opacity="0.5"/>
 <text x="2066" y="72" class="ts mut">S16</text>
-<line x1="2176" y1="76" x2="2176" y2="1170" class="ax" stroke-width="1" opacity="0.5"/>
+<line x1="2176" y1="76" x2="2176" y2="1204" class="ax" stroke-width="1" opacity="0.5"/>
 <text x="20" y="101" class="tb ink2">DOCUMENTATION</text>
 <line x1="20" y1="107" x2="2176" y2="107" class="ax" stroke-width="1" opacity="0.35"/>
 <text x="20" y="131.0" class="t ink">V1 · Vision, v1 baseline review and link bud</text>
@@ -74,66 +74,69 @@
 <text x="20" y="431.0" class="t ink">M3 · Coil pad thermal design, conduction pat</text>
 <rect x="1019" y="417.0" width="226" height="20" rx="4" class="bar-todo"/>
 <text x="1027" y="431.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
-<text x="20" y="463" class="tb ink2">ELECTRICAL</text>
-<line x1="20" y1="469" x2="2176" y2="469" class="ax" stroke-width="1" opacity="0.35"/>
-<text x="20" y="493.0" class="t ink">E1 · Power architecture, topology and part s</text>
-<rect x="555" y="479.0" width="226" height="20" rx="4" class="bar-todo"/>
-<text x="563" y="493.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
-<text x="20" y="527.0" class="t ink">E1B · Block diagram and power budget across </text>
-<rect x="1019" y="513.0" width="110" height="20" rx="4" class="bar-in_progress crit"/>
-<text x="1027" y="527.0" class="ts" fill="#ffffff" opacity="0.96">▶ In progress</text>
-<text x="20" y="561.0" class="t ink">E2 · TX board schematic capture and ERC</text>
-<rect x="1135" y="547.0" width="226" height="20" rx="4" class="bar-todo crit"/>
-<text x="1143" y="561.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
-<text x="20" y="595.0" class="t ink">E3 · RX board schematic capture and ERC</text>
-<rect x="1135" y="581.0" width="110" height="20" rx="4" class="bar-todo"/>
+<text x="20" y="465.0" class="t ink">M4 · Test packaging design — pin locating, s</text>
+<rect x="1251" y="451.0" width="226" height="20" rx="4" class="bar-todo"/>
+<text x="1259" y="465.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
+<text x="20" y="497" class="tb ink2">ELECTRICAL</text>
+<line x1="20" y1="503" x2="2176" y2="503" class="ax" stroke-width="1" opacity="0.35"/>
+<text x="20" y="527.0" class="t ink">E1 · Power architecture, topology and part s</text>
+<rect x="555" y="513.0" width="226" height="20" rx="4" class="bar-todo"/>
+<text x="563" y="527.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
+<text x="20" y="561.0" class="t ink">E1B · Block diagram and power budget across </text>
+<rect x="1019" y="547.0" width="110" height="20" rx="4" class="bar-in_progress crit"/>
+<text x="1027" y="561.0" class="ts" fill="#ffffff" opacity="0.96">▶ In progress</text>
+<text x="20" y="595.0" class="t ink">E2 · TX board schematic capture and ERC</text>
+<rect x="1135" y="581.0" width="226" height="20" rx="4" class="bar-todo crit"/>
 <text x="1143" y="595.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
-<text x="20" y="629.0" class="t ink">E4 · HVLV dual-active-bridge schematic captu</text>
-<rect x="1135" y="615.0" width="226" height="20" rx="4" class="bar-todo crit"/>
+<text x="20" y="629.0" class="t ink">E3 · RX board schematic capture and ERC</text>
+<rect x="1135" y="615.0" width="110" height="20" rx="4" class="bar-todo"/>
 <text x="1143" y="629.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
-<text x="20" y="663.0" class="t ink">E5 · TX PCB layout, DRC and fabrication outp</text>
-<rect x="1367" y="649.0" width="226" height="20" rx="4" class="bar-todo crit"/>
-<text x="1375" y="663.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
-<text x="20" y="697.0" class="t ink">E6 · RX PCB layout, DRC and fabrication outp</text>
-<rect x="1251" y="683.0" width="110" height="20" rx="4" class="bar-todo"/>
-<text x="1259" y="697.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
-<text x="20" y="731.0" class="t ink">E7 · HVLV PCB layout, DRC and fabrication ou</text>
-<rect x="1367" y="717.0" width="226" height="20" rx="4" class="bar-todo crit"/>
-<text x="1375" y="731.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
-<text x="20" y="765.0" class="t ink">E8 · In-band communication link — modulation</text>
-<rect x="1019" y="751.0" width="226" height="20" rx="4" class="bar-todo"/>
-<text x="1027" y="765.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
-<text x="20" y="799.0" class="t ink">E9 · Leviathan-side instance — configuration</text>
-<rect x="1599" y="785.0" width="110" height="20" rx="4" class="bar-todo"/>
-<text x="1607" y="799.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
-<text x="20" y="831" class="tb ink2">TEST</text>
-<line x1="20" y1="837" x2="2176" y2="837" class="ax" stroke-width="1" opacity="0.35"/>
-<text x="20" y="861.0" class="t ink">S1 · Resonant link simulation, cross-checked</text>
-<rect x="1019" y="847.0" width="110" height="20" rx="4" class="bar-todo"/>
-<text x="1027" y="861.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
-<text x="20" y="895.0" class="t ink">S2 · Power stage simulation — ZVS, dead time</text>
-<rect x="787" y="881.0" width="110" height="20" rx="4" class="bar-todo"/>
-<text x="795" y="895.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
-<text x="20" y="929.0" class="t ink">T1 · Analysis and simulation close-out again</text>
-<rect x="1599" y="915.0" width="226" height="20" rx="4" class="bar-todo crit"/>
-<text x="1607" y="929.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
-<text x="20" y="963.0" class="t ink">T2 · Bench verification — deferred until lab</text>
-<rect x="1831" y="949.0" width="342" height="20" rx="4" class="bar-blocked crit"/>
-<text x="1839" y="963.0" class="ts" fill="#ffffff" opacity="0.96">✕ Blocked</text>
-<text x="20" y="995" class="tb ink2">FIRMWARE</text>
-<line x1="20" y1="1001" x2="2176" y2="1001" class="ax" stroke-width="1" opacity="0.35"/>
-<text x="20" y="1025.0" class="t ink">F1 · TX resonance-tracking firmware rework</text>
-<rect x="1135" y="1011.0" width="226" height="20" rx="4" class="bar-todo crit"/>
-<text x="1143" y="1025.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
-<text x="20" y="1059.0" class="t ink">F2 · HVLV CC/CV control firmware with real c</text>
-<rect x="1135" y="1045.0" width="226" height="20" rx="4" class="bar-todo"/>
+<text x="20" y="663.0" class="t ink">E4 · HVLV dual-active-bridge schematic captu</text>
+<rect x="1135" y="649.0" width="226" height="20" rx="4" class="bar-todo crit"/>
+<text x="1143" y="663.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
+<text x="20" y="697.0" class="t ink">E5 · TX PCB layout, DRC and fabrication outp</text>
+<rect x="1367" y="683.0" width="226" height="20" rx="4" class="bar-todo crit"/>
+<text x="1375" y="697.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
+<text x="20" y="731.0" class="t ink">E6 · RX PCB layout, DRC and fabrication outp</text>
+<rect x="1251" y="717.0" width="110" height="20" rx="4" class="bar-todo"/>
+<text x="1259" y="731.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
+<text x="20" y="765.0" class="t ink">E7 · HVLV PCB layout, DRC and fabrication ou</text>
+<rect x="1367" y="751.0" width="226" height="20" rx="4" class="bar-todo crit"/>
+<text x="1375" y="765.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
+<text x="20" y="799.0" class="t ink">E8 · In-band communication link — modulation</text>
+<rect x="1019" y="785.0" width="226" height="20" rx="4" class="bar-todo"/>
+<text x="1027" y="799.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
+<text x="20" y="833.0" class="t ink">E9 · Leviathan-side instance — configuration</text>
+<rect x="1599" y="819.0" width="110" height="20" rx="4" class="bar-todo"/>
+<text x="1607" y="833.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
+<text x="20" y="865" class="tb ink2">TEST</text>
+<line x1="20" y1="871" x2="2176" y2="871" class="ax" stroke-width="1" opacity="0.35"/>
+<text x="20" y="895.0" class="t ink">S1 · Resonant link simulation, cross-checked</text>
+<rect x="1019" y="881.0" width="110" height="20" rx="4" class="bar-todo"/>
+<text x="1027" y="895.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
+<text x="20" y="929.0" class="t ink">S2 · Power stage simulation — ZVS, dead time</text>
+<rect x="787" y="915.0" width="110" height="20" rx="4" class="bar-todo"/>
+<text x="795" y="929.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
+<text x="20" y="963.0" class="t ink">T1 · Analysis and simulation close-out again</text>
+<rect x="1599" y="949.0" width="226" height="20" rx="4" class="bar-todo crit"/>
+<text x="1607" y="963.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
+<text x="20" y="997.0" class="t ink">T2 · Bench verification — deferred until lab</text>
+<rect x="1831" y="983.0" width="342" height="20" rx="4" class="bar-blocked crit"/>
+<text x="1839" y="997.0" class="ts" fill="#ffffff" opacity="0.96">✕ Blocked</text>
+<text x="20" y="1029" class="tb ink2">FIRMWARE</text>
+<line x1="20" y1="1035" x2="2176" y2="1035" class="ax" stroke-width="1" opacity="0.35"/>
+<text x="20" y="1059.0" class="t ink">F1 · TX resonance-tracking firmware rework</text>
+<rect x="1135" y="1045.0" width="226" height="20" rx="4" class="bar-todo crit"/>
 <text x="1143" y="1059.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
-<text x="20" y="1093.0" class="t ink">F3 · Protection, fault handling and safe-sta</text>
-<rect x="1367" y="1079.0" width="110" height="20" rx="4" class="bar-todo"/>
-<text x="1375" y="1093.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
-<text x="20" y="1127.0" class="t ink">F4 · Link protocol, handshake and coexistenc</text>
-<rect x="1367" y="1113.0" width="226" height="20" rx="4" class="bar-todo crit"/>
+<text x="20" y="1093.0" class="t ink">F2 · HVLV CC/CV control firmware with real c</text>
+<rect x="1135" y="1079.0" width="226" height="20" rx="4" class="bar-todo"/>
+<text x="1143" y="1093.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
+<text x="20" y="1127.0" class="t ink">F3 · Protection, fault handling and safe-sta</text>
+<rect x="1367" y="1113.0" width="110" height="20" rx="4" class="bar-todo"/>
 <text x="1375" y="1127.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
+<text x="20" y="1161.0" class="t ink">F4 · Link protocol, handshake and coexistenc</text>
+<rect x="1367" y="1147.0" width="226" height="20" rx="4" class="bar-todo crit"/>
+<text x="1375" y="1161.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
 <defs><marker id="ah" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#898781"/></marker></defs>
 <path d="M433,127.0 H443 V161.0 H436" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
 <path d="M433,127.0 H443 V195.0 H436" fill="none" stroke="#898781" stroke-width="1.6" opacity="0.85" marker-end="url(#ah)"/>
@@ -142,50 +145,53 @@
 <path d="M781,359.0 H791 V393.0 H784" fill="none" stroke="#898781" stroke-width="1.6" opacity="0.85" marker-end="url(#ah)"/>
 <path d="M549,161.0 H668.0 V393.0 H784" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
 <path d="M1013,393.0 H1023 V427.0 H1016" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M549,195.0 H559 V489.0 H552" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M549,161.0 H559 V489.0 H552" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M781,489.0 H900.0 V523.0 H1016" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M1013,393.0 H1023 V523.0 H1016" fill="none" stroke="#898781" stroke-width="1.6" opacity="0.85" marker-end="url(#ah)"/>
-<path d="M1129,523.0 H1139 V557.0 H1132" fill="none" stroke="#898781" stroke-width="1.6" opacity="0.85" marker-end="url(#ah)"/>
-<path d="M1129,523.0 H1139 V591.0 H1132" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M1129,523.0 H1139 V625.0 H1132" fill="none" stroke="#898781" stroke-width="1.6" opacity="0.85" marker-end="url(#ah)"/>
-<path d="M1361,557.0 H1371 V659.0 H1364" fill="none" stroke="#898781" stroke-width="1.6" opacity="0.85" marker-end="url(#ah)"/>
-<path d="M897,891.0 H1132.0 V659.0 H1364" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M1245,591.0 H1255 V693.0 H1248" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M1361,625.0 H1371 V727.0 H1364" fill="none" stroke="#898781" stroke-width="1.6" opacity="0.85" marker-end="url(#ah)"/>
-<path d="M897,891.0 H1132.0 V727.0 H1364" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M781,489.0 H900.0 V761.0 H1016" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M1013,393.0 H1023 V761.0 H1016" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M1361,625.0 H1480.0 V795.0 H1596" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M1593,727.0 H1603 V795.0 H1596" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M1013,393.0 H1023 V857.0 H1016" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M781,489.0 H900.0 V857.0 H1016" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M781,489.0 H791 V891.0 H784" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M1129,523.0 H1139 V1021.0 H1132" fill="none" stroke="#898781" stroke-width="1.6" opacity="0.85" marker-end="url(#ah)"/>
-<path d="M1129,523.0 H1139 V1055.0 H1132" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M1361,1021.0 H1371 V1089.0 H1364" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M1361,1055.0 H1371 V1089.0 H1364" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M897,891.0 H1132.0 V1089.0 H1364" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M1245,761.0 H1306.0 V1123.0 H1364" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M1361,1021.0 H1371 V1123.0 H1364" fill="none" stroke="#898781" stroke-width="1.6" opacity="0.85" marker-end="url(#ah)"/>
-<path d="M1593,659.0 H1603 V925.0 H1596" fill="none" stroke="#898781" stroke-width="1.6" opacity="0.85" marker-end="url(#ah)"/>
-<path d="M1361,693.0 H1480.0 V925.0 H1596" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M1593,727.0 H1603 V925.0 H1596" fill="none" stroke="#898781" stroke-width="1.6" opacity="0.85" marker-end="url(#ah)"/>
-<path d="M1477,1089.0 H1538.0 V925.0 H1596" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M1593,1123.0 H1603 V925.0 H1596" fill="none" stroke="#898781" stroke-width="1.6" opacity="0.85" marker-end="url(#ah)"/>
-<path d="M1245,427.0 H1422.0 V925.0 H1596" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M1129,857.0 H1364.0 V925.0 H1596" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M1825,925.0 H1835 V959.0 H1828" fill="none" stroke="#898781" stroke-width="1.6" opacity="0.85" marker-end="url(#ah)"/>
+<path d="M1013,393.0 H1132.0 V461.0 H1248" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M1245,427.0 H1255 V461.0 H1248" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M549,195.0 H559 V523.0 H552" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M549,161.0 H559 V523.0 H552" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M781,523.0 H900.0 V557.0 H1016" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M1013,393.0 H1023 V557.0 H1016" fill="none" stroke="#898781" stroke-width="1.6" opacity="0.85" marker-end="url(#ah)"/>
+<path d="M1129,557.0 H1139 V591.0 H1132" fill="none" stroke="#898781" stroke-width="1.6" opacity="0.85" marker-end="url(#ah)"/>
+<path d="M1129,557.0 H1139 V625.0 H1132" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M1129,557.0 H1139 V659.0 H1132" fill="none" stroke="#898781" stroke-width="1.6" opacity="0.85" marker-end="url(#ah)"/>
+<path d="M1361,591.0 H1371 V693.0 H1364" fill="none" stroke="#898781" stroke-width="1.6" opacity="0.85" marker-end="url(#ah)"/>
+<path d="M897,925.0 H1132.0 V693.0 H1364" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M1245,625.0 H1255 V727.0 H1248" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M1361,659.0 H1371 V761.0 H1364" fill="none" stroke="#898781" stroke-width="1.6" opacity="0.85" marker-end="url(#ah)"/>
+<path d="M897,925.0 H1132.0 V761.0 H1364" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M781,523.0 H900.0 V795.0 H1016" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M1013,393.0 H1023 V795.0 H1016" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M1361,659.0 H1480.0 V829.0 H1596" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M1593,761.0 H1603 V829.0 H1596" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M1013,393.0 H1023 V891.0 H1016" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M781,523.0 H900.0 V891.0 H1016" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M781,523.0 H791 V925.0 H784" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M1129,557.0 H1139 V1055.0 H1132" fill="none" stroke="#898781" stroke-width="1.6" opacity="0.85" marker-end="url(#ah)"/>
+<path d="M1129,557.0 H1139 V1089.0 H1132" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M1361,1055.0 H1371 V1123.0 H1364" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M1361,1089.0 H1371 V1123.0 H1364" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M897,925.0 H1132.0 V1123.0 H1364" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M1245,795.0 H1306.0 V1157.0 H1364" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M1361,1055.0 H1371 V1157.0 H1364" fill="none" stroke="#898781" stroke-width="1.6" opacity="0.85" marker-end="url(#ah)"/>
+<path d="M1593,693.0 H1603 V959.0 H1596" fill="none" stroke="#898781" stroke-width="1.6" opacity="0.85" marker-end="url(#ah)"/>
+<path d="M1361,727.0 H1480.0 V959.0 H1596" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M1593,761.0 H1603 V959.0 H1596" fill="none" stroke="#898781" stroke-width="1.6" opacity="0.85" marker-end="url(#ah)"/>
+<path d="M1477,1123.0 H1538.0 V959.0 H1596" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M1593,1157.0 H1603 V959.0 H1596" fill="none" stroke="#898781" stroke-width="1.6" opacity="0.85" marker-end="url(#ah)"/>
+<path d="M1245,427.0 H1422.0 V959.0 H1596" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M1129,891.0 H1364.0 V959.0 H1596" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M1825,959.0 H1835 V993.0 H1828" fill="none" stroke="#898781" stroke-width="1.6" opacity="0.85" marker-end="url(#ah)"/>
+<path d="M1477,461.0 H1654.0 V993.0 H1828" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
 <path d="M1013,393.0 H1074.0 V263.0 H1132" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M1129,523.0 H1139 V263.0 H1132" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<path d="M1825,925.0 H1835 V297.0 H1828" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
-<rect x="20" y="1191" width="11" height="11" rx="2.5" class="bar-done"/>
-<text x="37" y="1200" class="ts ink2">✓ Done</text>
-<rect x="90.8" y="1191" width="11" height="11" rx="2.5" class="bar-in_progress"/>
-<text x="107.8" y="1200" class="ts ink2">▶ In progress</text>
-<rect x="205.0" y="1191" width="11" height="11" rx="2.5" class="bar-blocked"/>
-<text x="222.0" y="1200" class="ts ink2">✕ Blocked</text>
-<rect x="294.4" y="1191" width="11" height="11" rx="2.5" class="bar-todo"/>
-<text x="311.4" y="1200" class="ts ink2">○ To do</text>
-<text x="377.4" y="1200" class="ts mut">outlined bars = critical path</text>
+<path d="M1129,557.0 H1139 V263.0 H1132" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<path d="M1825,959.0 H1835 V297.0 H1828" fill="none" stroke="#898781" stroke-width="1" opacity="0.45" marker-end="url(#ah)"/>
+<rect x="20" y="1225" width="11" height="11" rx="2.5" class="bar-done"/>
+<text x="37" y="1234" class="ts ink2">✓ Done</text>
+<rect x="90.8" y="1225" width="11" height="11" rx="2.5" class="bar-in_progress"/>
+<text x="107.8" y="1234" class="ts ink2">▶ In progress</text>
+<rect x="205.0" y="1225" width="11" height="11" rx="2.5" class="bar-blocked"/>
+<text x="222.0" y="1234" class="ts ink2">✕ Blocked</text>
+<rect x="294.4" y="1225" width="11" height="11" rx="2.5" class="bar-todo"/>
+<text x="311.4" y="1234" class="ts ink2">○ To do</text>
+<text x="377.4" y="1234" class="ts mut">outlined bars = critical path</text>
 </svg>

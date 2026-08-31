@@ -137,3 +137,76 @@ toolbox whose whole value is current practice should notice when it is running
 a version that no longer exists on the remote. The project-local
 `.claude/skills/hw-review/` drafted in this session is deleted; the upstream
 skill supersedes it and is better.
+
+---
+
+**The block diagram shipped with eight overlapping blocks, and the gate passed
+it.** `block_diagram.py` reads hand positions back out of the existing `.drawio`
+and pins the layout to them with no collision test. Rev C added seven blocks;
+the pre-existing twenty-nine stayed at their rev-B coordinates and eight pairs
+landed on top of each other. `block-diagram --check` exited 0, so nothing caught
+it and the broken SVG went into a published review packet — the customer found
+it. A fresh layout (`--relayout`) has zero overlaps.
+**Fix `scripts/block_diagram.py`:** `layout()` should drop or re-flow a kept
+position that collides, and `--check` should test the rendered boxes for overlap
+rather than validating the spec alone. A gate that passes a diagram nobody can
+read is worse than no gate.
+
+---
+
+**Block names are truncated mid-word with no ellipsis.** `render_svg` cuts names
+at 24 characters and part numbers at 26. Fourteen of thirty-six blocks were cut,
+and "Tank current sense ampli" reads as a typo rather than as an elision — which
+is worse than a shortened name, because it makes the whole drawing look
+unreviewed.
+**Fix `scripts/block_diagram.py`, `render_svg()`:** ellipsize, or wrap onto the
+second line the box already has room for, and warn at generation time listing
+what was cut so the spec can be shortened deliberately.
+
+---
+
+**One sheet is the only option, and thirty-six blocks do not fit on one.**
+Nothing in the generator divides a diagram. At 36 blocks and 23 buses the sheet
+is 1376 x 3438 px, the column heuristic interleaves subsystems, and bus labels
+print over boxes. Worked around with `scripts/block_sheets.py`, which slices the
+master spec by a `sheet:` tag into four subsystem views with stub connectors for
+off-sheet endpoints — the master stays the single source of truth so the power
+budget still closes across the whole system.
+**Fix `scripts/block_diagram.py`:** support a `sheet:` tag natively. Every
+project past about twenty blocks needs it, and the master spec has to stay one
+file or the budget cannot roll up.
+
+---
+
+**Two generators emit raw HTML that the review renderer escapes.**
+`vision_board.py:293` and `review_gate.py:378` both wrap sections in
+`<details><summary>`. GitHub renders it; `review_artifact.py` HTML-escapes
+everything, so the published review page showed the customer literal
+`<details><summary>Dimensioned isometric line drawing</summary>` where a drawing
+should have been — in the vision document and in all four review packets.
+Worked around with `scripts/md_flatten.py`, which runs after both.
+**Fix `scripts/vision_board.py` and `scripts/review_gate.py`:** emit plain
+markdown, or give `review_artifact.py` a small tag allowlist. Markdown that only
+renders in one of the two places a document is read is the actual defect, and it
+is invisible until a human opens the published page.
+
+---
+
+**`vision-board` overwrites the hand-written vision document. Third
+occurrence.** `--doc` defaults to `docs/design/vision.md`, which is also where
+the narrative lives, so every re-render destroys it; twice it was recovered by
+hand and once the loss was only caught by `git diff --stat`. Now pointed at
+`docs/design/vision-gallery.md` via `scripts/vision_md.py`.
+**Fix `scripts/vision_board.py`:** default the generated gallery to its own
+filename, or refuse to overwrite a file it did not itself write.
+
+---
+
+**`MATERIAL` sets the render colour but not the mass.** `vision-board` quotes
+mass as `volume x 1.4 g/cm3` whatever the material, and `--material` accepts only
+{cobalt, graphite, sand, steel}, so `MATERIAL = "aluminum"` silently fell back to
+cobalt. The label does say "at 1.4 g/cm3" so it is not a false statement, but for
+an aluminium test rig it reads 23 kg against a real 44 kg — the difference
+between a one-person and a two-person lift.
+**Fix `scripts/vision_board.py`:** carry a density per material and quote the
+mass at it, or omit the mass when the material is not one it knows.

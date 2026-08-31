@@ -8,7 +8,7 @@
 
 **Keep the PCB coil.** Specifically: a **fully transposed multi-track PCB
 winding** — not a plain parallel-layer stack — with traces near one skin depth,
-and **the mounting bracket designed as the heat sink**.
+and **the mounting structure specified as the heat sink**.
 
 | | |
 |---|---|
@@ -110,7 +110,7 @@ That is the margin it rests on, and it is why this is a defensible choice rather
 than a marginal one — but it also shows how completely it depends on
 transposition happening at all.
 
-## The binding constraint is thermal, and it is the bracket's problem
+## The binding constraint is thermal, and it leaves through the mount
 
 This is the finding that actually shapes the design, and it is not electrical.
 
@@ -120,14 +120,22 @@ sheds about **3.1 W from its own faces**. We need to remove **36 W** — twelve
 times that.
 
 **The pad face is irrelevant. All of the heat leaves through the mounting
-structure.** At 36 W/pad the bracket needs roughly **2400 cm² of external
-surface — about 12× the pad footprint**. A 400 × 500 mm finned aluminium deck
-bracket provides that comfortably, which is precisely why the decision to charge
-on deck in a bracket makes this work. Had the pad been hull-mounted with only
-its own faces to work with, no coil technology would have saved it.
+structure.** At 36 W/pad that structure needs roughly **2400 cm² of external
+surface — about 12× the pad footprint**. A 400 × 500 mm finned aluminium plate
+provides that comfortably, which is precisely why the decision to charge on deck
+in a fixture makes this work. Had the pad been hull-mounted with only its own
+faces to work with, no coil technology would have saved it.
 
-**This makes the bracket a thermal component, not a fixture**, and it is now
+**This makes the mount a thermal component, not a fixture**, and it is now
 `MEC-009`.
+
+Since 2026-08-31 the fixture belongs to the mechanical team (`VIS-013`), which
+changes who satisfies `MEC-009` but not whether it holds. It is stated as an
+**interface requirement** on the integrator, and met directly in the test
+packaging. This ADR's conclusion depends on it: an etched coil is viable
+*because* something with 2400 cm² cools it. If that surface is not there in the
+delivered installation, this decision does not hold and the coil technology has
+to be revisited.
 
 ## Consequences
 

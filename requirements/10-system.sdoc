@@ -126,7 +126,7 @@ RELATIONS:
 
 [REQUIREMENT]
 UID: SYS-006
-TITLE: Coupling across the bracket's tolerance envelope
+TITLE: Coupling across the fixture's tolerance envelope
 STATEMENT: >>>
 The system shall meet ``SYS-001`` and ``SYS-004`` at any coil-to-coil gap from
 8 mm to 14 mm, with lateral misalignment up to 5 mm and angular misalignment up
@@ -134,17 +134,20 @@ to 2 degrees.
 <<<
 RATIONALE: >>>
 Tightened at the gate-1 review from the 5-to-20 mm and 10 mm envelope first
-assumed, because the decision to charge on deck in a locating bracket changes
+assumed, because the decision to charge on deck in a pin-located fixture changes
 what the mechanism can hold. The gap is now set by two housing walls and a
 running clearance rather than by a vehicle hull: 4 mm of wall each side plus
 2 mm gives 10 mm nominal, and 14 mm is that plus a tolerance stack, potting
 variation and an allowance for debris on the faces. 8 mm is the practical floor
 before the two housings touch.
 
-5 mm of lateral offset and 2 degrees of tilt are conservative for a bracket with
-locating features - a kinematic or tapered-rail mount should hold considerably
-better - and they are set here as what the magnetics must tolerate rather than
-what the mechanism is expected to deliver. Analysis puts the coupling at 0.645
+5 mm of lateral offset and 2 degrees of tilt are conservative for a pin-located
+fixture - a two-pin-and-slot pattern on a machined plate should hold well inside
+this - and they are set here as what the magnetics must tolerate rather than
+what the mechanism is expected to deliver. That distinction is what lets this
+requirement survive the mechanical team owning the fixture (``VIS-013``): it is
+the envelope we accept, and therefore the envelope the fixture must be held to,
+whoever builds it. Analysis puts the coupling at 0.645
 at the 10 mm nominal with 5 mm offset and 0.558 at the 14 mm limit. See
 ``docs/design/coil-model.md``.
 <<<
@@ -405,4 +408,38 @@ STATUS: Draft
 RELATIONS:
 - TYPE: Parent
   VALUE: VIS-006
+  ROLE: Refines
+
+[REQUIREMENT]
+UID: SYS-017
+TITLE: Test packaging holds the coil pair across the SYS-006 envelope
+STATEMENT: >>>
+The test packaging shall hold the two coil assemblies at any gap from 8 mm to
+14 mm, at lateral offsets up to 5 mm and tilt up to 2 degrees, with the set gap
+repeatable to 0.5 mm and the set offset to 0.5 mm, and shall locate the pads on
+pins.
+<<<
+RATIONALE: >>>
+This is what makes ``SYS-006``, ``MEC-001`` and ``MEC-003`` verifiable at all.
+Every one of them is written "across the envelope", and the corners are where
+they are closest to failing - ``MEC-001`` computes k times Q of 75.0 at the worst
+corner against 49 required, and that number means nothing until something can
+actually set the worst corner and hold it.
+
+0.5 mm of setting repeatability is the number that matters. Coupling changes by
+roughly 2 percent per millimetre of gap at 10 mm on this geometry, so 0.5 mm is
+about 1 percent in k - well inside the 1.40 margin ``MEC-003`` carries, and
+small enough that a measured k times Q can be attributed to the coil rather than
+to how the rig was set that morning.
+
+Pins are specified here, rather than any convenient clamp, so the test packaging
+exercises the same locating scheme ``VIS-005`` fixes for the real fixture. A rig
+that located on faces would verify the magnetics against a mechanism the
+delivered system does not have.
+<<<
+VERIFICATION: Inspection
+STATUS: Draft
+RELATIONS:
+- TYPE: Parent
+  VALUE: VIS-013
   ROLE: Refines

@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="786" height="1138" viewBox="0 0 786 1138" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" role="img" aria-label="Electrical block diagram: Ulysses LARS Charger — Dock converter — 48 V Leviathan pack to the 400 V link, 10 blocks, 3 rails, 4 buses">
+<style>
+.s{fill:#fcfcfb} .bx{fill:#ffffff;stroke:#c3c2b7} .ink{fill:#0b0b0b} .ink2{fill:#52514e} .ax{stroke:#c3c2b7} .gt{fill:#c3c2b7}
+@media (prefers-color-scheme:dark){.s{fill:#1a1a19} .bx{fill:#242422;stroke:#383835} .ink{fill:#ffffff} .ink2{fill:#c3c2b7} .ax{stroke:#383835} .gt{fill:#383835}}
+.mut{fill:#898781}
+.t{font-size:12px} .tb{font-size:12.5px;font-weight:600} .ts{font-size:10px} .tr{font-size:11.5px;font-weight:600} .h{font-size:15px;font-weight:600} .hh{font-size:11px;font-weight:600;letter-spacing:0.06em}
+</style>
+<rect width="786" height="1138" class="s" rx="6"/>
+<text x="24" y="27" class="h ink">Ulysses LARS Charger — Dock converter — 48 V Leviathan pack to the 400 V link  ·  rev C</text>
+<text x="24" y="46" class="t ink2">10 blocks · 3 rails · 4 buses</text>
+<text x="24" y="61" class="ts mut">generated from block-diagram.yaml — edit the spec, not this file</text>
+<text x="24" y="84" class="hh mut">POWER TREE</text>
+<rect x="24.0" y="96.0" width="6" height="32" rx="3" fill="#d03b3b"/>
+<text x="38.0" y="108.0" class="tr" fill="#d03b3b">V48_LEV  48.0 V  ← J0</text>
+<rect x="284" y="98.0" width="150" height="9" rx="4.5" class="gt" opacity="0.5"/>
+<rect x="284" y="98.0" width="141.8" height="9" rx="4.5" fill="#e08a1e"/>
+<text x="446" y="107.0" class="ts ink2">75.62 A max of 80.00 A  (95%)  ! tight</text>
+<text x="38.0" y="124.0" class="ts mut">U40 75.00 A  U47 400 mA</text>
+<path d="M33.0,110.0 V154.0 H43.0" fill="none" class="ax" stroke-width="1.2" opacity="0.6"/>
+<rect x="46.0" y="142.0" width="6" height="32" rx="3" fill="#e08a1e"/>
+<text x="60.0" y="154.0" class="tr" fill="#e08a1e">DOCK12  12.0 V  ← U47</text>
+<rect x="284" y="144.0" width="150" height="9" rx="4.5" class="gt" opacity="0.5"/>
+<rect x="284" y="144.0" width="87.4" height="9" rx="4.5" fill="#e08a1e"/>
+<text x="446" y="153.0" class="ts ink2">874 mA max of 1.50 A  (58%)</text>
+<text x="60.0" y="170.0" class="ts mut">U45 500 mA  U40 200 mA  U42 50 mA  U46 4 mA</text>
+<path d="M55.0,156.0 V200.0 H65.0" fill="none" class="ax" stroke-width="1.2" opacity="0.6"/>
+<rect x="68.0" y="188.0" width="6" height="32" rx="3" fill="#0ca30c"/>
+<text x="82.0" y="200.0" class="tr" fill="#0ca30c">DOCK3V3  3.3 V  ← U46</text>
+<rect x="284" y="190.0" width="150" height="9" rx="4.5" class="gt" opacity="0.5"/>
+<rect x="284" y="190.0" width="108.8" height="9" rx="4.5" fill="#0ca30c"/>
+<text x="446" y="199.0" class="ts ink2">435 mA max of 600 mA  (73%)</text>
+<text x="82.0" y="216.0" class="ts mut">U43 400 mA  U44 35 mA</text>
+<text x="24" y="256" class="hh mut">FUNCTIONAL BLOCKS AND DATA BUSES</text>
+<rect x="24.0" y="270.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="34.0" y="290.0" class="tb ink">J0 · Leviathan pack connector</text>
+<text x="34.0" y="306.0" class="t ink2">TBD-48V-75A</text>
+<text x="34.0" y="324.0" class="ts mut">CONNECTOR</text>
+<rect x="24.0" y="374.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="34.0" y="394.0" class="tb ink">U40 · Dock DAB LV bridge 16x</text>
+<text x="34.0" y="410.0" class="t ink2">BSC190N15NS3</text>
+<text x="34.0" y="428.0" class="ts mut">POWER</text>
+<rect x="155.0" y="418.0" width="45.0" height="15" rx="7.5" fill="#e08a1e"/>
+<text x="177.5" y="429.0" class="ts" fill="#ffffff" text-anchor="middle">DOCK12</text>
+<rect x="100.0" y="418.0" width="51.0" height="15" rx="7.5" fill="#d03b3b"/>
+<text x="125.5" y="429.0" class="ts" fill="#ffffff" text-anchor="middle">V48_LEV</text>
+<rect x="24.0" y="478.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="34.0" y="498.0" class="tb ink">U42 · Dock DAB HV bridge 4x</text>
+<text x="34.0" y="514.0" class="t ink2">IPB60R120C7</text>
+<text x="34.0" y="532.0" class="ts mut">POWER</text>
+<rect x="155.0" y="522.0" width="45.0" height="15" rx="7.5" fill="#e08a1e"/>
+<text x="177.5" y="533.0" class="ts" fill="#ffffff" text-anchor="middle">DOCK12</text>
+<rect x="24.0" y="582.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="34.0" y="602.0" class="tb ink">U45 · Dock isolated gate bias</text>
+<text x="34.0" y="618.0" class="t ink2">UCC14240-Q1</text>
+<text x="34.0" y="636.0" class="ts mut">REGULATOR</text>
+<rect x="155.0" y="626.0" width="45.0" height="15" rx="7.5" fill="#e08a1e"/>
+<text x="177.5" y="637.0" class="ts" fill="#ffffff" text-anchor="middle">DOCK12</text>
+<rect x="24.0" y="686.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="34.0" y="706.0" class="tb ink">U46 · Dock buck 12V to 3.3V</text>
+<text x="34.0" y="722.0" class="t ink2">TPSM560R6</text>
+<text x="34.0" y="740.0" class="ts mut">REGULATOR</text>
+<rect x="155.0" y="730.0" width="45.0" height="15" rx="7.5" fill="#e08a1e"/>
+<text x="177.5" y="741.0" class="ts" fill="#ffffff" text-anchor="middle">DOCK12</text>
+<rect x="24.0" y="790.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="34.0" y="810.0" class="tb ink">U47 · Dock buck 48V to 12V</text>
+<text x="34.0" y="826.0" class="t ink2">TPSM5601R5</text>
+<text x="34.0" y="844.0" class="ts mut">REGULATOR</text>
+<rect x="149.0" y="834.0" width="51.0" height="15" rx="7.5" fill="#d03b3b"/>
+<text x="174.5" y="845.0" class="ts" fill="#ffffff" text-anchor="middle">V48_LEV</text>
+<rect x="24.0" y="894.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="34.0" y="914.0" class="tb ink">X_tx · to tx sheet</text>
+<text x="34.0" y="930.0" class="t ink2">see block-diagram-tx.svg</text>
+<text x="34.0" y="948.0" class="ts mut">CONNECTOR</text>
+<rect x="366.0" y="478.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="376.0" y="498.0" class="tb ink">U41 · Dock DAB transformer</text>
+<text x="376.0" y="514.0" class="t ink2">TBD-planar-48V-400V</text>
+<text x="376.0" y="532.0" class="ts mut">OTHER</text>
+<rect x="366.0" y="582.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="376.0" y="602.0" class="tb ink">U43 · Dock DAB controller</text>
+<text x="376.0" y="618.0" class="t ink2">STM32H723ZGT6</text>
+<text x="376.0" y="636.0" class="ts mut">MCU</text>
+<rect x="491.0" y="626.0" width="51.0" height="15" rx="7.5" fill="#0ca30c"/>
+<text x="516.5" y="637.0" class="ts" fill="#ffffff" text-anchor="middle">DOCK3V3</text>
+<rect x="366.0" y="686.0" width="186" height="70" rx="5" class="bx" stroke-width="1.2"/>
+<text x="376.0" y="706.0" class="tb ink">U44 · Dock signal isolation</text>
+<text x="376.0" y="722.0" class="t ink2">ISO7740</text>
+<text x="376.0" y="740.0" class="ts mut">INTERFACE</text>
+<rect x="491.0" y="730.0" width="51.0" height="15" rx="7.5" fill="#0ca30c"/>
+<text x="516.5" y="741.0" class="ts" fill="#ffffff" text-anchor="middle">DOCK3V3</text>
+<path d="M210.0,305.0 H250.0 V409.0 H20.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="210.0" cy="305.0" r="2.6" fill="#52514e"/>
+<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(22.0,409.0)" fill="#52514e"/>
+<text x="255" y="360" class="ts" fill="#52514e" text-anchor="start">PWR_LEV_IN</text>
+<path d="M210.0,530.5 H288.0 V929.0 H20.0" fill="none" stroke="#52514e" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="210.0" cy="530.5" r="2.6" fill="#52514e"/>
+<path d="M-5,-4 L-5,4 L2,0 z" transform="translate(22.0,929.0)" fill="#52514e"/>
+<text x="293" y="733" class="ts" fill="#52514e" text-anchor="start">PWR_DOCK_HV</text>
+<line x1="269.0" y1="397.3333333333333" x2="269.0" y2="513.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="274.0" y="388.3333333333333" class="ts" fill="#52514e">PWR_DOCK_XFMR</text>
+<line x1="366.0" y1="513.0" x2="269.0" y2="513.0" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="366.0" cy="513.0" r="2.6" fill="#52514e"/>
+<rect x="265.0" y="509.0" width="8" height="8" rx="1.5" fill="#52514e"/>
+<line x1="210.0" y1="397.3333333333333" x2="269.0" y2="397.3333333333333" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="210.0" cy="397.3333333333333" r="2.6" fill="#52514e"/>
+<circle cx="269.0" cy="397.3333333333333" r="3.2" fill="#52514e"/>
+<line x1="210.0" y1="495.5" x2="269.0" y2="495.5" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="210.0" cy="495.5" r="2.6" fill="#52514e"/>
+<circle cx="269.0" cy="495.5" r="3.2" fill="#52514e"/>
+<line x1="307.0" y1="420.6666666666667" x2="307.0" y2="721.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="312.0" y="411.6666666666667" class="ts" fill="#52514e">DOCK_ISO</text>
+<line x1="366.0" y1="617.0" x2="307.0" y2="617.0" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="366.0" cy="617.0" r="2.6" fill="#52514e"/>
+<rect x="303.0" y="613.0" width="8" height="8" rx="1.5" fill="#52514e"/>
+<line x1="366.0" y1="721.0" x2="307.0" y2="721.0" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="366.0" cy="721.0" r="2.6" fill="#52514e"/>
+<circle cx="307.0" cy="721.0" r="3.2" fill="#52514e"/>
+<line x1="210.0" y1="617.0" x2="307.0" y2="617.0" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="210.0" cy="617.0" r="2.6" fill="#52514e"/>
+<circle cx="307.0" cy="617.0" r="3.2" fill="#52514e"/>
+<line x1="210.0" y1="513.0" x2="307.0" y2="513.0" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="210.0" cy="513.0" r="2.6" fill="#52514e"/>
+<circle cx="307.0" cy="513.0" r="3.2" fill="#52514e"/>
+<line x1="210.0" y1="420.6666666666667" x2="307.0" y2="420.6666666666667" stroke="#52514e" stroke-width="1.6"/>
+<circle cx="210.0" cy="420.6666666666667" r="2.6" fill="#52514e"/>
+<circle cx="307.0" cy="420.6666666666667" r="3.2" fill="#52514e"/>
+<text x="24" y="990.0" class="tb ink2">DATA BUSES</text>
+<line x1="24" y1="1010.0" x2="46" y2="1010.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="1014.0" class="ts ink2">PWR_LEV_IN · OTHER</text>
+<line x1="24" y1="1032.0" x2="46" y2="1032.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="1036.0" class="ts ink2">PWR_DOCK_XFMR · OTHER — dock instance running LV to HV — the same design as U21, reversed</text>
+<line x1="24" y1="1054.0" x2="46" y2="1054.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="1058.0" class="ts ink2">PWR_DOCK_HV · OTHER</text>
+<line x1="24" y1="1076.0" x2="46" y2="1076.0" stroke="#52514e" stroke-width="2.4" stroke-linecap="round"/>
+<text x="54" y="1080.0" class="ts ink2">DOCK_ISO · OTHER</text>
+<text x="24" y="1122" class="ts mut">■ bus controller · ● bus member · pill on a block = the rail it runs from · every colour is also labelled</text>
+</svg>

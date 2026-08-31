@@ -1,8 +1,10 @@
 """Shared geometry for the Ulysses charging-system concepts.
 
-SCOPE: the wireless charging system only. The vehicle is not modelled and is
-not ours — what we deliver is the deck bracket, the two coil pads and their
-electronics. The vehicle appears only as the interface plate its pad bolts to.
+SCOPE: the charger electronics and a test packaging, per VIS-013. The vehicle
+is not modelled and is not ours, and neither is the deck fixture — integration
+is the mechanical team's. What we deliver is the two coil pads, their converter
+electronics, and a bench rig that holds the pads at the SYS-006 envelope so the
+magnetics can be verified. Pads locate on dowel pins (VIS-005).
 
 Dimensions that are REAL, from the analysis:
   * coil pad 102 x 203 mm (4 x 8 inch), customer-fixed
@@ -59,10 +61,47 @@ def electronics(w=150, l=210, h=78):
 
 
 def deck_plate(w, l, t=18.0):
-    """The bracket's base, bolted to deck."""
+    """A flat mounting plate. Used for the rig's base and platen."""
     p = Box(w, l, t)
     p = fillet(p.edges().filter_by(Axis.Z), radius=12)
     for sx in (-1, 1):
         for sy in (-1, 1):
             p -= Pos(sx * (w / 2 - 26), sy * (l / 2 - 26), 0) * Cylinder(7, t)
     return p
+
+
+
+def finned_sink(w, l, base_t=12.0, fin_h=38.0, fin_t=4.0, pitch=13.0):
+    """The heat sink a pad conducts into.
+
+    MEC-009 wants at least 12x the pad footprint in external area — 2484 cm2
+    against the 207 cm2 pad. A bare plate this size gives nowhere near that, so
+    the area has to come from fins. `sink_area_cm2` below reports what the
+    geometry actually provides rather than asserting it.
+    """
+    body = Box(w, l, base_t)
+    body = fillet(body.edges().filter_by(Axis.Z), radius=10)
+    n = int((w - 20) // pitch)
+    x0 = -(n - 1) * pitch / 2
+    for i in range(n):
+        body += Pos(x0 + i * pitch, 0, -(base_t / 2 + fin_h / 2)) * \
+                Box(fin_t, l - 16, fin_h)
+    return body
+
+
+def sink_area_cm2(w, l, base_t=12.0, fin_h=38.0, fin_t=4.0, pitch=13.0):
+    """External area of finned_sink, in square centimetres.
+
+    Both faces of every fin, the fin tips, and the base top less the fin roots.
+    The base underside is not counted: it is the bonded interface to the pad.
+    """
+    n = int((w - 20) // pitch)
+    fl = l - 16.0
+    fins = n * (2 * fin_h * fl + fin_t * fl)
+    base = w * l - n * fin_t * fl + 2 * base_t * (w + l)
+    return (fins + base) / 100.0
+
+
+def dowel_pin(d=8.0, h=22.0):
+    """A locating dowel. Two of these, one in a hole and one in a slot."""
+    return Cylinder(d / 2, h) + Pos(0, 0, h / 2) * Cone(d / 2, d / 2 - 1.2, 2.5)

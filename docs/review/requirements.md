@@ -1,18 +1,14 @@
-# Review — Requirements — 66 requirements, 0% verified
+# Review — Requirements — 69 requirements, 0% verified
 
 `requirements` · requested 2026-08-31 · branch `claude/wireless-charging-design-hf0aix`
 
-VIS through SYS to ELE/MEC/FW, with SYS-004 dividing 300 W of loss among five children that sum exactly to the parent. Coverage is 0% verified and that is correct — no design artefact exists yet, so every gap is a missing evidence pointer rather than a defect. Nothing has been marked Verified to improve the number. What I need is your eye on the numbers themselves.
+Re-opened 2026-08-31 for the scope change. Three requirements moved and three are new. VIS-013 states the scope: charger electronics plus a test packaging, integration to the mechanical team. VIS-005 and SYS-006 now say pins rather than an unnamed locating feature. SYS-017 and MEC-010 specify the test packaging — it has to set the SYS-006 envelope to 0.5 mm, because MEC-001 and MEC-003 are both written across that envelope and are closest to failing at its corners. The one to read carefully is MEC-009. It was 'the mounting bracket is the heat sink' and the bracket is no longer ours; rather than delete it with the bracket, it is re-aimed as an interface requirement we levy on whoever builds the mount, and one the test rig must meet itself. The pad sheds 3 W from its own faces and has to lose 39 W, so handing over the coil without handing over its heat-sink requirement is how a design that closed on paper arrives at a 90 degC pad. Coverage is 0% verified and that is correct — no design artefact exists yet, so every gap is a missing evidence pointer, not a defect. Nothing has been marked Verified to improve the number.
 
 ## What you are agreeing to
 
 **requirements-map.svg**
 
 ![requirements-map.svg](../design/requirements-map.svg)
-
-## For context
-
-Sources and working files. Not part of the agreement — these change as work goes on, and changing them does not invalidate your sign-off.
 
 | File | Opens in |
 |---|---|
@@ -26,8 +22,9 @@ Sources and working files. Not part of the agreement — these change as work go
 
 ## What we need decided
 
-1. Are the numbers right — particularly the 3 kW target, the 0.3-0.5C charge policy and the 90% efficiency budget?
-2. Is anything missing that you would expect to see as a requirement?
+1. MEC-009's 12x surface area comes from a single unverified 150 W/m2 still-air figure, and the whole thermal case rests on it. Do you have a second source, or should I spend a chunk confirming it?
+2. Is SYS-017's 0.5 mm gap-setting repeatability achievable with shims in your shop, or should the rig use a micrometer stage?
+3. Are the numbers right — 3.0 kW, 120 W to the coil pair, k times Q of 49, 8-14 mm?
 
 ## Decision
 
@@ -37,7 +34,7 @@ Answer in the Claude session that sent you this link. There is nothing to run an
 
 Say which option you want **and why**: the reason is worth more than the choice, and it is what gets re-read later when a number has to move. If something is wrong, say what would be right.
 
-<details><summary>How the answer gets recorded</summary>
+**How the answer gets recorded**
 
 The agent writes your decision, in your words, into [`docs/review/reviews.yaml`](https://github.com/Harwasch/makehardware_Test/blob/claude/wireless-charging-design-hf0aix/docs/review/reviews.yaml):
 
@@ -47,8 +44,6 @@ review-gate sign requirements --changes "what to change"
 ```
 
 Until that happens, any chunk of work depending on this review cannot be marked done.
-
-</details>
 
 ---
 
