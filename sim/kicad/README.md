@@ -1,63 +1,161 @@
-# sim/kicad — schematics you can open and simulate
+# sim/kicad — the DAB schematic, and how to run it
 
-```bash
-kicad sim/kicad/dab-sim.kicad_pro     # then Inspect > Simulator > Run
+`dab-sim` is a full dual active bridge — eight switches, their body diodes, the
+planar transformer and the customer-supplied 56 µH — drawn as a schematic and
+simulated by ngspice. Everything in the power path is a drawn wire, so you can
+trace it by eye; only the four gate nets `G1`–`G4` are labels.
+
+![schematic](dab-sim.png)
+
+---
+
+## Running it on your machine
+
+### 1. What you need
+
+**KiCad 8 or newer.** Built and verified here on **10.0.5**. The simulator is
+ngspice, embedded in KiCad:
+
+| Platform | ngspice |
+|---|---|
+| Windows | bundled with the KiCad installer — nothing to do |
+| macOS | bundled with the KiCad `.dmg` — nothing to do |
+| Linux | usually pulled in with the `kicad` package via `libngspice0`. If Simulator is greyed out, install `libngspice0` (Debian/Ubuntu) or `libngspice` (Fedora/Arch) and restart KiCad |
+
+Nothing else. No SPICE models to fetch, no libraries to register — every symbol
+is a stock KiCad one (`Simulation_SPICE`, `Device`, `power`) and the schematic
+carries its own copy of each.
+
+### 2. Open and run
+
+```
+git clone <this repo>
+kicad sim/kicad/dab-sim.kicad_pro          # or File > Open Project
 ```
 
-KiCad's simulator **is** ngspice, the same engine the hand-written decks in
-`sim/link` and `sim/dab` use, so numbers from here and from there are directly
-comparable. They agree: this schematic delivers 3016 W in / 2943 W out against
-the closed form's 3001 W.
+Open the schematic, then **Inspect → Simulator**. The sheet already carries its
+own SPICE directives — you can see them on the drawing, bottom left:
 
-## dab-sim — dual active bridge, 48 V ↔ 400 V
+```
+K1 L1 L2 0.9999
+.tran 10n 500u 400u
+```
 
-The customer-supplied **56 µH series inductance** on the high-voltage side of
-the PCB-coil planar transformer is `L3`, and it is what sets power transfer.
-`L1`/`L2` are the transformer at n = 8.33, coupled at 0.9999 so that L3 is the
-only leakage. Phase shift is set by the delay on `VG3`/`VG4`: 1.5 µs of a 10 µs
-period is 54°, which is the 3 kW point at 100 kHz.
+so the simulation command is already set. Press **Run**. It settles in a few
+seconds; the analysis skips the first 400 µs of start-up and shows the last
+100 µs.
 
-To sweep the operating point, change those two delays. 85 kHz wants 41.9°,
-100 kHz wants 54.0°, and above about 119 kHz this transformer cannot reach
-3 kW at any phase shift.
+If Run is greyed out or complains there is no command, open
+**Simulation → Settings**, choose **Transient**, and enter `10n 500u 400u`
+(step, stop, start).
 
-**D1–D8 are the body diodes and the model is wrong without them.** With no
-freewheel path the 100 ns dead time chops the inductor current and transfer
-falls from 3.0 kW to 1.2 kW — measured, not asserted.
+### 3. Probing
 
-## Two traps, both of which cost a debugging cycle
+With the Simulator window open, click a wire in the schematic to add it to the
+plot; click a component pin to add its current. The nets worth probing are
+already named, so they come up with sensible titles rather than `Net-_D1-A_`:
 
-**`Sim.*` properties must be on the symbol instance, not just the library.**
-A symbol placed programmatically carries only Reference/Value/Footprint/
-Datasheet, so `kicad-cli sch export netlist --format spice` emits `S1 __S1`
-with no nodes and no model. Every simulated part here carries `Sim.Device`,
+| Probe this | To see |
+|---|---|
+| `LA` and `LB` | the low-voltage bridge output — a 48 V square wave |
+| `HA` and `HB` | the high-voltage bridge output — 400 V, phase shifted |
+| current in **L3** | the tank current in your 56 µH. This is the waveform that matters: trapezoidal, and its slope is the voltage across the inductance |
+| current in **V1** | input current from the 48 V pack, about 62.6 A average |
+| current in **V2** | output current into the 400 V link, about 7.35 A average |
+| `G1`–`G4` | the four gate drives, so you can see the phase shift |
+
+For power rather than current, use the plot's **Add signal → expression** and
+enter `v(/LA)*i(L1)` or similar.
+
+### 4. Moving the operating point
+
+Phase shift is the control input, and it is set by **when the high-voltage
+bridge switches relative to the low-voltage one** — the delay field in `VG3`
+and `VG4`. At 100 kHz the period is 10 µs, so 1 µs of delay is 36°.
+
+| Want | Set VG3 delay | and VG4 delay |
+|---|---|---|
+| 54° — 3.0 kW, the shipped setting | `1.5u` | `6.5u` |
+| 30° — less power, lowest current | `0.833u` | `5.833u` |
+| 90° — maximum power, worst current | `2.5u` | `7.5u` |
+
+Keep VG4 exactly 5 µs after VG3: they are the two halves of the same bridge.
+
+To change frequency, every `10u` period and `4.9u` width in all four gate
+sources has to move together, and the delays with them. **Above about 119 kHz
+this transformer cannot reach 3 kW at any phase shift** — 56 µH is the limit.
+
+### 5. Headless
+
+Same schematic, same ngspice, no clicking:
+
+```bash
+./sim/kicad/run.sh              # measurements and a waveform plot
+./sim/kicad/run.sh --no-plot    # measurements only, no matplotlib needed
+```
+
+It exports the netlist from the schematic with `kicad-cli`, swaps the `.tran`
+for a `.control` block that also measures, runs it, and prints:
+
+```
+  input from the 48 V pack     3005.3 W   (62.61 A)
+  output into the 400 V link   2938.4 W   (7.346 A)
+  efficiency                     97.8 %
+  tank current, HV side          9.51 A rms   11.42 A peak
+
+  closed form for these values: 3001 W.  Deviation 0.1%.
+```
+
+Those are the numbers to expect from a clean run. If yours differ, something
+changed. `PYTHON=/path/to/python ./run.sh` if the default interpreter has no
+matplotlib.
+
+---
+
+## What the circuit is
+
+`L1` / `L2` are the planar transformer, n = 8.33 so `L2 = L1 · n²`, coupled by
+`K1` at 0.9999 — which makes `L3` the only leakage, deliberately, because `L3`
+**is** the customer's 56 µH series inductance on the high-voltage side. That
+inductance, the turns ratio and the frequency are what set power transfer:
+
+```
+P = V1 · (V2/n) · φ · (π − φ) / (2 · π² · f · L)
+```
+
+`D1`–`D8` are the body diodes, and **the model is wrong without them**: with no
+freewheel path the 100 ns dead time chops the inductor current and the transfer
+falls from 3.0 kW to 1.2 kW. That is measured, not asserted.
+
+## Things that will bite you if you edit this sheet
+
+**`Sim.*` properties must be on the symbol instance, not just the library.** A
+symbol placed programmatically carries only Reference/Value/Footprint/Datasheet,
+and the netlist then exports `S1 __S1` — no nodes, no model, and a run that
+produces zero data rows. Every simulated part here carries `Sim.Device`,
 `Sim.Pins` and `Sim.Params` as instance properties for that reason.
 
-**Cosmetic wires can short a control pin.** The SWITCH symbol puts its control
-pins at the same heights as its power pins, one grid column to the left, so a
-rail drawn straight across a row of switches passes through every `C+` pin and
-shorts the supply to the gate net. ngspice reports `singular matrix: check node
-vg2#branch` and produces zero data rows. The rails here are drawn ABOVE and
-BELOW the switch rows with short stubs down to each pin, which is why the top
-rail sits at y = 68.58 rather than on the pin row.
+**Do not draw a rail straight across a row of switches.** The `SWITCH` symbol
+puts its control pins at the same heights as its power pins, one grid column to
+the left, so a horizontal rail through a switch row passes through every `C+`
+pin and shorts the supply to the gate net. ngspice says `singular matrix: check
+node vg2#branch` and returns nothing. The rails here run above and below the
+switch rows with short stubs down to each pin — that is why the top rail sits at
+y = 68.58 rather than on the pin row.
 
-## Reading it
+**One ERC error is expected.** `power_pin_not_driven` on the GND symbols: KiCad
+wants a `PWR_FLAG`, which matters for a board and not for a simulation. The
+other ERC warnings you may see are library-table complaints that only appear if
+`Simulation_SPICE`, `Device` or `power` are not in your global library table —
+on a normal KiCad install they are.
 
-The sheet is wired, not labelled: every power connection is a drawn line, so
-the two H-bridges, their body diodes, the transformer and the 56 uH can be
-traced by eye. Only the four gate nets `G1`-`G4` are labels, which is normal
-practice — drawing them would put eight wires across the sheet for no gain.
-The power nets carry labels as well as wires (`VLV_48V`, `LA`, `LB`, `HA`,
-`HB`, `VHV_400V`) so the exported netlist reads in those names instead of
-`Net-_D1-A_`.
+## What this deck does not do
 
-## Reproducing the numbers outside the GUI
+No switching loss, no ZVS, no parasitics, no thermal. The switches are ideal
+with a 5 mΩ on-resistance and the diodes are generic. That is chunk `S2`, and it
+needs real device models — the BSC190N15NS3 and IPB60R120C7 datasheets are still
+listed as blocked in `docs/reference/manifest.yaml`.
 
-```bash
-cd sim/kicad
-kicad-cli sch export netlist --format spice -o dab-sim.cir dab-sim.kicad_sch
-ngspice -b dab-sim.cir
-```
-
-`dab-waveforms.png` is the plot of the bridge voltages and the inductor
-current, generated from that netlist.
+The companion hand-written decks in `sim/link` and `sim/dab` cover the resonant
+link and the phase-shift sweep. Findings from all of them are in
+[`docs/design/sim-findings.md`](../../docs/design/sim-findings.md).

@@ -31,3 +31,6 @@ fp-info-cache
 sim/kicad/*.cir
 sim/kicad/wf.txt
 sim/kicad/*-backups/
+
+# KiCad simulation build products
+sim/kicad/build/
