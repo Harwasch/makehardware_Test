@@ -20,12 +20,15 @@ chunks:
   - id: V1
     title: Vision, v1 baseline review and link budget
     discipline: documentation
-    status: done
+    status: in_progress
     depends_on: []
     estimate_sessions: 1
-    outputs: [requirements/00-vision.sdoc, docs/design/vision.md, docs/design/v1-baseline.md, sim/link-budget/link_budget.py, concepts/]
+    review: vision
+    outputs: [requirements/00-vision.sdoc, docs/design/vision.md, docs/design/vision/, docs/design/v1-baseline.md, sim/link-budget/link_budget.py, concepts/]
     notes: >-
-      Artefacts complete. The AGREEMENT on them is chunk G1, which is still
+      Artefacts complete and pushed; the AGREEMENT on them is not. Held at
+      in_progress because review 'vision' is open and unsigned - the stage's
+      own exit condition. The related gate chunk is G1, which is still
       open — the vision stage's exit condition was never met, so the plan and
       requirements downstream were built on an unreviewed vision. Established that the v1 magnetics cannot reach 3 kW and that coil-to-coil
       efficiency is the constraint that decides the architecture.
@@ -33,10 +36,11 @@ chunks:
   - id: G1
     title: Vision review gate — the human agrees the concepts and the numbers
     discipline: documentation
-    status: done
+    status: in_progress
     depends_on: [V1]
     estimate_sessions: 1
-    outputs: [docs/design/reviews/gate-1-vision.md, docs/design/reports/gate-1-vision-review.html]
+    review: vision
+    outputs: [docs/review/vision.md, docs/review/gate-1-vision-record.md]
     notes: >-
       The agreement the workflow requires and never got. Three docking
       arrangements are in front of the human with the corrected coil analysis;
@@ -44,15 +48,18 @@ chunks:
       because designing against an unagreed vision is what produced two bare
       coil pads when the human wanted to see a product. CLOSED: belly dock, no
       actuator, charging on deck in a locating bracket, scope limited to the
-      charging system, 4 x 8 inch pad, and PCB kept per ADR-0001.
+      charging system, 4 x 8 inch pad, and PCB kept per ADR-0001. RE-OPENED
+      under the v0.2.0 review mechanism: those decisions were taken in chat and
+      never signed into a ledger, and the locating approach is still open.
 
   - id: R1
     title: System and discipline requirements from the agreed vision
     discipline: documentation
-    status: done
+    status: in_progress
     depends_on: [V1]
     estimate_sessions: 1
-    outputs: [requirements/10-system.sdoc, requirements/20-electrical.sdoc, requirements/20-mechanical.sdoc, requirements/20-firmware.sdoc]
+    review: requirements
+    outputs: [requirements/10-system.sdoc, requirements/20-electrical.sdoc, requirements/20-mechanical.sdoc, requirements/20-firmware.sdoc, docs/design/requirements-map.svg]
     notes: >-
       Requirements are written against k*Q and pad dissipation, not against a
       coil technology, so the M2 decision is settled on evidence.
@@ -60,21 +67,23 @@ chunks:
   - id: R2
     title: Environmental envelope from the marine standards
     discipline: documentation
-    status: done
+    status: in_progress
     depends_on: [V1]
     estimate_sessions: 1
-    outputs: [requirements/10-system.sdoc, docs/reference/manifest.yaml, docs/design/environment.md]
+    outputs: [docs/design/environment.md]
     notes: >-
       Design ambient for an open-deck enclosure on a surface vessel operating
       worldwide, traced to IEC 60945, IACS UR E10 and classification-society
       rules rather than assumed. Feeds SYS-007 and MEC-004, and blocks the
-      thermal work in M3.
+      thermal work in M3. Work complete; held at in_progress because it rests
+      on an unsigned vision - if the review moves the application away from an
+      open deck, the +55 C envelope moves with it.
 
   # ---- magnetics: the critical path ----------------------------------------
   - id: M1
     title: Coil electromagnetic modelling — predict L, R_ac, Q and k by analysis
     discipline: mechanical
-    status: done
+    status: in_progress
     depends_on: [R1]
     estimate_sessions: 2
     outputs: [sim/coil/coil_rect.py, sim/coil/, docs/design/coil-model.md]
@@ -99,6 +108,10 @@ chunks:
       (R_ac/R_dc 1.06), so the coil becomes a DC-resistance problem that layers
       fix. An etched coil MEETS MEC-001. Inter-layer proximity is now the largest
       modelling uncertainty and is the first FEA task in M2.
+
+      Analysis complete and reproducible; held at in_progress because it rests
+      on an unsigned vision and on ADR-0001, whose 4 x 8 inch pad and 16-layer
+      stack are both questions still in front of the human.
 
   - id: M2
     title: Coil technology decision, magnetics design and compensation network
@@ -148,6 +161,7 @@ chunks:
     status: in_progress
     depends_on: [E1, M2]
     estimate_sessions: 1
+    review: architecture
     outputs: [hw/block-diagram.yaml, docs/design/block-diagram.svg]
     notes: >-
       Provisional diagram written and block-diagram --check passes, but the

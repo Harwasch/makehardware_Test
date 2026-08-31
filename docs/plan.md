@@ -13,19 +13,21 @@ What work exists, what each piece is, and what has to happen first.
 
 #### V1 — Vision, v1 baseline review and link budget  *(critical path)*
 
-Artefacts complete. The AGREEMENT on them is chunk G1, which is still open — the vision stage's exit condition was never met, so the plan and requirements downstream were built on an unreviewed vision. Established that the v1 magnetics cannot reach 3 kW and that coil-to-coil efficiency is the constraint that decides the architecture.
+Artefacts complete and pushed; the AGREEMENT on them is not. Held at in_progress because review 'vision' is open and unsigned - the stage's own exit condition. The related gate chunk is G1, which is still open — the vision stage's exit condition was never met, so the plan and requirements downstream were built on an unreviewed vision. Established that the v1 magnetics cannot reach 3 kW and that coil-to-coil efficiency is the constraint that decides the architecture.
 
 * **Needs first:** nothing
 * **Estimate:** 1 session
-* **Produces:** `requirements/00-vision.sdoc`, `docs/design/vision.md`, `docs/design/v1-baseline.md`, `sim/link-budget/link_budget.py`, `concepts/`
+* **Produces:** `requirements/00-vision.sdoc`, `docs/design/vision.md`, `docs/design/vision/`, `docs/design/v1-baseline.md`, `sim/link-budget/link_budget.py`, `concepts/`
+* **Human review:** `vision` must be signed off before this chunk can be done
 
 #### G1 — Vision review gate — the human agrees the concepts and the numbers
 
-The agreement the workflow requires and never got. Three docking arrangements are in front of the human with the corrected coil analysis; five questions are open. Design chunks depend on this rather than on V1, because designing against an unagreed vision is what produced two bare coil pads when the human wanted to see a product. CLOSED: belly dock, no actuator, charging on deck in a locating bracket, scope limited to the charging system, 4 x 8 inch pad, and PCB kept per ADR-0001.
+The agreement the workflow requires and never got. Three docking arrangements are in front of the human with the corrected coil analysis; five questions are open. Design chunks depend on this rather than on V1, because designing against an unagreed vision is what produced two bare coil pads when the human wanted to see a product. CLOSED: belly dock, no actuator, charging on deck in a locating bracket, scope limited to the charging system, 4 x 8 inch pad, and PCB kept per ADR-0001. RE-OPENED under the v0.2.0 review mechanism: those decisions were taken in chat and never signed into a ledger, and the locating approach is still open.
 
 * **Needs first:** V1
 * **Estimate:** 1 session
-* **Produces:** `docs/design/reviews/gate-1-vision.md`, `docs/design/reports/gate-1-vision-review.html`
+* **Produces:** `docs/review/vision.md`, `docs/review/gate-1-vision-record.md`
+* **Human review:** `vision` must be signed off before this chunk can be done
 
 #### R1 — System and discipline requirements from the agreed vision  *(critical path)*
 
@@ -33,15 +35,16 @@ Requirements are written against k*Q and pad dissipation, not against a coil tec
 
 * **Needs first:** V1
 * **Estimate:** 1 session
-* **Produces:** `requirements/10-system.sdoc`, `requirements/20-electrical.sdoc`, `requirements/20-mechanical.sdoc`, `requirements/20-firmware.sdoc`
+* **Produces:** `requirements/10-system.sdoc`, `requirements/20-electrical.sdoc`, `requirements/20-mechanical.sdoc`, `requirements/20-firmware.sdoc`, `docs/design/requirements-map.svg`
+* **Human review:** `requirements` must be signed off before this chunk can be done
 
 #### R2 — Environmental envelope from the marine standards
 
-Design ambient for an open-deck enclosure on a surface vessel operating worldwide, traced to IEC 60945, IACS UR E10 and classification-society rules rather than assumed. Feeds SYS-007 and MEC-004, and blocks the thermal work in M3.
+Design ambient for an open-deck enclosure on a surface vessel operating worldwide, traced to IEC 60945, IACS UR E10 and classification-society rules rather than assumed. Feeds SYS-007 and MEC-004, and blocks the thermal work in M3. Work complete; held at in_progress because it rests on an unsigned vision - if the review moves the application away from an open deck, the +55 C envelope moves with it.
 
 * **Needs first:** V1
 * **Estimate:** 1 session
-* **Produces:** `requirements/10-system.sdoc`, `docs/reference/manifest.yaml`, `docs/design/environment.md`
+* **Produces:** `docs/design/environment.md`
 
 #### D1 — Design record — ADRs, architecture and interfaces consolidated
 
@@ -61,6 +64,7 @@ Design ambient for an open-deck enclosure on a surface vessel operating worldwid
 
 CRITICAL PATH AND EARLIEST RISK, and now an analysis chunk rather than a bench one: no laboratory access, so the quality factor the whole architecture rests on must be predicted from first principles and defended. Self-inductance from Wheeler and Mohan, mutual inductance and coupling from Maxwell's coaxial-filament formula summed over turns, AC resistance from skin and proximity models for both an etched spiral and a Litz bundle. Validated against published MEASURED data for comparable coils, because a model with no measurement behind it anywhere is not evidence. The v1 numbers are internally inconsistent — a stated Q of 12 implies 127 kHz, not the stated 85 kHz — so they cannot serve as the check.
 DONE, and CORRECTED. The house coil is a 102 x 203 mm rectangle, not a circle, and the first analysis generalised a single-layer result to a whole conductor technology. Recomputed with coil_rect.py: 32 turns of 0.80 mm trace in 4 oz with SIX LAYERS in parallel reaches k*Q = 77 worst case against the 49 required. Fine traces nearly remove proximity effect (R_ac/R_dc 1.06), so the coil becomes a DC-resistance problem that layers fix. An etched coil MEETS MEC-001. Inter-layer proximity is now the largest modelling uncertainty and is the first FEA task in M2.
+Analysis complete and reproducible; held at in_progress because it rests on an unsigned vision and on ADR-0001, whose 4 x 8 inch pad and 16-layer stack are both questions still in front of the human.
 
 * **Needs first:** R1
 * **Estimate:** 2 sessions
@@ -99,6 +103,7 @@ Provisional diagram written and block-diagram --check passes, but the currents a
 * **Needs first:** E1, M2
 * **Estimate:** 1 session
 * **Produces:** `hw/block-diagram.yaml`, `docs/design/block-diagram.svg`
+* **Human review:** `architecture` must be signed off before this chunk can be done
 
 #### E2 — TX board schematic capture and ERC  *(critical path)*
 
