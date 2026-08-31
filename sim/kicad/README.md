@@ -76,21 +76,40 @@ a `.` to any schematic directive that does not already start with one, so
 parse. `kicad-cli` does **not** do this — which is exactly why `run.sh` produced
 correct numbers while the GUI would not run at all.
 
-The fix is one line. In eeschema, double-click the directive text near the
-bottom left and change
+The fix is to move the `K` statement into a file and pull it in with
+`.include`, which already starts with a dot so neither netlister touches it.
+`coupling.cir` in this folder holds it. In eeschema, double-click the directive
+text near the bottom left and replace the `K1` line.
+
+**A bare relative path does not work.** KiCad drives ngspice as a *shared
+library* and hands it the netlist in memory, so there is no netlist file for a
+relative `.include` to resolve against, and the DLL's working directory is not
+your project folder. You get `Could not find include file coupling.cir`. Two
+forms that do work — try them in this order:
 
 ```
-K1 L1 L2 0.9999          →     .include coupling.cir
-.tran 10n 500u 400u            .tran 10n 500u 400u
+.include "${KIPRJMOD}/coupling.cir"
 ```
 
-`coupling.cir` is already in this folder and holds the `K1` statement. It starts
-with a dot, so neither netlister mangles it, and ngspice reads the file and gets
-a proper device line. Save, and Run works.
+`${KIPRJMOD}` is KiCad's project-directory variable, so this stays portable
+across machines. If your KiCad does not expand it inside a directive, fall back
+to the absolute path:
+
+```
+.include "C:/Users/you/.../makehardware_Test/sim/kicad/coupling.cir"
+```
+
+**Quote it, and use forward slashes.** An unquoted `.include` breaks on any path
+containing a space — verified: a path through a folder called
+`Wireless Charging Sim` fails unquoted and works quoted. Forward slashes are
+safe on Windows here and avoid backslash-escaping entirely.
 
 Putting `.include` on the first line also makes the whole block start with a
 dot, which is what KiCad wants before it will recognise the `.tran` beneath it —
 so this usually cures the settings prompt in step 2 as well.
+
+`run.sh` is unaffected either way: `kicad-cli` writes a real netlist file, so
+the plain relative `.include coupling.cir` resolves there.
 
 The analysis settles in a few seconds; it skips the first 400 µs of start-up and
 shows the last 100 µs. Expect **3005 W in, 2938 W out, 97.8%**.
