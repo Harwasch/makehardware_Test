@@ -20,7 +20,7 @@ reviews.yaml       the sign-off ledger, with a digest per agreed artefact
 | `vision` | `docs/design/vision.md` and the renders beside it |
 | `plan` | `docs/plan.md` (scope) and `docs/plan.svg` (dependency Gantt) |
 | `requirements` | `docs/design/requirements-map.svg` |
-| `architecture` | `docs/design/block-diagram.svg` |
+| `arch` | `docs/design/arch-system.svg`, `arch-link.svg`, `arch-dab.svg`, `block-diagram.svg` |
 
 Then one per large design stage — schematic, layout, enclosure, each
 simulation campaign.
@@ -51,3 +51,17 @@ that review is signed off. `plan-render --check` refuses it.
 Full detail: the `hw-review` skill, and `hw-review/references/exports.md` for
 how to turn a schematic, a board or a CAD model into something a browser can
 open.
+
+## Why the architecture milestone is `arch`, not `architecture`
+
+`review-artifact`'s standard architecture phase is hardcoded to one figure,
+`docs/design/block-diagram.svg`, and does not read the review's artefact list —
+so a reviewer whose only access is the published page saw one diagram where
+four were sent. It is replaced by a configured phase in
+[`artifact.yaml`](artifact.yaml), which must use a different id because `hide`
+suppresses a configured phase of the same id as well as the standard one. The
+review binds to a phase by id, so the review is `arch` too, which keeps the
+questions on the same tab as the drawings they are about.
+
+`review-gate list` reports `architecture` as "never requested" for that reason.
+That is expected, not a gap.

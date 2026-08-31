@@ -10,25 +10,24 @@ reviews:
 - id: vision
   title: Vision, scope and the coil decision
   stage: vision
-  summary: 'Re-opened 2026-08-31 after the scope change. Scope is now the charger ELECTRONICS
-    plus a test packaging (VIS-013): integration, the deck fixture and the handling belong
-    to the mechanical team. The three locating concepts you were previously asked to choose
-    between are withdrawn with the fixture, and the locating scheme is set to pins (VIS-005).
-    What replaces them is one concept — a bench rig that holds the coil pair at the SYS-006
-    envelope so the magnetics can be measured. Read the scope line and the pin decision first;
-    those are the two things this review is really asking about. Note what the scope cut did
-    NOT do: MEC-009, the surface area that cools the pad, was re-aimed as an interface requirement
-    on whoever builds the mount rather than deleted along with the bracket. The coil itself
-    is unchanged and still settled in ADR-0001 as a 16-layer transposed etched PCB.'
+  summary: 'Re-opened 2026-08-31 after the scope change. Scope is now the charger ELECTRONICS plus
+    a test packaging (VIS-013): integration, the deck fixture and the handling belong to the mechanical
+    team. The three locating concepts you were previously asked to choose between are withdrawn with
+    the fixture, and the locating scheme is set to pins (VIS-005). What replaces them is one concept
+    — a bench rig that holds the coil pair at the SYS-006 envelope so the magnetics can be measured.
+    Read the scope line and the pin decision first; those are the two things this review is really
+    asking about. Note what the scope cut did NOT do: MEC-009, the surface area that cools the pad,
+    was re-aimed as an interface requirement on whoever builds the mount rather than deleted along
+    with the bracket. The coil itself is unchanged and still settled in ADR-0001 as a 16-layer transposed
+    etched PCB.'
   questions:
-  - Is the scope line right — electronics plus a test rig, with integration and the fixture
-    going to the mechanical team?
-  - 'Pins: two dowels, hole and slot. Is there anything about the real fixture that would
-    make a different interface better?'
+  - Is the scope line right — electronics plus a test rig, with integration and the fixture going
+    to the mechanical team?
+  - 'Pins: two dowels, hole and slot. Is there anything about the real fixture that would make a different
+    interface better?'
   - Is 8-14 mm of gap and 5 mm of offset what the fixture can actually hold? This is our assumption
     about someone else's part and it is the weakest thing in the document.
-  - 16 layers at 4 oz is a 64 oz heavy-copper board. Still acceptable, or should I re-open
-    Litz?
+  - 16 layers at 4 oz is a 64 oz heavy-copper board. Still acceptable, or should I re-open Litz?
   artifacts:
   - path: docs/design/adr-0001-coil-technology.md
     sha256: 99037ce2843385d6
@@ -56,13 +55,11 @@ reviews:
     commit: 01181dd
     questions:
     - Which locating approach — cone/vee/flat, tapered rails, or perimeter nest?
-    - 16 layers at 4 oz is a 64 oz heavy-copper board. Is that acceptable, or should I re-open
-      Litz?
-    summary: Scope is the charging system only. Belly dock, no actuator, charging on deck
-      in a locating bracket — all decided. The three concepts below differ on how the two
-      pads locate to each other, which is the remaining mechanical decision. The coil is settled
-      in ADR-0001 as a 16-layer transposed etched PCB, and the write-up says plainly where
-      I got it wrong twice before landing there.
+    - 16 layers at 4 oz is a 64 oz heavy-copper board. Is that acceptable, or should I re-open Litz?
+    summary: Scope is the charging system only. Belly dock, no actuator, charging on deck in a locating
+      bracket — all decided. The three concepts below differ on how the two pads locate to each other,
+      which is the remaining mechanical decision. The coil is settled in ADR-0001 as a 16-layer transposed
+      etched PCB, and the write-up says plainly where I got it wrong twice before landing there.
     added:
     - docs/design/adr-0001-coil-technology.md
     - docs/design/vision.md
@@ -83,25 +80,23 @@ reviews:
     action: requested
     commit: 33178dc
     questions:
-    - Is the scope line right — electronics plus a test rig, with integration and the fixture
-      going to the mechanical team?
-    - 'Pins: two dowels, hole and slot. Is there anything about the real fixture that would
-      make a different interface better?'
-    - Is 8-14 mm of gap and 5 mm of offset what the fixture can actually hold? This is our
-      assumption about someone else's part and it is the weakest thing in the document.
-    - 16 layers at 4 oz is a 64 oz heavy-copper board. Still acceptable, or should I re-open
-      Litz?
-    summary: 'Re-opened 2026-08-31 after the scope change. Scope is now the charger ELECTRONICS
-      plus a test packaging (VIS-013): integration, the deck fixture and the handling belong
-      to the mechanical team. The three locating concepts you were previously asked to choose
-      between are withdrawn with the fixture, and the locating scheme is set to pins (VIS-005).
-      What replaces them is one concept — a bench rig that holds the coil pair at the SYS-006
-      envelope so the magnetics can be measured. Read the scope line and the pin decision
-      first; those are the two things this review is really asking about. Note what the scope
-      cut did NOT do: MEC-009, the surface area that cools the pad, was re-aimed as an interface
-      requirement on whoever builds the mount rather than deleted along with the bracket.
-      The coil itself is unchanged and still settled in ADR-0001 as a 16-layer transposed
-      etched PCB.'
+    - Is the scope line right — electronics plus a test rig, with integration and the fixture going
+      to the mechanical team?
+    - 'Pins: two dowels, hole and slot. Is there anything about the real fixture that would make a
+      different interface better?'
+    - Is 8-14 mm of gap and 5 mm of offset what the fixture can actually hold? This is our assumption
+      about someone else's part and it is the weakest thing in the document.
+    - 16 layers at 4 oz is a 64 oz heavy-copper board. Still acceptable, or should I re-open Litz?
+    summary: 'Re-opened 2026-08-31 after the scope change. Scope is now the charger ELECTRONICS plus
+      a test packaging (VIS-013): integration, the deck fixture and the handling belong to the mechanical
+      team. The three locating concepts you were previously asked to choose between are withdrawn
+      with the fixture, and the locating scheme is set to pins (VIS-005). What replaces them is one
+      concept — a bench rig that holds the coil pair at the SYS-006 envelope so the magnetics can
+      be measured. Read the scope line and the pin decision first; those are the two things this review
+      is really asking about. Note what the scope cut did NOT do: MEC-009, the surface area that cools
+      the pad, was re-aimed as an interface requirement on whoever builds the mount rather than deleted
+      along with the bracket. The coil itself is unchanged and still settled in ADR-0001 as a 16-layer
+      transposed etched PCB.'
     changed:
     - docs/design/adr-0001-coil-technology.md
     - docs/design/vision.md
@@ -115,16 +110,16 @@ reviews:
 - id: plan
   title: Project plan — 28 chunks
   stage: planning
-  summary: 'Re-opened 2026-08-31. One chunk added: M4, the test packaging design, which SYS-017
-    and MEC-010 now require and which T2 depends on — without a rig that sets the gap, MEC-001
-    and MEC-003 cannot be verified at all. M3 picks up an extra obligation: it now owes the
-    mechanical team a number for MEC-009 (required surface area and interface thermal resistance)
-    rather than just a pad design, and owes the 150 W/m2 figure a second source. Six chunks
-    are in_progress and none are done, which is honest rather than slow: four of them are
-    blocked behind these unsigned reviews, and plan-render --check enforces that.'
+  summary: 'Re-opened 2026-08-31. One chunk added: M4, the test packaging design, which SYS-017 and
+    MEC-010 now require and which T2 depends on — without a rig that sets the gap, MEC-001 and MEC-003
+    cannot be verified at all. M3 picks up an extra obligation: it now owes the mechanical team a
+    number for MEC-009 (required surface area and interface thermal resistance) rather than just a
+    pad design, and owes the 150 W/m2 figure a second source. Six chunks are in_progress and none
+    are done, which is honest rather than slow: four of them are blocked behind these unsigned reviews,
+    and plan-render --check enforces that.'
   questions:
-  - M4 is estimated at 2 sessions. Is a shimmed pin rig with two finned sinks a two-session
-    job in your shop?
+  - M4 is estimated at 2 sessions. Is a shimmed pin rig with two finned sinks a two-session job in
+    your shop?
   - T2 (bench verification) stays blocked by your no-lab instruction. Confirm that still holds?
   artifacts:
   - path: docs/plan.md
@@ -144,11 +139,10 @@ reviews:
     questions:
     - Is this all the work, or is a whole lane missing?
     - Is the order right — anything with a lead time that should start sooner?
-    summary: The work as I understand it, with dependencies. No chunk requires laboratory
-      access; bench verification is held as T2, blocked, rather than deleted. The two things
-      worth your eye are whether this is all the work — test, documentation and manufacturing
-      are what people forget — and whether the order is right, since you know constraints
-      I do not.
+    summary: The work as I understand it, with dependencies. No chunk requires laboratory access;
+      bench verification is held as T2, blocked, rather than deleted. The two things worth your eye
+      are whether this is all the work — test, documentation and manufacturing are what people forget
+      — and whether the order is right, since you know constraints I do not.
     added:
     - docs/plan.md
     - docs/plan.svg
@@ -156,43 +150,39 @@ reviews:
     action: requested
     commit: 33178dc
     questions:
-    - M4 is estimated at 2 sessions. Is a shimmed pin rig with two finned sinks a two-session
-      job in your shop?
-    - T2 (bench verification) stays blocked by your no-lab instruction. Confirm that still
-      holds?
-    summary: 'Re-opened 2026-08-31. One chunk added: M4, the test packaging design, which
-      SYS-017 and MEC-010 now require and which T2 depends on — without a rig that sets the
-      gap, MEC-001 and MEC-003 cannot be verified at all. M3 picks up an extra obligation:
-      it now owes the mechanical team a number for MEC-009 (required surface area and interface
-      thermal resistance) rather than just a pad design, and owes the 150 W/m2 figure a second
-      source. Six chunks are in_progress and none are done, which is honest rather than slow:
-      four of them are blocked behind these unsigned reviews, and plan-render --check enforces
-      that.'
+    - M4 is estimated at 2 sessions. Is a shimmed pin rig with two finned sinks a two-session job
+      in your shop?
+    - T2 (bench verification) stays blocked by your no-lab instruction. Confirm that still holds?
+    summary: 'Re-opened 2026-08-31. One chunk added: M4, the test packaging design, which SYS-017
+      and MEC-010 now require and which T2 depends on — without a rig that sets the gap, MEC-001 and
+      MEC-003 cannot be verified at all. M3 picks up an extra obligation: it now owes the mechanical
+      team a number for MEC-009 (required surface area and interface thermal resistance) rather than
+      just a pad design, and owes the 150 W/m2 figure a second source. Six chunks are in_progress
+      and none are done, which is honest rather than slow: four of them are blocked behind these unsigned
+      reviews, and plan-render --check enforces that.'
     changed:
     - docs/plan.md
     - docs/plan.svg
 - id: requirements
   title: Requirements — 69 requirements, 0% verified
   stage: requirements
-  summary: 'Re-opened 2026-08-31 for the scope change. Three requirements moved and three
-    are new. VIS-013 states the scope: charger electronics plus a test packaging, integration
-    to the mechanical team. VIS-005 and SYS-006 now say pins rather than an unnamed locating
-    feature. SYS-017 and MEC-010 specify the test packaging — it has to set the SYS-006 envelope
-    to 0.5 mm, because MEC-001 and MEC-003 are both written across that envelope and are closest
-    to failing at its corners. The one to read carefully is MEC-009. It was ''the mounting
-    bracket is the heat sink'' and the bracket is no longer ours; rather than delete it with
-    the bracket, it is re-aimed as an interface requirement we levy on whoever builds the
-    mount, and one the test rig must meet itself. The pad sheds 3 W from its own faces and
-    has to lose 39 W, so handing over the coil without handing over its heat-sink requirement
-    is how a design that closed on paper arrives at a 90 degC pad. Coverage is 0% verified
-    and that is correct — no design artefact exists yet, so every gap is a missing evidence
-    pointer, not a defect. Nothing has been marked Verified to improve the number.'
+  summary: 'Re-opened 2026-08-31 for the scope change. Three requirements moved and three are new.
+    VIS-013 states the scope: charger electronics plus a test packaging, integration to the mechanical
+    team. VIS-005 and SYS-006 now say pins rather than an unnamed locating feature. SYS-017 and MEC-010
+    specify the test packaging — it has to set the SYS-006 envelope to 0.5 mm, because MEC-001 and
+    MEC-003 are both written across that envelope and are closest to failing at its corners. The one
+    to read carefully is MEC-009. It was ''the mounting bracket is the heat sink'' and the bracket
+    is no longer ours; rather than delete it with the bracket, it is re-aimed as an interface requirement
+    we levy on whoever builds the mount, and one the test rig must meet itself. The pad sheds 3 W
+    from its own faces and has to lose 39 W, so handing over the coil without handing over its heat-sink
+    requirement is how a design that closed on paper arrives at a 90 degC pad. Coverage is 0% verified
+    and that is correct — no design artefact exists yet, so every gap is a missing evidence pointer,
+    not a defect. Nothing has been marked Verified to improve the number.'
   questions:
-  - MEC-009's 12x surface area comes from a single unverified 150 W/m2 still-air figure, and
-    the whole thermal case rests on it. Do you have a second source, or should I spend a chunk
-    confirming it?
-  - Is SYS-017's 0.5 mm gap-setting repeatability achievable with shims in your shop, or should
-    the rig use a micrometer stage?
+  - MEC-009's 12x surface area comes from a single unverified 150 W/m2 still-air figure, and the whole
+    thermal case rests on it. Do you have a second source, or should I spend a chunk confirming it?
+  - Is SYS-017's 0.5 mm gap-setting repeatability achievable with shims in your shop, or should the
+    rig use a micrometer stage?
   - Are the numbers right — 3.0 kW, 120 W to the coil pair, k times Q of 49, 8-14 mm?
   artifacts:
   - path: docs/design/requirements-map.svg
@@ -220,40 +210,37 @@ reviews:
     action: requested
     commit: 01181dd
     questions:
-    - Are the numbers right — particularly the 3 kW target, the 0.3-0.5C charge policy and
-      the 90% efficiency budget?
+    - Are the numbers right — particularly the 3 kW target, the 0.3-0.5C charge policy and the 90%
+      efficiency budget?
     - Is anything missing that you would expect to see as a requirement?
-    summary: VIS through SYS to ELE/MEC/FW, with SYS-004 dividing 300 W of loss among five
-      children that sum exactly to the parent. Coverage is 0% verified and that is correct
-      — no design artefact exists yet, so every gap is a missing evidence pointer rather than
-      a defect. Nothing has been marked Verified to improve the number. What I need is your
-      eye on the numbers themselves.
+    summary: VIS through SYS to ELE/MEC/FW, with SYS-004 dividing 300 W of loss among five children
+      that sum exactly to the parent. Coverage is 0% verified and that is correct — no design artefact
+      exists yet, so every gap is a missing evidence pointer rather than a defect. Nothing has been
+      marked Verified to improve the number. What I need is your eye on the numbers themselves.
     added:
     - docs/design/requirements-map.svg
   - 'on': '2026-08-31'
     action: requested
     commit: 33178dc
     questions:
-    - MEC-009's 12x surface area comes from a single unverified 150 W/m2 still-air figure,
-      and the whole thermal case rests on it. Do you have a second source, or should I spend
-      a chunk confirming it?
-    - Is SYS-017's 0.5 mm gap-setting repeatability achievable with shims in your shop, or
-      should the rig use a micrometer stage?
+    - MEC-009's 12x surface area comes from a single unverified 150 W/m2 still-air figure, and the
+      whole thermal case rests on it. Do you have a second source, or should I spend a chunk confirming
+      it?
+    - Is SYS-017's 0.5 mm gap-setting repeatability achievable with shims in your shop, or should
+      the rig use a micrometer stage?
     - Are the numbers right — 3.0 kW, 120 W to the coil pair, k times Q of 49, 8-14 mm?
-    summary: 'Re-opened 2026-08-31 for the scope change. Three requirements moved and three
-      are new. VIS-013 states the scope: charger electronics plus a test packaging, integration
-      to the mechanical team. VIS-005 and SYS-006 now say pins rather than an unnamed locating
-      feature. SYS-017 and MEC-010 specify the test packaging — it has to set the SYS-006
-      envelope to 0.5 mm, because MEC-001 and MEC-003 are both written across that envelope
-      and are closest to failing at its corners. The one to read carefully is MEC-009. It
-      was ''the mounting bracket is the heat sink'' and the bracket is no longer ours; rather
-      than delete it with the bracket, it is re-aimed as an interface requirement we levy
-      on whoever builds the mount, and one the test rig must meet itself. The pad sheds 3
-      W from its own faces and has to lose 39 W, so handing over the coil without handing
-      over its heat-sink requirement is how a design that closed on paper arrives at a 90
-      degC pad. Coverage is 0% verified and that is correct — no design artefact exists yet,
-      so every gap is a missing evidence pointer, not a defect. Nothing has been marked Verified
-      to improve the number.'
+    summary: 'Re-opened 2026-08-31 for the scope change. Three requirements moved and three are new.
+      VIS-013 states the scope: charger electronics plus a test packaging, integration to the mechanical
+      team. VIS-005 and SYS-006 now say pins rather than an unnamed locating feature. SYS-017 and
+      MEC-010 specify the test packaging — it has to set the SYS-006 envelope to 0.5 mm, because MEC-001
+      and MEC-003 are both written across that envelope and are closest to failing at its corners.
+      The one to read carefully is MEC-009. It was ''the mounting bracket is the heat sink'' and the
+      bracket is no longer ours; rather than delete it with the bracket, it is re-aimed as an interface
+      requirement we levy on whoever builds the mount, and one the test rig must meet itself. The
+      pad sheds 3 W from its own faces and has to lose 39 W, so handing over the coil without handing
+      over its heat-sink requirement is how a design that closed on paper arrives at a 90 degC pad.
+      Coverage is 0% verified and that is correct — no design artefact exists yet, so every gap is
+      a missing evidence pointer, not a defect. Nothing has been marked Verified to improve the number.'
     changed:
     - docs/design/requirements-map.svg
     added:
@@ -264,121 +251,70 @@ reviews:
     - requirements/20-mechanical.sdoc
     - requirements/README.md
     - requirements/hardware.sgra
-- id: architecture
+- id: arch
   title: Architecture — three modular sheets
   stage: architecture
-  summary: 'Rebuilt 2026-08-31 after you rejected the previous two attempts. You were right
-    that the column grid was the problem, not just the collisions: the generator''s heuristic
-    put eight of the dock sheet''s ten blocks in one column, routed buses straight through
-    boxes, and drew the dual active bridge twice because the master spec instantiates it twice.
-    The views are now drawn by scripts/arch_diagram.py on a stage grid — stages run left to
-    right in the direction power flows, and every vertical run happens in a gutter that is
-    empty by construction, so a wire cannot cross a box. That is now asserted geometrically
-    rather than checked by eye: all three sheets report zero wire-over-box crossings. Three
-    sheets. SYSTEM is the whole power path in one row: 48 V Leviathan pack, dock DAB, transmitter,
-    air gap, receiver, vehicle DAB, 48 V Mako pack. DAB is the dual active bridge drawn ONCE,
-    each box carrying both instance designators (U40 / U22 and so on) — one design, one schematic,
-    one firmware image, with direction as a configuration item. LINK is the transmitter, coils
-    and receiver as a logical chain with control below it. The master spec still owns every
-    part, rail and current, and block-diagram.svg is kept as the power-budget sheet because
-    that is where the rail headroom bars live.'
+  summary: 'Rebuilt 2026-08-31 after you rejected two attempts, and again after you reported seeing
+    only one diagram here. Two separate faults. The layout: you were right that the column grid was
+    the problem, not just the collisions. The generator put eight of ten blocks in one column, routed
+    buses through boxes, and drew the dual active bridge twice because the master spec instantiates
+    it twice. The sheets are now drawn on a stage grid — stages run left to right in the direction
+    power flows, and every vertical run happens in a gutter that is empty by construction, so a wire
+    cannot cross a box. That is asserted geometrically on every render: all three sheets report zero
+    crossings. Each sheet is also held under 1160 px, because this page scales a wider one down bodily
+    and a 2120 px sheet arrived with 6 px text. The page: the standard architecture tab is hardcoded
+    to a single figure and never read the artefact list I sent for review, which is why you saw one
+    diagram. It is replaced by a configured tab carrying all four, with the rail budget preserved
+    as a table.'
   questions:
-  - Do the three sheets read now — system power path, the DAB drawn once, and the TX/coils/RX
-    chain?
-  - The dock DAB has no debug header where the vehicle instance has J4. If it really is one
-    design built twice, that asymmetry is a defect in the master spec. Should I add one?
-  - V48_LEV and V48_MAKO both sit at 95% of the 80 A their connectors can deliver. I would
-    rather size the connectors up now than find it at layout. Do you want that?
+  - Do the three sheets read now — the system power path, the DAB drawn once, and the TX/coils/RX
+    chain with the coils facing each other?
+  - The dock DAB has no debug header where the vehicle instance has J4. If it is one design built
+    twice, that asymmetry is a defect in the master spec. Should I add one?
+  - V48_LEV and V48_MAKO both sit at 95% of the 80 A their connectors can deliver. I would rather
+    size the connectors up now than find it at layout. Do you want that?
   artifacts:
   - path: docs/design/arch-dab.svg
-    sha256: dd2b617104939355
+    sha256: 4a7823c706112406
   - path: docs/design/arch-link.svg
-    sha256: ac4b824ca77afb73
+    sha256: 3cec03c8d598b8dc
   - path: docs/design/arch-system.svg
-    sha256: 1c84a63c4b858931
+    sha256: 713628fa5a3ec088
   - path: docs/design/block-diagram.svg
     sha256: 493caa017f8b1d87
   references:
   - hw/architecture.yaml
   - hw/block-diagram.yaml
   requested: '2026-08-31'
-  requested_commit: f298820
+  requested_commit: 1c85d50
   status: requested
-  packet: docs/review/architecture.md
+  packet: docs/review/arch.md
   history:
   - 'on': '2026-08-31'
     action: requested
-    commit: 01181dd
+    commit: 1c85d50
     questions:
-    - Is a rail missing, or a bus on the wrong controller?
-    - Is one converter design used in both orientations the right call, versus two purpose-built
-      ones?
-    summary: 'One bidirectional converter design deployed twice: LV-to-HV on the dock to make
-      the 400 V link, HV-to-LV on the vehicle into the pack. Both packs are 48 V so one low-voltage
-      specification covers both ends. The power budget closes on every rail. The TX power
-      stage is settled in ADR-0002 against a datasheet I read directly; the rest of the parts
-      are still open in E1.'
-    added:
-    - docs/design/adr-0002-tx-power-stage.md
-    - docs/design/block-diagram.svg
-  - 'on': '2026-08-31'
-    action: requested
-    commit: 33178dc
-    questions:
-    - Are the four sheets the right division — dock converter, transmitter, receiver, vehicle
-      converter?
-    - V48_LEV and V48_MAKO both sit at 95% of the 80 A their connectors can deliver. That
-      is tight enough that I would rather size the connectors up now than discover it at layout.
-      Do you want that?
-    - HV400 is at 84% of 10 A. Same question, less urgently.
-    summary: 'Re-opened 2026-08-31. The previous architecture packet embedded a diagram with
-      eight overlapping block pairs, which you spotted. Root cause: the generator pins the
-      layout to hand positions read back out of the .drawio and never tests them for collisions,
-      so when rev C added the seven dock-DAB blocks the pre-existing twenty-nine stayed at
-      their old coordinates and eight pairs landed on top of each other — and block-diagram
-      --check exited 0 on it. Fixed by a fresh layout. Fourteen block names were also being
-      cut mid-word at 24 characters and have been shortened in the spec. Beyond that, 36 blocks
-      and 23 buses do not fit one readable sheet, so the master spec now carries a sheet:
-      tag per block and scripts/block_sheets.py derives four subsystem views from it — dock
-      converter, transmitter, receiver, vehicle converter — with stub connectors where a signal
-      leaves the sheet. The master stays the single source of truth, so the power budget still
-      rolls up across the whole system. Every sheet is checked for overlapping boxes, which
-      is what the gate was missing.'
-    changed:
-    - docs/design/block-diagram.svg
-    added:
-    - docs/design/block-diagram-dock.svg
-    - docs/design/block-diagram-rx.svg
-    - docs/design/block-diagram-tx.svg
-    - docs/design/block-diagram-veh.svg
-  - 'on': '2026-08-31'
-    action: requested
-    commit: f298820
-    questions:
-    - Do the three sheets read now — system power path, the DAB drawn once, and the TX/coils/RX
-      chain?
-    - The dock DAB has no debug header where the vehicle instance has J4. If it really is
-      one design built twice, that asymmetry is a defect in the master spec. Should I add
-      one?
-    - V48_LEV and V48_MAKO both sit at 95% of the 80 A their connectors can deliver. I would
-      rather size the connectors up now than find it at layout. Do you want that?
-    summary: 'Rebuilt 2026-08-31 after you rejected the previous two attempts. You were right
-      that the column grid was the problem, not just the collisions: the generator''s heuristic
-      put eight of the dock sheet''s ten blocks in one column, routed buses straight through
-      boxes, and drew the dual active bridge twice because the master spec instantiates it
-      twice. The views are now drawn by scripts/arch_diagram.py on a stage grid — stages run
-      left to right in the direction power flows, and every vertical run happens in a gutter
-      that is empty by construction, so a wire cannot cross a box. That is now asserted geometrically
-      rather than checked by eye: all three sheets report zero wire-over-box crossings. Three
-      sheets. SYSTEM is the whole power path in one row: 48 V Leviathan pack, dock DAB, transmitter,
-      air gap, receiver, vehicle DAB, 48 V Mako pack. DAB is the dual active bridge drawn
-      ONCE, each box carrying both instance designators (U40 / U22 and so on) — one design,
-      one schematic, one firmware image, with direction as a configuration item. LINK is the
-      transmitter, coils and receiver as a logical chain with control below it. The master
-      spec still owns every part, rail and current, and block-diagram.svg is kept as the power-budget
-      sheet because that is where the rail headroom bars live.'
+    - Do the three sheets read now — the system power path, the DAB drawn once, and the TX/coils/RX
+      chain with the coils facing each other?
+    - The dock DAB has no debug header where the vehicle instance has J4. If it is one design built
+      twice, that asymmetry is a defect in the master spec. Should I add one?
+    - V48_LEV and V48_MAKO both sit at 95% of the 80 A their connectors can deliver. I would rather
+      size the connectors up now than find it at layout. Do you want that?
+    summary: 'Rebuilt 2026-08-31 after you rejected two attempts, and again after you reported seeing
+      only one diagram here. Two separate faults. The layout: you were right that the column grid
+      was the problem, not just the collisions. The generator put eight of ten blocks in one column,
+      routed buses through boxes, and drew the dual active bridge twice because the master spec instantiates
+      it twice. The sheets are now drawn on a stage grid — stages run left to right in the direction
+      power flows, and every vertical run happens in a gutter that is empty by construction, so a
+      wire cannot cross a box. That is asserted geometrically on every render: all three sheets report
+      zero crossings. Each sheet is also held under 1160 px, because this page scales a wider one
+      down bodily and a 2120 px sheet arrived with 6 px text. The page: the standard architecture
+      tab is hardcoded to a single figure and never read the artefact list I sent for review, which
+      is why you saw one diagram. It is replaced by a configured tab carrying all four, with the rail
+      budget preserved as a table.'
     added:
     - docs/design/arch-dab.svg
     - docs/design/arch-link.svg
     - docs/design/arch-system.svg
+    - docs/design/block-diagram.svg
 artifact_url: https://claude.ai/code/artifact/2eecc843-ba3d-4362-b04f-0cf91ea4be1b

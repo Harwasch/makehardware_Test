@@ -232,3 +232,35 @@ instancing. Without those, any power-electronics diagram past a handful of
 blocks comes out unreadable, and the gate cannot tell — `--check` passed every
 version the customer rejected. A geometric assertion that no wire crosses a box
 is four lines and would have caught all of it.
+
+---
+
+**The review page's architecture tab shows one hardcoded figure and ignores the
+review's artefact list.** `phase_architecture` in `review_artifact.py` calls
+`figure(root, "docs/design/block-diagram.svg", ...)` and nothing else, so four
+artefacts sent for review arrived as one diagram on the published page. The
+customer, whose only access is that page, reported seeing a single drawing.
+`review-gate open --artifact` and `review-artifact`'s figures are two unrelated
+mechanisms, and nothing says so.
+Worked around with `docs/review/artifact.yaml`, which has a second cost: `hide`
+suppresses a configured phase of the same id as well as the standard one, and a
+review binds to a phase BY ID, so replacing the architecture tab forces the
+review id to change from `architecture` to `arch` to keep the questions on the
+same tab as the drawings.
+**Fix `scripts/review_artifact.py`:** every standard phase should show the
+artefacts its review actually lists, falling back to the hardcoded path only
+when the review has none. Failing that, `hide` should not suppress a configured
+phase that is replacing a standard one of the same id.
+
+---
+
+**A sheet wider than the review column is scaled down bodily, with no warning
+and no horizontal scroll.** `.sheet svg{width:100%}` means a 2120 px diagram
+arrives in a ~1150 px column at 54%, turning 12 px labels into 6 px. Nothing in
+`--check` mentions it — the page reports "clear" — and it is invisible until a
+human opens the page and cannot read it. Every architecture sheet is now laid
+out to land under 1160 px and `arch_diagram.py --check` fails if one does not.
+**Fix `scripts/review_artifact.py`:** either put an oversized figure in an
+`overflow-x:auto` container, as the tables already are, or warn at generation
+time with the effective scale, the way an oversized raster is already reported.
+A diagram nobody can read is the same defect as a diagram that did not embed.

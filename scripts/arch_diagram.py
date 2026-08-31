@@ -42,8 +42,13 @@ VIEWS = "hw/architecture.yaml"
 OUT = "docs/design"
 
 # ---- the house visual language, matched to block_diagram.py ---------------
-BOX_W, BOX_H = 190, 62
-GUTTER = 106                    # between stage columns — wires and labels live here
+# The review page renders a sheet with `width:100%` into a column about 1150 px
+# wide, with no horizontal scroll. A wider sheet is scaled down bodily, so a
+# 2120 px sheet arrives with 6 px text. Every sheet is therefore laid out to
+# land at or under PAGE_W, and `--check` fails if one does not.
+PAGE_W = 1160
+BOX_W, BOX_H = 200, 62
+GUTTER = 88                     # between stage columns — wires and labels live here
 ROW_PITCH = 84
 PAD = 24
 HEAD = 98
@@ -111,9 +116,15 @@ def build(sheet: dict, master: dict, views: dict) -> tuple[list[dict], list[dict
 
     for n in sheet.get("nodes") or []:
         ref = n.get("ref")
-        if ref in ("module", "group", "gap"):
+        if ref == "port":
             nodes.append({
-                "id": n["id"], "tag": n["id"], "name": n["name"],
+                "id": n["id"], "tag": "", "name": n["name"],
+                "part": n.get("part", ""), "kind": "other", "rails": [],
+                "stage": n["stage"], "row": n["row"], "port": True,
+            })
+        elif ref in ("module", "group", "gap"):
+            nodes.append({
+                "id": n["id"], "tag": "", "name": n["name"],
                 "part": n.get("part", ""), "kind": n.get("kind", "other"),
                 "rails": [], "stage": n["stage"], "row": n["row"],
                 "big": True, "gap": ref == "gap",
@@ -121,7 +132,7 @@ def build(sheet: dict, master: dict, views: dict) -> tuple[list[dict], list[dict
         else:
             b = blocks[n["id"]]
             nodes.append({
-                "id": n["id"], "tag": n["id"], "name": b["name"],
+                "id": n["id"], "tag": n["id"], "name": n.get("name", b["name"]),
                 "part": b.get("part", ""), "kind": b.get("kind", "other"),
                 "rails": rails_of(b), "stage": n["stage"], "row": n["row"],
             })
@@ -166,15 +177,16 @@ def generic(a: str, b: str) -> str:
 # ---------------------------------------------------------------------------
 # Geometry
 # ---------------------------------------------------------------------------
-def place(nodes: list[dict]) -> None:
+def place(nodes: list[dict], geom: dict) -> None:
+    bw, gut = geom["box_w"], geom["gutter"]
     for n in nodes:
-        n["w"] = BOX_W
+        n["w"] = bw
         n["h"] = BOX_H if not n.get("port") else 40
-        n["x"] = PAD + n["stage"] * (BOX_W + GUTTER)
-        n["y"] = HEAD + n["row"] * ROW_PITCH
+        n["x"] = PAD + n["stage"] * (bw + gut)
+        n["y"] = geom["head"] + n["row"] * ROW_PITCH
 
 
-def route(nodes: list[dict], links: list[dict]) -> tuple[list[dict], float]:
+def route(nodes: list[dict], links: list[dict], geom: dict) -> tuple[list[dict], float]:
     """Orthogonal routes that never cross a box.
 
     Every vertical run happens in a gutter between two stage columns, which is
@@ -195,6 +207,29 @@ def route(nodes: list[dict], links: list[dict]) -> tuple[list[dict], float]:
     out_i: dict[str, int] = defaultdict(int)
     in_i: dict[str, int] = defaultdict(int)
 
+    # How many wires each gutter must carry, so the lanes can be spaced to fit
+    # inside it. Overflowing a gutter is what put wires through boxes: with a
+    # fixed 12 px step, the fifth wire in a 64 px gutter landed in the next
+    # column.
+    demand: dict[int, int] = defaultdict(int)
+    for lk in links:
+        a, b = by_id[lk["from"]], by_id[lk["to"]]
+        span = b["stage"] - a["stage"]
+        if span == 1:
+            demand[a["stage"]] += 1
+        elif span == -1:
+            demand[b["stage"]] += 1
+        elif span == 0:
+            step = 1 if b["row"] > a["row"] else -1
+            between = [(a["stage"], r) for r in
+                       range(a["row"] + step, b["row"], step)]
+            if any(c in occupied for c in between):
+                demand[a["stage"]] += 1
+        else:
+            demand[a["stage"] if span > 0 else a["stage"] - 1] += 1
+            demand[b["stage"] - 1 if span > 0 else b["stage"]] += 1
+    geom = dict(geom, demand=demand)
+
     gut_lane: dict[int, int] = defaultdict(int)
     hi_lane = 0
     routes = []
@@ -209,15 +244,17 @@ def route(nodes: list[dict], links: list[dict]) -> tuple[list[dict], float]:
         arrow = "left"
 
         if span == 1:                                  # forward one stage
-            mx = gutter_x(a["stage"], gut_lane)
+            mx, lane = _gutter(a["stage"], gut_lane, geom)
             pts = [(a["x"] + a["w"], ya), (mx, ya), (mx, yb), (b["x"], yb)]
-            anchor = ((a["x"] + a["w"] + b["x"]) / 2, min(ya, yb) - 7, "mid")
+            anchor = ((a["x"] + a["w"] + b["x"]) / 2,
+                      min(ya, yb) - 7 - lane * 12, "mid")
 
         elif span == -1:                               # feedback one stage
-            mx = gutter_x(b["stage"], gut_lane)
+            mx, lane = _gutter(b["stage"], gut_lane, geom)
             pts = [(a["x"], ya), (mx, ya), (mx, yb), (b["x"] + b["w"], yb)]
             arrow = "right"
-            anchor = ((a["x"] + b["x"] + b["w"]) / 2, min(ya, yb) - 7, "mid")
+            anchor = ((a["x"] + b["x"] + b["w"]) / 2,
+                      min(ya, yb) - 7 - lane * 12, "mid")
 
         elif span == 0:
             step = 1 if b["row"] > a["row"] else -1
@@ -235,7 +272,7 @@ def route(nodes: list[dict], links: list[dict]) -> tuple[list[dict], float]:
                     arrow = "up"
                     anchor = (cx + 6, (a["y"] + b["y"] + b["h"]) / 2 + 3, "start")
             else:
-                mx = gutter_x(a["stage"], gut_lane)
+                mx = gutter_x(a["stage"], gut_lane, geom)
                 pts = [(a["x"] + a["w"], ya), (mx, ya), (mx, yb),
                        (b["x"] + b["w"], yb)]
                 arrow = "right"
@@ -245,9 +282,9 @@ def route(nodes: list[dict], links: list[dict]) -> tuple[list[dict], float]:
             hy = highway0 + hi_lane * LANE
             hi_lane += 1
             ax = a["x"] + a["w"] if span > 0 else a["x"]
-            gx = gutter_x(a["stage"] if span > 0 else a["stage"] - 1, gut_lane)
+            gx = gutter_x(a["stage"] if span > 0 else a["stage"] - 1, gut_lane, geom)
             bx = b["x"] if span > 0 else b["x"] + b["w"]
-            hx = gutter_x(b["stage"] - 1 if span > 0 else b["stage"], gut_lane)
+            hx = gutter_x(b["stage"] - 1 if span > 0 else b["stage"], gut_lane, geom)
             pts = [(ax, ya), (gx, ya), (gx, hy), (hx, hy), (hx, yb), (bx, yb)]
             arrow = "left" if span > 0 else "right"
             anchor = ((gx + hx) / 2, hy - 6, "mid")
@@ -282,11 +319,23 @@ def crossings(nodes: list[dict], routes: list[dict]) -> list[tuple[str, str]]:
     return bad
 
 
-def gutter_x(stage: int, lanes: dict[int, int]) -> float:
+def gutter_x(stage: int, lanes: dict[int, int], geom: dict) -> float:
+    return _gutter(stage, lanes, geom)[0]
+
+
+def _gutter(stage: int, lanes: dict[int, int], geom: dict) -> tuple[float, int]:
     """A free vertical lane in the gutter to the right of `stage`."""
     k = lanes[stage]
     lanes[stage] += 1
-    return PAD + stage * (BOX_W + GUTTER) + BOX_W + 20 + k * LANE
+    bw, gut = geom["box_w"], geom["gutter"]
+    n = max(1, geom.get("demand", {}).get(stage, 1))
+    base = PAD + stage * (bw + gut) + bw
+    # Spread n lanes across the clear width of the gutter, never touching either
+    # box edge, so a wire cannot land inside the next column.
+    clear = gut - 16
+    if n > 1:
+        return base + 8 + (k + 0.5) * (clear / n), k
+    return base + gut / 2, k
 
 
 def edge_y(n: dict, i: int, total: int) -> float:
@@ -302,13 +351,16 @@ def edge_y(n: dict, i: int, total: int) -> float:
 # ---------------------------------------------------------------------------
 def render(sheet: dict, nodes: list[dict], links: list[dict],
            views: dict, out: dict | None = None) -> str:
-    place(nodes)
-    routes, height = route(nodes, links)
+    stages = sheet.get("stages") or []
+    bands = sheet.get("bands") or []
+    geom = {"box_w": sheet.get("box_w", BOX_W),
+            "gutter": sheet.get("gutter", GUTTER),
+            "head": HEAD if (stages or bands) else HEAD - 22}
+    place(nodes, geom)
+    routes, height = route(nodes, links, geom)
     if out is not None:
         out["routes"] = routes
-    width = PAD * 2 + max(n["x"] + n["w"] for n in nodes) - PAD
-    stages = sheet.get("stages") or []
-    width = max(width, PAD * 2 + len(stages) * (BOX_W + GUTTER))
+    width = PAD + max(n["x"] + n["w"] for n in nodes) + PAD
 
     o: list[str] = []
     a = o.append
@@ -333,10 +385,17 @@ def render(sheet: dict, nodes: list[dict], links: list[dict],
       f'hw/block-diagram.yaml + hw/architecture.yaml — edit those, not this file'
       f'</text>')
 
-    # stage headers
-    for i, s in enumerate(stages):
-        x = PAD + i * (BOX_W + GUTTER)
-        a(f'<text x="{x}" y="{HEAD - 12}" class="hh mut">{esc(s.upper())}</text>')
+    # stage headers, and band labels for a sheet that folds
+    for i, st in enumerate(stages):
+        x = PAD + i * (geom["box_w"] + geom["gutter"])
+        a(f'<text x="{x}" y="{geom["head"] - 12}" class="hh mut">'
+          f'{esc(st.upper())}</text>')
+    for bd_ in bands:
+        y = geom["head"] + bd_["row"] * ROW_PITCH
+        a(f'<text x="{PAD}" y="{y - 11}" class="hh mut">'
+          f'{esc(bd_["label"].upper())}</text>')
+        a(f'<path d="M{PAD} {y - 6} L{width - PAD} {y - 6}" stroke="{RULE_SOFT}" '
+          f'stroke-width="1"/>')
 
     # wires first, so boxes sit on top of any label
     for r in routes:
@@ -352,20 +411,6 @@ def render(sheet: dict, nodes: list[dict], links: list[dict],
           f'L{ex:.0f} {ey:.0f} '
           f'L{ex + dx + px:.0f} {ey + dy + py:.0f}" fill="{r["colour"]}"/>')
 
-    # wire labels, anchored where the router knows there is clear space
-    for r in routes:
-        if not r["label"]:
-            continue
-        lx, ly, how = r["anchor"]
-        txt = r["label"]
-        wl = len(txt) * 5.3 + 6
-        rx = lx - wl / 2 if how == "mid" else lx - 2
-        a(f'<rect x="{rx:.0f}" y="{ly - 10:.0f}" width="{wl:.0f}" '
-          f'height="13" class="s" rx="2"/>')
-        a(f'<text x="{lx:.0f}" y="{ly:.0f}" class="ts mut"'
-          + (' text-anchor="middle"' if how == "mid" else "")
-          + f'>{esc(txt)}</text>')
-
     # boxes
     for n in nodes:
         x, y, w, h = n["x"], n["y"], n["w"], n["h"]
@@ -375,10 +420,10 @@ def render(sheet: dict, nodes: list[dict], links: list[dict],
           f'rx="4"{dash}/>')
         head = f'{n["tag"]} · {n["name"]}' if n["tag"] else n["name"]
         a(f'<text x="{x + 10}" y="{y + 20}" class="tb ink">'
-          f'{esc(clip(head, 30))}</text>')
+          f'{esc(clip(head, int((w - 18) / 6.3)))}</text>')
         if n.get("part"):
             a(f'<text x="{x + 10}" y="{y + 35}" class="t ink2">'
-              f'{esc(clip(n["part"], 32))}</text>')
+              f'{esc(clip(n["part"], int((w - 18) / 5.7)))}</text>')
         if n.get("foot"):
             a(f'<text x="{x + 10}" y="{y + 50}" class="ts mut">'
               f'{esc(clip(n["foot"], 34))}</text>')
@@ -390,6 +435,23 @@ def render(sheet: dict, nodes: list[dict], links: list[dict],
             a(f'<text x="{cx + wc / 2:.0f}" y="{y + h - 8}" class="ts" '
               f'fill="#fff" text-anchor="middle">{esc(rail)}</text>')
             cx += wc + 5
+
+    # wire labels last, on top of everything, each with a halo — drawn
+    # under the boxes they were silently clipped by them
+    for r in routes:
+        if not r["label"]:
+            continue
+        lx, ly, how = r["anchor"]
+        txt = r["label"]
+        if how == "mid":
+            txt = clip(txt, int((geom["gutter"] - 4) / 5.3))
+        wl = len(txt) * 5.3 + 6
+        rx = lx - wl / 2 if how == "mid" else lx - 2
+        a(f'<rect x="{rx:.0f}" y="{ly - 10:.0f}" width="{wl:.0f}" '
+          f'height="13" class="s" rx="2"/>')
+        a(f'<text x="{lx:.0f}" y="{ly:.0f}" class="ts mut"'
+          + (' text-anchor="middle"' if how == "mid" else "")
+          + f'>{esc(txt)}</text>')
 
     a("</svg>")
     return "\n".join(o)
@@ -466,6 +528,11 @@ def main() -> int:
             sys.stderr.write(f"{sheet['id']}: {len(over)} wire(s) cross a box: "
                              + ", ".join(f"{a} over {b}" for a, b in over[:6])
                              + "\n")
+        if int(w) > PAGE_W:
+            bad += 1
+            sys.stderr.write(f"{sheet['id']}: {w} px wide, past the {PAGE_W} px "
+                             f"the review page can show without scaling it "
+                             f"down — fold it or narrow the boxes\n")
         print(f"{sheet['id']:8} {len(nodes):2} boxes, {len(links):2} links, "
               f"{w}x{h}, {len(over)} wire/box crossings")
         if not args.check:
@@ -473,6 +540,28 @@ def main() -> int:
             with open(path, "w") as fh:
                 fh.write(svg)
             print(f"  wrote {path}")
+
+    # The rail budget as a table the review page can show. The standard
+    # architecture phase builds this itself; a configured phase cannot, so it
+    # is written out here.
+    if not args.check:
+        import csv as _csv
+        rows = bd.budget(master)
+        with open(f"{OUT}/power-budget.csv", "w", newline="") as fh:
+            w_ = _csv.writer(fh)
+            w_.writerow(["Rail", "V", "Typ", "Max", "Limit", "Used",
+                         "Largest load", "State"])
+            for r in rows:
+                lim = r["limit"]
+                w_.writerow([
+                    r["id"], f'{r["voltage"]} V', bd._amps(r["typ"]),
+                    bd._amps(r["max"]), bd._amps(lim) if lim else "—",
+                    f'{100 * r["max"] / lim:.0f}%' if lim else "—",
+                    max(r["loads"], key=lambda l: l[3])[0] if r["loads"] else "—",
+                    "over budget" if r["over"] else
+                    ("tight" if r["tight"] else "ok"),
+                ])
+        print(f"  wrote {OUT}/power-budget.csv")
 
     missing = blocks - covered
     if missing:

@@ -64,27 +64,31 @@ sheets:
   - id: system
     title: System power path
     subtitle: 48 V on the deck to 48 V in the vehicle, across an air gap
-    stages: [Leviathan pack, Dock converter, Transmitter, Air gap, Receiver, Vehicle converter, Mako pack]
+    gutter: 88
+    bands:
+      - {label: "Deck side — the Leviathan", row: 0}
+      - {label: "Vehicle side — the Mako", row: 2}
     nodes:
-      - {id: J0, stage: 0, row: 0}
+      - {id: J0, stage: 0, row: 0, name: Leviathan pack}
       - {ref: module, module: dab, instance: dock, id: DAB_DOCK, stage: 1, row: 0,
          name: Dock DAB, part: "U40-U47 · see the DAB sheet"}
       - {ref: group, id: TX, stage: 2, row: 0, name: Transmitter,
-         part: "U1-U9, C1, L1 · see the link sheet", kind: power,
+         part: "U1-U9, C1, L1 · link sheet", kind: power,
          members: [U1, U2, U3, U5, U6, U7, U8, U9, C1, L1, J2]}
       - {ref: gap, id: GAP, stage: 3, row: 0, name: Resonant air gap,
          part: "8-14 mm · k ≥ 0.40 · 85 kHz", kind: other}
-      - {ref: group, id: RX, stage: 4, row: 0, name: Receiver,
-         part: "L2, C2, U10-U13 · see the link sheet", kind: power,
+      # folds here — the vehicle side reads back right to left
+      - {ref: group, id: RX, stage: 3, row: 2, name: Receiver,
+         part: "L2, C2, U10-U13 · link sheet", kind: power,
          members: [L2, C2, U10, U11, U12, U13]}
-      - {ref: module, module: dab, instance: vehicle, id: DAB_VEH, stage: 5, row: 0,
-         name: Vehicle DAB, part: "U20-U27, J4 · see the DAB sheet"}
-      - {id: J3, stage: 6, row: 0}
+      - {ref: module, module: dab, instance: vehicle, id: DAB_VEH, stage: 2, row: 2,
+         name: Vehicle DAB, part: "U20-U27, J4 · DAB sheet"}
+      - {id: J3, stage: 1, row: 2, name: Mako pack}
     links:
       - {from: J0,       to: DAB_DOCK, label: "48 V · 75 A"}
       - {from: DAB_DOCK, to: TX,       label: "400 V · 8.4 A"}
-      - {from: TX,       to: GAP,      label: "85 kHz · 8.33 A rms"}
-      - {from: GAP,      to: RX,       label: "3.0 kW + in-band data"}
+      - {from: TX,       to: GAP,      label: "85 kHz · 8.33 A"}
+      - {from: GAP,      to: RX,       label: "3.0 kW + data"}
       - {from: RX,       to: DAB_VEH,  label: "400 V · 8.0 A"}
       - {from: DAB_VEH,  to: J3,       label: "48 V · 75 A"}
 
@@ -96,45 +100,48 @@ sheets:
 
   - id: link
     title: Transmitter, coils and receiver
-    subtitle: The resonant link — power left to right, control below it
-    stages: [TX bridge, TX tank, TX coil, Air gap, RX coil, RX tank, RX output]
+    subtitle: >-
+      The resonant link. Power reads left to right on the transmitter, down
+      across the air gap, then right to left on the receiver — the two coils
+      face each other on the page as they do in the fixture.
+    bands:
+      - {label: "Transmitter — dock side", row: 0}
+      - {label: "Receiver — vehicle side", row: 5}
     nodes:
-      # --- the power path, one row, left to right ---
-      - {id: U1,  stage: 0, row: 1}
-      - {id: U2,  stage: 0, row: 2}
+      # --- transmitter: power path on row 1, control below ---
+      - {id: IN_HV, stage: 0, row: 0, ref: port, name: "from dock DAB",
+         part: "400 V link"}
+      - {id: U1,  stage: 0, row: 1, name: TX bridge leg A}
       - {id: C1,  stage: 1, row: 1}
       - {id: L1,  stage: 2, row: 1}
-      - {ref: gap, id: GAP, stage: 3, row: 1, name: Air gap,
-         part: "8-14 mm · 5 mm offset · 2°", kind: other}
-      - {id: L2,  stage: 4, row: 1}
-      - {id: C2,  stage: 5, row: 1}
-      - {id: U10, stage: 6, row: 1}
-      # --- control and sense, below it ---
-      - {id: U9,  stage: 1, row: 3}
-      - {id: U13, stage: 5, row: 3}
-      - {id: U7,  stage: 0, row: 4}
-      - {id: U8,  stage: 1, row: 4}
-      - {id: U11, stage: 5, row: 4}
-      - {id: U12, stage: 6, row: 4}
-      # --- aux and debug, bottom ---
-      - {id: J2,  stage: 0, row: 5}
-      - {id: U5,  stage: 1, row: 5}
-      - {id: U6,  stage: 2, row: 5}
-      - {id: U3,  stage: 0, row: 6}
-    edge_ports:
-      - {id: IN_HV,  stage: 0, row: 0, name: "from dock DAB", part: "400 V link"}
-      - {id: OUT_HV, stage: 6, row: 0, name: "to vehicle DAB", part: "400 V link"}
+      - {id: U2,  stage: 0, row: 2, name: TX bridge leg B}
+      - {id: U9,  stage: 1, row: 2, name: Handshake damper}
+      - {id: U3,  stage: 3, row: 2}
+      - {id: U7,  stage: 0, row: 3}
+      - {id: U8,  stage: 1, row: 3}
+      - {id: U5,  stage: 3, row: 3}
+      - {id: J2,  stage: 0, row: 4}
+      - {id: U6,  stage: 3, row: 4}
+      # --- receiver: power path on row 5, reading back right to left ---
+      - {id: L2,  stage: 2, row: 5}
+      - {id: C2,  stage: 1, row: 5}
+      - {id: U10, stage: 0, row: 5}
+      - {id: U13, stage: 1, row: 6, name: Load-shift keying}
+      - {id: U12, stage: 0, row: 6}
+      - {id: U11, stage: 1, row: 7}
+      - {id: OUT_HV, stage: 0, row: 7, ref: port, name: "to vehicle DAB",
+         part: "400 V link"}
     links:
       - {from: IN_HV, to: U1, label: HV400}
-      - {from: IN_HV, to: U2, label: HV400}
-      - {from: U1,  to: C1,  label: PWR_TX_TANK}
+      - {from: IN_HV, to: U2}
+      - {from: U1,  to: C1,  label: TX_TANK}
       - {from: U2,  to: C1}
-      - {from: C1,  to: L1,  label: PWR_TX_COIL}
-      - {from: L1,  to: GAP, label: PWR_LINK}
-      - {from: GAP, to: L2}
-      - {from: L2,  to: C2,  label: PWR_RX_COIL}
-      - {from: C2,  to: U10, label: PWR_RX_RECT}
-      - {from: U10, to: OUT_HV, label: PWR_HVDC_LINK}
+      - {from: C1,  to: L1,  label: TX_COIL}
+      # the air gap: a vertical hop, because that is what it physically is
+      - {from: L1,  to: L2,  label: "PWR_LINK · 8-14 mm gap"}
+      - {from: L2,  to: C2,  label: RX_COIL}
+      - {from: C2,  to: U10, label: RX_RECT}
+      - {from: U10, to: OUT_HV, label: HVDC}
       - {from: U7,  to: U1,  label: TX_PWM, kind: other}
       - {from: U7,  to: U2,  kind: other}
       - {from: U7,  to: U9,  kind: other}

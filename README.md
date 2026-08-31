@@ -59,8 +59,8 @@ hw-doctor                 # what the toolchain can actually do right now
 /hw-status                # plan progress, what is ready to start, requirements coverage
 plan-render --check       # cycles, dangling deps, done-on-unfinished
 block-diagram --check     # architecture gate; exit 1 on an over-budget rail
-./scripts/arch_diagram.py         # the three architecture sheets; fails on any
-                                  #   wire crossing a box or blocks colliding
+./scripts/arch_diagram.py         # architecture sheets + power-budget.csv; fails
+                                  #   on a wire over a box or a sheet too wide
 ./scripts/vision_md.py            # render concepts/ -> vision-gallery.md, HTML flattened
 ./scripts/md_flatten.py --check docs/review/*.md docs/design/*.md
 req-trace --gate          # traceability gate; exit 1 while gaps remain

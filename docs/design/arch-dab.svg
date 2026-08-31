@@ -1,86 +1,86 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="936" height="362" viewBox="0 0 936 362" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" role="img" aria-label="Dual active bridge module">
+<svg xmlns="http://www.w3.org/2000/svg" width="848" height="362" viewBox="0 0 848 362" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" role="img" aria-label="Dual active bridge module">
 <style>.s{fill:#fcfcfb} .bx{fill:#ffffff;stroke:#c3c2b7} .ink{fill:#0b0b0b} .ink2{fill:#52514e} .mut{fill:#898781} .gt{fill:#f4f3f0;stroke:#e4e2dc} @media (prefers-color-scheme:dark){.s{fill:#1a1a19} .bx{fill:#242422;stroke:#383835} .ink{fill:#fff} .ink2{fill:#c3c2b7} .gt{fill:#1f1f1e;stroke:#2c2c2a}} .t{font-size:12px} .tb{font-size:12.5px;font-weight:600} .ts{font-size:10px} .h{font-size:15px;font-weight:600} .hh{font-size:10px;font-weight:600;letter-spacing:0.07em}</style>
-<rect width="936" height="362" class="s" rx="6"/>
+<rect width="848" height="362" class="s" rx="6"/>
 <text x="24" y="27" class="h ink">Dual active bridge module</text>
 <text x="24" y="46" class="t ink2">One design, built twice — dock (48 V → 400 V) and vehicle (400 V → 48 V)</text>
 <text x="24" y="61" class="ts mut">generated from hw/block-diagram.yaml + hw/architecture.yaml — edit those, not this file</text>
 <text x="24" y="86" class="hh mut">LOW-VOLTAGE SIDE</text>
-<text x="320" y="86" class="hh mut">ISOLATION BARRIER</text>
-<text x="616" y="86" class="hh mut">HIGH-VOLTAGE SIDE</text>
-<path d="M214 129 L234 129 L234 129 L320 129" fill="none" stroke="#52514e" stroke-width="1.4" stroke-linejoin="round"/>
-<path d="M314 126 L320 129 L314 132" fill="#52514e"/>
-<path d="M510 129 L530 129 L530 122 L616 122" fill="none" stroke="#52514e" stroke-width="1.4" stroke-linejoin="round"/>
-<path d="M610 119 L616 122 L610 126" fill="#52514e"/>
-<path d="M119 182 L119 160" fill="none" stroke="#52514e" stroke-width="1.4" stroke-linejoin="round"/>
-<path d="M116 166 L119 160 L122 166" fill="#52514e"/>
-<path d="M214 220 L249 220 L249 213 L320 213" fill="none" stroke="#52514e" stroke-width="1.4" stroke-linejoin="round"/>
-<path d="M314 210 L320 213 L314 216" fill="#52514e"/>
-<path d="M510 213 L545 213 L545 213 L616 213" fill="none" stroke="#52514e" stroke-width="1.4" stroke-linejoin="round"/>
-<path d="M610 210 L616 213 L610 216" fill="#52514e"/>
-<path d="M711 182 L711 160" fill="none" stroke="#52514e" stroke-width="1.4" stroke-linejoin="round"/>
-<path d="M708 166 L711 160 L714 166" fill="#52514e"/>
-<path d="M214 297 L264 297 L264 297 L320 297" fill="none" stroke="#52514e" stroke-width="1.4" stroke-linejoin="round"/>
-<path d="M314 294 L320 297 L314 300" fill="#52514e"/>
-<path d="M320 297 L279 297 L279 213 L214 213" fill="none" stroke="#52514e" stroke-width="1.4" stroke-linejoin="round"/>
-<path d="M220 210 L214 213 L220 216" fill="#52514e"/>
-<rect x="238" y="112" width="59" height="13" class="s" rx="2"/>
-<text x="267" y="122" class="ts mut" text-anchor="middle">LV winding</text>
-<rect x="544" y="106" width="38" height="13" class="s" rx="2"/>
-<text x="563" y="116" class="ts mut" text-anchor="middle">8.33:1</text>
-<rect x="123" y="164" width="38" height="13" class="s" rx="2"/>
-<text x="125" y="174" class="ts mut">LV_PWM</text>
-<rect x="256" y="196" width="22" height="13" class="s" rx="2"/>
-<text x="267" y="206" class="ts mut" text-anchor="middle">PWM</text>
-<rect x="528" y="196" width="70" height="13" class="s" rx="2"/>
-<text x="563" y="206" class="ts mut" text-anchor="middle">isolated PWM</text>
-<rect x="715" y="164" width="59" height="13" class="s" rx="2"/>
-<text x="717" y="174" class="ts mut">gate drive</text>
-<rect x="253" y="280" width="27" height="13" class="s" rx="2"/>
-<text x="267" y="290" class="ts mut" text-anchor="middle">12 V</text>
-<rect x="251" y="196" width="32" height="13" class="s" rx="2"/>
-<text x="267" y="206" class="ts mut" text-anchor="middle">3.3 V</text>
-<rect x="24" y="98" width="190" height="62" class="bx" rx="4"/>
+<text x="312" y="86" class="hh mut">ISOLATION BARRIER</text>
+<text x="600" y="86" class="hh mut">HIGH-VOLTAGE SIDE</text>
+<path d="M224 129 L241 129 L241 129 L312 129" fill="none" stroke="#52514e" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M306 126 L312 129 L306 132" fill="#52514e"/>
+<path d="M512 129 L538 129 L538 122 L600 122" fill="none" stroke="#52514e" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M594 119 L600 122 L594 126" fill="#52514e"/>
+<path d="M124 182 L124 160" fill="none" stroke="#52514e" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M120 166 L124 160 L128 166" fill="#52514e"/>
+<path d="M224 220 L259 220 L259 213 L312 213" fill="none" stroke="#52514e" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M306 210 L312 213 L306 216" fill="#52514e"/>
+<path d="M512 213 L574 213 L574 213 L600 213" fill="none" stroke="#52514e" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M594 210 L600 213 L594 216" fill="#52514e"/>
+<path d="M700 182 L700 160" fill="none" stroke="#52514e" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M696 166 L700 160 L704 166" fill="#52514e"/>
+<path d="M224 297 L277 297 L277 297 L312 297" fill="none" stroke="#52514e" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M306 294 L312 297 L306 300" fill="#52514e"/>
+<path d="M312 297 L295 297 L295 213 L224 213" fill="none" stroke="#52514e" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M230 210 L224 213 L230 216" fill="#52514e"/>
+<rect x="24" y="98" width="200" height="62" class="bx" rx="4"/>
 <text x="34" y="118" class="tb ink">U40 / U22 · LV bridge 16x</text>
 <text x="34" y="133" class="t ink2">BSC190N15NS3</text>
 <rect x="34" y="141" width="47" height="14" rx="7" fill="#d03b3b"/>
 <text x="58" y="152" class="ts" fill="#fff" text-anchor="middle">V48_LEV</text>
 <rect x="86" y="141" width="42" height="14" rx="7" fill="#8b5cf6"/>
 <text x="107" y="152" class="ts" fill="#fff" text-anchor="middle">DOCK12</text>
-<rect x="320" y="98" width="190" height="62" class="bx" rx="4"/>
-<text x="330" y="118" class="tb ink">U41 / U21 · transformer</text>
-<text x="330" y="133" class="t ink2">TBD-planar-48V-400V</text>
-<rect x="616" y="98" width="190" height="62" class="bx" rx="4"/>
-<text x="626" y="118" class="tb ink">U42 / U20 · HV bridge 4x</text>
-<text x="626" y="133" class="t ink2">IPB60R120C7</text>
-<rect x="626" y="141" width="42" height="14" rx="7" fill="#8b5cf6"/>
-<text x="647" y="152" class="ts" fill="#fff" text-anchor="middle">DOCK12</text>
-<rect x="24" y="182" width="190" height="62" class="bx" rx="4"/>
+<rect x="312" y="98" width="200" height="62" class="bx" rx="4"/>
+<text x="322" y="118" class="tb ink">U41 / U21 · transformer</text>
+<text x="322" y="133" class="t ink2">TBD-planar-48V-400V</text>
+<rect x="600" y="98" width="200" height="62" class="bx" rx="4"/>
+<text x="610" y="118" class="tb ink">U42 / U20 · HV bridge 4x</text>
+<text x="610" y="133" class="t ink2">IPB60R120C7</text>
+<rect x="610" y="141" width="42" height="14" rx="7" fill="#8b5cf6"/>
+<text x="631" y="152" class="ts" fill="#fff" text-anchor="middle">DOCK12</text>
+<rect x="24" y="182" width="200" height="62" class="bx" rx="4"/>
 <text x="34" y="202" class="tb ink">U43 / U23 · controller</text>
 <text x="34" y="217" class="t ink2">STM32H723ZGT6</text>
 <rect x="34" y="225" width="47" height="14" rx="7" fill="#0f9b8e"/>
 <text x="58" y="236" class="ts" fill="#fff" text-anchor="middle">DOCK3V3</text>
-<rect x="320" y="182" width="190" height="62" class="bx" rx="4"/>
-<text x="330" y="202" class="tb ink">U44 / U24 · isolation</text>
-<text x="330" y="217" class="t ink2">ISO7740</text>
-<rect x="330" y="225" width="47" height="14" rx="7" fill="#0f9b8e"/>
-<text x="354" y="236" class="ts" fill="#fff" text-anchor="middle">DOCK3V3</text>
-<rect x="616" y="182" width="190" height="62" class="bx" rx="4"/>
-<text x="626" y="202" class="tb ink">U45 / U25 · isolated gate bias</text>
-<text x="626" y="217" class="t ink2">UCC14240-Q1</text>
-<rect x="626" y="225" width="42" height="14" rx="7" fill="#8b5cf6"/>
-<text x="647" y="236" class="ts" fill="#fff" text-anchor="middle">DOCK12</text>
-<rect x="24" y="266" width="190" height="62" class="bx" rx="4"/>
+<rect x="312" y="182" width="200" height="62" class="bx" rx="4"/>
+<text x="322" y="202" class="tb ink">U44 / U24 · isolation</text>
+<text x="322" y="217" class="t ink2">ISO7740</text>
+<rect x="322" y="225" width="47" height="14" rx="7" fill="#0f9b8e"/>
+<text x="346" y="236" class="ts" fill="#fff" text-anchor="middle">DOCK3V3</text>
+<rect x="600" y="182" width="200" height="62" class="bx" rx="4"/>
+<text x="610" y="202" class="tb ink">U45 / U25 · isolated gate b…</text>
+<text x="610" y="217" class="t ink2">UCC14240-Q1</text>
+<rect x="610" y="225" width="42" height="14" rx="7" fill="#8b5cf6"/>
+<text x="631" y="236" class="ts" fill="#fff" text-anchor="middle">DOCK12</text>
+<rect x="24" y="266" width="200" height="62" class="bx" rx="4"/>
 <text x="34" y="286" class="tb ink">U47 / U26 · buck 48V to 12V</text>
 <text x="34" y="301" class="t ink2">TPSM5601R5</text>
 <rect x="34" y="309" width="47" height="14" rx="7" fill="#d03b3b"/>
 <text x="58" y="320" class="ts" fill="#fff" text-anchor="middle">V48_LEV</text>
-<rect x="320" y="266" width="190" height="62" class="bx" rx="4"/>
-<text x="330" y="286" class="tb ink">U46 / U27 · buck 12V to 3.3V</text>
-<text x="330" y="301" class="t ink2">TPSM560R6</text>
-<rect x="330" y="309" width="42" height="14" rx="7" fill="#8b5cf6"/>
-<text x="351" y="320" class="ts" fill="#fff" text-anchor="middle">DOCK12</text>
-<rect x="616" y="266" width="190" height="62" class="bx" rx="4"/>
-<text x="626" y="286" class="tb ink">J4 · Vehicle debug header</text>
-<text x="626" y="301" class="t ink2">FTSH-105-01</text>
-<text x="626" y="316" class="ts mut">vehicle instance only — the dock…</text>
+<rect x="312" y="266" width="200" height="62" class="bx" rx="4"/>
+<text x="322" y="286" class="tb ink">U46 / U27 · buck 12V to 3.3V</text>
+<text x="322" y="301" class="t ink2">TPSM560R6</text>
+<rect x="322" y="309" width="42" height="14" rx="7" fill="#8b5cf6"/>
+<text x="343" y="320" class="ts" fill="#fff" text-anchor="middle">DOCK12</text>
+<rect x="600" y="266" width="200" height="62" class="bx" rx="4"/>
+<text x="610" y="286" class="tb ink">J4 · Vehicle debug header</text>
+<text x="610" y="301" class="t ink2">FTSH-105-01</text>
+<text x="610" y="316" class="ts mut">vehicle instance only — the dock…</text>
+<rect x="238" y="112" width="59" height="13" class="s" rx="2"/>
+<text x="268" y="122" class="ts mut" text-anchor="middle">LV winding</text>
+<rect x="537" y="106" width="38" height="13" class="s" rx="2"/>
+<text x="556" y="116" class="ts mut" text-anchor="middle">8.33:1</text>
+<rect x="128" y="164" width="38" height="13" class="s" rx="2"/>
+<text x="130" y="174" class="ts mut">LV_PWM</text>
+<rect x="257" y="184" width="22" height="13" class="s" rx="2"/>
+<text x="268" y="194" class="ts mut" text-anchor="middle">PWM</text>
+<rect x="521" y="184" width="70" height="13" class="s" rx="2"/>
+<text x="556" y="194" class="ts mut" text-anchor="middle">isolated PWM</text>
+<rect x="704" y="164" width="59" height="13" class="s" rx="2"/>
+<text x="706" y="174" class="ts mut">gate drive</text>
+<rect x="254" y="256" width="27" height="13" class="s" rx="2"/>
+<text x="268" y="266" class="ts mut" text-anchor="middle">12 V</text>
+<rect x="252" y="160" width="32" height="13" class="s" rx="2"/>
+<text x="268" y="170" class="ts mut" text-anchor="middle">3.3 V</text>
 </svg>

@@ -187,7 +187,7 @@ chunks:
     status: in_progress
     depends_on: [E1, M2]
     estimate_sessions: 1
-    review: architecture
+    review: arch
     outputs: [hw/block-diagram.yaml, docs/design/block-diagram.svg,
               hw/architecture.yaml, scripts/arch_diagram.py,
               docs/design/arch-system.svg, docs/design/arch-dab.svg,

@@ -1,0 +1,61 @@
+# docs/review/artifact.yaml — per-project shape for the review page.
+#
+# The standard `architecture` phase shows exactly one figure, hardcoded to
+# docs/design/block-diagram.svg, and it does not read the review's own artefact
+# list. So a reviewer whose only access is this page saw one diagram where four
+# were sent for review.
+#
+# It is replaced here by a configured phase carrying all of them. The id has to
+# differ from `architecture`, because `hide` suppresses a configured phase of
+# the same id as well as the standard one — and the review binds to a phase by
+# id, so the review is opened as `arch` too, keeping the questions on the same
+# tab as the drawings they are about.
+#
+# The rail budget table the standard phase built from the spec is preserved as
+# a CSV, written by scripts/arch_diagram.py from that same spec.
+
+hide: [architecture]
+
+phases:
+  - id: arch
+    title: Architecture
+    eyebrow: Stage 4
+    after: requirements
+    images:
+      - docs/design/arch-system.svg
+      - docs/design/arch-link.svg
+      - docs/design/arch-dab.svg
+      - docs/design/block-diagram.svg
+    captions:
+      docs/design/arch-system.svg: >-
+        The whole power path. 48 V from the Leviathan pack, up to the 400 V
+        link, across the air gap, back down to 48 V in the Mako. It folds after
+        the air gap, so the vehicle side reads back right to left.
+      docs/design/arch-link.svg: >-
+        The resonant link. Power reads left to right on the transmitter, down
+        across the air gap, then right to left on the receiver, so the two coils
+        face each other on the page as they do in the fixture. Control and aux
+        sit below each power path.
+      docs/design/arch-dab.svg: >-
+        The dual active bridge, drawn ONCE. Each box carries both instance
+        designators — U40 / U22 and so on — because this is one design, one
+        schematic and one firmware image, built twice with the direction as a
+        configuration item per SYS-015.
+      docs/design/block-diagram.svg: >-
+        The generated power-tree sheet, kept for the headroom gauge per rail.
+        Its functional-block half is superseded by the three sheets above.
+    tables:
+      - title: Power budget
+        csv: docs/design/power-budget.csv
+        note: >-
+          Rolled up from hw/block-diagram.yaml. Child rails are referred through
+          the voltage ratio, so a 12 V load appears on a 48 V parent at a
+          quarter of its current. "tight" means within 20% of what the source
+          can deliver.
+    links:
+      - path: hw/architecture.yaml
+        label: Architecture views
+        why: Which sheet, which stage, which blocks are one design built twice
+      - path: hw/block-diagram.yaml
+        label: Block diagram source
+        why: Every part, rail and current — the spec the budget is computed from
