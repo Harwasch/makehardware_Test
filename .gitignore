@@ -26,3 +26,8 @@ fp-info-cache
 
 # OS
 .DS_Store
+
+# KiCad simulation scratch — regenerate with kicad-cli + ngspice
+sim/kicad/*.cir
+sim/kicad/wf.txt
+sim/kicad/*-backups/

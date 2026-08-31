@@ -137,3 +137,75 @@ Deliberately, and they should not be read as if they did:
 * **The DAB deck is a power-transfer core**, two square waves across the
   leakage inductance. It says nothing about the magnetising current, the
   transformer's loss, or bridge behaviour at light load.
+
+## F18 — the M = 80.9 µH target assumed an ACTIVE receiver, and the deck used a passive one
+
+Raised by the customer, and they were right to ask. To be clear first: **M is
+about the wireless TX-to-RX link, not the DAB.** The DAB has its own series
+inductance, and it is a different number in a different place.
+
+The muddle is real, though, and it is mine. Two formulas describe an SS-compensated
+link and they are not interchangeable:
+
+* both ends actively switched — `P = V1 * V2 / (omega * M)`. This is what gives
+  M = 80.9 uH for 3 kW at 85 kHz between two 400 V bridges, and it is what
+  ``MEC-002`` was written from.
+* a passive diode rectifier on the receiver — `P = V1^2 * R_ac / (omega * M)^2`,
+  where the output voltage is set by the load, not by a bridge.
+
+`sim/link/link.cir` models a **passive** rectifier, because that is what
+``U10`` is in the block diagram. So the 80.9 uH figure and the simulation
+describe two different receivers, and F16's 471-622 V output is exactly the
+symptom of that mismatch.
+
+This sharpens the F16 decision rather than replacing it. **Active rectification
+restores M = 80.9 uH as the design target AND regulates the output back to
+400 V — it fixes both problems at once.** A passive rectifier means ``MEC-002``
+has to be rewritten, because M stops being the governing quantity.
+
+## F19 — the coil is designed for the wrong M, and 24 turns is 20
+
+Following F18 through to the active-rectifier case exposes a second-order error
+in ``ADR-0001``. Power transfer is INVERSELY proportional to omega times M, so
+too much coupling limits power just as surely as too little:
+
+| turns | L | M | k·Q | P max at 400 V, 85 kHz |
+|---:|---:|---:|---:|---:|
+| 24 (ADR-0001) | 220 µH | 114.6 µH | 90.9 | **2.12 kW** |
+| 22 | 192 µH | 97.9 µH | 84.2 | 2.48 kW |
+| **20** | **166 µH** | **82.2 µH** | **77.3** | **2.95 kW** |
+| 18 | 140 µH | 67.7 µH | 70.3 | 3.59 kW |
+
+``ADR-0001`` picked 24 turns by maximising k·Q, which is the EFFICIENCY figure,
+and never checked M against the POWER requirement. At 24 turns the link tops out
+at 2.12 kW — it cannot reach 3 kW at 400 V however well it is driven.
+
+**20 turns gives M = 82.2 µH against the 80.9 µH ``MEC-002`` asks for, reaches
+2.95 kW, and still carries k·Q of 77.3 against the 49 ``MEC-001`` requires.**
+The efficiency margin was never the binding constraint; it just looked like it
+because it was the only thing being optimised.
+
+``ADR-0001`` and ``MEC-002`` both need revising to 20 turns, and that is M2's
+work. It does not change the coil technology decision — a transposed
+multi-layer etched PCB coil still passes — only the turn count.
+
+## F20 — the 56 µH lands inside the range the DAB deck solved for
+
+The customer supplied it: there is a **56 µH inductor in series with the DAB's
+PCB-coil transformer**. `sim/dab/run_dab.py` had solved for 37-67 µH referred to
+the high-voltage side, so the real part sits squarely inside the predicted band,
+which is a useful check on the deck.
+
+It must be the high-voltage side: referred to the low-voltage side, 56 µH would
+cap the converter at 51 W. Referred properly it is 0.806 µH, and it pins the
+operating point that was previously open:
+
+| f | phase shift for 3.0 kW |
+|---:|---:|
+| 85 kHz | 41.9° |
+| 100 kHz | 54.0° |
+| 150 kHz | cannot reach 3 kW at any phase shift |
+
+**The transformer as built cannot deliver 3 kW above about 119 kHz.** That is a
+hard constraint on the switching frequency that nothing in the white paper
+states, and it should go into the electrical requirements.
