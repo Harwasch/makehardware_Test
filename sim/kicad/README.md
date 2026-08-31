@@ -64,19 +64,38 @@ Both lines are exported into the netlist correctly — the coupling and the
 analysis are genuinely there, which is why `run.sh` works — but the GUI does not
 recognise the block as a simulation command, so it prompts.
 
-**The permanent fix takes five seconds in eeschema:** double-click that text,
-delete the `.tran` line from it, then place a *separate* text item containing
-only
+### 3. One edit you must make — the transformer coupling
+
+**Run will then fail with `unimplemented dot command '.k1'`.** This is the same
+bug wearing a different hat, and it is worth understanding because it will catch
+you again on any transformer.
+
+`K` is a **device** line in SPICE, not a dot command. The GUI simulator prepends
+a `.` to any schematic directive that does not already start with one, so
+`K1 L1 L2 0.9999` reaches ngspice as `.k1 l1 l2 0.9999` and the circuit does not
+parse. `kicad-cli` does **not** do this — which is exactly why `run.sh` produced
+correct numbers while the GUI would not run at all.
+
+The fix is one line. In eeschema, double-click the directive text near the
+bottom left and change
 
 ```
-.tran 10n 500u 400u
+K1 L1 L2 0.9999          →     .include coupling.cir
+.tran 10n 500u 400u            .tran 10n 500u 400u
 ```
 
-Two text items, each a directive, the second one starting with a dot. Run stops
-asking. The analysis settles in a few seconds; it skips the first 400 µs of
-start-up and shows the last 100 µs.
+`coupling.cir` is already in this folder and holds the `K1` statement. It starts
+with a dot, so neither netlister mangles it, and ngspice reads the file and gets
+a proper device line. Save, and Run works.
 
-### 3. Probing
+Putting `.include` on the first line also makes the whole block start with a
+dot, which is what KiCad wants before it will recognise the `.tran` beneath it —
+so this usually cures the settings prompt in step 2 as well.
+
+The analysis settles in a few seconds; it skips the first 400 µs of start-up and
+shows the last 100 µs. Expect **3005 W in, 2938 W out, 97.8%**.
+
+### 4. Probing
 
 With the Simulator window open, click a wire in the schematic to add it to the
 plot; click a component pin to add its current. The nets worth probing are
@@ -94,7 +113,7 @@ already named, so they come up with sensible titles rather than `Net-_D1-A_`:
 For power rather than current, use the plot's **Add signal → expression** and
 enter `v(/LA)*i(L1)` or similar.
 
-### 4. Moving the operating point
+### 5. Moving the operating point
 
 Phase shift is the control input, and it is set by **when the high-voltage
 bridge switches relative to the low-voltage one** — the delay field in `VG3`
@@ -112,7 +131,7 @@ To change frequency, every `10u` period and `4.9u` width in all four gate
 sources has to move together, and the delays with them. **Above about 119 kHz
 this transformer cannot reach 3 kW at any phase shift** — 56 µH is the limit.
 
-### 5. Headless
+### 6. Headless
 
 Same schematic, same ngspice, no clicking:
 
