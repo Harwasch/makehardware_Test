@@ -138,12 +138,12 @@ It exports the netlist from the schematic with `kicad-cli`, swaps the `.tran`
 for a `.control` block that also measures, runs it, and prints:
 
 ```
-  input from the 48 V pack     3005.3 W   (62.61 A)
-  output into the 400 V link   2938.4 W   (7.346 A)
-  efficiency                     97.8 %
-  tank current, HV side          9.51 A rms   11.42 A peak
+  input from the 48 V pack     3015.5 W   (62.82 A)
+  output into the 400 V link   2942.9 W   (7.357 A)
+  efficiency                     97.6 %
+  tank current, HV side          9.53 A rms   10.34 A peak
 
-  closed form for these values: 3001 W.  Deviation 0.1%.
+  closed form for these values: 3001 W.  Deviation 0.5%.
 ```
 
 Those are the numbers to expect from a clean run. If yours differ, something
@@ -182,6 +182,14 @@ pin and shorts the supply to the gate net. ngspice says `singular matrix: check
 node vg2#branch` and returns nothing. The rails here run above and below the
 switch rows with short stubs down to each pin — that is why the top rail sits at
 y = 68.58 rather than on the pin row.
+
+**Every diode carries `rs` and `cjo`, and that is not cosmetic.** A diode left
+on ngspice's defaults has `RS = 0` and `CJO = 0` — a perfectly ideal switch with
+no series resistance and no junction capacitance. In a hard-switching bridge
+that is a reliable way to get `Timestep too small ... trouble with d4-instance`
+and an aborted run. If you add a device to this sheet, give it real parameters.
+The `.options` line beside the `.tran` loosens `abstol` from its 1 pA default,
+which is meaningless in a circuit carrying 60 A.
 
 **One ERC error is expected.** `power_pin_not_driven` on the GND symbols: KiCad
 wants a `PWR_FLAG`, which matters for a board and not for a simulation. The

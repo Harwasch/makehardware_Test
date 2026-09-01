@@ -2444,10 +2444,15 @@
 		)
 		(uuid "35727d08-0d29-43bc-bf4e-d0b002994ab8")
 	)
-  (text "DUAL ACTIVE BRIDGE   48 V Mako pack  <->  400 V link,  3 kW,  single phase shift\n\nT1 is the planar transformer, n = 8.33. Its windings and their mutual coupling live in\nxfmr.lib, attached to T1 by Sim.Library = ${KIPRJMOD}/xfmr.lib, and KiCad resolves that\nitself into an absolute .include when it builds the netlist.\n\nThat indirection is not decoration. K is a DEVICE line in SPICE, not a dot command, and\nthe GUI simulator prepends a dot to any schematic text directive that lacks one - so a\nbare \"K1 L1 L2 0.9999\" on the sheet reaches ngspice as \".k1 ...\" and the circuit will not\nparse. A relative \".include\" does not work either, because KiCad drives ngspice as a\nshared library and hands it the netlist in memory, with no file for a relative path to\nresolve against. Sim.Library avoids both: KiCad does the resolving.\n\nL3 = 56 uH is the customer-supplied series inductance on the HIGH-voltage side, and with\nthe turns ratio and the frequency it is what sets power transfer:\n\n        P = V1 * (V2/n) * phi * (pi - phi) / (2 * pi^2 * f * L)\n\nf = 100 kHz.  phi = 54 deg, set by delaying VG3 and VG4 by 1.5 us of the 10 us period.\n85 kHz wants 41.9 deg; above about 119 kHz this transformer cannot reach 3 kW at all.\n\nD1-D8 are the body diodes and the model is WRONG without them: with no freewheel path the\n100 ns dead time chops the inductor current and the transfer falls from 3.0 kW to 1.2 kW.\n\nOnly the four gate nets G1-G4 are labels. Every power connection is drawn as a wire.\n\nSimulated 3005 W in, 2938 W out, 97.8%.   Closed form 3001 W.   Agreement 0.1%."
-    (at 35 255 0)
+  (text ".options abstol=1e-9 vntol=1e-6 reltol=1e-3 gmin=1e-11 trtol=7"
+    (at 35 166 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid "e6164dfb-703e-491a-8d7a-9e7901f5efb9")
+    (uuid "8a9106c5-0ef3-40ea-aaef-d33a09b72743")
+  )
+  (text "DUAL ACTIVE BRIDGE   48 V Mako pack  <->  400 V link,  3 kW,  single phase shift\n\nT1 is the planar transformer, n = 8.33. Its windings and their mutual coupling live in\nxfmr.lib, attached to T1 by Sim.Library = ${KIPRJMOD}/xfmr.lib, and KiCad resolves that\nitself into an absolute .include when it builds the netlist.\n\nThat indirection is not decoration. K is a DEVICE line in SPICE, not a dot command, and\nthe GUI simulator prepends a dot to any schematic text directive that lacks one - so a\nbare \"K1 L1 L2 0.9999\" on the sheet reaches ngspice as \".k1 ...\" and the circuit will not\nparse. A relative \".include\" does not work either, because KiCad drives ngspice as a\nshared library and hands it the netlist in memory, with no file for a relative path to\nresolve against. Sim.Library avoids both: KiCad does the resolving.\n\nL3 = 56 uH is the customer-supplied series inductance on the HIGH-voltage side, and with\nthe turns ratio and the frequency it is what sets power transfer:\n\n        P = V1 * (V2/n) * phi * (pi - phi) / (2 * pi^2 * f * L)\n\nf = 100 kHz.  phi = 54 deg, set by delaying VG3 and VG4 by 1.5 us of the 10 us period.\n85 kHz wants 41.9 deg; above about 119 kHz this transformer cannot reach 3 kW at all.\n\nD1-D8 are the body diodes and the model is WRONG without them: with no freewheel path the\n100 ns dead time chops the inductor current and the transfer falls from 3.0 kW to 1.2 kW.\nEvery one of them carries rs and cjo. A diode left on ngspice defaults has RS = 0 and\nCJO = 0 - perfectly ideal, and a reliable way to make a hard-switching bridge fail to\nconverge with \"timestep too small\".\n\nOnly the four gate nets G1-G4 are labels. Every power connection is drawn as a wire.\n\nSimulated 3016 W in, 2943 W out, 97.6%.   Closed form 3001 W.   Agreement 0.5%."
+    (at 35 258 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid "02751f58-36d3-4bba-87c3-d0bb263b1563")
   )
 	(symbol
 		(lib_id "Simulation_SPICE:VDC")
@@ -3598,7 +3603,16 @@
 				)
 			)
 		)
-	)
+	
+		(property "Sim.Params" "is=5e-9 rs=20m n=1.6 cjo=200p tt=30n bv=1200"
+			(at 69.85 80.01 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		))
 	(symbol
 		(lib_id "Simulation_SPICE:D")
 		(at 69.85 119.38 270)
@@ -3667,7 +3681,16 @@
 				)
 			)
 		)
-	)
+	
+		(property "Sim.Params" "is=5e-9 rs=20m n=1.6 cjo=200p tt=30n bv=1200"
+			(at 69.85 119.38 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		))
 	(symbol
 		(lib_id "Simulation_SPICE:D")
 		(at 119.38 80.01 270)
@@ -3736,7 +3759,16 @@
 				)
 			)
 		)
-	)
+	
+		(property "Sim.Params" "is=5e-9 rs=20m n=1.6 cjo=200p tt=30n bv=1200"
+			(at 119.38 80.01 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		))
 	(symbol
 		(lib_id "Simulation_SPICE:D")
 		(at 119.38 119.38 270)
@@ -3805,7 +3837,16 @@
 				)
 			)
 		)
-	)
+	
+		(property "Sim.Params" "is=5e-9 rs=20m n=1.6 cjo=200p tt=30n bv=1200"
+			(at 119.38 119.38 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		))
 	(symbol
 		(lib_id "Simulation_SPICE:D")
 		(at 199.39 80.01 270)
@@ -3874,7 +3915,16 @@
 				)
 			)
 		)
-	)
+	
+		(property "Sim.Params" "is=5e-9 rs=20m n=1.6 cjo=200p tt=30n bv=1200"
+			(at 199.39 80.01 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		))
 	(symbol
 		(lib_id "Simulation_SPICE:D")
 		(at 199.39 119.38 270)
@@ -3943,7 +3993,16 @@
 				)
 			)
 		)
-	)
+	
+		(property "Sim.Params" "is=5e-9 rs=20m n=1.6 cjo=200p tt=30n bv=1200"
+			(at 199.39 119.38 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		))
 	(symbol
 		(lib_id "Simulation_SPICE:D")
 		(at 250.19 80.01 270)
@@ -4012,7 +4071,16 @@
 				)
 			)
 		)
-	)
+	
+		(property "Sim.Params" "is=5e-9 rs=20m n=1.6 cjo=200p tt=30n bv=1200"
+			(at 250.19 80.01 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		))
 	(symbol
 		(lib_id "Simulation_SPICE:D")
 		(at 250.19 119.38 270)
@@ -4081,7 +4149,16 @@
 				)
 			)
 		)
-	)
+	
+		(property "Sim.Params" "is=5e-9 rs=20m n=1.6 cjo=200p tt=30n bv=1200"
+			(at 250.19 119.38 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		))
 	(symbol
 		(lib_id "power:GND")
 		(at 77.47 130.81 0)
