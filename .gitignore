@@ -34,3 +34,6 @@ sim/kicad/*-backups/
 
 # KiCad simulation build products
 sim/kicad/build/
+
+# ngspice run artefacts from the spice MCP
+.ltspice-mcp/

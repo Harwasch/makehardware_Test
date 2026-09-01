@@ -365,15 +365,15 @@ reviews:
   - The RX rectifier part number MURSDA860 does not resolve to a datasheet from here, and
     F16 makes its voltage class an open question. Can you supply the real part?
   artifacts:
-  - path: docs/design/sim-dab.md
+  - path: docs/design/as-built-analysis.md
     sha256: fd664377d31e8a33
-  - path: docs/design/sim-findings.md
+  - path: docs/design/as-built-analysis.md
     sha256: d4456692714166ce
-  - path: docs/design/sim-link.md
+  - path: docs/design/link-sweeps.txt
     sha256: 3e3f948337b9c9c9
   references:
-  - sim/dab/dab.cir
-  - sim/link/link.cir
+  - sim/asbuilt/dab-hv-loop.cir
+  - sim/asbuilt/link-24t-85k.cir
   requested: '2026-08-31'
   requested_commit: da41878
   status: requested
@@ -413,7 +413,7 @@ reviews:
       that set its power transfer, so that deck solves for the transformer rather than modelling
       theirs. Neither deck carries switching loss, ZVS, dead time or parasitics.'
     added:
-    - docs/design/sim-dab.md
-    - docs/design/sim-findings.md
-    - docs/design/sim-link.md
+    - docs/design/as-built-analysis.md
+    - docs/design/as-built-analysis.md
+    - docs/design/link-sweeps.txt
 artifact_url: https://claude.ai/code/artifact/2eecc843-ba3d-4362-b04f-0cf91ea4be1b

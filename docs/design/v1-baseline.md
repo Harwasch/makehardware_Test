@@ -271,7 +271,7 @@ demonstrated capability.**
 
 ---
 
-# Addendum — analysis against the answers from the vision interview
+## Addendum — analysis against the answers from the vision interview
 
 Added 2026-08-28 after the vision interview supplied the four numbers the white
 paper was missing: pack **48 V / 33 Ah**, air gap **< 20 mm well aligned**

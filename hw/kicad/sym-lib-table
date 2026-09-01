@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+
+  (lib (name "ulysses") (type "KiCad") (uri "${KIPRJMOD}/lib/ulysses.kicad_sym") (options "") (descr "")))

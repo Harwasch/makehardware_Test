@@ -264,3 +264,22 @@ out to land under 1160 px and `arch_diagram.py --check` fails if one does not.
 `overflow-x:auto` container, as the tables already are, or warn at generation
 time with the effective scale, the way an oversized raster is already reported.
 A diagram nobody can read is the same defect as a diagram that did not embed.
+
+## 2026-09-01 — converting the EasyEDA boards
+
+`hw-sourcing` / `hw-verification` have no story for a design that arrives as a
+foreign EDA export. I wrote `scripts/eda_parse.py` and `scripts/kicad_net_check.py`
+from scratch: the geometric netlist rebuild (coordinates as union-find atoms,
+junction dots for T connections, labels merged by name) took several wrong turns
+before it matched the PCB's own pad-to-net table. A MakeHardware skill for
+"import someone else's design and prove the import is faithful" would have saved
+most of a session, and the netlist round-trip check is the part worth keeping.
+
+`konnect`'s `batch_edit_schematic_components` only updates fields that already
+exist — it cannot create `MPN` or `LCSC` on a symbol that lacks them, and
+`add_component_annotation` is one component per call. 391 components could not
+be given part numbers in the schematics, so they live in
+`hw/easyeda/*/bom.csv` instead. `sch_batch` wants a `batch_add_annotation`.
+
+The MakeHardware file to change: `skills/hw-verification` (add an import-fidelity
+gate) and the konnect `sch_batch` toolset.

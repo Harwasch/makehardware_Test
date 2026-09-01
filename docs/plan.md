@@ -115,27 +115,27 @@ Provisional diagram written and block-diagram --check passes, but the currents a
 
 #### E2 — TX board schematic capture and ERC  *(critical path)*
 
-GaN H-bridge, aux rails, current sense, STM32H723.
+GaN H-bridge, aux rails, current sense, STM32H723. An existing EasyEDA design was supplied on 2026-09-01 and converted; the netlist round-trip is verified (50 nets, 376 pins, MATCH). Two LMG2640 half bridges, and finding F22 says they cannot reach 3 kW from a 400 V bus. Not done: the power stage decision, F21 (300 nF compensation) and F28 (eight unvalued 1206 capacitors on the 400 V bus) are all open.
 
 * **Needs first:** E1B
 * **Estimate:** 2 sessions
-* **Produces:** `hw/tx/tx.kicad_sch`
+* **Produces:** `hw/kicad/tx.kicad_sch`, `hw/easyeda/TX_Iter1/`
 
 #### E3 — RX board schematic capture and ERC
 
-Rectifier, bulk, isolated current sense, STM32G431. The v1 bridge is ultrafast silicon described as Schottky; evaluate SiC Schottky and synchronous rectification against the 26 W the diode bridge costs.
+Rectifier, bulk, isolated current sense, STM32G431. EasyEDA design supplied 2026-09-01 and converted; netlist round-trip verified (27 nets, 182 pins, MATCH). Twelve MURSD860A, three per arm -- and F29 is that no datasheet for that part could be found, so its reverse voltage is unknown. Evaluate SiC Schottky and synchronous rectification once the link operating point is settled.
 
 * **Needs first:** E1B
 * **Estimate:** 1 session
-* **Produces:** `hw/rx/rx.kicad_sch`
+* **Produces:** `hw/kicad/rx.kicad_sch`, `hw/easyeda/RX_Iter1/`
 
 #### E4 — HVLV dual-active-bridge schematic capture and ERC  *(critical path)*
 
-48 V LV side carries 62.5 A at 3 kW. The v1 two-FETs-per-branch choice dissipates 74 W in conduction alone; more paralleling or a lower-R part.
+48 V LV side carries 62.5 A at 3 kW; the board still fits two FETs per branch. EasyEDA design supplied 2026-09-01 and converted; netlist round-trip verified (88 nets, 645 pins, MATCH). Three blocking findings against the board as drawn: F23 the HV bridge output is closed on itself through L1 with no transformer, F24 the two LV legs share one switch node while being driven from separate MCU outputs, F25 the LV_BUS bulk is 25 V rated on a 48 V rail. Also F26, the LV output connector is a 30 A XT60 carrying 62.5 A.
 
 * **Needs first:** E1B
 * **Estimate:** 2 sessions
-* **Produces:** `hw/hvlv/hvlv.kicad_sch`
+* **Produces:** `hw/kicad/dab.kicad_sch`, `hw/easyeda/DAB_Iter1/`
 
 #### E5 — TX PCB layout, DRC and fabrication outputs  *(critical path)*
 
@@ -179,15 +179,15 @@ UNBLOCKED. The Leviathan pack is 48 V nominal, the same as the Mako's, so one lo
 
 #### S1 — Resonant link simulation, cross-checked against the closed form
 
-ngspice decks written and running, every point cross-checked against closed form. Three findings in sim-findings.md: F14 the v1 coils cannot transfer 3 kW by a factor of 6.75 in k, F16 the corrected coil works but puts 471-622 V on the rectifier rather than the 400 V the block diagram assumes, F17 the vehicle DAB loss budget does not close and ELE-003's rationale was corrected. A DAB power-transfer deck is included even though the DAB belongs to E1, because the white paper gives no transformer parameters and the deck solves for them. NOT done: run ahead of M2 and E1, so the numbers are provisional, and F16 needs an architecture decision from the human before the operating point is settled.
+REBASED 2026-09-01 onto the EasyEDA boards. The earlier decks (sim/link, sim/dab, sim/kicad) modelled an assumed topology and were removed; their findings F14-F20 no longer describe anything that exists. sim/asbuilt takes every value from hw/easyeda and cross-checks each result against closed form: the DAB loop matches 50.06 A pk-pk / 14.45 A rms to 0.1%, and the predicted resonance split at k = 0.52 (69.0 / 122.7 kHz) shows up as simulated peaks at 72 / 115 kHz. Findings F21-F29 in as-built-analysis.md; five of them need a decision from the human before the operating point can be settled, so this is not done.
 
 * **Needs first:** M2, E1
 * **Estimate:** 1 session
-* **Produces:** `sim/link/`, `sim/dab/`, `docs/design/sim-link.md`, `docs/design/sim-dab.md`, `docs/design/sim-findings.md`
+* **Produces:** `sim/asbuilt/`, `docs/design/as-built-analysis.md`, `docs/design/link-sweeps.txt`, `docs/design/asbuilt-sim-results.txt`
 
 #### S2 — Power stage simulation — ZVS, dead time and switching loss
 
-Dead time is safety-critical here and v1 never set it in firmware at all. Sweep corners; a dead time that works at 25 C and shoots through at 85 C is the failure this chunk exists to catch. BLOCKED IN PRACTICE: this needs real device models, and the LMG3526R030 is the only power part whose datasheet has been fetched. BSC190N15NS3, IPB60R120C7 and the RX rectifier are all blocked in docs/reference/manifest.yaml. The S1 decks deliberately use ideal sources and carry no switching loss at all.
+Dead time is safety-critical here and v1 never set it in firmware at all. Sweep corners; a dead time that works at 25 C and shoots through at 85 C is the failure this chunk exists to catch. BLOCKED IN PRACTICE: this needs real device models. The LMG2640 datasheet is now in hand (SNOSDH5) and the boards' actual parts are identified, but BSC190N15NS3 and IPB60R120P7 are only distributor-parametric and MURSD860A is fully blocked -- see docs/reference/manifest.yaml. The sim/asbuilt decks use switches with body diodes and carry conduction loss only, no switching loss.
 
 * **Needs first:** E1
 * **Estimate:** 1 session

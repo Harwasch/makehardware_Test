@@ -3,11 +3,32 @@ title = "MakeHardware Requirements"
 path_to_output_dir = "build/requirements"
 # HTML for reading, ReqIF so requirements can leave for a supplier's tooling,
 # JSON because scripts/req_trace.py reads it.
-html_assets_strictdoc_dir = ""
+# html_assets_strictdoc_dir: strictdoc 0.x asserts len(path) > 0, so an empty
+# string breaks the HTML export outright. Leave it unset.
 features = [
   "TABLE_SCREEN",
   "TRACEABILITY_SCREEN",
   "DEEP_TRACEABILITY_SCREEN",
   "SEARCH",
   "REQUIREMENT_TO_SOURCE_TRACEABILITY",
+]
+# Fetched reference material is evidence, not documentation: it must never be
+# edited to satisfy StrictDoc's Markdown grammar, so keep it out of the tree.
+exclude_doc_paths = [
+  "docs/reference/source/**",
+  "build/**",
+  "hw/easyeda/**",
+]
+# Source traceability walks every file it is not told to skip. The EasyEDA
+# exports are multi-megabyte single-line JSON and the generated trees are
+# large; leaving them in kills the export's worker pool.
+exclude_source_paths = [
+  "hw/easyeda/**",
+  "docs/reference/source/**",
+  "hw/kicad/**",
+  "build/**",
+  "docs/review/artifact.html",
+  "docs/reference/**",
+  "concepts/**",
+  "**/__pycache__/**",
 ]

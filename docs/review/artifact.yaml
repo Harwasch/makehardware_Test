@@ -65,19 +65,23 @@ phases:
     eyebrow: Stage 6
     after: arch
     docs:
-      - docs/design/sim-findings.md
-      - docs/design/sim-link.md
-      - docs/design/sim-dab.md
+      - docs/design/as-built-analysis.md
+      - docs/design/asbuilt-topology.txt
+      - docs/design/link-sweeps.txt
+      - docs/design/asbuilt-sim-results.txt
     links:
-      - path: sim/link/link.cir
-        label: Resonant link deck
-        why: ngspice, the white paper's measured coil values
-      - path: sim/link/run_link.py
-        label: Link sweep driver
-        why: Sweeps the SYS-006 envelope and cross-checks the closed form
-      - path: sim/dab/dab.cir
-        label: DAB power-transfer deck
-        why: Solves for the leakage inductance 3 kW needs
-      - path: sim/dab/run_dab.py
-        label: DAB sweep driver
-        why: Phase shift against bridge current and conduction loss
+      - path: sim/asbuilt/topology.py
+        label: As-built topology and stress
+        why: Reads every value out of the EasyEDA files; no number typed in by hand
+      - path: sim/asbuilt/link-24t-85k.cir
+        label: Link deck, as fitted
+        why: The designed coil with the 300 nF the boards fit, at 85 kHz
+      - path: sim/asbuilt/link-24t-tuned.cir
+        label: Link deck, correctly compensated
+        why: The same coil at 15.9 nF — the reference the fitted case is judged against
+      - path: sim/asbuilt/dab-hv-loop.cir
+        label: DAB HV bridge as drawn
+        why: The bridge output closed on itself through L1, cross-checked to 0.1%
+      - path: sim/asbuilt/sweep.py
+        label: Frequency sweep driver
+        why: Shows the resonance splitting at k = 0.52 that puts 85 kHz in the dip

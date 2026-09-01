@@ -260,3 +260,91 @@ documents:
       copper Litz WPT3 pad measured Q = 260. At 3.3 kW their PCB coil delivered
       93% coil-to-coil, and in the thermal run the receiver reached 90.3 degC
       and was STILL RISING when power was cut at 33 minutes.
+
+  # ---- Datasheets confirmed against the EasyEDA boards (2026-09-01) ---------
+  - id: lmg2640-datasheet
+    title: LMG2640 Integrated 650V GaN Half Bridge
+    part: LMG2640RRGR
+    publisher: Texas Instruments
+    revision: SNOSDH5 (November 2024)
+    url: https://www.ti.com/lit/gpn/LMG2640
+    local: docs/reference/lmg2640-SNOSDH5.pdf
+    retrieved: 2026-09-01
+    needed_by: [ELE-001, ELE-002]
+    notes: >-
+      The TX power stage the boards actually fit (U11, U26), replacing the
+      LMG2610 of ADR-0002. Recommended ID(cnts) is +/-8.2 A both sides and the
+      cycle-by-cycle over-current threshold is 8.2 A min / 9.1 A typ / 10 A max,
+      so the device gates itself off before 3 kW from a 400 V bus (which needs
+      11.8 A peak). RDS(on) 105 mohm at 25 C, 200 mohm at 125 C; RthJA 22.8 C/W,
+      RthJC(bot) 1.21 C/W. Listed applications are AC/DC adapters and chargers.
+      This is finding F22 in docs/design/as-built-analysis.md.
+
+  - id: ihlp6767gz-47uh
+    title: IHLP-6767GZ-11 series power inductor, 47 uH
+    part: IHLP6767GZER470M11
+    publisher: Vishay Dale
+    revision: unknown
+    url: https://www.vishay.com/en/product/34309/
+    local: null
+    retrieved: 2026-09-01
+    blocked: partial
+    needed_by: [ELE-003]
+    notes: >-
+      DAB L1. The Vishay PDF was not reachable from this environment (404).
+      Saturation 8.6 A, Irms 8.7 A, DCR 42.7 mohm max are taken from the
+      DigiKey and TME parametric listings, which agree with each other. Confirm
+      against the Vishay document before this number is used for a build
+      decision -- finding F23 turns on it.
+
+  - id: bsc190n15ns3-g
+    title: OptiMOS 3 150 V N-channel MOSFET, SuperSO8 5x6
+    part: BSC190N15NS3-G
+    publisher: Infineon
+    revision: unknown
+    url: https://www.infineon.com/part/BSC190N15NS3-G
+    local: null
+    retrieved: 2026-09-01
+    blocked: partial
+    needed_by: [ELE-003]
+    notes: >-
+      The DAB LV bridge, eight of them, two per switch. 150 V, RDS(on) 19 mohm
+      max, ID 50 A, TDSON-8, from the Infineon product page and distributor
+      listings; the datasheet PDF itself was not fetched. Note the boards source
+      it from TECH PUBLIC, not Infineon (LCSC C49375117) -- a second source
+      under the same part number, which needs its own qualification.
+
+  - id: mursd860a
+    title: MURSD860A rectifier
+    part: MURSD860A
+    publisher: unknown -- the EasyEDA file records no manufacturer
+    revision: null
+    url: null
+    local: null
+    retrieved: null
+    blocked: true
+    needed_by: [ELE-001]
+    notes: >-
+      BLOCKED. Twelve of these form the RX rectifier, three per bridge arm, in
+      TO-252-2. No datasheet could be found: onsemi's MUR860 is 600 V / 8 A in
+      TO-220 and is a different part, and LCSC C2852589 was not reachable. The
+      reverse-voltage rating decides whether the RX bridge suits the ~400 V link
+      that the surrounding 500 V film capacitors imply. A human must supply this
+      -- see finding F29.
+
+  - id: xt-connector-ratings
+    title: Amass XT30 / XT60 DC power connector ratings
+    part: XT60-M, XT60PB-F.G.Y, XT30UW-F.G.Y
+    publisher: Amass (via TME listings)
+    revision: null
+    url: https://www.tme.com/us/en-us/details/xt60-m/dc-power-connectors/amass/
+    local: null
+    retrieved: 2026-09-01
+    blocked: partial
+    needed_by: [ELE-003]
+    notes: >-
+      XT60 30 A continuous / 500 V DC; XT30 15 A / 500 V DC. Taken from the TME
+      catalogue entries, not from an Amass datasheet. The "60" is the connector
+      family's current class, not a voltage -- worth stating because it is easy
+      to read the other way. Finding F26 (U83 carries 62.5 A through a 30 A
+      part) rests on this; confirm against Amass before acting.

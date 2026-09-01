@@ -1,0 +1,180 @@
+
+==============================================================================
+1.  SERIES COMPENSATION -- what the boards actually fit
+==============================================================================
+  TX  PORT_OUT+ :  300.0 nF  (3 parts in parallel)
+        C9    100nF      B32921C3104M000
+        C25   100nF      B32921C3104M000
+        C26   100nF      B32921C3104M000
+  RX  PORT+     :  300.0 nF  (3 parts in parallel)
+        C1    100nF      B32921C3104M000
+        C2    100nF      B32921C3104M000
+        C3    100nF      B32921C3104M000
+
+  Series-series compensation resonates at f = 1/(2*pi*sqrt(L*C)).
+  Solving for the coil inductance each capacitor bank implies:
+
+      f (kHz)   L_tx (uH)   L_rx (uH)
+           20      211.09      211.09
+           40       52.77       52.77
+           85       11.69       11.69
+          100        8.44        8.44
+          150        3.75        3.75
+
+  The repo's coil (ADR-0001) is 172 uH per side.
+  With 300 nF that resonates at 22.2 kHz,
+  not the 85 kHz the requirements assume.
+  85 kHz with a 172 uH coil needs 20.4 nF, i.e. 15x less than fitted.
+
+==============================================================================
+2.  TANK CURRENT AND CAPACITOR STRESS AT 3 kW
+==============================================================================
+  f =  20.4 kHz, 400 V bus:
+      bridge fundamental         360.1 V rms
+      tank current                 8.3 A rms
+      Xc of 300 nF             26.01 ohm
+      volts across the bank      216.6 V rms
+      reactive power in bank      1.80 kVAr
+      peak dV/dt                  39.3 V/us
+      per capacitor: 2.8 A rms through a 100 nF X2 part
+
+  f =  85.0 kHz, 400 V bus:
+      bridge fundamental         360.1 V rms
+      tank current                 8.3 A rms
+      Xc of 300 nF              6.24 ohm
+      volts across the bank       52.0 V rms
+      reactive power in bank      0.43 kVAr
+      peak dV/dt                  39.3 V/us
+      per capacitor: 2.8 A rms through a 100 nF X2 part
+
+
+==============================================================================
+3.  DAB -- the HV bridge output loop as drawn
+==============================================================================
+  L1 = 47 uH  (IHLP6767GZER470M11, IND-SMD_L17.2-W17.2)
+  Net trace from the HV bridge:
+      AH.S/AL.D  -> D1_1 -> L1.1
+      L1.2       -> S$194154 -> U94.IN+   (TMCS1133 current sensor)
+      U94.IN-    -> BH_3 -> BH.S/BL.D
+  That is the whole loop.  There is no transformer, and no pad or
+  connector, between the two bridge legs -- the sheet closes the
+  bridge output on itself through L1 and the sense resistor path.
+
+  Driven as a bridge at 85 kHz from 400 V with no
+  load impedance but L1, the current ramps
+      di/dt        = V/L = 8.51 A/us
+      peak-to-peak = V/(2*f*L) = 50 A
+  L1 is an IHLP-6767 class part in a 17.2 x 17.2 mm footprint;
+  50 A pk-pk is far outside anything that package saturates at.
+
+==============================================================================
+4.  DAB -- LV bridge switch nodes
+==============================================================================
+  Net SEC carries: AGD3, AGD4, A_H_PD3, A_H_PD4, CBA3, CBA4, CH1, CH2, CL1, CL2, D11, D3, DH1, DH2, DL1, DL2
+
+  CH1/CH2 sources, DH1/DH2 sources, CL1/CL2 drains and DL1/DL2 drains
+  are all one node.  Leg C and leg D therefore share a switch node,
+  while AGD3 (leg D) and AGD4 (leg C) are driven from separate
+  MCU outputs C/C# and D/D#.
+  The same 24 pads carry net SEC on the PCB, so this is the layout
+  too, not a schematic-only slip.
+
+  Consequence: any phase difference between the C and D gate pairs
+  turns on a high-side FET of one leg and a low-side FET of the
+  other across LV_BUS with nothing between them.
+
+==============================================================================
+5.  BUS CAPACITORS AND THEIR VOLTAGE CLASS
+==============================================================================
+  Only parts whose EasyEDA value field is a number are summed.  The
+  four NCC HHXC630ARA220MF80G on DAB LV_BUS carry the part number in
+  the value field, so they are listed but not added; the NCC code
+  reads 63 V / 22 uF and the 6.3 mm can in the footprint corroborates
+  63 V, but the datasheet was not reachable -- see the manifest.
+
+  DAB HV_BUS: 24.8 uF from parts with a numeric value
+       4 x 1.5uF                  B32672P5155K000          U63,U62,U61,U60
+       4 x 4.7uF                  TCC2220X7R475K500GT      C30,C31,C32,C33
+
+  DAB LV_BUS: 1410.0 uF from parts with a numeric value
+       3 x 470uF                  XT470UF25V90RV0111       C8,C7,C6
+       4 x (value not numeric)    HHXC630ARA220MF80G       U106,U107,U64,U65
+
+  TX VCC: 15.4 uF from parts with a numeric value
+       4 x 1.5uF                  B32672P5155K000          U23,U13,U14,U15
+       2 x 4.7uF                  TCC2220X7R475K500GT      C7,C32
+       8 x (value not numeric)    C1206                    C1,C29,C3,C30,C31,C4,C6,C8
+
+  RX VCC: 7.5 uF from parts with a numeric value
+       5 x 1.5uF                  B32672P5155K000          U10,U11,U23,U26,U31
+
+
+==============================================================================
+6.  CONNECTOR CURRENT RATING vs THE CURRENT THE NET CARRIES
+==============================================================================
+  Amass XT-series connectors are named for their CURRENT rating,
+  not their voltage: TME/Amass list XT60 at 30 A continuous / 500 V DC
+  and XT30 at 15 A continuous / 500 V DC.  Voltage is fine on a 400 V
+  bus; current is where these land.
+
+  DAB U82  XT60-M.        on HV_BUS            3.0 kW at   400 V =    7.5 A vs   30 A
+  DAB U83  XT60-M.        on LV_BUS            3.0 kW at    48 V =   62.5 A vs   30 A  <-- OVER
+  DAB CN1  XT30UW-F.G.Y   on 48V aux only      0.1 kW at    48 V =    1.0 A vs   15 A
+  RX  CN3  XT60PB-F.G.Y   on VCC (link out)    3.0 kW at   400 V =    7.5 A vs   30 A
+
+  CN1 only feeds the five TPSM560R6 aux converters, so its 15 A is
+  ample.  The DAB's LV output connector is the binding one: 62.5 A
+  through a 30 A part.
+
+==============================================================================
+7.  TX POWER STAGE HEADROOM -- LMG2640, SNOSDH5 (Nov 2024)
+==============================================================================
+  Recommended operating condition ID(cnts) = +/-8.2 A, both FETs.
+  Cycle-by-cycle over-current threshold IT(OC) = 8.2 A min,
+  9.1 A typ, 10 A max -- the part shuts its own gate off above this.
+  RDS(on) = 105 mohm at 25 C, 200 mohm at 125 C.  RthJA = 22.8 C/W.
+
+  A 400 V bridge's fundamental is 360 V rms.  At unity power
+  factor the deliverable power is V1 * I1_rms, and the peak of a
+  sinusoidal tank current is sqrt(2) x its rms:
+
+     OCP trip (A pk)  I1 rms (A)    P (W)  P_FET at 125C (W)
+                 8.2        5.80     2088                3.4
+                 9.1        6.43     2317                4.1
+                10.0        7.07     2546                5.0
+
+  3 kW needs 8.3 A rms = 11.8 A peak, which is above even the
+  10 A best-case trip point.  The TX cannot reach 3 kW from a 400 V
+  bus with one LMG2640 per leg, whatever the tank is tuned to.
+
+  Conduction loss alone at 3 kW is 6.9 W per FET, 13.9 W per package.
+  On the datasheet's RthJA of 22.8 C/W that is a 319 C rise; the part
+  has dual thermal pads and a real board does far better than the
+  JEDEC number, but even a good 8-10 C/W path puts the junction over
+  150 C before any switching loss is counted.  Thermals need a
+  measurement, not an estimate -- and that is a lab task.
+
+==============================================================================
+8.  DAB LV BRIDGE CONDUCTION LOSS AT 3 kW  (ELE-003)
+==============================================================================
+  The board fits 8 x BSC190N15NS3G-TP: CH1, CH2, CL1, CL2, DH1, DH2, DL1, DL2
+  Two per switch position, four positions -- N = 2 per branch.
+  Second-sourced from TECH PUBLIC(台舟) under the Infineon part
+  number, which needs its own qualification.
+
+  3 kW into 48 V is 62.5 A dc.
+  Best-case tank rms = (pi/2sqrt2) x I_dc = 69.4 A.
+  R_ds(on) 19 mohm max at 25 C, x1.6 at 100 C = 30.4 mohm.
+
+  Each switch position conducts for half the cycle, so the whole
+  four-position bridge costs 2 * I_rms^2 * R_ds / N:
+
+     N per branch  devices   conduction (W)   vs 100 W budget
+                2        8              147              1.5x
+                4       16               73              0.7x
+                6       24               49              0.5x
+
+  The board's two per branch spends 1.5x the entire ELE-003 budget
+  on low-voltage conduction alone, before the HV bridge, the
+  transformer, or any switching loss.  Four per branch is under the
+  budget but leaves almost nothing for the rest.

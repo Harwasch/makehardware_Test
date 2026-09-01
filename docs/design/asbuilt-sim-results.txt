@@ -1,0 +1,49 @@
+# Point results, ngspice-42, decks in sim/asbuilt/
+
+## link-24t-85k
+* coil: 24 turns, L = 220.29 uH, k = 0.520, R_ac = 675.6 mOhm
+* series-resonant at 19.6 kHz, driven at 85.0 kHz
+p_in = 5.112049e+01
+p_out = 4.426834e+01
+i_tank = 2.145520e+00
+i_pk = 3.716897e+00
+v_out = 4.858834e+01
+v_ctx = 2.004411e+02
+
+## link-24t-res
+* coil: 24 turns, L = 220.29 uH, k = 0.520, R_ac = 560.5 mOhm
+* series-resonant at 19.6 kHz, driven at 19.6 kHz
+p_in = 5.487387e+03
+p_out = 4.594888e+03
+i_tank = 3.205946e+01
+i_pk = 4.347361e+01
+v_out = 4.950072e+02
+v_ctx = 8.898702e+02
+
+## link-5t-85k
+* coil: 5 turns, L = 16.63 uH, k = 0.343, R_ac = 149.2 mOhm
+* series-resonant at 71.2 kHz, driven at 85.0 kHz
+p_in = 2.341391e+03
+p_out = 9.613980e+02
+i_tank = 6.833020e+01
+i_pk = 1.008931e+02
+v_out = 2.264313e+02
+v_ctx = 4.708739e+02
+
+## link-24t-tuned
+* coil: 24 turns, L = 220.29 uH, k = 0.520, R_ac = 675.6 mOhm
+* series-resonant at 85.0 kHz, driven at 85.0 kHz
+p_in = 3.922581e+02
+p_out = 3.754933e+02
+i_tank = 2.171416e+00
+i_pk = 3.117315e+00
+v_out = 1.415098e+02
+v_ctx = 3.227880e+02
+
+## dab-hv-loop
+* AH/AL and BH/BL across HV_BUS; the bridge output goes
+*   A_SW -> L1 (47 uH) -> current sensor -> B_SW
+i_pk = 2.499653e+01
+i_min = -2.49965e+01
+i_rms = 1.444019e+01
+i_bus = -1.22991e-01

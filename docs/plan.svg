@@ -86,14 +86,14 @@
 <rect x="1019" y="547.0" width="110" height="20" rx="4" class="bar-in_progress crit"/>
 <text x="1027" y="561.0" class="ts" fill="#ffffff" opacity="0.96">▶ In progress</text>
 <text x="20" y="595.0" class="t ink">E2 · TX board schematic capture and ERC</text>
-<rect x="1135" y="581.0" width="226" height="20" rx="4" class="bar-todo crit"/>
-<text x="1143" y="595.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
+<rect x="1135" y="581.0" width="226" height="20" rx="4" class="bar-in_progress crit"/>
+<text x="1143" y="595.0" class="ts" fill="#ffffff" opacity="0.96">▶ In progress</text>
 <text x="20" y="629.0" class="t ink">E3 · RX board schematic capture and ERC</text>
-<rect x="1135" y="615.0" width="110" height="20" rx="4" class="bar-todo"/>
-<text x="1143" y="629.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
+<rect x="1135" y="615.0" width="110" height="20" rx="4" class="bar-in_progress"/>
+<text x="1143" y="629.0" class="ts" fill="#ffffff" opacity="0.96">▶ In progress</text>
 <text x="20" y="663.0" class="t ink">E4 · HVLV dual-active-bridge schematic captu</text>
-<rect x="1135" y="649.0" width="226" height="20" rx="4" class="bar-todo crit"/>
-<text x="1143" y="663.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>
+<rect x="1135" y="649.0" width="226" height="20" rx="4" class="bar-in_progress crit"/>
+<text x="1143" y="663.0" class="ts" fill="#ffffff" opacity="0.96">▶ In progress</text>
 <text x="20" y="697.0" class="t ink">E5 · TX PCB layout, DRC and fabrication outp</text>
 <rect x="1367" y="683.0" width="226" height="20" rx="4" class="bar-todo crit"/>
 <text x="1375" y="697.0" class="ts" fill="#ffffff" opacity="0.96">○ To do</text>

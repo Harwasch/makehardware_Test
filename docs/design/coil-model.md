@@ -128,7 +128,6 @@ status is that analysis points firmly at Litz and rules the etched spiral out
 by a margin larger than the modelling uncertainty — which is enough to proceed
 with M2, and not enough to close the requirement.
 
-
 ---
 
 ## Result 4 — the rectangular PCB coil that works

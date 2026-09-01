@@ -15,7 +15,6 @@ A bench rig, not a fixture prototype. Each pad sits on two 8 mm dowels in a hole
 | ![front](vision/test_packaging/view-front.png) | ![top](vision/test_packaging/view-top.png) |
 
 [Dimensioned isometric line drawing →](vision/test_packaging/iso.svg)
-
 ## What we need from you
 
 1. Which concept, and what made you pick it? The reason matters more than the choice.

@@ -1,0 +1,61 @@
+* Ulysses link as built -- TX bridge, 16 nF, coil, 16 nF, RX bridge
+* coil: 24 turns, L = 220.29 uH, k = 0.520, R_ac = 675.6 mOhm
+* series-resonant at 85.0 kHz, driven at 85.0 kHz
+.param FSW=85000.0
+.param TP={1/FSW}
+
+VBUS bus 0 DC 400.0
+
+* --- TX full bridge, two LMG2640 half bridges (RDS(on) at 125 C)
+SAH bus sw   ga 0 SWMOD
+SAL sw  0    gb 0 SWMOD
+SBH bus sw2  gb 0 SWMOD
+SBL sw2 0    ga 0 SWMOD
+* Body diodes / reverse conduction.  Without them the 1 ns gap between the
+* two gate signals leaves the tank current with nowhere to go, ROFF = 1e9
+* develops a numerically explosive voltage, and the deck pumps energy in.
+DAH sw  bus BODY
+DAL 0   sw  BODY
+DBH sw2 bus BODY
+DBL 0   sw2 BODY
+.model BODY D(IS=1e-12 RS=0.05 N=1.2 CJO=100p TT=1n BV=800)
+VGA ga 0 PULSE(0 5 0 1n 1n {TP/2-4n} {TP})
+VGB gb 0 PULSE(0 5 {TP/2} 1n 1n {TP/2-4n} {TP})
+.model SWMOD SW(RON=0.2 ROFF=1e9 VT=2.5 VH=0.5)
+
+* --- TX tank: 3 x 100 nF in the leg-A output, coil, then RX tank
+CTX  sw  txa 1.59e-08
+LTX  txa txb 0.00022028797718619082
+RTX  txb 0   0.6756317356084625
+LRX  rxa rxb 0.00022028797718619082
+RRX  rxb rxn 0.6756317356084625
+K1 LTX LRX 0.5200245753383684
+CRX  rxa prt 1.59e-08
+
+* --- RX bridge: 12 x MURSD860A, 3 in parallel per arm
+DR1 prt vout DMOD
+DR2 0d  prt DMOD
+DR3 rxn vout DMOD
+DR4 0d  rxn DMOD
+VSENSE 0d 0 DC 0
+.model DMOD D(IS=1e-8 RS=0.0625 N=2 CJO=100p TT=25n BV=600)
+
+COUT vout 0 7.5e-06 IC=0
+RLOAD vout 0 53.33
+
+.ic V(vout)=0
+
+.control
+tran 2.941e-08 0.00470588 0 uic
+let pin  = -v(bus)*i(vbus)
+let pout = v(vout)*v(vout)/53.33
+let vctx = v(sw)-v(txa)
+meas tran p_in   avg pin  from=0.00423529 to=0.00470588
+meas tran p_out  avg pout from=0.00423529 to=0.00470588
+meas tran i_tank rms i(ltx) from=0.00423529 to=0.00470588
+meas tran i_pk   max i(ltx) from=0.00423529 to=0.00470588
+meas tran v_out  avg v(vout) from=0.00423529 to=0.00470588
+meas tran v_ctx  rms vctx from=0.00423529 to=0.00470588
+print p_in p_out i_tank i_pk v_out v_ctx
+.endc
+.end
