@@ -20,10 +20,8 @@ command -v ngspice   >/dev/null || { echo "ngspice not found - install ngspice";
 
 echo "==> exporting the netlist from the schematic"
 kicad-cli sch export netlist --format spice -o "$NET" "$SCH" >/dev/null
-# The sheet pulls the K statement in with `.include coupling.cir`. ngspice here
-# resolves that against the working directory, but some builds resolve it
-# against the netlist, so put a copy next to both.
-cp -f coupling.cir build/ 2>/dev/null || true
+# Nothing to copy: the transformer's coupling reaches ngspice through
+# Sim.Library on T1, which KiCad resolves into an absolute .include itself.
 
 # The .tran on the sheet drives the GUI. Here it is replaced by a .control block
 # so the run also prints measurements; the circuit itself is untouched.

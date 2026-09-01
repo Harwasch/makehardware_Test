@@ -1,0 +1,28 @@
+* Planar transformer for the Ulysses DAB, as a subcircuit.
+*
+* WHY A SUBCIRCUIT. Mutual coupling in SPICE is the K element, and K is a
+* DEVICE line, not a dot command. Put "K1 L1 L2 0.9999" on a KiCad sheet as a
+* text directive and the GUI simulator prepends a dot, so ngspice sees
+* ".k1 l1 l2 0.9999" and refuses to parse the circuit. Move it into a file and
+* .include it and the GUI cannot find the file, because KiCad drives ngspice as
+* a shared library and hands it the netlist in memory - there is no netlist file
+* for a relative path to resolve against.
+*
+* Both problems disappear here. KiCad resolves Sim.Library ITSELF, reads this
+* file, and inlines the subcircuit into the netlist it hands ngspice. The K
+* element ends up inside a .subckt where nothing rewrites it, and there is no
+* path for ngspice to resolve at run time.
+*
+* Nodes:  1 2 = primary (low voltage)    3 4 = secondary (high voltage)
+* Node 1 and node 3 are the dot ends.
+*
+* n = 8.333 (48 V to 400 V), so Ls = Lp * n^2.
+* k = 0.9999 deliberately: it makes L3 on the sheet - the customer's 56 uH
+* series inductance - the only leakage in the model, which is the point of the
+* whole deck.
+
+.subckt XFMR 1 2 3 4
+Lp 1 2 40u
+Ls 3 4 2.778m
+K1 Lp Ls 0.9999
+.ends XFMR

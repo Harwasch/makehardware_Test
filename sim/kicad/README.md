@@ -64,55 +64,30 @@ Both lines are exported into the netlist correctly — the coupling and the
 analysis are genuinely there, which is why `run.sh` works — but the GUI does not
 recognise the block as a simulation command, so it prompts.
 
-### 3. One edit you must make — the transformer coupling
+### 3. The transformer coupling — already handled, but know why
 
-**Run will then fail with `unimplemented dot command '.k1'`.** This is the same
-bug wearing a different hat, and it is worth understanding because it will catch
-you again on any transformer.
+Mutual coupling in SPICE is the `K` element, and **`K` is a device line, not a dot
+command**. KiCad's GUI simulator prepends a `.` to any schematic text directive
+that does not already start with one, so a bare `K1 L1 L2 0.9999` on the sheet
+arrives at ngspice as `.k1 l1 l2 0.9999` and the circuit will not parse. Moving
+it into a file and using a relative `.include` fails too: KiCad drives ngspice as
+a **shared library** and hands it the netlist in memory, so there is no netlist
+file for a relative path to resolve against.
 
-`K` is a **device** line in SPICE, not a dot command. The GUI simulator prepends
-a `.` to any schematic directive that does not already start with one, so
-`K1 L1 L2 0.9999` reaches ngspice as `.k1 l1 l2 0.9999` and the circuit does not
-parse. `kicad-cli` does **not** do this — which is exactly why `run.sh` produced
-correct numbers while the GUI would not run at all.
-
-The fix is to move the `K` statement into a file and pull it in with
-`.include`, which already starts with a dot so neither netlister touches it.
-`coupling.cir` in this folder holds it. In eeschema, double-click the directive
-text near the bottom left and replace the `K1` line.
-
-**A bare relative path does not work.** KiCad drives ngspice as a *shared
-library* and hands it the netlist in memory, so there is no netlist file for a
-relative `.include` to resolve against, and the DLL's working directory is not
-your project folder. You get `Could not find include file coupling.cir`. Two
-forms that do work — try them in this order:
+Both are avoided here. The windings and their coupling live in `xfmr.lib` as a
+subcircuit, attached to `T1` by
 
 ```
-.include "${KIPRJMOD}/coupling.cir"
+Sim.Library = ${KIPRJMOD}/xfmr.lib
+Sim.Device  = SUBCKT
+Sim.Name    = XFMR
 ```
 
-`${KIPRJMOD}` is KiCad's project-directory variable, so this stays portable
-across machines. If your KiCad does not expand it inside a directive, fall back
-to the absolute path:
-
-```
-.include "C:/Users/you/.../makehardware_Test/sim/kicad/coupling.cir"
-```
-
-**Quote it, and use forward slashes.** An unquoted `.include` breaks on any path
-containing a space — verified: a path through a folder called
-`Wireless Charging Sim` fails unquoted and works quoted. Forward slashes are
-safe on Windows here and avoid backslash-escaping entirely.
-
-Putting `.include` on the first line also makes the whole block start with a
-dot, which is what KiCad wants before it will recognise the `.tran` beneath it —
-so this usually cures the settings prompt in step 2 as well.
-
-`run.sh` is unaffected either way: `kicad-cli` writes a real netlist file, so
-the plain relative `.include coupling.cir` resolves there.
-
-The analysis settles in a few seconds; it skips the first 400 µs of start-up and
-shows the last 100 µs. Expect **3005 W in, 2938 W out, 97.8%**.
+**KiCad resolves that path itself** and writes an absolute, quoted `.include`
+into the netlist. Absolute, so the shared library finds it; quoted, so a path
+through a folder like `Wireless Charging Sim` is fine; and `${KIPRJMOD}` keeps it
+portable, because the variable is resolved at netlist time on whatever machine
+runs it. Nothing for you to edit.
 
 ### 4. Probing
 
